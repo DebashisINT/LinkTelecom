@@ -4,6 +4,7 @@ import com.breezelinktelecom.app.Pref
 import com.breezelinktelecom.app.utils.AppUtils
 import com.breezelinktelecom.base.BaseResponse
 import com.breezelinktelecom.features.addshop.model.AudioFetchDataCLass
+import com.breezelinktelecom.features.addshop.model.StockAllResponse
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.login.model.opportunitymodel.OpportunityStatusListResponseModel
 import com.breezelinktelecom.features.login.model.productlistmodel.ProductListResponseModel
@@ -43,5 +44,9 @@ class OpportunityListRepo(val apiService: OpportunityListApi) {
 
     fun saveLMSModuleInfo(obj: DashboardActivity.LMSModule): Observable<BaseResponse> {
         return apiService.saveLMSModuleInfoApi(obj)
+    }
+
+    fun getAllStock(user_id: String): Observable<StockAllResponse> {
+        return apiService.getAllStockApi(user_id)
     }
 }

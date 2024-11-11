@@ -1,8 +1,10 @@
 package com.breezelinktelecom.features.mylearning
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.Editable
@@ -27,9 +29,6 @@ import com.breezelinktelecom.base.presentation.BaseFragment
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.mylearning.apiCall.LMSRepoProvider
 import com.breezelinktelecom.widgets.AppCustomEditText
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import com.pnikosis.materialishprogress.ProgressWheel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,6 +42,7 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
     lateinit var tv_next_afterSearch_lms: LinearLayout
     lateinit var ll_my_learning_topic_list: LinearLayout
     lateinit var courseList: List<LmsSearchData>
+    lateinit var sortedCourseList: List<LmsSearchData>
     lateinit var lmsSearchAdapter: LmsSearchAdapter
 
     private lateinit var ll_lms_performance: LinearLayout
@@ -74,6 +74,7 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_search_lms, container, false)
+        (context as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initView(view)
         return view
     }
@@ -110,42 +111,29 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
         iv_lms_knowledgehub=view.findViewById(R.id.iv_lms_knowledgehub)
         tv_lms_knowledgehub=view.findViewById(R.id.tv_lms_knowledgehub)
 
-        iv_lms_knowledgehub.setImageResource(R.drawable.all_topic_colored)
-        iv_lms_performance.setImageResource(R.drawable.performance_black)
-        iv_lms_mylearning.setImageResource(R.drawable.my_learning_black)
-        iv_lms_leaderboard.setImageResource(R.drawable.leaderboard_new)
-        iv_lms_performance.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_mylearning.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_leaderboard.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
+        iv_lms_performance.setImageResource(R.drawable.performance_insights)
+        iv_lms_mylearning.setImageResource(R.drawable.open_book_lms_)
+        iv_lms_knowledgehub.setImageResource(R.drawable.all_topics_selected)
 
         tv_lms_performance.setTextColor(getResources().getColor(R.color.black))
         tv_lms_mylearning.setTextColor(getResources().getColor(R.color.black))
         tv_lms_leaderboard.setTextColor(getResources().getColor(R.color.black))
         tv_lms_knowledgehub.setTextColor(getResources().getColor(R.color.toolbar_lms))
 
-       /* courseList = ArrayList<LmsSearchData>()
-        courseList = courseList + LmsSearchData("1","Sales Skill")
-        courseList = courseList + LmsSearchData("2","Scheme Knowledge")
-        courseList = courseList + LmsSearchData("3","Product Knowledge")
-        courseList = courseList + LmsSearchData("4","Qualifying the Sale")
-        courseList = courseList + LmsSearchData("5","Mini Quizzes")
-        courseList = courseList + LmsSearchData("6","Customer Knowledge")
-        courseList = courseList + LmsSearchData("7","Time Management")
-        courseList = courseList + LmsSearchData("8","Negotiation")
-        courseList = courseList + LmsSearchData("9","Analyzing Customer Needs")*/
+
         if (AppUtils.isOnline(mContext)) {
             ll_my_learning_topic_list.visibility =View.VISIBLE
+            //Get All topics API calling -0027570
             getTopicL()
         }else{
             (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_internet))
             ll_my_learning_topic_list.visibility =View.INVISIBLE
 
         }
-
+        //Code start for auto search functionality
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //AppUtils.hideSoftKeyboard(mContext as DashboardActivity)
                 if (!et_search.text.toString().trim().equals("")) {
                     progress_wheel.spin()
                     doAsync {
@@ -180,28 +168,11 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
                         }
                     }
                 }
-                //setTopicAdapter(courseList)
             }
 
             override fun afterTextChanged(s: Editable) {}
         })
-
-
-        /*val layoutManager = FlexboxLayoutManager(mContext)
-        layoutManager.flexDirection = FlexDirection.COLUMN
-        layoutManager.justifyContent = JustifyContent.FLEX_END
-        gv_search.layoutManager = FlexboxLayoutManager(mContext)
-        lmsSearchAdapter = LmsSearchAdapter(mContext,courseList,this)
-        gv_search.adapter = lmsSearchAdapter
-
-        tv_next_afterSearch_lms.setOnClickListener {
-            if (lmsSearchAdapter.getSelectedPosition() == RecyclerView.NO_POSITION) {
-                Toast.makeText(mContext, "Please select one item", Toast.LENGTH_SHORT).show()
-            } else {
-                val selectedItem = courseList[lmsSearchAdapter.getSelectedPosition()]
-                (mContext as DashboardActivity).loadFragment(FragType.KnowledgeHubAllVideoList, true, "")
-            }
-        }*/
+        //Code end for auto search functionality
 
         ll_lms_performance.setOnClickListener(this)
         ll_lms_mylearning.setOnClickListener(this)
@@ -224,25 +195,31 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
                         val response = result as TopicListResponse
                         if (response.status == NetworkConstant.SUCCESS) {
                             courseList = ArrayList<LmsSearchData>()
+                            sortedCourseList = ArrayList<LmsSearchData>()
                             for (i in 0..response.topic_list.size - 1) {
                                 if (response.topic_list.get(i).video_count!= 0) {
-                                    courseList = courseList + LmsSearchData(
+                                    sortedCourseList = sortedCourseList + LmsSearchData(
                                         response.topic_list.get(i).topic_id.toString(),
                                         response.topic_list.get(i).topic_name,
                                         response.topic_list.get(i).video_count,
-                                        response.topic_list.get(i).topic_parcentage
+                                        response.topic_list.get(i).topic_parcentage,
+                                        response.topic_list.get(i).topic_sequence
                                     )
+                                    //code start by Puja date 25.09.2024 mantis - 0027716
+                                    // Sorting the topic list by topic_sequence
+                                    courseList = sortedCourseList.sortedBy { it.topic_sequence }
+                                    //code end by Puja date 25.09.2024 mantis - 0027716
                                 }
                             }
                             progress_wheel.stopSpinning()
                             setTopicAdapter(courseList)
 
                         } else {
-
+                            progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_data_found))
                         }
                     }, { error ->
-
+                        progress_wheel.stopSpinning()
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     })
             )
@@ -255,24 +232,17 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
     }
 
     fun setTopicAdapter(list:List<LmsSearchData>) {
+        progress_wheel.stopSpinning()
         gv_search.visibility =View.VISIBLE
-        val layoutManager = FlexboxLayoutManager(mContext)
-        layoutManager.flexDirection = FlexDirection.COLUMN
-        layoutManager.justifyContent = JustifyContent.FLEX_END
-        gv_search.layoutManager = FlexboxLayoutManager(mContext)
+        //val layoutManager = FlexboxLayoutManager(mContext)
+        //layoutManager.flexDirection = FlexDirection.COLUMN
+        //layoutManager.justifyContent = JustifyContent.FLEX_END
+        //gv_search.layoutManager = FlexboxLayoutManager(mContext)
         lmsSearchAdapter = LmsSearchAdapter(mContext, list, FragType.SearchLmsKnowledgeFrag, this)
         gv_search.adapter = lmsSearchAdapter
 
         tv_next_afterSearch_lms.setOnClickListener {
-            /*if (lmsSearchAdapter.getSelectedPosition() == RecyclerView.NO_POSITION) {
-                Toast.makeText(mContext, "Please select one topic", Toast.LENGTH_SHORT).show()
-            } else {
-                val selectedItem = list[lmsSearchAdapter.getSelectedPosition()]
-                VideoPlayLMS.previousFrag = FragType.SearchLmsFrag.toString()
-                VideoPlayLMS.loadedFrom = "SearchLmsKnowledgeFrag"
-                Pref.videoCompleteCount = "0"
-                (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, selectedItem.searchid+"~"+selectedItem.courseName)
-            }*/
+
         }
     }
 
@@ -288,28 +258,29 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
         if (lmsSearchAdapter.getSelectedPosition() == RecyclerView.NO_POSITION) {
             Toast.makeText(mContext, "Please select one topic", Toast.LENGTH_SHORT).show()
         } else {
+
+            //code start for Selected topic wise content page redirection - 0027570
             val selectedItem = item
             VideoPlayLMS.previousFrag = FragType.SearchLmsFrag.toString()
             VideoPlayLMS.loadedFrom = "SearchLmsKnowledgeFrag"
             Pref.videoCompleteCount = "0"
-            (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, selectedItem.searchid+"~"+selectedItem.courseName)
-        }    }
+            (mContext as DashboardActivity).loadFragment(FragType.AllTopicsWiseContents, true, selectedItem.searchid+"~"+selectedItem.courseName)
+            //code end for Selected topic wise content page redirection - 0027570
+        }
+    }
 
     override fun onClick(p0: View?) {
 
         when (p0?.id) {
+            //My topics page redirection -> Assigned to user mantis - 0027573
             ll_lms_mylearning.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningTopicList,
+                    FragType.SearchLmsFrag,
                     true,
                     ""
                 )
             }
-
-            ll_lms_leaderboard.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyLearningFragment, true, "")
-            }
-
+            //All topics page redirection mantis - 0027570
             ll_lms_knowledgehub.id -> {
                 (mContext as DashboardActivity).loadFragment(
                     FragType.SearchLmsKnowledgeFrag,
@@ -317,11 +288,12 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
                     ""
                 )
             }
-
+            //Performance Insight page redirection
             ll_lms_performance.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyPerformanceFrag, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.PerformanceInsightPage, true, "")
             }
 
+            //Code start for Search functionality manually click on search
             ll_search.id -> {
                 AppUtils.hideSoftKeyboard(mContext as DashboardActivity)
                 if (!et_search.text.toString().trim().equals("")) {
@@ -347,11 +319,14 @@ class SearchLmsKnowledgeFrag : BaseFragment() , View.OnClickListener, LmsSearchA
                     }
                 }
             }
+            //Code end for Search functionality manually click on search
 
+            //code start for through voice assistance search in assigned topic list
             ll_voice.id ->{
                 suffixText = et_search.text.toString().trim()
                 startVoiceInput()
             }
+            //code end for through voice assistance search in assigned topic list
         }
 
     }

@@ -43,12 +43,11 @@
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_120sdp"
-                    android:layout_marginStart="@dimen/_75sdp"
-                    app:lottie_rawRes="@raw/anim_question_1"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="@dimen/_10sdp"
                     app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/anim_question_1" />
 
                 <TextView
                     android:id="@+id/textView_TimeCountDown"

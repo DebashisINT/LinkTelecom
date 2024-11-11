@@ -573,6 +573,18 @@ class AppUtils {
             return convertedDate;
         }
 
+        fun getFormatedD(inputDate:String):String{
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            // Define the output format
+            val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+
+            // Parse the input date and format it to the desired output
+            val date: Date = inputFormat.parse(inputDate) ?: Date()
+            val formattedDate = outputFormat.format(date)
+            return formattedDate
+        }
+
 
         /*Current date for DB Add Shop*/
 
@@ -2923,10 +2935,19 @@ class AppUtils {
 
         fun hiFirstNameText() : String {
             try{
-                val firstName = Pref.user_name?.substring(0, Pref.user_name?.indexOf(" ")!!)
-                return "Hi $firstName"
+                if (!Pref.user_name.isNullOrEmpty()){
+                    val firstName = Pref.user_name?.substring(0, Pref.user_name?.indexOf(" ")!!)
+                    return "Hi $firstName"
+                }else {
+                    //val firstName = Pref.user_name?.substring(0, Pref.user_name?.indexOf(" ")!!)
+                    return "Hi"
+                }
             }catch (ex:Exception){
-                return "Hi ${Pref.user_name}"
+                if (!Pref.user_name.isNullOrEmpty()){
+                    return "Hi"
+                }else {
+                    return "Hi ${Pref.user_name}"
+                }
             }
 
         }

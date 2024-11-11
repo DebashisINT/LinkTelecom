@@ -1,8 +1,10 @@
 package com.breezelinktelecom.features.mylearning
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.Editable
@@ -14,11 +16,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.GridView
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.breezelinktelecom.CustomStatic
@@ -37,7 +40,6 @@ import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import timber.log.Timber
-import java.text.FieldPosition
 
 
 class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningProgressAdapter.OnItemClickListener {
@@ -65,16 +67,17 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
     lateinit var et_search: EditText
     private var  suffixText:String = ""
     private lateinit var rv_mylearning_progress: RecyclerView
+    private lateinit var gv_topic_search: GridView
+    private lateinit var toggle_view: Switch
     private lateinit var ll_frag_search_root: LinearLayout
     private lateinit var ll_continue_learning: LinearLayout
     private lateinit var ll_no_data: LinearLayout
     private lateinit var final_dataL: ArrayList<LarningList>
     var contentL: ArrayList<ContentL> = ArrayList()
-
-
-    /*companion object {
-        var myLearningVideoL: ArrayList<LarningList> = ArrayList()
-    }*/
+    var isGridView:Boolean = false
+    var content_idListSize :Int =0
+    var contentWiseAnswerL : ArrayList<ContentWiseAnswerL> =ArrayList()
+    var content_idL: ArrayList<String> = ArrayList()
 
     companion object {
         var topic_id: String = ""
@@ -108,14 +111,13 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater!!.inflate(R.layout.fragment_search_lms_learning, container, false)
+        (mContext as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initView(view)
         return view
     }
 
     private fun initView(view: View) {
         requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-
-       // println("tag_myLearningVideoL"+myLearningVideoL)
 
         //performance
         ll_lms_performance = view.findViewById(R.id.ll_lms_performance)
@@ -137,20 +139,18 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         iv_lms_knowledgehub = view.findViewById(R.id.iv_lms_knowledgehub)
         tv_lms_knowledgehub = view.findViewById(R.id.tv_lms_knowledgehub)
 
-        iv_lms_mylearning.setImageResource(R.drawable.my_learning_colored)
-        iv_lms_leaderboard.setImageResource(R.drawable.home_lms)
-        iv_lms_performance.setImageResource(R.drawable.performance_black)
-        iv_lms_knowledgehub.setImageResource(R.drawable.all_topic_black)
-        iv_lms_performance.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_leaderboard.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_knowledgehub.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
+        iv_lms_performance.setImageResource(R.drawable.performance_insights_checked)
+        iv_lms_mylearning.setImageResource(R.drawable.open_book_lms_)
+        iv_lms_knowledgehub.setImageResource(R.drawable.set_of_books_lms)
 
-        tv_lms_performance.setTextColor(getResources().getColor(R.color.black))
-        tv_lms_mylearning.setTextColor(getResources().getColor(R.color.toolbar_lms))
+        tv_lms_performance.setTextColor(getResources().getColor(R.color.toolbar_lms))
+        tv_lms_mylearning.setTextColor(getResources().getColor(R.color.black))
         tv_lms_leaderboard.setTextColor(getResources().getColor(R.color.black))
         tv_lms_knowledgehub.setTextColor(getResources().getColor(R.color.black))
 
         rv_mylearning_progress = view.findViewById(R.id.rv_mylearning_progress)
+        gv_topic_search = view.findViewById(R.id.gv_topic_search)
+        toggle_view = view.findViewById(R.id.toggle_view)
         et_search = view.findViewById(R.id.et_frag_learning_search)
         ll_voice = view.findViewById(R.id.iv_frag_spk)
         ll_frag_search_root = view.findViewById(R.id.ll_frag_search_root)
@@ -159,9 +159,9 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         ll_continue_learning = view.findViewById(R.id.ll_continue_learning)
 
         progress_wheel.stopSpinning()
-
+        //API calling for my learning topic list data fetching
         getMyLarningInfoAPI()
-
+        //Code start for auto search
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             @SuppressLint("SuspiciousIndentation")
@@ -173,7 +173,7 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                         rv_mylearning_progress.visibility =View.VISIBLE
                         ll_continue_learning.visibility =View.VISIBLE
                         ll_no_data.visibility =View.GONE
-                        setLearningData(tempSearchL, topic_name)
+                        setLearningData(tempSearchL, topic_name, contentWiseAnswerL)
                     }else{
                         rv_mylearning_progress.visibility =View.GONE
                         ll_continue_learning.visibility =View.GONE
@@ -182,7 +182,7 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                 }
             override fun afterTextChanged(s: Editable) {}
         })
-
+        //Code end for auto search
         ll_lms_performance.setOnClickListener(this)
         ll_lms_mylearning.setOnClickListener(this)
         ll_lms_leaderboard.setOnClickListener(this)
@@ -190,6 +190,21 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         ll_voice.setOnClickListener(this)
         ll_frag_search_root.setOnClickListener(this)
 
+
+        // Now you can set a listener to respond to changes in the Switch state
+        toggle_view.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // The Switch is now in the "on" state
+                isGridView =true
+            } else {
+                // The Switch is now in the "off" state
+                isGridView =false
+            }
+
+            val sortedList = contentL.sortedBy { it.content_play_sequence.toInt() }.toCollection(ArrayList())
+            Log.d("sortedList", "" + sortedList)
+            setLearningData(sortedList, MyTopicsWiseContents.topic_name, contentWiseAnswerL)
+        }
     }
 
     private fun getMyLarningInfoAPI() {
@@ -213,9 +228,22 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                                     var temp = response.content_list.distinctBy { it.content_id.toString() }
                                     contentL = temp as  ArrayList<ContentL>
                                     // Sort the content list by content_play_sequence
-                                    val sortedList = contentL.sortedBy { it.content_play_sequence.toInt() }.toCollection(ArrayList())
+/*                                    val sortedList = contentL.sortedBy { it.content_play_sequence.toInt() }.toCollection(ArrayList())
                                     Log.d("sortedList", "" + sortedList)
-                                    setLearningData(sortedList , topic_name)
+                                    setLearningData(sortedList , topic_name)*/
+
+                                    doAsync {
+
+                                        getTopicContentWiseAnswerListsAPICalling(content_idL )
+
+                                        uiThread {
+                                            val sortedList = contentL.sortedBy { it.content_play_sequence.toInt() }.toCollection(ArrayList())
+                                            Log.d("sortedList", "" + sortedList)
+                                            setLearningData(sortedList ,
+                                                topic_name, contentWiseAnswerL)
+                                        }
+                                    }
+
                                 } else {
                                     Toast.makeText(mContext, "No video found", Toast.LENGTH_SHORT)
                                         .show()
@@ -241,31 +269,141 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         }
     }
 
-    private fun setLearningData(finalDatal: ArrayList<ContentL>, topic_name: String) {
+    private fun getTopicContentWiseAnswerListsAPICalling(
+        content_idL: ArrayList<String>
+    ) {
 
-        rv_mylearning_progress.layoutManager = LinearLayoutManager(mContext)
-            val adapter = MyLearningProgressAdapter(mContext, finalDatal,topic_name, this)
+        if (content_idListSize>0){
+            try {
+                progress_wheel.visibility = View.VISIBLE
+                Log.d("deleteImei call","" + content_idListSize)
+                val repository = LMSRepoProvider.getTopicList()
+                BaseActivity.compositeDisposable.add(
+                    repository.getTopicContentWiseAnswerLists(Pref.user_id!!,
+                        topic_id, content_idL.get(content_idListSize-1))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe({ result ->
+                            val response = result as TopicContentWiseAnswerListsFetchResponse
+                            if (response.status == NetworkConstant.SUCCESS) {
+                                progress_wheel.visibility = View.GONE
+                                content_idListSize--
+                                try {
+                                    contentWiseAnswerL.add(ContentWiseAnswerL(response.content_id.toInt(),response.question_answer_fetch_list.get(content_idListSize-1).isCorrectAnswer))
+                                } catch (ex: Exception) {
+                                    ex.printStackTrace()
+                                }
+                            } else {
+                                progress_wheel.visibility = View.GONE
+                                (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+
+                            }
+                        }, { error ->
+                            println("errortopicwiselist"+error.message)
+                            progress_wheel.visibility = View.GONE
+                            (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+                        })
+                )
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                progress_wheel.visibility = View.GONE
+                (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+            }
+        }
+
+
+        /*  val repository = LMSRepoProvider.getTopicList()
+
+          // Use forEach to iterate through content_idL
+          content_idL.forEach { contentId ->
+              // Create a disposable for each request
+              val disposable = repository.getTopicContentWiseAnswerLists(Pref.user_id!!, topic_id, contentId)
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .doOnError { error ->
+                      // Log the error and show a message for each failure
+                      Log.e("TopicWiseListError", error.message ?: "Unknown error")
+                      (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+                  }
+                  .subscribe({ result ->
+                      val response = result as TopicContentWiseAnswerListsFetchResponse
+                      if (response.status == NetworkConstant.SUCCESS) {
+                          // Handle success case here
+                          // (Your success handling code goes here)
+                      } else {
+                          (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+                      }
+                  }, { error ->
+                      // Handle error from subscribe directly if needed
+                      Log.e("TopicWiseListError", error.message ?: "Unknown error")
+                      (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+                  })
+
+              // Add the disposable to the composite
+              BaseActivity.compositeDisposable.add(disposable)
+          }*/
+
+
+    }
+
+    private fun setLearningData(
+        finalDatal: ArrayList<ContentL>,
+        topic_name: String,
+        contentWiseAnswerL: ArrayList<ContentWiseAnswerL>
+    ) {
+
+        if (isGridView){
+
+            val adapter = GridViewMyLearningProgressAdapter(
+                mContext,
+                finalDatal,
+                object : GridViewMyLearningProgressAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int, item: ContentL) {
+                        // Handle the click event here
+                        //Toast.makeText(mContext, "Clicked on item $position: ${courseModel?.content_title}", Toast.LENGTH_SHORT).show()
+
+                        val store_topic_id = topic_id
+                        val store_topic_name = Companion.topic_name
+                        val store_content_id = item.content_id
+                        VideoPlayLMS.loadedFrom = "SearchLmsLearningFrag"
+                        CustomStatic.VideoPosition = position
+                        Pref.videoCompleteCount = "0"
+                        (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, topic_id+"~"+ Companion.topic_name/*+"~"+position*/)
+                    }
+                }
+            )
+            gv_topic_search.setAdapter(adapter)
+            rv_mylearning_progress.visibility =View.GONE
+            gv_topic_search.visibility =View.VISIBLE
+            //gv_topic_search.visibility =View.GONE
+        }else {
+            rv_mylearning_progress.layoutManager = LinearLayoutManager(mContext)
+            val adapter = MyLearningProgressAdapter(
+                mContext,
+                finalDatal,
+                topic_name,
+                this,
+                contentWiseAnswerL
+                /*contentWiseAnswerL*/
+            )
             rv_mylearning_progress.adapter = adapter
+            rv_mylearning_progress.visibility =View.VISIBLE
+            gv_topic_search.visibility =View.GONE
+        }
     }
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
+            //My topics page redirection -> Assigned to user mantis - 0027573
             ll_lms_mylearning.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningTopicList,
+                    FragType.SearchLmsFrag,
                     true,
                     ""
                 )
             }
 
-            ll_lms_leaderboard.id -> {
-                (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningFragment,
-                    true,
-                    ""
-                )
-            }
-
+            //All topics page redirection  mantis - 0027570
             ll_lms_knowledgehub.id -> {
                 (mContext as DashboardActivity).loadFragment(
                     FragType.SearchLmsKnowledgeFrag,
@@ -273,18 +411,17 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                     ""
                 )
             }
-
+            //Performance Insight page redirection
             ll_lms_performance.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyPerformanceFrag,
+                    FragType.PerformanceInsightPage,
                     true,
                     ""
                 )
             }
-
+            //Code start for search click functionality from contentlist
             ll_frag_search_root.id -> {
                 AppUtils.hideSoftKeyboard(mContext as DashboardActivity)
-               // if (!et_search.text.toString().trim().equals("")) {
                     progress_wheel.spin()
                     doAsync {
                         var tempSearchL = contentL.filter { it.content_title.contains(et_search.text.toString().trim(), ignoreCase = true) || it.content_description.contains(et_search.text.toString().trim(), ignoreCase = true)  } as ArrayList<ContentL>
@@ -294,7 +431,7 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                                 rv_mylearning_progress.visibility =View.VISIBLE
                                 ll_continue_learning.visibility =View.VISIBLE
                                 ll_no_data.visibility =View.GONE
-                                setLearningData(tempSearchL, topic_name)
+                                setLearningData(tempSearchL, topic_name, contentWiseAnswerL)
                             }else{
                                 rv_mylearning_progress.visibility =View.GONE
                                 ll_continue_learning.visibility =View.GONE
@@ -302,12 +439,15 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
                             }
                         }
                     }
-              //  }
             }
+            //Code end for search click functionality from contentlist
+
+            //code start for through voice assistance search in assigned topic list
             ll_voice.id ->{
                 suffixText = et_search.text.toString().trim()
                 startVoiceInput()
             }
+            //code end for through voice assistance search in assigned topic list
         }
     }
 
@@ -319,8 +459,6 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         val intent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en-US")
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US")
-        //intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"hi")
-        //intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,Locale.ENGLISH)
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello, How can I help you?")
         try {
             startActivityForResult(intent, 7009)
@@ -351,62 +489,36 @@ class SearchLmsLearningFrag : BaseFragment() , View.OnClickListener, MyLearningP
         }
     }
 
+    //Code start for Redirect to Video play screen as selected content
     override fun onItemClick(item: ContentL , position: Int) {
         val store_topic_id = topic_id
         val store_topic_name = topic_name
         val store_content_id = item.content_id
-        //getwiselistAPIcalling(store_topic_id.toInt(),store_content_id.toInt(),store_topic_name)
         VideoPlayLMS.loadedFrom = "SearchLmsLearningFrag"
         CustomStatic.VideoPosition = position
         Pref.videoCompleteCount = "0"
         (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, topic_id+"~"+ topic_name/*+"~"+position*/)
     }
 
-    private fun getwiselistAPIcalling(store_topic_id: Int, store_content_id: Int ,store_topic_name:String) {
-        try {
-            progress_wheel.visibility = View.VISIBLE
-            val repository = LMSRepoProvider.getTopicList()
-            BaseActivity.compositeDisposable.add(
-                repository.getTopicsWiseVideo(Pref.user_id!!, store_topic_id.toString())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe({ result ->
-                        val response = result as VideoTopicWiseResponse
-                        if (response.status == NetworkConstant.SUCCESS) {
-                            progress_wheel.visibility = View.GONE
-                            try {
-                                if (response.content_list!=null && response.content_list.size>0) {
+    override fun onRetryClick(item: ContentL, position: Int) {
+        //Toast.makeText(mContext, "click", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(mContext, "click", Toast.LENGTH_SHORT).show()
+        val store_topic_id = AllTopicsWiseContents.topic_id
+        val store_topic_name = AllTopicsWiseContents.topic_name
+        val store_content_id = item.content_id
+        //getwiselistAPIcalling(store_topic_id.toInt(),store_content_id.toInt(),store_topic_name)
+        VideoPlayLMS.loadedFrom = "SearchLmsLearningFrag"
+        CustomStatic.VideoPosition = position
 
-                                val singleItemVideo = response.content_list.filter { it.content_id.toString().equals(store_content_id.toString()) }
-                                    (mContext as DashboardActivity).loadFragment(FragType.MyLearningVideoPlay, true, singleItemVideo+"~"+store_topic_id+"~"+store_topic_name)
-
-                                }else{
-                                    Toast.makeText(mContext, "No video found", Toast.LENGTH_SHORT).show()
-
-                                }
-                            }catch (ex:Exception){
-                                ex.printStackTrace()
-                            }
-                        }else{
-                            progress_wheel.visibility = View.GONE
-
-                            (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_data_found))
-
-                        }
-                    }, { error ->
-                        progress_wheel.visibility = View.GONE
-
-                        (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                    })
-            )
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            progress_wheel.visibility = View.GONE
-
-            (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-        }
+        CustomStatic.RetryTopicId = topic_id.toInt()
+        CustomStatic. RetryTopicName= topic_name
+        CustomStatic.RetryContentId = store_content_id.toInt()
+        CustomStatic.RetryContentName = item.content_title
+        CustomStatic.RetryContentURL = item.content_url
+        //Pref.videoCompleteCount = "0"
+        (mContext as DashboardActivity).loadFragment(FragType.RetryIncorrectQuizFrag, true, topic_id +"~"+ store_content_id +"~"+ topic_name +"~"+item.content_url +"~"+item.content_title)
 
     }
-
+    //Code end for Redirect to Video play screen as selected content
 
 }

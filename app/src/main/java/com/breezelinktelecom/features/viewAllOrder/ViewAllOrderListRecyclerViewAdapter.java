@@ -1,9 +1,13 @@
 package com.breezelinktelecom.features.viewAllOrder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Html;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +54,49 @@ public class ViewAllOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Vi
 
 
     @Override
-    public void onBindViewHolder(AttendanceFragmentViewHolder attendanceFragmentViewHolder, final int position) {
+    public void onBindViewHolder(AttendanceFragmentViewHolder attendanceFragmentViewHolder, @SuppressLint("RecyclerView") final int position) {
         try {
-            if (position % 2 == 0)
+           /* if (position % 2 == 0)
                 attendanceFragmentViewHolder.rcv_item_bg.setBackgroundColor(ContextCompat.getColor(context, R.color.report_screen_bg));
             else
-                attendanceFragmentViewHolder.rcv_item_bg.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                attendanceFragmentViewHolder.rcv_item_bg.setBackgroundColor(ContextCompat.getColor(context, R.color.white));*/
+
+            try {
+                if(Pref.INSTANCE.getIsRetailOrderStatusRequired()){
+                    attendanceFragmentViewHolder.tv_ord_status.setVisibility(View.VISIBLE);
+                    if(mViewAllOrderListEntityArray.get(position).getOrderStatus() != null){
+                        String text = "";
+                        if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Ordered")){
+                            text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
+                                    context.getColor(R.color.lms_inprgs) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
+                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Invoiced")){
+                            text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
+                                    context.getColor(R.color.report_blue) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
+                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Ready to Dispatch")){
+                            text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
+                                    context.getColor(R.color.schdlrblue) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
+                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Dispatched")){
+                            text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
+                                    context.getColor(R.color.bill_green) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
+                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Delivered")){
+                            text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
+                                    context.getColor(R.color.navy_blue) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
+                        }
+
+                        attendanceFragmentViewHolder.tv_ord_status.setText(Html.fromHtml(text));
+                        attendanceFragmentViewHolder.tv_ord_status.setTextSize(17);
+                    }else{
+                        attendanceFragmentViewHolder.tv_ord_status.setVisibility(View.GONE);
+                        attendanceFragmentViewHolder.order_no_tv.setGravity(Gravity.CENTER);
+                    }
+                }else{
+                    attendanceFragmentViewHolder.tv_ord_status.setVisibility(View.GONE);
+                    attendanceFragmentViewHolder.order_no_tv.setGravity(Gravity.CENTER);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
             if (position == mViewAllOrderListEntityArray.size() - 1)
                 onScrollEndListener.onScrollEnd();
@@ -161,7 +202,7 @@ public class ViewAllOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Vi
     }
 
     class AttendanceFragmentViewHolder extends RecyclerView.ViewHolder {
-        TextView order_date_tv, ordered_amount_tv, order_no_tv;
+        TextView order_date_tv, ordered_amount_tv, order_no_tv,tv_ord_status;
         LinearLayout rcv_item_bg;
         ImageView tv_order_view, sync_status_iv, email_iv, collection_iv, location_iv;
 
@@ -176,6 +217,7 @@ public class ViewAllOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Vi
             collection_iv = itemView.findViewById(R.id.collection_iv);
             location_iv = itemView.findViewById(R.id.location_iv);
             order_no_tv = itemView.findViewById(R.id.order_no_tv);
+            tv_ord_status = itemView.findViewById(R.id.tv_ord_status);
         }
     }
 

@@ -69,5 +69,6 @@ class OrderDetailsListEntity {
     @ColumnInfo(name = "Email_Address")
     var Email_Address: String? = null
 
-
+    @ColumnInfo(name = "orderStatus")
+    var orderStatus: String? = null
 }

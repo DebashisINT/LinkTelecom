@@ -10,7 +10,9 @@ import com.breezelinktelecom.features.orderITC.AdapterProductList
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.performance_item.view.perform_thumbnail
+import kotlinx.android.synthetic.main.row_bookmark.view.iv_bookmark_del
 import kotlinx.android.synthetic.main.row_bookmark.view.iv_row_book_img
+import kotlinx.android.synthetic.main.row_bookmark.view.ll_bookmark_root
 import kotlinx.android.synthetic.main.row_bookmark.view.tv_row_book_content_desc
 import kotlinx.android.synthetic.main.row_bookmark.view.tv_row_book_content_title
 import kotlinx.android.synthetic.main.row_bookmark.view.tv_row_book_topic_name
@@ -43,10 +45,18 @@ class AdapterBookmarkedprivate (val mContext: Context, private val mList: ArrayL
             }
             itemView.tv_row_book_content_title.text = mList.get(adapterPosition).content_name
             itemView.tv_row_book_content_desc.text = mList.get(adapterPosition).content_desc
+
+            itemView.ll_bookmark_root.setOnClickListener {
+                listner.onClick(mList.get(adapterPosition))
+            }
+            itemView.iv_bookmark_del.setOnClickListener {
+                listner.onDelClick(mList.get(adapterPosition))
+            }
         }
     }
 
     interface OnClick {
         fun onClick(obj:VidBookmark)
+        fun onDelClick(obj:VidBookmark)
     }
 }

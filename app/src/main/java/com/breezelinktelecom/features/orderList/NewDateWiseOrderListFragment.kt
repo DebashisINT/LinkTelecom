@@ -71,6 +71,8 @@ import com.breezelinktelecom.features.shopdetail.presentation.AddCollectionDialo
 import com.breezelinktelecom.features.shopdetail.presentation.AddCollectionWithOrderDialog
 import com.breezelinktelecom.features.shopdetail.presentation.api.addcollection.AddCollectionRepoProvider
 import com.breezelinktelecom.features.shopdetail.presentation.model.addcollection.AddCollectionInputParamsModel
+import com.breezelinktelecom.features.viewAllOrder.OrdResponse
+import com.breezelinktelecom.features.viewAllOrder.api.OrderDetailsListRepoProvider
 import com.breezelinktelecom.features.viewAllOrder.api.addorder.AddOrderRepoProvider
 import com.breezelinktelecom.features.viewAllOrder.model.AddOrderInputParamsModel
 import com.breezelinktelecom.features.viewAllOrder.model.AddOrderInputProductList
@@ -195,7 +197,47 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
             getBillListApi()
         else
             initShopList()*/
+        if(AppUtils.isOnline(mContext) && Pref.IsRetailOrderStatusRequired){
+            orderStatusUpdateApi()
+        }
 
+    }
+
+    private fun orderStatusUpdateApi() {
+        val repository = OrderDetailsListRepoProvider.provideOrderDetailsListRepository()
+        progress_wheel.spin()
+        BaseActivity.compositeDisposable.add(
+            repository.getOrderStatusL()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ result ->
+                    val response = result as OrdResponse
+                    if (response.status == NetworkConstant.SUCCESS) {
+                        progress_wheel.stopSpinning()
+                        doAsync {
+                            try {
+                                if(response.order_status_list.size>0){
+                                    for(i in 0..response.order_status_list.size-1){
+                                        var obj = response.order_status_list.get(i)
+                                        AppDatabase.getDBInstance()!!.orderDetailsListDao().updateOrdStatus(obj.Order_Code,obj.OrderStatus)
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                            uiThread {
+
+                            }
+                        }
+
+                    } else {
+                        progress_wheel.stopSpinning()
+                    }
+                }, { error ->
+                    error.printStackTrace()
+                    progress_wheel.stopSpinning()
+                })
+        )
     }
 
     private fun getBillListApi() {
@@ -1571,6 +1613,23 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
 
 
 //            document.add(tableamountHeader)
+            //code start by Puja date 25.09.2024 mantis - 0027726
+            try {
+                val totalQnty = AppDatabase.getDBInstance()!!.orderProductListDao().getTotalQnty(obj.order_id.toString())
+
+                val paraQnty = Paragraph()
+                val glueQnty = Chunk(VerticalPositionMark())
+                val ph1Qnty = Phrase()
+                val mainQnty = Paragraph()
+                ph1Qnty.add(glueQnty) // Here I add special chunk to the same phrase.
+
+                ph1Qnty.add(Chunk("Total Quantity: " + "\u20B9" + totalQnty, font))
+                paraQnty.add(ph1Qnty)
+                document.add(paraQnty)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            //code end by Puja date 25.09.2024 mantis - 0027726
 
             val para = Paragraph()
             val glue = Chunk(VerticalPositionMark())
@@ -1597,6 +1656,7 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
             //new code end
 
             //ph1.add(Chunk("Rupees " + NumberToWords.numberToWord(obj.amount!!.toDouble().toInt()!!)!!.toUpperCase() + " Only  ", font))
+
 
             ph1.add(glue) // Here I add special chunk to the same phrase.
 

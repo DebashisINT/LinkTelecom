@@ -162,7 +162,7 @@ class MyLearningVideoPlay : BaseFragment(), View.OnClickListener {
         ll_vdo_ply_cmmnt.setOnClickListener(this)
         iv_frag_video_comment_hide.setOnClickListener(this)
         ll_vdo_ply_like.setOnClickListener(this)
-        ll_vdo_ply_share.setOnClickListener(this)
+      //  ll_vdo_ply_share.setOnClickListener(this)
         iv_frag_video_comment_save.setOnClickListener(this)
     }
 
@@ -252,7 +252,11 @@ class MyLearningVideoPlay : BaseFragment(), View.OnClickListener {
                                 if (!savedContentIds.content_id.contains(obj_my_learning.get(0).content_id.toInt())) {
                                     //if (LmsQuestionAnswerSet.question_submit_content_id != videos.get(absoluteAdapterPosition).content_id.toInt()) {
 
-                                    onQuestionAnswerSetPageLoad(obj_my_learning.get(0).question_list.clone() as ArrayList<QuestionL>,0)
+                                    try {
+                                        onQuestionAnswerSetPageLoad(obj_my_learning.get(0).question_list.clone() as ArrayList<QuestionL>,0)
+                                    } catch (e: Exception) {
+                                        e.printStackTrace()
+                                    }
 
                                 }
                                 else{

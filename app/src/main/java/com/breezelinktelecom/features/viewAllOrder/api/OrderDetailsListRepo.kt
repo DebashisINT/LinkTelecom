@@ -2,6 +2,7 @@ package com.breezelinktelecom.features.viewAllOrder.api
 
 import com.breezelinktelecom.app.Pref
 import com.breezelinktelecom.features.login.model.productlistmodel.NewOdrScrOrderListModel
+import com.breezelinktelecom.features.viewAllOrder.OrdResponse
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderDataModel
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderOrderHistoryModel
 import com.breezelinktelecom.features.viewAllOrder.model.ViewAllOrderListResponseModel
@@ -25,6 +26,10 @@ class OrderDetailsListRepo(val apiService: OrderDetailsListApi) {
 
     fun getNewOrderHistoryDataSimplefied(): Observable<NewOdrScrOrderListModel> {
         return apiService.getNewOrderHistoryDataSimplefied(Pref.session_token!!, Pref.user_id!!)
+    }
+
+    fun getOrderStatusL(): Observable<OrdResponse> {
+        return apiService.getOrderStatusLApi(Pref.user_id!!)
     }
 
 }

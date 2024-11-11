@@ -1,6 +1,8 @@
 package com.breezelinktelecom.features.mylearning
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,9 +27,6 @@ import com.breezelinktelecom.base.presentation.BaseActivity
 import com.breezelinktelecom.base.presentation.BaseFragment
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.mylearning.apiCall.LMSRepoProvider
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import com.pnikosis.materialishprogress.ProgressWheel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -69,6 +68,7 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
     private lateinit var ll_no_data: LinearLayout
     private lateinit var final_dataL: ArrayList<LarningList>
     lateinit var courseList: ArrayList<LmsSearchData>
+    lateinit var sortedCourseList: ArrayList<LmsSearchData>
     lateinit var courseListF: ArrayList<LmsSearchData>
     lateinit var tv_next_afterSearch_lms: LinearLayout
     lateinit var lmsSearchAdapter: LmsSearchAdapter
@@ -86,6 +86,7 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_search_lms, container, false)
+        (mContext as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initView(view)
         return view
     }
@@ -114,16 +115,13 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
         iv_lms_knowledgehub = view.findViewById(R.id.iv_lms_knowledgehub)
         tv_lms_knowledgehub = view.findViewById(R.id.tv_lms_knowledgehub)
 
-        iv_lms_mylearning.setImageResource(R.drawable.my_learning_colored)
-        iv_lms_leaderboard.setImageResource(R.drawable.leaderboard_new)
-        iv_lms_performance.setImageResource(R.drawable.performance_black)
-        iv_lms_knowledgehub.setImageResource(R.drawable.all_topic_black)
-        iv_lms_performance.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_leaderboard.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_knowledgehub.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
+        //iv_lms_mylearning.setImageResource(R.drawable.my_topics_selected)
+        iv_lms_performance.setImageResource(R.drawable.performance_insights_checked)
+        iv_lms_mylearning.setImageResource(R.drawable.open_book_lms_)
+        iv_lms_knowledgehub.setImageResource(R.drawable.set_of_books_lms)
 
-        tv_lms_performance.setTextColor(getResources().getColor(R.color.black))
-        tv_lms_mylearning.setTextColor(getResources().getColor(R.color.toolbar_lms))
+        tv_lms_performance.setTextColor(getResources().getColor(R.color.toolbar_lms))
+        tv_lms_mylearning.setTextColor(getResources().getColor(R.color.black))
         tv_lms_leaderboard.setTextColor(getResources().getColor(R.color.black))
         tv_lms_knowledgehub.setTextColor(getResources().getColor(R.color.black))
 
@@ -211,14 +209,20 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
                         val response = result as TopicListResponse
                         if (response.status == NetworkConstant.SUCCESS) {
                             courseList = ArrayList<LmsSearchData>()
+                            sortedCourseList = ArrayList<LmsSearchData>()
                             for (i in 0..response.topic_list.size - 1) {
                                 if (response.topic_list.get(i).video_count!= 0 && response.topic_list.get(i).topic_parcentage!=0) {
-                                    courseList = (courseList + LmsSearchData(
+                                    sortedCourseList = ((sortedCourseList + LmsSearchData(
                                         response.topic_list.get(i).topic_id.toString(),
                                         response.topic_list.get(i).topic_name,
                                         response.topic_list.get(i).video_count,
-                                        response.topic_list.get(i).topic_parcentage
-                                    )) as ArrayList<LmsSearchData>
+                                        response.topic_list.get(i).topic_parcentage,
+                                        response.topic_list.get(i).topic_sequence
+                                    )) as ArrayList<LmsSearchData>)
+                                    //code start by Puja date 25.09.2024 mantis - 0027716
+                                    // Sorting the topic list by topic_sequence
+                                    courseList = ArrayList(sortedCourseList.sortedBy { it.topic_sequence })  // Convert to ArrayList after sorting
+                                    //code end by Puja date 25.09.2024 mantis - 0027716
                                 }
                             }
                             (mContext as DashboardActivity).setTopBarTitle("My Learning")
@@ -243,10 +247,10 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
 
     fun setTopicAdapter(list:List<LmsSearchData>) {
         gv_search.visibility =View.VISIBLE
-        val layoutManager = FlexboxLayoutManager(mContext)
-        layoutManager.flexDirection = FlexDirection.COLUMN
-        layoutManager.justifyContent = JustifyContent.FLEX_END
-        gv_search.layoutManager = FlexboxLayoutManager(mContext)
+        //val layoutManager = FlexboxLayoutManager(mContext)
+        //layoutManager.flexDirection = FlexDirection.COLUMN
+        //layoutManager.justifyContent = JustifyContent.FLEX_END
+        //gv_search.layoutManager = FlexboxLayoutManager(mContext)
         lmsSearchAdapter = LmsSearchAdapter(mContext, list, FragType.MyLearningTopicList, this)
         gv_search.adapter = lmsSearchAdapter
 
@@ -272,9 +276,10 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
+            //My topics page redirection -> Assigned to user mantis - 0027573
             ll_lms_mylearning.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningTopicList,
+                    FragType.SearchLmsFrag,
                     true,
                     ""
                 )
@@ -287,7 +292,7 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
                     ""
                 )
             }
-
+            //All topics page redirection  mantis - 0027570
             ll_lms_knowledgehub.id -> {
                 (mContext as DashboardActivity).loadFragment(
                     FragType.SearchLmsKnowledgeFrag,
@@ -295,15 +300,15 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
                     ""
                 )
             }
-
+            //Performance Insight page redirection
             ll_lms_performance.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyPerformanceFrag,
+                    FragType.PerformanceInsightPage,
                     true,
                     ""
                 )
             }
-
+            //Code start for search click functionality from contentlist
             ll_search.id -> {
                 AppUtils.hideSoftKeyboard(mContext as DashboardActivity)
                 if (!et_search.text.toString().trim().equals("")) {
@@ -333,14 +338,16 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
                     }
                 }
             }
+            //Code end for search click functionality from contentlist
 
+            //code start for through voice assistance search in assigned topic list
             ll_voice.id ->{
                 suffixText = et_search.text.toString().trim()
-               // startVoiceInput()
             }
+            //code end for through voice assistance search in assigned topic list
         }
     }
-
+    //Code start for as a selected topic Redirect to selected content page
     override fun onItemClick(item: LmsSearchData) {
 
         if (lmsSearchAdapter.getSelectedPosition() == RecyclerView.NO_POSITION) {
@@ -352,4 +359,5 @@ class MyLearningTopicList : BaseFragment(), View.OnClickListener , LmsSearchAdap
             (mContext as DashboardActivity).loadFragment(FragType.SearchLmsLearningFrag, true, selectedItem.searchid+"~"+selectedItem.courseName)
         }
     }
+    //Code end for as a selected topic Redirect to selected content page
 }

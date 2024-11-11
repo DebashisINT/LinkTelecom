@@ -191,7 +191,7 @@
             android:name=".features.location.LocationFuzedService"
             android:enabled="true"
             android:foregroundServiceType="location"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.LOCATIONSERVICE" />
             </intent-filter>

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:id="@+id/rl_toolbar_root">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -144,12 +145,40 @@
                 android:layout_marginTop="@dimen/_1sdp"
                 android:visibility="gone"/>
 
+            <!--<LinearLayout
+                android:id="@+id/own_point_leaderboard"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_22sdp"
+                android:visibility="gone"
+                android:background="@drawable/backwhite_round_corner_1">
+
+                <ImageView
+                    android:layout_width="@dimen/_27sdp"
+                    android:layout_height="@dimen/_27sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/first_icon"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_3sdp"
+                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="52000"/>
+
+            </LinearLayout>-->
+
+
             <ImageView
                 android:id="@+id/iv_home_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_27sdp"
+                android:layout_height="@dimen/_27sdp"
                 android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_header_home_icon_top"
+                android:src="@drawable/home_white"
                 android:visibility="visible"
                 android:contentDescription="@null"/>
 
@@ -172,15 +201,10 @@
                 android:visibility="gone"
                 android:padding="@dimen/_5sdp" />
 
-            <ImageView
-                android:id="@+id/add_bookmark"
-                android:layout_width="@dimen/_27sdp"
-                android:layout_height="@dimen/_27sdp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_bookmark_fill"
-                android:visibility="gone"
-                android:tint="@color/white"
-                android:padding="@dimen/_5sdp" />
+
+
+
+
 
 
             <FrameLayout
@@ -198,6 +222,34 @@
 
                 <com.breezelinktelecom.widgets.AppCustomTextView
                     android:id="@+id/tv_noti_count"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:text="1+"
+                    android:textSize="@dimen/_11sdp"
+                    android:background="@drawable/xx"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_gravity="right"
+                    android:visibility="gone"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/add_bookmark"
+                    android:layout_width="@dimen/_27sdp"
+                    android:layout_height="@dimen/_27sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_bookmark_fill"
+                    android:visibility="gone"
+                    android:tint="@color/white"
+                    android:padding="@dimen/_5sdp" />
+
+                <com.breezelinktelecom.widgets.AppCustomTextView
+                    android:id="@+id/tv_saved_count"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:text="1+"

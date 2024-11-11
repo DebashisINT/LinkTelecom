@@ -197,6 +197,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val intent = Intent()
                 intent.action = "FCM_ACTION_RECEIVER"
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+            }else if(remoteMessage?.data?.get("type").equals("UpdateOrderStatus")){
+                notification.sendFCMNotificaiton(applicationContext, remoteMessage)
+                val intent = Intent()
+                intent.action = "FCM_ACTION_RECEIVER"
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
             }
             else {
                 notification.sendFCMNotificaiton(applicationContext, remoteMessage)
@@ -248,6 +253,28 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
     }
+
+/*    fun getAccessToken():String{
+        try {
+            var jsonString : String = "{\n" +
+                    "  \"type\": \"service_account\",\n" +
+                    "  \"project_id\": \"demofsm-fee63\",\n" +
+                    "  \"private_key_id\": \"fa4e0aa591d3ba0a173a6f3408401efdad118bdb\",\n" +
+                    "  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCpS0IokL4jjiry\\ngB6fGcIvmZkZds8Rjs2tPrF353Wd4QyeyqycG+Jj7hU4Nd7lgH0GiiF+0QY+7nrv\\nSCQjdSHj+mJUhulL3vA81lypoSzTyvewTjXN5/yj6U3W0MsVlt1rHqckIRvKIdjH\\nfR50X3BB2m4200i3TAhSvSqWBAHp6ySVTRWfYxM70ugVDZdJsr+BW1cZnn5+z93z\\nWMa4RSqbj24ZQOUNEAtdxu8uJ5M1HnlCqa5WeKXpHuO1oUtwlB/EpELqBG6VWM8E\\nXityD+HTJF+Bch4wJhP18Kj40o1bZv4ZDoesXnpZ1NmamQprOv07QBM6U7Ni5XC1\\nVgjMuc9xAgMBAAECggEAHxYEpfI+F8VJOZIxDUHrmFX5+OUKDM1OExvJ9px3ym/C\\no33PyDKOlY7oMpQhw76eNo8yq1iybufXhwyWJjSh7nzRhXfoatgbAPDTvworcxB3\\n/tW9p3uLtoVml6VrRSGYsszEICw8MBea+LaO2wuTT2ROjJ6rYY0Ckj7ODRHbUBpi\\n16wHZzXk0xHvnU+WpiB8O2o0kyecHDASa2tlPDnBWZAjwvrd6YR2D9/3jq11qWK/\\nVlHliNi+O563ih9VueHHXKidlsJXfFl9lzgRKElqov6BX4fkmuGjYrea/LraQQAc\\nK3qGvdbfttuHUvJOIsZaAhu4VM+gnMB0R6yj+pwu6QKBgQDd0FE3ZktMZDCSf8vb\\nB9xn5vC5ga8X6Nu6/L1K5wENfid1ShQE3n4Ni3GXTlXalWvmLi0gpe9EZNUe7avr\\nF5kEXwNVc5Q4P438MfeAAmUU6kzR1T1Y76JX4xRi2idjoJqfm2SPRGNB6wtoS7Gu\\ngCJ3Urd9dH3/hL0D+e01+MHxywKBgQDDYsTVQxBJsZTq75lhmPKVzsgMDozAfXF2\\n6uk+eVg/QFjsyZagWsSLlACwRXuZwoi8f0spGEIX3Jf8f6dvYg3CIDyDc3Yp2rpm\\n6OpMosugWuJEaFFxlwFz6Gu+5q5rCoWh72reqHJm0FGWGbqevD39U1R/zsU0/LnT\\nTtrP3Z9sMwKBgGagZZNOPvR/PoHpovYaMv3XufT6bXqQgGmJWkN3keMeRT9dINoH\\n3yaBJ/MriUly7NM49iQu4f8w7/I5YNuKtX9yPmag7SkBLr5KmAqgEQiWRyimkpW9\\nec1UATCjYqoTurax/NrUd2AeUc7VhsYH/upaWQ8wgMNiNNnMHtZj28f1AoGACNbu\\nGsvm776WAy8F3HGEAB0T1d/OpGLIgF3OYaIxyOLLYyMXqneQztPKWC88kU9IymZj\\n6x8K1nOHeMf5tkNUZgT5V+UgYnJf3ooJF6CB3+ZcuEWT8bSoPyszvLZJC9S1CQeA\\n6UPrsRUZq9XMKKRRlaVwfDvJlkUczx+RLLhVHxsCgYBwJ0d9poRg3nfGb+OJf2mo\\nfjsjo+2n1e9/ppQK79emITvqRCuqsyXLR+oyiTZIhck4Pz9D898bQnzoMWTj3UUo\\ni5mqby/aZih1ZBYAA63SeuKnh7FAdrXAmGoj/m0D1AELtiiWNN7H5d98kn5md2b/\\nE5awhBdjJd0NoUnhodWslA==\\n-----END PRIVATE KEY-----\\n\",\n" +
+                    "  \"client_email\": \"firebase-adminsdk-m1emn@demofsm-fee63.iam.gserviceaccount.com\",\n" +
+                    "  \"client_id\": \"115535921552187565842\",\n" +
+                    "  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n" +
+                    "  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n" +
+                    "  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n" +
+                    "  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-m1emn%40demofsm-fee63.iam.gserviceaccount.com\",\n" +
+                    "  \"universe_domain\": \"googleapis.com\"\n" +
+                    "}\n"
+
+            val stream = ""
+        }catch (ex:Exception){
+            ex.printStackTrace()
+        }
+    }*/
 
 }
 

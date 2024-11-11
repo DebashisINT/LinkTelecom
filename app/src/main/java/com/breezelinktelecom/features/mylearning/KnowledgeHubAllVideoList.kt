@@ -308,7 +308,7 @@ class KnowledgeHubAllVideoList : BaseFragment(), View.OnClickListener , GridRVAd
         when(p0?.id){
 
             ll_lms_mylearning.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyLearningTopicList, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.SearchLmsFrag, true, "")
             }
 
             ll_lms_leaderboard.id -> {
@@ -320,7 +320,7 @@ class KnowledgeHubAllVideoList : BaseFragment(), View.OnClickListener , GridRVAd
             }
 
             ll_lms_performance.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyPerformanceFrag, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.allPerformanceFrag, true, "")
             }
             ll_voice.id ->{
                 suffixText = et_search.text.toString().trim()

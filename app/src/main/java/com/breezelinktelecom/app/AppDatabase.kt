@@ -76,8 +76,8 @@ import com.breezelinktelecom.features.taskManagement.model.TaskManagmentEntity
     ContactActivityEntity::class,ScheduleTemplateEntity::class,ModeTemplateEntity::class,RuleTemplateEntity::class,SchedulerMasterEntity::class,
     SchedulerDateTimeEntity::class,SchedulerContactEntity::class,TeamAllListEntity::class,PhoneContactEntity::class,PhoneContact1Entity::class,
     NewProductListEntity::class, NewRateListEntity::class, NewOrderDataEntity::class,NewOrderProductDataEntity::class,OpportunityStatusEntity::class,OpportunityAddEntity::class,OpportunityProductEntity::class,LmsUserInfoEntity::class,
-    ShopAudioEntity::class,LMSNotiEntity::class),
-        version = 1, exportSchema = false)
+    ShopAudioEntity::class,LMSNotiEntity::class,StockAllEntity::class,StockTransEntity::class),
+        version = 27, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun addShopEntryDao(): AddShopDao
@@ -247,6 +247,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun lmsUserInfoDao(): LmsUserInfoDao
     abstract fun shopAudioDao(): ShopAudioDao
     abstract fun lmsNotiDao(): LMSNotiDao
+    abstract fun stockAllDao(): StockAllDao
+    abstract fun stockTransDao(): StockTransDao
 
 
     companion object {
@@ -258,7 +260,7 @@ abstract class AppDatabase : RoomDatabase() {
                         // allow queries on the main thread.
                         // Don't do this on a real app! See PersistenceBasicSample for an example.
                         .allowMainThreadQueries()
-                        .addMigrations( )
+                        .addMigrations()
 //                        .fallbackToDestructiveMigration()
                         .build()
             }
@@ -273,11 +275,6 @@ abstract class AppDatabase : RoomDatabase() {
             INSTANCE = null
         }
 
-
-           }
-
-
-//}
-
+    }
 
 }

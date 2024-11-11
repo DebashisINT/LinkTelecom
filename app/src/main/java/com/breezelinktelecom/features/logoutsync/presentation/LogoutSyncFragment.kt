@@ -123,6 +123,7 @@ import com.breezelinktelecom.features.performance.model.UpdateGpsInputListParams
 import com.breezelinktelecom.features.returnsOrder.ReturnProductList
 import com.breezelinktelecom.features.returnsOrder.ReturnRequest
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderSaveApiModel
+import com.breezelinktelecom.features.viewAllOrder.model.NewStockSync
 import com.breezelinktelecom.features.viewAllOrder.orderNew.NewOrderScrActiFragment
 import com.breezelinktelecom.features.viewAllOrder.orderNew.NeworderScrCartFragment
 import com.facebook.stetho.common.LogUtil
@@ -7239,22 +7240,76 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                      Timber.d("tag_sync_audio updating for shop_id ${obj.shop_id} and visit_datetime ${obj.datetime}")
                                      AppDatabase.getDBInstance()!!.shopAudioDao().updateIsUploaded(true, obj.shop_id,obj.datetime)
                                      uiThread {
+
+                                         try {
+                                             var fileName = obj.audio_path.split("/").last()
+                                             var audFile = File("/data/user/0/com.breezelinktelecom/files", fileName)
+                                             audFile.delete()
+                                         }catch (ex:Exception){
+                                             ex.printStackTrace()
+                                         }
+
                                          syncAudioDataNew()
                                      }
                                  }
 
                             } else {
-                                 calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                                 //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                                 syncNewStock()
                             }
                         }, { error ->
-                            (this as DashboardActivity).showSnackMessage(this.getString(R.string.unable_to_sync))
+                            (mContext as DashboardActivity).showSnackMessage(this.getString(R.string.unable_to_sync))
+                            //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                            syncNewStock()
+                        })
+                )
+            }else{
+                //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                syncNewStock()
+            }
+        } catch (e: Exception) {
+            //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+            syncNewStock()
+        }
+    }
+
+    private fun syncNewStock() {
+        try {
+            var stL = AppDatabase.getDBInstance()?.stockTransDao()!!.getUnsyncData(false) as ArrayList<StockTransEntity>
+            if (stL.size > 0) {
+                progress_wheel.spin()
+                var obj = stL.get(0)
+                var syncObj: NewStockSync = NewStockSync()
+                syncObj.user_id = Pref.user_id.toString()
+                syncObj.stock_shopcode = obj.stock_shopcode
+                syncObj.stock_productid = obj.stock_productid
+                syncObj.submitted_qty = obj.stock_productOrderqty
+
+                val repository = AddOrderRepoProvider.provideAddOrderRepository()
+                BaseActivity.compositeDisposable.add(
+                    repository.addNewStock(syncObj)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe({ result ->
+                            val response = result as BaseResponse
+                            progress_wheel.stopNestedScroll()
+                            if (response.status == NetworkConstant.SUCCESS) {
+                                AppDatabase.getDBInstance()?.stockTransDao()!!.updateSync(true, syncObj.stock_shopcode, syncObj.stock_productid,obj.order_id)
+                                syncNewStock()
+                            }
+                        }, { error ->
+                            error.printStackTrace()
+                            progress_wheel.stopNestedScroll()
                             calllogoutApi(Pref.user_id!!, Pref.session_token!!)
                         })
                 )
             }else{
+                progress_wheel.stopNestedScroll()
                 calllogoutApi(Pref.user_id!!, Pref.session_token!!)
             }
         } catch (e: Exception) {
+            e.printStackTrace()
+            progress_wheel.stopNestedScroll()
             calllogoutApi(Pref.user_id!!, Pref.session_token!!)
         }
     }

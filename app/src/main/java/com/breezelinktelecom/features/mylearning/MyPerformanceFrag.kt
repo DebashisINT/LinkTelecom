@@ -1,6 +1,8 @@
 package com.breezelinktelecom.features.mylearning
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
@@ -17,6 +19,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.breezelinktelecom.CustomStatic
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.NetworkConstant
@@ -72,16 +75,11 @@ class MyPerformanceFrag : BaseFragment(), View.OnClickListener {
     var str_filtertopicname: String=""
     var str_filtertopicParcentage: Int=0
 
-    private lateinit var cv_last_vid_root:CardView
-    private lateinit var tv_lastVid_topicName:TextView
-    private lateinit var tv_lastVid_contentName:TextView
-    private lateinit var tv_lastVid_contentDesc:TextView
-    private lateinit var iv_lastVid_thumbnail:ImageView
-
     private lateinit var tv_durationown: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_my_performance, container, false)
+        (mContext as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initview(view)
 
         if (AppUtils.isOnline(mContext)) {
@@ -283,131 +281,52 @@ class MyPerformanceFrag : BaseFragment(), View.OnClickListener {
         avg_hr_of_lrng=view.findViewById(R.id.avg_hr_of_lrng)
         tv_filter_topic_name=view.findViewById(R.id.tv_filter_topic_name)
 
-
-
-        iv_lms_performance.setImageResource(R.drawable.performance_colored)
-        iv_lms_mylearning.setImageResource(R.drawable.my_learning_new)
-        iv_lms_leaderboard.setImageResource(R.drawable.leaderboard_new)
-        iv_lms_knowledgehub.setImageResource(R.drawable.knowledge_hub_new)
-        iv_lms_leaderboard.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_mylearning.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-        iv_lms_knowledgehub.setColorFilter(ContextCompat.getColor(mContext, R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY)
-
+        iv_lms_performance.setImageResource(R.drawable.performance_insights_checked)
+        iv_lms_mylearning.setImageResource(R.drawable.open_book_lms_)
+        iv_lms_knowledgehub.setImageResource(R.drawable.set_of_books_lms)
         tv_lms_performance.setTextColor(getResources().getColor(R.color.toolbar_lms))
         tv_lms_mylearning.setTextColor(getResources().getColor(R.color.black))
         tv_lms_leaderboard.setTextColor(getResources().getColor(R.color.black))
         tv_lms_knowledgehub.setTextColor(getResources().getColor(R.color.black))
 
-      /*  cv_last_vid_root = view.findViewById(R.id.cv_last_vid_root)
-        //tv_lastVid_topicName = view.findViewById(R.id.tv_frag_my_learning_last_topic_name)
-        tv_lastVid_contentName = view.findViewById(R.id.tv_frag_my_learning_last_content_name)
-        tv_lastVid_contentDesc = view.findViewById(R.id.tv_frag_my_learning_last_content_desc)
-        iv_lastVid_thumbnail = view.findViewById(R.id.iv_frag_my_learning_last_topic_img)*/
-
-      /*  try {
-            if(!Pref.LastVideoPlay_TopicName.equals("")){
-                cv_last_vid_root.visibility = View.VISIBLE
-
-               // tv_lastVid_topicName.text = Pref.LastVideoPlay_TopicName
-                tv_lastVid_contentName.text = Pref.LastVideoPlay_ContentName
-                tv_lastVid_contentDesc.text = Pref.LastVideoPlay_ContentDesc
-
-                if (!Pref.LastVideoPlay_BitmapURL.equals("")) {
-                    Glide.with(mContext)
-                        .load(Pref.LastVideoPlay_BitmapURL)
-                        .apply(RequestOptions.placeholderOf(R.drawable.ic_image).error(R.drawable.ic_image))
-                        .into(iv_lastVid_thumbnail)
-                }
-                else{
-                    iv_lastVid_thumbnail.setImageResource(R.drawable.ic_image)
-                }
-            }else{
-                cv_last_vid_root.visibility = View.GONE
-            }
-
-            cv_last_vid_root.setOnClickListener {
-                VideoPlayLMS.loadedFrom = "MYPERFORMANCE"
-                CustomStatic.VideoPosition = Pref.LastVideoPlay_VidPosition.toInt()
-                Pref.videoCompleteCount = "0"
-                (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, Pref.LastVideoPlay_TopicID +"~"+ Pref.LastVideoPlay_TopicName*//*+"~"+position*//*)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }*/
-
-/*
-        Handler().postDelayed(Runnable {
-            if(Pref.FirstLogiForTheDayTag){
-                Pref.FirstLogiForTheDayTag = false
-
-                if(!Pref.LastVideoPlay_TopicName.equals("")){
-                    VideoPlayLMS.loadedFrom = "LMSDASHBOARD"
-                    CustomStatic.VideoPosition = Pref.LastVideoPlay_VidPosition.toInt()
-                    Pref.videoCompleteCount = "0"
-                    Handler().postDelayed(Runnable {
-                        (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, Pref.LastVideoPlay_TopicID +"~"+ Pref.LastVideoPlay_TopicName*/
-/*+"~"+position*//*
-)
-                    }, 600)
-                }else{
-                    Handler().postDelayed(Runnable {
-                        gotoVideoPage()
-                    }, 600)
-
-                }
-            }
-        }, 600)
-*/
+        overAllAPI()
 
         ll_lms_performance.setOnClickListener(this)
         ll_lms_mylearning.setOnClickListener(this)
         ll_lms_leaderboard.setOnClickListener(this)
         ll_lms_knowledgehub.setOnClickListener(this)
         cv_lms_leaderboard.setOnClickListener(this)
-        ll_filter
-            .setOnClickListener(this)
+        ll_filter.setOnClickListener(this)
+        if (!tv_leader_rank.text.toString().equals("")) {
+            val fullText = tv_leader_rank.text.toString()
+            val parts = fullText.split("/")
 
-        val fullText = tv_leader_rank.text.toString()
-        val parts = fullText.split("/")
-
-        val largeText = parts[0]
-        val smallText = parts[1]
-        val spannableString = SpannableString(fullText)
-        // Set the size of "1000"
-        spannableString.setSpan(
-            RelativeSizeSpan(1.3f), // 4 times the default size
-            0,
-            largeText.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        // Make "1000" bold
-        spannableString.setSpan(
-            StyleSpan(Typeface.BOLD),
-            0,
-            largeText.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        // Set the size of "Contents"
-        spannableString.setSpan(
-            RelativeSizeSpan(1.0f), // default size
-            largeText.length,
-            smallText.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        tv_leader_rank.text = spannableString
-
-
-        /* val rv_performance: RecyclerView = view.findViewById(R.id.rv_performance)
-         rv_performance.layoutManager = LinearLayoutManager(mContext)
-
-         val data = listOf(
-             PerformanceData("The Basics of Product Knowledge Training","http://3.7.30.86:8073/Commonfolder/LMS/ContentUpload/Sell Me This Pen.mp4",  "Sales Training Basics Beginners Master","Debashis Das", 15),
-             PerformanceData("The Basics of Product Knowledge Training", "http://3.7.30.86:8073/Commonfolder/LMS/ContentUpload/nature shorts video.mp4","Sales Training Basics Beginners Master", "Debashis Das" ,15)
-         )
-         Handler().postDelayed(Runnable {
-         val adapter = PerformanceAdapter(data)
-         rv_performance.adapter = adapter
-         }, 1000)*/
+            val largeText = parts[0]
+            val smallText = parts[1]
+            val spannableString = SpannableString(fullText)
+            // Set the size of "1000"
+            spannableString.setSpan(
+                RelativeSizeSpan(1.3f), // 4 times the default size
+                0,
+                largeText.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            // Make "1000" bold
+            spannableString.setSpan(
+                StyleSpan(Typeface.BOLD),
+                0,
+                largeText.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            // Set the size of "Contents"
+            spannableString.setSpan(
+                RelativeSizeSpan(1.0f), // default size
+                largeText.length,
+                smallText.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            tv_leader_rank.text = spannableString
+        }
 
         if (AppUtils.isOnline(mContext)) {
             ll_my_performance.visibility =View.VISIBLE
@@ -418,97 +337,31 @@ class MyPerformanceFrag : BaseFragment(), View.OnClickListener {
 
     }
 
-    fun gotoVideoPage() {
-        try {
-            println("tag_call_api gotoVideoPage")
-            val repository = LMSRepoProvider.getTopicList()
-            BaseActivity.compositeDisposable.add(
-                repository.getTopics(Pref.user_id!!)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe({ result ->
-                        val response = result as TopicListResponse
-                        println("tag_call_api response ${response.status}")
-                        if (response.status == NetworkConstant.SUCCESS) {
-                            if(response.topic_list != null){
-                                var firstObj = response.topic_list.get(0)
-                                VideoPlayLMS.previousFrag = FragType.SearchLmsFrag.toString()
-                                VideoPlayLMS.loadedFrom = "SearchLmsFrag"
-                                Pref.videoCompleteCount = "0"
-                                Handler().postDelayed(Runnable {
-                                    (mContext as DashboardActivity).loadFragment(FragType.VideoPlayLMS, true, firstObj.topic_id.toString()+"~"+firstObj.topic_name)
-                                }, 600)
-                            }
-                        }else{
-
+    private fun overAllAPI() {
+        val repository = LMSRepoProvider.getTopicList()
+        BaseActivity.compositeDisposable.add(
+            repository.overAllAPI(Pref.user_id!!,"","M")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ result ->
+                    if(result.status == NetworkConstant.SUCCESS){
+                        // Get sublist starting from index 3 to the end of the list
+                        if (result.user_list.size!=null || result.user_list.size > 0) {
+                            val ownObj =
+                                result.user_list.filter { it.user_id == Pref.user_id!!.toInt() }
+                                    .first()
+                            tv_leader_rank.text =
+                                ownObj.position.toString() + "/" + result.user_list.size
                         }
-                    }, { error ->
-                        (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                    })
-            )
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-        }
+                    }else{
+                        (mContext as DashboardActivity).showSnackMessage(result.message.toString())
+                    }
+                }, { error ->
+                    error.printStackTrace()
+                    (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
+                })
+        )
     }
-
-    /*data class PerformanceData(
-        val videoname: String,
-        val thumbnail: String,
-        val title: String,
-        val subtitle: String,
-        val progress: Int
-    )
-
-    class PerformanceAdapter(private val courses: List<PerformanceData>) :
-        RecyclerView.Adapter<PerformanceAdapter.ViewHolder>() {
-
-        class ViewHolder(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
-            val titleTextView = itemView.findViewById<TextView>(R.id.tv_perform_title)
-            val subtitleTextView = itemView.findViewById<TextView>(R.id.tv_perform_subtitle)
-            val perform_thumbnail = itemView.findViewById<ImageView>(R.id.perform_thumbnail)
-            //val authorTextView = itemView.findViewById<TextView>(R.id.perform_video_name)
-            val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
-            //val progressTextView = itemView.findViewById<TextView>(R.id.progressText)
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.performance_item, parent, false)
-            return ViewHolder(itemView)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val course = courses[position]
-            holder.titleTextView.text = course.title
-            holder.subtitleTextView.text = course.subtitle
-            holder.perform_thumbnail.setImageBitmap(retriveVideoFrameFromVideo(course.thumbnail))
-            //holder.authorTextView.text = course.videoname
-            holder.progressBar.progress = course.progress
-           // holder.progressTextView.text = "${course.progress}%"
-        }
-
-        fun retriveVideoFrameFromVideo(videoPath: String?): Bitmap? {
-            var def: Bitmap? = runBlocking {
-                var processedBit: Bitmap? = null
-                var job1 = launch(Dispatchers.Default) {
-                    val mediaMetadataRetriever = MediaMetadataRetriever()
-                    mediaMetadataRetriever.setDataSource(videoPath, HashMap<String, String>())
-                    val bmFrame = mediaMetadataRetriever.getFrameAtTime(1000) //unit in microsecond
-                    processedBit = bmFrame!!
-                }
-                job1.join()
-                processedBit
-            }
-
-            return def
-
-        }
-
-        override fun getItemCount() = courses.size
-    }*/
-
-
 
     companion object {
 
@@ -521,18 +374,15 @@ class MyPerformanceFrag : BaseFragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         when(p0?.id) {
+            //My topics page redirection -> Assigned to user mantis - 0027573
             ll_lms_mylearning.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningTopicList,
+                    FragType.SearchLmsFrag,
                     true,
                     ""
                 )
             }
-
-            ll_lms_leaderboard.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyLearningFragment, true, "")
-            }
-
+            //All topics page redirection  mantis - 0027570
             ll_lms_knowledgehub.id -> {
                 (mContext as DashboardActivity).loadFragment(
                     FragType.SearchLmsKnowledgeFrag,
@@ -540,16 +390,18 @@ class MyPerformanceFrag : BaseFragment(), View.OnClickListener {
                     ""
                 )
             }
-
+            //Performance Insight page redirection
             ll_lms_performance.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyPerformanceFrag, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.PerformanceInsightPage, true, "")
 
             }
-
+            //LMS leaderboard page redirection mantis - 0027571
             cv_lms_leaderboard.id -> {
+                LeaderboardLmsFrag.loadedFrom = "MyPerformanceFrag"
+                CustomStatic.LMSLeaderboardFromMenu = false
                 (mContext as DashboardActivity).loadFragment(FragType.LeaderboardLmsFrag, true, "")
             }
-
+            //Filter functionality
             ll_filter.id -> {
                 genericDialogOfTopicList()
             }

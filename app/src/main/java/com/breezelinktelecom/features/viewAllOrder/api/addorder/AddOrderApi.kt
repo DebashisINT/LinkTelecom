@@ -7,6 +7,7 @@ import com.breezelinktelecom.features.timesheet.api.TimeSheetApi
 import com.breezelinktelecom.features.timesheet.model.EditDeleteTimesheetResposneModel
 import com.breezelinktelecom.features.viewAllOrder.model.AddOrderInputParamsModel
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderSaveApiModel
+import com.breezelinktelecom.features.viewAllOrder.model.NewStockSync
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import retrofit2.Retrofit
@@ -33,6 +34,9 @@ interface AddOrderApi {
 
     @POST("Order/AddOrder")
     fun addNewOrder(@Body addOrder: AddOrderInputParamsModel): Observable<BaseResponse>
+
+    @POST("OrderWithStockMgmtDetails/UpdateProductBalStock")
+    fun addNewStock(@Body obj: NewStockSync): Observable<BaseResponse>
 
     @Multipart
     @POST("FileUpload/OrderSignature")

@@ -3,6 +3,7 @@ package com.breezelinktelecom.features.login.api.opportunity
 import com.breezelinktelecom.app.NetworkConstant
 import com.breezelinktelecom.base.BaseResponse
 import com.breezelinktelecom.features.addshop.model.AudioFetchDataCLass
+import com.breezelinktelecom.features.addshop.model.StockAllResponse
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.login.model.opportunitymodel.OpportunityStatusListResponseModel
 import com.breezelinktelecom.features.login.model.productlistmodel.ProductListResponseModel
@@ -47,6 +48,11 @@ interface OpportunityListApi {
 
     @POST("LMSInfoDetails/UserWiseLMSModulesInfo")
     fun saveLMSModuleInfoApi(@Body obj: DashboardActivity.LMSModule): Observable<BaseResponse>
+
+    @FormUrlEncoded
+    @POST("OrderWithStockMgmtDetails/ListForProductStock")
+    fun getAllStockApi(@Field("user_id") user_id: String): Observable<StockAllResponse>
+
     /**
      * Companion object to create the GithubApiService
      */

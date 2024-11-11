@@ -22,5 +22,8 @@ class AddOrderInputParamsModel {
     var scheme_amount: String? = null
     var Hospital: String? = null
     var Email_Address: String? = null
+    var orderStatus: String? = null
     var product_list: ArrayList<AddOrderInputProductList>? = null
 }
+
+data class NewStockSync(var user_id:String = "",var stock_shopcode:String="",var stock_productid:String="",var submitted_qty:String="")

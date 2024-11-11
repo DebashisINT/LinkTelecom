@@ -80,7 +80,8 @@
                     android:layout_below="@id/sync_RL"
                     android:layout_marginBottom="@dimen/_3sdp"
                     android:textColor="@color/light_gray"
-                    android:textSize="@dimen/_11sdp" />
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="gone"/>
                 <!--android:text="@string/address_txt"-->
 
                 <com.breezelinktelecom.widgets.AppCustomTextView

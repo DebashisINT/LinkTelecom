@@ -126,7 +126,7 @@
                                         android:layout_width="@dimen/_65sdp"
                                         android:layout_height="@dimen/_65sdp"
                                         android:layout_gravity="center"
-                                        android:src="@drawable/ic_menu_profile_image"
+                                        android:src="@drawable/user_blank"
                                         app:civ_border_color="#00A6C5E8"
                                         app:civ_circle_background_color="#00A6C5E8"
                                         app:civ_fill_color="@color/black"
@@ -202,7 +202,7 @@
                                         android:layout_width="@dimen/_65sdp"
                                         android:layout_height="@dimen/_65sdp"
                                         android:layout_gravity="center"
-                                        android:src="@drawable/ic_menu_profile_image"
+                                        android:src="@drawable/user_blank"
                                         app:civ_border_color="#00A6C5E8"
                                         app:civ_circle_background_color="#00A6C5E8"
                                         app:civ_fill_color="@color/black"
@@ -215,7 +215,7 @@
                                         android:layout_height="@dimen/_90sdp"
                                         android:layout_marginTop="@dimen/_5sdp"
                                         android:layout_gravity="center"
-                                        android:src="@drawable/ic_menu_profile_image"
+                                        android:src="@drawable/user_blank"
                                         app:civ_border_color="#00A6C5E8"
                                         app:civ_circle_background_color="#00A6C5E8"
                                         app:civ_fill_color="@color/black"
@@ -308,7 +308,7 @@
                                         android:layout_width="@dimen/_65sdp"
                                         android:layout_height="@dimen/_65sdp"
                                         android:layout_gravity="center"
-                                        android:src="@drawable/ic_menu_profile_image"
+                                        android:src="@drawable/user_blank"
                                         app:civ_border_color="#00A6C5E8"
                                         app:civ_circle_background_color="#00A6C5E8"
                                         app:civ_fill_color="@color/black"
@@ -468,6 +468,50 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:gravity="center|start"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:background="@drawable/curve_border_bg_lead">
+
+                            <ImageView
+                                android:layout_width="@dimen/_22sdp"
+                                android:layout_height="@dimen/_22sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:src="@drawable/check_b" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_7sdp"
+                                android:text="Quiz"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/baseline_star_24" />
+
+                            <TextView
+                                android:id="@+id/tv_correctanswerpoints"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:gravity="center" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35sdp"
                             android:gravity="center|start"
@@ -487,7 +531,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_7sdp"
-                                android:text="Like"
+                                android:text="Likes"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
 
@@ -531,7 +575,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_7sdp"
-                                android:text="Comment"
+                                android:text="Comments"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
 
@@ -564,6 +608,7 @@
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
                             android:background="@drawable/curve_border_bg_lead">
 
                             <ImageView
@@ -602,49 +647,7 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:gravity="center|start"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@drawable/curve_border_bg_lead">
 
-                            <ImageView
-                                android:layout_width="@dimen/_22sdp"
-                                android:layout_height="@dimen/_22sdp"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:src="@drawable/check_b" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_7sdp"
-                                android:text="Correct Answer"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/baseline_star_24" />
-
-                            <TextView
-                                android:id="@+id/tv_correctanswerpoints"
-                                android:layout_width="@dimen/_50sdp"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
-                                android:gravity="center" />
-
-                        </LinearLayout>
 
                         <!-- <LinearLayout
                              android:gravity="center|start"

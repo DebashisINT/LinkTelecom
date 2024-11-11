@@ -11,8 +11,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.types.FragType
-import com.google.android.flexbox.AlignSelf
-import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.gridview_item_new.view.learning_progress_status_topic
 import kotlinx.android.synthetic.main.gridview_item_new.view.ll_status
 import kotlinx.android.synthetic.main.gridview_item_new.view.tv_parcentage
@@ -57,6 +55,9 @@ class LmsSearchAdapter(
             tv_Search_item.text = "${item.courseName} (${item.video_count})"
 
             itemView.learning_progress_status_topic.progress = item.topic_parcentage
+            if (item.topic_parcentage > 100){
+                item.topic_parcentage = 100
+            }
             itemView.tv_parcentage.text = "${item.topic_parcentage}%"
             itemView.tv_parcentage.text = item.topic_parcentage.toString()+"%"
 
@@ -71,43 +72,43 @@ class LmsSearchAdapter(
             }*/
 
 
-                if (fragType.name.equals("SearchLmsFrag") ) {
-                    itemView.learning_progress_status_topic.visibility = View.VISIBLE
-                    itemView.ll_status.visibility = View.VISIBLE
+            if (fragType.name.equals("SearchLmsFrag") ) {
+                itemView.learning_progress_status_topic.visibility = View.VISIBLE
+                itemView.ll_status.visibility = View.VISIBLE
 
-                    if (item.topic_parcentage == 100) {
-                        itemView.tv_parcentage_status.text = "Completed"
-                        itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.lms_cmplt))
-                    } else if (item.topic_parcentage == 0) {
-                        itemView.tv_parcentage_status.text = "Pending"
-                        itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
-                    } else {
-                        itemView.tv_parcentage_status.text = "Pending"
-                        itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
-                    }
+                if (item.topic_parcentage == 100) {
+                    itemView.tv_parcentage_status.text = "Completed"
+                    itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.lms_cmplt))
+                } else if (item.topic_parcentage == 0) {
+                    itemView.tv_parcentage_status.text = "Pending"
+                    itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
+                } else {
+                    itemView.tv_parcentage_status.text = "Pending"
+                    itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
                 }
-                else if (fragType.name.equals("SearchLmsKnowledgeFrag")){
+            }
+            else if (fragType.name.equals("SearchLmsKnowledgeFrag")){
                 itemView.learning_progress_status_topic.visibility = View.GONE
                 itemView.ll_status.visibility = View.GONE
             }
             else{
                 itemView.learning_progress_status_topic.visibility = View.VISIBLE
                 itemView.ll_status.visibility = View.VISIBLE
-                    if (item.topic_parcentage == 100) {
-                        itemView.tv_parcentage_status.text = "Completed"
-                        itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.lms_cmplt))
-                    }else {
-                        itemView.tv_parcentage_status.text = "Pending"
-                        itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
-                    }
+                if (item.topic_parcentage == 100) {
+                    itemView.tv_parcentage_status.text = "Completed"
+                    itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.lms_cmplt))
+                }else {
+                    itemView.tv_parcentage_status.text = "Pending"
+                    itemView.tv_parcentage_status.setTextColor(ContextCompat.getColor(context, R.color.red_dot))
                 }
+            }
 
             val lp: ViewGroup.LayoutParams = tv_Search_item.layoutParams
-            if (lp is FlexboxLayoutManager.LayoutParams) {
-                val flexboxLp = lp
-                flexboxLp.flexGrow = 1.0f
-                flexboxLp.alignSelf = AlignSelf.FLEX_END
-            }
+            /*   if (lp is FlexboxLayoutManager.LayoutParams) {
+                   val flexboxLp = lp
+                   flexboxLp.flexGrow = 1.0f
+                   flexboxLp.alignSelf = AlignSelf.FLEX_END
+               }*/
 
             ll_grd_item.isSelected = position == selectedPosition
         }

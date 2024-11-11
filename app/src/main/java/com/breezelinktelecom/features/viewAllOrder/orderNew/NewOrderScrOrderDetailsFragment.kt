@@ -34,6 +34,7 @@ import com.breezelinktelecom.features.viewAllOrder.model.NewOrderCartModel
 import com.breezelinktelecom.features.viewAllOrder.model.ProductOrder
 import com.breezelinktelecom.features.viewAllOrder.presentation.AdapterNewOrdScrOrdList
 import com.breezelinktelecom.widgets.AppCustomTextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 
 class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
@@ -41,6 +42,7 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
 
     private lateinit var mRv_orderDetails: RecyclerView
     private lateinit var ll_Add: LinearLayout
+    private lateinit var fab_Add: FloatingActionButton
 
     private lateinit var myshop_name_TV: AppCustomTextView
     private lateinit var myshop_addr_TV: AppCustomTextView
@@ -93,7 +95,9 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
         mRv_orderDetails=view!!.findViewById(R.id.rv_new_order_list)
         mRv_orderDetails.layoutManager= LinearLayoutManager(mContext)
         ll_Add=view!!.findViewById(R.id.ll_frag_new_order_detalis_add)
+        fab_Add=view.findViewById<FloatingActionButton>(R.id.add_new_order_tv)
         ll_Add.setOnClickListener(this)
+        fab_Add.setOnClickListener(this)
 
         myshop_name_TV = view!!.findViewById(R.id.myshop_name_TV)
         myshop_addr_TV = view!!.findViewById(R.id.myshop_address_TV)
@@ -175,9 +179,9 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
                 var colorIDListForProduct=AppDatabase.getDBInstance()?.newOrderScrOrderDao()?.getColorIDDistinctByOrderID(orderIdList.get(i),productIDList.get(j))
                 for(k in 0..colorIDListForProduct!!.size-1){
                     var sizeQtyListMale = AppDatabase.getDBInstance()?.newOrderScrOrderDao()?.getSizeQtyByProductColorIDMale(orderIdList!!.get(i), productIDList!!.get(j), colorIDListForProduct!!.get(k),
-                            Pref.new_ord_gender_male)
+                        Pref.new_ord_gender_male)
                     var sizeQtyListFeMale = AppDatabase.getDBInstance()?.newOrderScrOrderDao()?.getSizeQtyByProductColorIDFemale(orderIdList!!.get(i), productIDList!!.get(j), colorIDListForProduct!!.get(k),
-                            Pref.new_ord_gender_female)
+                        Pref.new_ord_gender_female)
                     if(sizeQtyListMale!!.size>0){
                         newOrderCartModel1!!.product_id=productIDList!!.get(j)
                         newOrderCartModel1!!.product_name=AppDatabase.getDBInstance()?.newOrderProductDao()?.getNewOrderProductName(productIDList!!.get(j))!!
@@ -230,11 +234,11 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
 
             if(newOrderCartModel1!=null){
                 if(newOrderCartModel1!!.color_list.size>0)
-                final_order_list.add(newOrderCartModel1!!)
+                    final_order_list.add(newOrderCartModel1!!)
             }
             if(newOrderCartModel2!=null){
                 if(newOrderCartModel2!!.color_list.size>0)
-                final_order_list.add(newOrderCartModel2!!)
+                    final_order_list.add(newOrderCartModel2!!)
             }
 
         }
@@ -258,7 +262,7 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         if(v!=null){
             when(v.id){
-                R.id.ll_frag_new_order_detalis_add -> {
+                R.id.ll_frag_new_order_detalis_add,R.id.add_new_order_tv -> {
                     (mContext as DashboardActivity).loadFragment(FragType.NewOrderScrActiFragment, true, shop_id)
                 }
                 R.id.add_new_order_share->{
@@ -292,14 +296,10 @@ class NewOrderScrOrderDetailsFragment : BaseFragment(), View.OnClickListener {
             pdfBody=pdfBody+content
         }
 
-
         val image = BitmapFactory.decodeResource(this.resources, R.mipmap.ic_launcher)
 
         val path = FTStorageUtils.stringToPdf(pdfBody, mContext, "OrderDetalis" +
                 "_" + Pref.user_id+AppUtils.getCurrentDateTime().toString().replace(" ","R").replace(":","_") + ".pdf", image, heading, 3.7f)
-
-
-
 
 
         if (!TextUtils.isEmpty(path)) {

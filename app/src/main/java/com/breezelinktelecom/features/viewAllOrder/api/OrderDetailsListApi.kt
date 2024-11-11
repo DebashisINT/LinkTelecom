@@ -2,6 +2,7 @@ package com.breezelinktelecom.features.viewAllOrder.api
 
 import com.breezelinktelecom.app.NetworkConstant
 import com.breezelinktelecom.features.login.model.productlistmodel.NewOdrScrOrderListModel
+import com.breezelinktelecom.features.viewAllOrder.OrdResponse
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderDataModel
 import com.breezelinktelecom.features.viewAllOrder.model.NewOrderOrderHistoryModel
 import com.breezelinktelecom.features.viewAllOrder.model.ViewAllOrderListResponseModel
@@ -35,6 +36,12 @@ interface OrderDetailsListApi {
     @FormUrlEncoded
     @POST("OrderWithProductAttribute/NewProductOrderList")
     fun getNewOrderHistoryDataSimplefied(@Field("session_token") session_token: String, @Field("user_id") user_id: String): Observable<NewOdrScrOrderListModel>
+
+
+    @FormUrlEncoded
+    @POST("Order/OrderStatusList")
+    fun getOrderStatusLApi(@Field("user_id") user_id: String): Observable<OrdResponse>
+
 
     /**
      * Companion object to create the GithubApiService

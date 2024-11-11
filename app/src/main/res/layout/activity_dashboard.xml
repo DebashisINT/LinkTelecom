@@ -30,7 +30,6 @@
                 android:gravity="end"
                 android:orientation="vertical">
 
-
                 <include
                     android:id="@+id/include_toolbar"
                     layout="@layout/toolbar_layout" />

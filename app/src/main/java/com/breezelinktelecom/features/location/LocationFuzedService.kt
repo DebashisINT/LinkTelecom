@@ -112,6 +112,7 @@ import kotlin.collections.ArrayList
 // 11.0 SystemEventReceiver AppV 4.1.3 Suman    03/05/2023 Monitor Broadcast update mantis 26011
 // 12.0 LocationFuzedService v 4.1.6 Tufan 11/07/2023 mantis 26546 revisit sync time
 // 13.0 LocationFuzedService v 4.2.6 Suman 08/05/2024 mantis 0027427 location sync update
+// 14.0 LocationFuzedService v 4.2.9 Suman 04/11/2024 mantis id 27785 begin
 class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener,
         OnCompleteListener<Void>, GpsStatus.Listener {
     override fun onComplete(p0: Task<Void>) {
@@ -319,7 +320,7 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
 
             val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             if (Pref.IsUserWiseLMSFeatureOnly){
-                notificationTitle = "${AppUtils.hiFirstNameText()}, Thanks for using LMS"
+                notificationTitle = "${AppUtils.hiFirstNameText()}, thanks for using MobiLearn."
                 //Pending push notification test
 
             }else{
@@ -386,8 +387,16 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
                     .setContentIntent(pendingIntent)
                     .setOngoing(true)
                     .build()
+
+                if(Build.VERSION.SDK_INT == 28){
+                    println(" 28")
+                    startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
+                }else{
+                    println("tag_start_foreground not 28")
+                    startForeground(AppConstant.FOREGROUND_SERVICE, notificationn,ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
+                }
                 //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn,ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
-                startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
+                //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
 
 
             }
@@ -1208,6 +1217,14 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopAudioDao().updateIsUploaded(true, obj.shop_id,obj.datetime)
                                 //syncAudioDataNew()
+
+                                try {
+                                    var fileName = obj.audio_path.split("/").last()
+                                    var audFile = File("/data/user/0/com.breezelinktelecom/files", fileName)
+                                    audFile.delete()
+                                }catch (ex:Exception){
+                                    ex.printStackTrace()
+                                }
                             } else {
 
                             }
@@ -3169,6 +3186,19 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
             }
             // 13.0 LocationFuzedService v 4.2.6 Suman 08/05/2024 mantis 0027427 location sync update end
 
+            // 14.0 LocationFuzedService v 4.2.9 Suman 04/11/2024 mantis id 27785 begin
+            try {
+                println("tag_loc_insert check existance")
+                var existL = AppDatabase.getDBInstance()!!.userLocationDataDao().getDataIfExist(location.updateDate,location.time) as ArrayList<UserLocationDataEntity>
+                if(existL.size>0){
+                    println("tag_loc_insert check return")
+                    return
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            // 14.0 LocationFuzedService v 4.2.9 Suman 04/11/2024 mantis id 27785 begin
+            println("tag_loc_insert check insert")
             AppDatabase.getDBInstance()!!.userLocationDataDao().insertAll(location) // save accurate data
 //        XLog.d("Shop to shop distance (At accurate loc save time)====> " + Pref.totalS2SDistance)
             Timber.d("Shop to shop distance (At accurate loc save time)====> " + Pref.totalS2SDistance + " "+location.time)

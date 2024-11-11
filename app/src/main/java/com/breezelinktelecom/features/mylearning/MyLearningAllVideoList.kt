@@ -241,7 +241,7 @@ class MyLearningAllVideoList : BaseFragment(), View.OnClickListener , GridRVAdap
         when(p0?.id){
 
             ll_lms_mylearning.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyLearningTopicList, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.SearchLmsFrag, true, "")
             }
 
             ll_lms_leaderboard.id -> {
@@ -253,7 +253,7 @@ class MyLearningAllVideoList : BaseFragment(), View.OnClickListener , GridRVAdap
             }
 
             ll_lms_performance.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyPerformanceFrag, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.PerformanceInsightPage, true, "")
             }
         }
     }

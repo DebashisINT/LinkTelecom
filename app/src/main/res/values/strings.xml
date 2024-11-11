@@ -1,6 +1,10 @@
 <resources>
     <!--<string name="app_name">Field Tracking System</string>-->
     <string name="app_name" translatable="false">Breeze-Link Telecom</string>
+    <!--
+    <string name="app_name" translatable="false">MobiLearn-INT</string>
+-->
+    <!--<string name="app_name" translatable="false">Breeze-Demo</string>-->
     <string name="blank" translatable="false"></string>
     <string name="enter_a_title" translatable="false">Enter a title</string>
     <string name="entry_details_default_text" translatable="false">Entry Details!</string>
@@ -471,7 +475,9 @@
     <string name="calender_permission" translatable="false">Allow add event in calender</string>
 
     <string name="daywise" translatable="false">Day Wise</string>
+    <string name="correct" translatable="false">Correct</string>
     <string name="consolidated" translatable="false">Consolidated</string>
+    <string name="incorrect" translatable="false">Incorrect</string>
 
     <!--DashBoard-->
     <string name="login_time" translatable="false">Last login time:</string>
@@ -1638,4 +1644,8 @@
     <string name="voter_registration" translatable="false">Voter Registration</string>
     <string name="pan_registration" translatable="false">Pan Registration</string>
     <string name="reg_net_disconnected" translatable="false">Internet is disconnected, you cannot Register, please switch on the internet</string>
+<!--
+    <string name="retry_now" translatable="false"><u>Retry</u></string>
+-->
+    <string name="retry_now" translatable="false">Retry</string>
 </resources>

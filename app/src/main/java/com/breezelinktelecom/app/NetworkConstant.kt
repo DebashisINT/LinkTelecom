@@ -21,12 +21,19 @@ class NetworkConstant {
         //var BASE_URL = "http://fts.indusnettechnologies.com:8094/API/"
         //var ADD_SHOP_BASE_URL = "http://fts.indusnettechnologies.com:8094/"
 
+        //var BASE_URL = "http://fts.indusnettechnologies.com:7053/API/"
+        //var ADD_SHOP_BASE_URL = "http://fts.indusnettechnologies.com:7053/"
+
         var BASE_URL = "http://fts1.indusnettechnologies.com:7019/API/"
         var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7019/"
 
         //LMS
         //var BASE_URL = "http://fts1.indusnettechnologies.com:7011/API/"
         //var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7011/"
+
+        //LMS -IndusNet
+        //var BASE_URL = "http://fts1.indusnettechnologies.com:7047/API/"
+        //var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7047/"
 
         //var BASE_URL = "http://3.7.30.86:8072/API/"
         //var ADD_SHOP_BASE_URL = "http://3.7.30.86:8072/"

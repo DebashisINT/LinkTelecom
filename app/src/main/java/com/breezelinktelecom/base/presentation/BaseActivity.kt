@@ -178,7 +178,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
             Pref.isAutoLogout = false*/
 
       //  Pref.isAutoLogout=true
-        if (Pref.isAutoLogout) {
+        if (Pref.isAutoLogout && Pref.IsUserWiseLMSFeatureOnly==false) {
             //Pref.isAddAttendence = false
             //Pref.DayStartMarked = false
             //Pref.DayEndMarked = false

@@ -99,11 +99,16 @@ class NotificationLMSFragment : BaseFragment(), View.OnClickListener {
         iv_lms_knowledgehub = view.findViewById(R.id.iv_lms_knowledgehub)
         tv_lms_knowledgehub = view.findViewById(R.id.tv_lms_knowledgehub)
 
-        iv_lms_leaderboard.setImageResource(R.drawable.leaderboard_new)
-        iv_lms_performance.setImageResource(R.drawable.my_performance_new)
-        iv_lms_mylearning.setImageResource(R.drawable.my_learning_new)
-        iv_lms_knowledgehub.setImageResource(R.drawable.knowledge_hub_new)
-        iv_lms_leaderboard.setColorFilter(
+        //iv_lms_leaderboard.setImageResource(R.drawable.leaderboard_new)
+        //iv_lms_performance.setImageResource(R.drawable.my_performance_new)
+        //iv_lms_mylearning.setImageResource(R.drawable.my_learning_new)
+        //iv_lms_knowledgehub.setImageResource(R.drawable.knowledge_hub_new)
+
+        iv_lms_performance.setImageResource(R.drawable.performance_insights)
+        iv_lms_mylearning.setImageResource(R.drawable.open_book_lms_)
+        iv_lms_knowledgehub.setImageResource(R.drawable.set_of_books_lms)
+
+        /*iv_lms_leaderboard.setColorFilter(
             ContextCompat.getColor(mContext, R.color.black),
             android.graphics.PorterDuff.Mode.MULTIPLY
         )
@@ -118,7 +123,7 @@ class NotificationLMSFragment : BaseFragment(), View.OnClickListener {
         iv_lms_knowledgehub.setColorFilter(
             ContextCompat.getColor(mContext, R.color.black),
             android.graphics.PorterDuff.Mode.MULTIPLY
-        )
+        )*/
 
         ll_lms_performance.setOnClickListener(this)
         ll_lms_mylearning.setOnClickListener(this)
@@ -150,7 +155,7 @@ class NotificationLMSFragment : BaseFragment(), View.OnClickListener {
         when (p0?.id) {
             ll_lms_mylearning.id -> {
                 (mContext as DashboardActivity).loadFragment(
-                    FragType.MyLearningTopicList,
+                    FragType.SearchLmsFrag,
                     true,
                     ""
                 )
@@ -169,7 +174,7 @@ class NotificationLMSFragment : BaseFragment(), View.OnClickListener {
             }
 
             ll_lms_performance.id -> {
-                (mContext as DashboardActivity).loadFragment(FragType.MyPerformanceFrag, true, "")
+                (mContext as DashboardActivity).loadFragment(FragType.PerformanceInsightPage, true, "")
             }
 
         }

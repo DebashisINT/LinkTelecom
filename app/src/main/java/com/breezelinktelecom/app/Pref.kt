@@ -1061,7 +1061,7 @@ object Pref : PreferenceHolder() {
 
     var prevShopAudioSyncTimeStamp: Long by bindToPreferenceField(0, "prevShopAudioSyncTimeStamp")
 
-    var Question_After_No_Of_Content: String by bindToPreferenceField("1", "Question_After_No_Of_Content")
+    var QuestionAfterNoOfContentForLMS: String by bindToPreferenceField("1", "QuestionAfterNoOfContentForLMS")
 
     var videoCompleteCount: String by bindToPreferenceField("0", "videoCompleteCount")
 
@@ -1094,6 +1094,33 @@ object Pref : PreferenceHolder() {
     var LastVideoPlay_ContentParcent : String by bindToPreferenceField("", "LastVideoPlay_ContentParcent")
    // var LastVideoPlay_ContentParcentStatus : String by bindToPreferenceField("", "LastVideoPlay_ContentParcentStatus")
 
+    var IsAllowGPSTrackingInBackgroundForLMS: Boolean by bindToPreferenceField(true, "IsAllowGPSTrackingInBackgroundForLMS")
+
+    var CurrentBookmarkCount: Int by bindToPreferenceField(0, "CurrentBookmarkCount")
+
+    //Suman 17-09-2024 mantis 27700
+    var IsRetailOrderStatusRequired: Boolean by bindToPreferenceField(false, "IsRetailOrderStatusRequired")
+
+    var loginID: String by bindToPreferenceField("", "loginID")
+
+    var IsStockCheckFeatureOn: Boolean by bindToPreferenceField(false, "IsStockCheckFeatureOn")
+    var IsShowDistributorWiseCurrentStockInOrder: Boolean by bindToPreferenceField(false, "IsShowDistributorWiseCurrentStockInOrder")
+    var IsAllowNegativeStock: Boolean by bindToPreferenceField(false, "IsAllowNegativeStock")
+    var StockCheckOnOrder1OrInvioce0: Boolean by bindToPreferenceField(true, "StockCheckOnOrder1OrInvioce0")
+
+    var WillCreditDaysFollow: Boolean by bindToPreferenceField(false, "WillCreditDaysFollow")
+    var AllowOrderOnOutstandingAndClosingStockDifference: Boolean by bindToPreferenceField(false, "AllowOrderOnOutstandingAndClosingStockDifference")
+    var AllowedCreditDays : String by bindToPreferenceField("", "AllowedCreditDays")
+    var WillCreditDaysFollowUserWise: Boolean by bindToPreferenceField(false, "WillCreditDaysFollowUserWise")
+    var AllowOrderOnOutstandingAndClosingStockDifferenceUserWise: Boolean by bindToPreferenceField(false, "AllowOrderOnOutstandingAndClosingStockDifferenceUserWise")
+
+    //Mantis 0027717 Puja 07.10.2024
+    var IsVideoAutoPlayInLMS : Boolean by bindToPreferenceField(true, "IsVideoAutoPlayInLMS")
+
+    //Mantis 0027772 Puja 17.10.2024
+    var ShowRetryIncorrectQuiz : Boolean by bindToPreferenceField(false, "ShowRetryIncorrectQuiz")
+
+    var ShowTargetOnApp : Boolean by bindToPreferenceField(false, "ShowTargetOnApp")
 }
 
 

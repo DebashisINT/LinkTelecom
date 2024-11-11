@@ -107,6 +107,7 @@ import com.breezelinktelecom.features.nearbyshops.presentation.ShopCallHisFrag
 import com.breezelinktelecom.features.orderITC.GetOrderHistory
 import com.breezelinktelecom.features.orderITC.GetProductRateReq
 import com.breezelinktelecom.features.orderITC.GetProductReq
+import com.breezelinktelecom.features.orderhistory.DayWiseFragment
 import com.breezelinktelecom.features.photoReg.api.GetUserListPhotoRegProvider
 import com.breezelinktelecom.features.photoReg.model.UserFacePicUrlResponse
 import com.breezelinktelecom.features.report.presentation.ReportAdapter
@@ -1773,10 +1774,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
             R.id.history_ll -> {
                 (mContext as DashboardActivity).isMemberMap = false
-                if (!Pref.willTimelineWithFixedLocationShow)
-                    (mContext as DashboardActivity).loadFragment(FragType.OrderhistoryFragment, false, "")
-                else
-                    (mContext as DashboardActivity).loadFragment(FragType.TimeLineFragment, false, "")
+
+                    if (!Pref.willTimelineWithFixedLocationShow)
+                        (mContext as DashboardActivity).loadFragment(FragType.OrderhistoryFragment, false, "")
+                    else
+                        (mContext as DashboardActivity).loadFragment(FragType.TimeLineFragment, false, "")
 
             }
             //code start Mantis- 27419 by puja screen recorder off 07.05.2024 v4.2.7
@@ -5077,6 +5079,16 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                                 if (!TextUtils.isEmpty(response.getconfigure?.get(i)?.Value)) {
                                                     Pref.IsUserWiseRecordAudioEnableForVisitRevisit = response.getconfigure?.get(i)?.Value == "1"
                                                 }
+                                            }else if (response.getconfigure?.get(i)?.Key.equals("WillCreditDaysFollowUserWise", ignoreCase = true)) {
+                                                Pref.WillCreditDaysFollowUserWise = response.getconfigure!![i].Value == "1"
+                                                if (!TextUtils.isEmpty(response.getconfigure?.get(i)?.Value)) {
+                                                    Pref.WillCreditDaysFollowUserWise = response.getconfigure?.get(i)?.Value == "1"
+                                                }
+                                            }else if (response.getconfigure?.get(i)?.Key.equals("AllowOrderOnOutstandingAndClosingStockDifferenceUserWise", ignoreCase = true)) {
+                                                Pref.AllowOrderOnOutstandingAndClosingStockDifferenceUserWise = response.getconfigure!![i].Value == "1"
+                                                if (!TextUtils.isEmpty(response.getconfigure?.get(i)?.Value)) {
+                                                    Pref.AllowOrderOnOutstandingAndClosingStockDifferenceUserWise = response.getconfigure?.get(i)?.Value == "1"
+                                                }
                                             }
 
                                         }
@@ -5576,11 +5588,40 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                     Pref.firebase_k = "key="+configResponse.firebase_k!!
                                 //end mantis id 0027432 firebase_k functionality Puja 08-05-2024  v4.2.7
 
-                                //begin mantis id 0027663 Question_After_No_Of_Content functionality Puja 10-08-2024 v4.2.9
-                                if (configResponse.Question_After_No_Of_Content != null)
-                                    Pref.Question_After_No_Of_Content = configResponse.Question_After_No_Of_Content!!
-                                //end mantis id 0027663 Question_After_No_Of_Content functionality Puja 10-08-2024  v4.2.9
+                                //begin mantis id 0027683 QuestionAfterNoOfContentForLMS functionality Puja 05-08-2024  v4.2.9
+                                // if (configResponse.QuestionAfterNoOfContentForLMS != null)
+                                    Pref.QuestionAfterNoOfContentForLMS = configResponse.QuestionAfterNoOfContentForLMS!!
+                                //end mantis id 0027683 QuestionAfterNoOfContentForLMS functionality Puja 05-08-2024  v4.2.9
 
+                                if (configResponse.IsAllowGPSTrackingInBackgroundForLMS != null)
+                                    Pref.IsAllowGPSTrackingInBackgroundForLMS = configResponse.IsAllowGPSTrackingInBackgroundForLMS!!
+                                //Suman 18-09-2024 mantis 27700
+                                if (configResponse.IsRetailOrderStatusRequired != null)
+                                    Pref.IsRetailOrderStatusRequired = configResponse.IsRetailOrderStatusRequired!!
+
+                                //Puja 07-10-2024 mantis 0027717
+                                if (configResponse.IsVideoAutoPlayInLMS != null)
+                                    Pref.IsVideoAutoPlayInLMS = configResponse.IsVideoAutoPlayInLMS!!
+
+                                //Puja 17-10-2024 mantis 0027717
+                                if (configResponse.ShowRetryIncorrectQuiz != null)
+                                    Pref.ShowRetryIncorrectQuiz = configResponse.ShowRetryIncorrectQuiz!!
+
+                                if (configResponse.IsStockCheckFeatureOn != null)
+                                    Pref.IsStockCheckFeatureOn = configResponse.IsStockCheckFeatureOn!!
+                                if (configResponse.IsShowDistributorWiseCurrentStockInOrder != null)
+                                    Pref.IsShowDistributorWiseCurrentStockInOrder = configResponse.IsShowDistributorWiseCurrentStockInOrder!!
+                                if (configResponse.IsAllowNegativeStock != null)
+                                    Pref.IsAllowNegativeStock = configResponse.IsAllowNegativeStock!!
+                                if (configResponse.StockCheckOnOrder1OrInvioce0 != null)
+                                    Pref.StockCheckOnOrder1OrInvioce0 = configResponse.StockCheckOnOrder1OrInvioce0!!
+
+                                if (configResponse.AllowedCreditDays != null)
+                                    Pref.AllowedCreditDays = configResponse.AllowedCreditDays!!
+                                if (configResponse.WillCreditDaysFollow != null)
+                                    Pref.WillCreditDaysFollow = configResponse.WillCreditDaysFollow!!
+                                if (configResponse.AllowOrderOnOutstandingAndClosingStockDifference != null)
+                                    Pref.AllowOrderOnOutstandingAndClosingStockDifference = configResponse.AllowOrderOnOutstandingAndClosingStockDifference!!
                             }
                             BaseActivity.isApiInitiated = false
                             /*API_Optimization 02-03-2022*/
