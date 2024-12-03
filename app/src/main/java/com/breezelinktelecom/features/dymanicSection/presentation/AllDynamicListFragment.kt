@@ -79,7 +79,7 @@ class AllDynamicListFragment : BaseFragment() {
                             val response = result as AllDynamicListResponseModel
 
 //                            XLog.d("DYNAMIC ALL LIST RESPONSE=======> " + response.status)
-                            Timber.d("DYNAMIC ALL LIST RESPONSE=======> " + response.status)
+                            //Timber.d("DYNAMIC ALL LIST RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.form_list != null && response.form_list!!.size > 0) {
@@ -102,7 +102,7 @@ class AllDynamicListFragment : BaseFragment() {
                             tv_no_data.visibility = View.VISIBLE
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
 //                            XLog.d("DYNAMIC ALL LIST ERROR=======> " + error.localizedMessage)
-                            Timber.d("DYNAMIC ALL LIST ERROR=======> " + error.localizedMessage)
+                            //Timber.d("DYNAMIC ALL LIST ERROR=======> " + error.localizedMessage)
                         })
         )
     }

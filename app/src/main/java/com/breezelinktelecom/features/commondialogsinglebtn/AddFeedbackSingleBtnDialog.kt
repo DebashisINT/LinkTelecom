@@ -780,7 +780,7 @@ class AddFeedbackSingleBtnDialog : DialogFragment(), View.OnClickListener {
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
                                     val response = result as ProsListResponseModel
-                                    Timber.d("GET PROS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                    //Timber.d("GET PROS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                                     if (response.status == NetworkConstant.SUCCESS) {
                                         if (response.Prospect_list != null && response.Prospect_list!!.isNotEmpty()) {
                                             doAsync {

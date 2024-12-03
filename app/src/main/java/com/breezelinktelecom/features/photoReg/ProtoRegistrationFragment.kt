@@ -1371,7 +1371,7 @@ class ProtoRegistrationFragment : BaseFragment(), View.OnClickListener {
             newFile = processImage.ProcessImageSelfie()
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     val fileSize = AppUtils.getCompressImage(filePath)
                     var tyy = filePath
 
@@ -1430,7 +1430,7 @@ class ProtoRegistrationFragment : BaseFragment(), View.OnClickListener {
 
              uiThread {
                  if (newFile != null) {
-                     Timber.e("=========Image from new technique==========")
+                     //Timber.e("=========Image from new technique==========")
                      //reimbursementEditPic(newFile!!.length(), newFile?.absolutePath!!)
                  } else {
                      // Image compression

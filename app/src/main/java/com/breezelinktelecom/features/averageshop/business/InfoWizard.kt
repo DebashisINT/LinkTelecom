@@ -195,7 +195,7 @@ class InfoWizard {
 
                 val totalDuration = "$sHours:$sMinute:$sSecond"
 //                XLog.e("Total duration Spent====> $totalDuration")
-                Timber.e("Total duration Spent====> $totalDuration")
+                //Timber.e("Total duration Spent====> $totalDuration")
 
                 return totalDuration
                 
@@ -299,7 +299,7 @@ class InfoWizard {
 
                     val totalDuration = "$sHours:$sMinute:$sSecond"
 //                    XLog.e("Total duration Spent====> $totalDuration")
-                    Timber.e("Total duration Spent====> $totalDuration")
+                    //Timber.e("Total duration Spent====> $totalDuration")
 
                     return totalDuration
                 }
@@ -409,7 +409,7 @@ class InfoWizard {
 
                 val totalDuration = "$sHours:$sMinute:$sSecond"
 //                XLog.e("Total duration Spent====> $totalDuration")
-                Timber.e("Total duration Spent====> $totalDuration")
+                //Timber.e("Total duration Spent====> $totalDuration")
 
                 return totalDuration
             } catch (e: Exception) {

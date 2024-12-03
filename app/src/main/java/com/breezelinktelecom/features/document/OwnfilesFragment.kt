@@ -241,7 +241,7 @@ class OwnfilesFragment : BaseFragment() {
 
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     documentPic(newFile!!.length(), newFile?.absolutePath!!)
                 } else {
                     // Image compression
@@ -340,7 +340,7 @@ class OwnfilesFragment : BaseFragment() {
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                            Timber.d("ADD/EDIT DOCUMENT RESPONSE=======> " + response.status)
+                            //Timber.d("ADD/EDIT DOCUMENT RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.documentListDao()?.updateIsUploaded(true, docListEntity.list_id!!)
@@ -371,7 +371,7 @@ class OwnfilesFragment : BaseFragment() {
                         }, { error ->
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("ADD/EDIT DOCUMENT ERROR=======> " + error.localizedMessage)
+                            //Timber.d("ADD/EDIT DOCUMENT ERROR=======> " + error.localizedMessage)
                             if (isAdd)
                                 (mContext as DashboardActivity).showSnackMessage("Document added successfully")
                             else
@@ -397,7 +397,7 @@ class OwnfilesFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as DocumentListResponseModel
-                            Timber.d("DOCUMENT LIST RESPONSE=======> " + response.status)
+                            //Timber.d("DOCUMENT LIST RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.doc_list != null && response.doc_list!!.size > 0) {
@@ -437,7 +437,7 @@ class OwnfilesFragment : BaseFragment() {
                             progress_wheel.stopSpinning()
                             tv_no_data.visibility = View.VISIBLE
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("DOCUMENT LIST ERROR=======> " + error.localizedMessage)
+                            //Timber.d("DOCUMENT LIST ERROR=======> " + error.localizedMessage)
                         })
         )
     }
@@ -549,7 +549,7 @@ class OwnfilesFragment : BaseFragment() {
 
                             val response = result as BaseResponse
 
-                            Timber.d("DELETE DOCUMENT RESPONSE=======> " + response.status)
+                            //Timber.d("DELETE DOCUMENT RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.documentListDao()?.delete(id)
@@ -568,7 +568,7 @@ class OwnfilesFragment : BaseFragment() {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("DELETE DOCUMENT ERROR=======> " + error.localizedMessage)
+                            //Timber.d("DELETE DOCUMENT ERROR=======> " + error.localizedMessage)
 
                             docList = AppDatabase.getDBInstance()?.documentListDao()?.getDataTypeWise(typeId) as ArrayList<DocumentListEntity>?
                             if (docList != null && docList!!.isNotEmpty())
@@ -598,7 +598,7 @@ class OwnfilesFragment : BaseFragment() {
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                            Timber.d("SYNC DOCUMENT RESPONSE=======> " + response.status)
+                            //Timber.d("SYNC DOCUMENT RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.documentListDao()?.updateIsUploaded(true, docListEntity.list_id!!)
@@ -611,7 +611,7 @@ class OwnfilesFragment : BaseFragment() {
                         }, { error ->
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("SYNC DOCUMENT ERROR=======> " + error.localizedMessage)
+                            //Timber.d("SYNC DOCUMENT ERROR=======> " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

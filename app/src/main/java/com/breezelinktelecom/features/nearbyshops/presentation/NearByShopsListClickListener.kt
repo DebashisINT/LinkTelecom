@@ -37,4 +37,5 @@ interface NearByShopsListClickListener {
     fun onUpdateStatusClick(obj: AddShopDBModelEntity)
 
     fun createITCOrderClick(obj: AddShopDBModelEntity)
+    fun loanDtlsClick(obj: AddShopDBModelEntity)
 }

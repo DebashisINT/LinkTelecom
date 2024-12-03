@@ -11,12 +11,16 @@ import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
+import com.breezelinktelecom.CustomStatic
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.AppDatabase
 import com.breezelinktelecom.app.Pref
 import com.breezelinktelecom.app.domain.AddShopDBModelEntity
+import com.breezelinktelecom.app.types.FragType
 import com.breezelinktelecom.app.utils.AppUtils
+import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.member.model.TeamShopListDataModel
+import com.breezelinktelecom.features.performanceAPP.TargetVSAchvFrag
 import kotlinx.android.synthetic.main.inflate_member_shop_list.view.*
 import kotlinx.android.synthetic.main.inflate_nearby_shops.view.visit_TV
 import kotlinx.android.synthetic.main.inflate_nearby_shops.view.visit_icon
@@ -304,7 +308,17 @@ class MemberShopListAdapter(private val context: Context, private val teamShopLi
                     itemView.add_quot_ll.visibility = View.GONE
                 }
 
-
+                if(Pref.ShowTargetOnApp){
+                    itemView.shop_ta_dtls.visibility = View.VISIBLE
+                    itemView.shop_ta_dtls_view.visibility = View.VISIBLE
+                }else{
+                    itemView.shop_ta_dtls.visibility = View.GONE
+                    itemView.shop_ta_dtls_view.visibility = View.GONE
+                }
+                itemView.shop_ta_dtls.setOnClickListener {
+                    TargetVSAchvFrag.userID = CustomStatic.TeamUserSelect_user_id
+                    (context as DashboardActivity).loadFragment(FragType.TargetVSAchvFrag, true, "")
+                }
 
             }
         }

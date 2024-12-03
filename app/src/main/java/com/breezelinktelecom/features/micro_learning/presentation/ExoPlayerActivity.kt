@@ -251,7 +251,7 @@ class ExoPlayerActivity : AppCompatActivity() {
                         .subscribe({ result ->
                             val response = result as BaseResponse
 //                            XLog.d("UPDATE VIDEO POSITION: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
-                            Timber.d("UPDATE VIDEO POSITION: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPDATE VIDEO POSITION: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             //Toaster.msgShort(this, response.message!!)
 
@@ -270,7 +270,7 @@ class ExoPlayerActivity : AppCompatActivity() {
                             progress_wheel.stopSpinning()
                             isOnBackPressed = false
 //                            XLog.d("UPDATE VIDEO POSITION: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("UPDATE VIDEO POSITION: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPDATE VIDEO POSITION: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
 
                             error.printStackTrace()
                             Toaster.msgShort(this, getString(R.string.something_went_wrong))

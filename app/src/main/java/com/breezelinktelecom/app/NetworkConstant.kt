@@ -28,8 +28,8 @@ class NetworkConstant {
         var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7019/"
 
         //LMS
-        //var BASE_URL = "http://fts1.indusnettechnologies.com:7011/API/"
-        //var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7011/"
+        //var BASE_URL = "http://fts1.indusnettechnologies.com:7105/API/"
+        //var ADD_SHOP_BASE_URL = "http://fts1.indusnettechnologies.com:7105/"
 
         //LMS -IndusNet
         //var BASE_URL = "http://fts1.indusnettechnologies.com:7047/API/"

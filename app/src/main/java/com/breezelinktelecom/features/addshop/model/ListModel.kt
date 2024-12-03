@@ -1,5 +1,9 @@
 package com.breezelinktelecom.features.addshop.model
 
+import com.breezelinktelecom.LoanDispositionEntity
+import com.breezelinktelecom.app.domain.LoanDetailFetchEntity
+import com.breezelinktelecom.app.domain.LoanFinalStatusEntity
+import com.breezelinktelecom.app.domain.LoanRiskTypeEntity
 import com.breezelinktelecom.app.domain.ShopAudioEntity
 import com.breezelinktelecom.app.domain.StockAllEntity
 import com.breezelinktelecom.base.BaseResponse
@@ -48,6 +52,14 @@ data class AudioFetchDataCLass(var audio_list:ArrayList<AudioFetchData> = ArrayL
 data class AudioFetchData(var shop_id:String="",var audio_path:String="",var isUploaded:String="",var datetime:String="",var revisitORvisit:String="")
 
 data class StockAllResponse (var stock_list:ArrayList<StockAllEntity>):BaseResponse()
+
+data class LoanRiskTypeListsResponse (var data_list:ArrayList<LoanRiskTypeEntity>):BaseResponse()
+
+data class LoanDispositionListsResponse (var data_list:ArrayList<LoanDispositionEntity>):BaseResponse()
+
+data class LoanFinalStatusListsResponse (var data_list:ArrayList<LoanFinalStatusEntity>):BaseResponse()
+
+data class LoanDetailFetchListsResponse (var data_list:ArrayList<LoanDetailFetchEntity>):BaseResponse()
 
 /*data class StockData(var stock_shopcode:String="",var stock_shopentitycode:String = "",var stock_productid:String = "",
                      var stock_productname:String="",var stock_productqty:String="",var stock_productbalqty:String="")*/

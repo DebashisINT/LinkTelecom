@@ -509,7 +509,7 @@ class MultipleImageFragment: BaseFragment(),
                 }, { error ->
                     progress_wheel.stopSpinning()
                     if (error != null) {
-                        Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )
@@ -552,7 +552,7 @@ class MultipleImageFragment: BaseFragment(),
                     if (error != null) {
                         progress_wheel.stopSpinning()
                         openDialogPopup("Hi ${Pref.user_name} !","upload 2 attcmentment not successfully.")
-                        Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )}
@@ -592,7 +592,7 @@ class MultipleImageFragment: BaseFragment(),
                     if (error != null) {
                         progress_wheel.stopSpinning()
                         openDialogPopup("Hi ${Pref.user_name} !","upload 3 attcmentment not successfully.")
-                        Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Image Upload 1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )
@@ -627,7 +627,7 @@ class MultipleImageFragment: BaseFragment(),
                     if (error != null) {
                         progress_wheel.stopSpinning()
                         openDialogPopup("Hi ${Pref.user_name} !","upload 4 attcmentment not successfully.")
-                        Timber.d("AddShop : Image Upload 4" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Image Upload 4" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )

@@ -154,7 +154,7 @@ class AllShopListFragment : BaseFragment() {
 
                             val planListResponse = result as AllPlanListResponseModel
 
-                            Timber.d("AllPlanList RESPONSE=======> " + planListResponse.status)
+                            //Timber.d("AllPlanList RESPONSE=======> " + planListResponse.status)
 
                             if (planListResponse.status == NetworkConstant.SUCCESS) {
                                 if (planListResponse.plan_data != null && planListResponse.plan_data!!.size > 0) {
@@ -178,7 +178,7 @@ class AllShopListFragment : BaseFragment() {
                             progress_wheel.stopSpinning()
                             tv_no_data.visibility = View.VISIBLE
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("AllPlanList ERROR=======> " + error.localizedMessage)
+                            //Timber.d("AllPlanList ERROR=======> " + error.localizedMessage)
                         })
         )
     }

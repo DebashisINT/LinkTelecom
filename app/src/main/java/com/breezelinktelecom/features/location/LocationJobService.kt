@@ -60,10 +60,10 @@ class LocationJobService : JobService() {
         }
         // Rev 25.0 LocationJobService v 4.2.6 stock optmization mantis 0027421 06-05-2024 Suman end
         println("tag_service_call_check LocationJobService onStartJob call")
-        Timber.d("=============================Start Job " + AppUtils.getCurrentDateTime() + "==============================")*/
+        //Timber.d("=============================Start Job " + AppUtils.getCurrentDateTime() + "==============================")*/
 
         val myIntent = Intent(this, LocationFuzedService::class.java)
-        Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+        //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
 
         if (!TextUtils.isEmpty(updateFence)) {
             val bundle = Bundle()
@@ -77,19 +77,19 @@ class LocationJobService : JobService() {
             e.printStackTrace()
             startForegroundService(myIntent)
         }*/
-        Timber.d("service_call_tag LocationJobService onStartJob ${AppUtils.getCurrentDateTime()} ")
+        //Timber.d("service_call_tag LocationJobService onStartJob ${AppUtils.getCurrentDateTime()} ")
 
         try {
             if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, this)) {
-                Timber.d("MonitorService loc service check service running : Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("MonitorService loc service check service running : Time :" + AppUtils.getCurrentDateTime())
             }else{
-                Timber.d("MonitorService loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("restarting loc service")
+                //Timber.d("MonitorService loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("restarting loc service")
                 startForegroundService(myIntent)
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.d("error ${e.printStackTrace()}")
+            //Timber.d("error ${e.printStackTrace()}")
         }
 
         //startForegroundService(myIntent)
@@ -103,7 +103,7 @@ class LocationJobService : JobService() {
     }
 
     override fun onStopJob(p0: JobParameters?): Boolean {
-        Timber.d("=========================Stop Job " + AppUtils.getCurrentDateTime() + "============================")
+        //Timber.d("=========================Stop Job " + AppUtils.getCurrentDateTime() + "============================")
 
         //unregisterReceiver(eventReceiver)
 
@@ -118,14 +118,14 @@ class LocationJobService : JobService() {
                     .build()
 
             val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-            Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+            //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
 
             val resultCode = jobScheduler.schedule(jobInfo)
 
             if (resultCode == JobScheduler.RESULT_SUCCESS) {
-                Timber.d("========================Job rescheduled (LocationJobService) " + AppUtils.getCurrentDateTime() + "==============================")
+                //Timber.d("========================Job rescheduled (LocationJobService) " + AppUtils.getCurrentDateTime() + "==============================")
             } else {
-                Timber.d("========================Job not rescheduled (LocationJobService) " + AppUtils.getCurrentDateTime() + "==========================")
+                //Timber.d("========================Job not rescheduled (LocationJobService) " + AppUtils.getCurrentDateTime() + "==========================")
             }
         }
 

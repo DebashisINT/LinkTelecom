@@ -61,13 +61,13 @@ class BeatHierarchyStatusFrag: BaseFragment(), View.OnClickListener {
                         }
                     }, { error ->
                         error.printStackTrace()
-                        Timber.d("BeatHierarchyStatusFrag getHirerchyData() ${AppUtils.getCurrentDateTime()} error " + error.localizedMessage)
+                        //Timber.d("BeatHierarchyStatusFrag getHirerchyData() ${AppUtils.getCurrentDateTime()} error " + error.localizedMessage)
                     })
             )
         }
         catch (ex:Exception){
             ex.printStackTrace()
-            Timber.d("BeatHierarchyStatusFrag getHirerchyData() ex ${AppUtils.getCurrentDateTime()} error " + ex.localizedMessage)
+            //Timber.d("BeatHierarchyStatusFrag getHirerchyData() ex ${AppUtils.getCurrentDateTime()} error " + ex.localizedMessage)
         }
     }
 

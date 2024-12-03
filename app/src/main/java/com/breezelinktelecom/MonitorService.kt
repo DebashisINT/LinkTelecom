@@ -71,7 +71,7 @@ class MonitorService:Service() {
 
             }
         }
-        timer!!.schedule(task, 0, 8000)
+        timer!!.schedule(task, 0, 10000)
         //timer!!.schedule(task, 0, 50000)
 
         // 15 mins is 60000 * 15
@@ -83,18 +83,19 @@ class MonitorService:Service() {
 
     fun serviceStatusActionable() {
 
-        Timber.d("MonitorService running : Time :" + AppUtils.getCurrentDateTime())
+       // //Timber.d("MonitorService running : Time :" + AppUtils.getCurrentDateTime())
         try {
             if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, this)) {
-                Timber.d("MonitorService loc service check service running : Time :" + AppUtils.getCurrentDateTime())
+              //  //Timber.d("MonitorService loc service check service running : Time :" + AppUtils.getCurrentDateTime())
+                println("tag_monitor_chk service running")
             }else{
-                Timber.d("MonitorService loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("restarting loc service")
+                //Timber.d("MonitorService loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("restarting loc service")
                 restartLocationService()
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.d("tag_error ${e.printStackTrace()}")
+            //Timber.d("tag_error ${e.printStackTrace()}")
         }
         return
 
@@ -115,7 +116,7 @@ class MonitorService:Service() {
                 powerMode = "Power Save Mode ON"
 
                 Log.e("pww", "Power Save Mode ON")
-                Timber.d("pww : Power Save Mode ON" + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("pww : Power Save Mode ON" + " Time :" + AppUtils.getCurrentDateTime())
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (Pref.GPSAlertGlobal) {
@@ -179,9 +180,9 @@ class MonitorService:Service() {
                 if (!FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, this)) {
                     restartLocationService()
                 }
-                Timber.d("MonitorService LocationFuzedService : " + "false" + "," + " Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("MonitorService  Power Save Mode Status : " + powerMode + "," + " Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("Monitor Service Stopped" + "" + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("MonitorService LocationFuzedService : " + "false" + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("MonitorService  Power Save Mode Status : " + powerMode + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("Monitor Service Stopped" + "" + "," + " Time :" + AppUtils.getCurrentDateTime())
                 if (!isFirst) {
                     Log.e("abc", "abc stoptimer")
                     timer!!.cancel()
@@ -203,7 +204,7 @@ class MonitorService:Service() {
 
                 println("pww - Power Save Mode ON xm")
                 Log.e("pww", "Power Save Mode ON xm")
-                Timber.d("pww : Power Save Mode ON xm" + " Time :" + AppUtils.getCurrentDateTime())
+              //  //Timber.d("pww : Power Save Mode ON xm" + " Time :" + AppUtils.getCurrentDateTime())
 
 
                 powerMode = "Power Save Mode ON"
@@ -239,7 +240,7 @@ class MonitorService:Service() {
 
         if(shouldShopActivityUpdate()){
             if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, this)) {
-                Timber.d("MonitorService LocationFuzedService : " + "trueee" + "," + " Time :" + AppUtils.getCurrentDateTime())
+               // //Timber.d("MonitorService LocationFuzedService : " + "trueee" + "," + " Time :" + AppUtils.getCurrentDateTime())
                 //Timber.d("MonitorService Power Save Mode Status : " + powerMode + "," + " Time :" + AppUtils.getCurrentDateTime())
                 /*if(powerSaver){
                     sendGPSOffBroadcast()
@@ -254,9 +255,9 @@ class MonitorService:Service() {
                     restartLocationService()
                 }
 
-                Timber.d("MonitorService LocationFuzedService : " + "false" + "," + " Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("MonitorService  Power Save Mode Status : " + powerMode + "," + " Time :" + AppUtils.getCurrentDateTime())
-                Timber.d("Monitor Service Stopped" + "" + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("MonitorService LocationFuzedService : " + "false" + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("MonitorService  Power Save Mode Status : " + powerMode + "," + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("Monitor Service Stopped" + "" + "," + " Time :" + AppUtils.getCurrentDateTime())
                 if(!isFirst){
                     Log.e("abc", "abc stoptimer" )
                     timer!!.cancel()
@@ -285,7 +286,7 @@ class MonitorService:Service() {
 
     fun sendGPSOffBroadcast(){
         if(Pref.user_id.toString().length > 0){
-            Timber.d("MonitorService Called for Battery Broadcast :  Time :" + AppUtils.getCurrentDateTime())
+           // //Timber.d("MonitorService Called for Battery Broadcast :  Time :" + AppUtils.getCurrentDateTime())
             //var notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             //notificationManager.cancel(monitorNotiID)
             MonitorBroadcast.isSound=Pref.GPSAlertwithSound
@@ -382,11 +383,14 @@ class MonitorService:Service() {
                 return
             }
             val serviceLauncher = Intent(this, LocationFuzedService::class.java)
-            Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+           // //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
 
             if (Pref.user_id != null && Pref.user_id!!.isNotEmpty()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+                    val serviceIntent = Intent(this, LocationJobService::class.java)
+                    startService(serviceIntent)
+
+                    /*val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
                     val componentName = ComponentName(this, LocationJobService::class.java)
                     val jobInfo = JobInfo.Builder(12, componentName)
                         //.setRequiresCharging(true)
@@ -395,14 +399,14 @@ class MonitorService:Service() {
                         .setOverrideDeadline(1000)
                         .build()
 
-                    Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                    //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
                     val resultCode = jobScheduler.schedule(jobInfo)
 
                     if (resultCode == JobScheduler.RESULT_SUCCESS) {
-                        Timber.d("===============================From MonitorS LocationFuzedService   Job scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "============================")
+                        //Timber.d("===============================From MonitorS LocationFuzedService   Job scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "============================")
                     } else {
-                        Timber.d("=====================From MonitorS LocationFuzedService Job not scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "====================================")
-                    }
+                        //Timber.d("=====================From MonitorS LocationFuzedService Job not scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "====================================")
+                    }*/
                 } else
                     startService(serviceLauncher)
             } else {
@@ -411,11 +415,11 @@ class MonitorService:Service() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
                     jobScheduler.cancelAll()
-                    Timber.d("===============================From MonitorS LocationFuzedService Job scheduler cancel (Base Activity)" + AppUtils.getCurrentDateTime() + "============================")
+                    //Timber.d("===============================From MonitorS LocationFuzedService Job scheduler cancel (Base Activity)" + AppUtils.getCurrentDateTime() + "============================")
                 }
 
                 AlarmReceiver.stopServiceAlarm(this, 123)
-                Timber.d("===========From MonitorS LocationFuzedService Service alarm is stopped (Base Activity)================")*/
+                //Timber.d("===========From MonitorS LocationFuzedService Service alarm is stopped (Base Activity)================")*/
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -427,7 +431,7 @@ class MonitorService:Service() {
     private fun calculategpsStatus(gpsStatus: Boolean) {
 
         if (!AppUtils.isOnReceived) {
-            Timber.e("First time airplane off detect working")
+            //Timber.e("First time airplane off detect working")
             AppUtils.isOnReceived = true
 
             if (!gpsStatus) {
@@ -436,13 +440,13 @@ class MonitorService:Service() {
                     AppUtils.isGpsOffCalled = true
                     Log.e("GpsLocationReceiver", "===========GPS is disabled=============")
                     //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                    Timber.d("GpsLocationReceiver", "===========GPS is disabled=============")
+                    //Timber.d("GpsLocationReceiver", "===========GPS is disabled=============")
                     //4.0 end rev
                     AppUtils.gpsOffTime = dateFormat.parse(/*"18:14:55"*/AppUtils.getCurrentTime()).time
                     AppUtils.gpsDisabledTime = AppUtils.getCurrentTimeWithMeredian()
                     Log.e("GpsLocationReceiver", "gpsOffTime------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOffTime)+"gpsOff" +AppUtils.gpsDisabledTime)
                     //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                    Timber.d("GpsLocationReceiver", "gpsOffTime------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOffTime))
+                    //Timber.d("GpsLocationReceiver", "gpsOffTime------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOffTime))
                     //4.0 end rev
                     /*val local_intent = Intent()
                     local_intent.action = AppUtils.gpsDisabledAction
@@ -455,7 +459,7 @@ class MonitorService:Service() {
                     AppUtils.gpsOnTime = dateFormat.parse(AppUtils.getCurrentTime()).time
                     AppUtils.gpsEnabledTime = AppUtils.getCurrentTimeWithMeredian()
                     //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                    Timber.d("GpsLocationReceiver", "gpsOnTime---------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime)+"gpsOn" +AppUtils.gpsEnabledTime)
+                    //Timber.d("GpsLocationReceiver", "gpsOnTime---------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime)+"gpsOn" +AppUtils.gpsEnabledTime)
                     //4.0 end rev
                     Log.e("GpsLocationReceiver", "gpsOnTime---------------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime))
 
@@ -473,7 +477,7 @@ class MonitorService:Service() {
                     performanceEntity.gps_off_duration = (AppUtils.gpsOnTime - AppUtils.gpsOffTime).toString()
                     Log.e("GpsLocationReceiver", "duration----------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
                     //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                    Timber.d("GpsLocationReceiver", "duration----------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
+                    //Timber.d("GpsLocationReceiver", "duration----------------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
                     //4.0 end rev
                     AppDatabase.getDBInstance()!!.performanceDao().insert(performanceEntity)
                     saveGPSStatus((AppUtils.gpsOnTime - AppUtils.gpsOffTime).toString())
@@ -486,7 +490,7 @@ class MonitorService:Service() {
                         AppDatabase.getDBInstance()!!.performanceDao().updateGPSoffDuration((AppUtils.gpsOnTime - AppUtils.gpsOffTime).toString(), AppUtils.getCurrentDateForShopActi())
                         Log.e("GpsLocationReceiver", "duration----------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
                         //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                        Timber.d("GpsLocationReceiver", "duration----------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
+                        //Timber.d("GpsLocationReceiver", "duration----------> " + AppUtils.getTimeInHourMinuteFormat(AppUtils.gpsOnTime - AppUtils.gpsOffTime))
                         //4.0 end rev
                         saveGPSStatus((AppUtils.gpsOnTime - AppUtils.gpsOffTime).toString())
                         AppUtils.gpsOnTime = 0
@@ -498,7 +502,7 @@ class MonitorService:Service() {
                         val totalDuration = performance.gps_off_duration?.toLong()!! + duration
                         Log.e("GpsLocationReceiver", "duration-------> " + AppUtils.getTimeInHourMinuteFormat(totalDuration))
                         //4.0 MonitorService AppV 4.1.3  mantis 0025932 Log file update in service classes for GPS on off time.
-                        Timber.d("GpsLocationReceiver", "duration-------> " + AppUtils.getTimeInHourMinuteFormat(totalDuration))
+                        //Timber.d("GpsLocationReceiver", "duration-------> " + AppUtils.getTimeInHourMinuteFormat(totalDuration))
                         //4.0 end rev
                         AppDatabase.getDBInstance()!!.performanceDao().updateGPSoffDuration(totalDuration.toString(), AppUtils.getCurrentDateForShopActi())
                         saveGPSStatus(duration.toString())

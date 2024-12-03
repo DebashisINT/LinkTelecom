@@ -248,10 +248,10 @@ class ViewPermissionFragment: BaseFragment(), View.OnClickListener {
         permList = (permList + permListDenied).toMutableList()
 
         for(i in 0..permList.size-1){
-            Timber.d("Permission Name"+permList.get(i).permissionName + " Status : ")
+            //Timber.d("Permission Name"+permList.get(i).permissionName + " Status : ")
         }
         for(i in 0..permListDenied.size-1){
-            Timber.d("Permission Name"+permListDenied.get(i).permissionName + " Status : ")
+            //Timber.d("Permission Name"+permListDenied.get(i).permissionName + " Status : ")
         }
 
 

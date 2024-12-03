@@ -568,7 +568,7 @@ class TeamPerformanceFragment: BaseFragment(), View.OnClickListener {
                          else {
                         }
                 }, { error ->
-                    Timber.d("GET TEAM DATA PERFORMANCE: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET TEAM DATA PERFORMANCE: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                 })
         )
@@ -1904,7 +1904,7 @@ class TeamPerformanceFragment: BaseFragment(), View.OnClickListener {
                         uniqProduct.add(NoProductSoldShop(objL.get(j).product_name!!))
                     }
                 }catch (ex:Exception){
-                    Timber.d("tag_x ex ${ex.message}")
+                    //Timber.d("tag_x ex ${ex.message}")
                     ex.printStackTrace()
                 }
 

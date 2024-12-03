@@ -375,16 +375,16 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
                 localData.battery_percentage = location_details[i].battery_percentage
             }
 
-            Timber.d("=====Current location (Activity)=======")
-            Timber.d("distance=====> " + localData.distance)
-            Timber.d("lat====> " + localData.latitude)
-            Timber.d("long=====> " + localData.longitude)
-            Timber.d("location=====> " + localData.locationName)
-            Timber.d("date time=====> " + localData.updateDateTime)
-            Timber.d("meeting_attended=====> " + localData.meeting)
-            Timber.d("visit_distance=====> " + localData.visit_distance)
-            Timber.d("network_status=====> " + localData.network_status)
-            Timber.d("battery_percentage=====> " + localData.battery_percentage)
+            //Timber.d("=====Current location (Activity)=======")
+            //Timber.d("distance=====> " + localData.distance)
+            //Timber.d("lat====> " + localData.latitude)
+            //Timber.d("long=====> " + localData.longitude)
+            //Timber.d("location=====> " + localData.locationName)
+            //Timber.d("date time=====> " + localData.updateDateTime)
+            //Timber.d("meeting_attended=====> " + localData.meeting)
+            //Timber.d("visit_distance=====> " + localData.visit_distance)
+            //Timber.d("network_status=====> " + localData.network_status)
+            //Timber.d("battery_percentage=====> " + localData.battery_percentage)
 
             //negative distance handle Suman 06-02-2024 mantis id 0027225 begin
             try{
@@ -403,7 +403,7 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
 
             AppDatabase.getDBInstance()!!.userLocationDataDao().insert(localData)
 
-            Timber.d("=======location added to db (Activity)======")
+            //Timber.d("=======location added to db (Activity)======")
             list.add(localData)
         }
 
@@ -769,14 +769,14 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
         }
         catch (ex: Exception){
             ex.printStackTrace()
-            Timber.d("tag_share_err ${ex.message}")
+            //Timber.d("tag_share_err ${ex.message}")
             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
         }
     }
 
     private fun syncLocationActivity() {
 
-        Timber.d("syncLocationActivity (Activity Screen) : ENTER")
+        //Timber.d("syncLocationActivity (Activity Screen) : ENTER")
 
         if (Pref.user_id.isNullOrEmpty())
             return
@@ -862,8 +862,8 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
         for (i in apiLocationList.indices) {
             if (!apiLocationList[i].isUploaded) {
 
-                Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
-                Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
+                //Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
+                //Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
 
 
                 val locationData = LocationData()
@@ -893,7 +893,7 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
             locationUpdateReq.location_details = locationList
             val repository = LocationUpdateRepositoryProviders.provideLocationUpdareRepository()
 
-            Timber.d("syncLocationActivity (Activity Screen) : REQUEST")
+            //Timber.d("syncLocationActivity (Activity Screen) : REQUEST")
 
             progress_wheel.spin()
 
@@ -904,7 +904,7 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
                     .subscribe({ result ->
                         val updateShopActivityResponse = result as BaseResponse
 
-                        Timber.d("syncLocationActivity (Activity Screen) : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
+                        //Timber.d("syncLocationActivity (Activity Screen) : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
 
                         if (updateShopActivityResponse.status == NetworkConstant.SUCCESS) {
                             doAsync {
@@ -946,9 +946,9 @@ class DayWiseFragment : BaseFragment(), View.OnClickListener {
                         AppUtils.isLocationActivityUpdating = false
                         progress_wheel.stopSpinning()
                         if (error == null) {
-                            Timber.d("syncLocationActivity (Activity Screen) : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
+                            //Timber.d("syncLocationActivity (Activity Screen) : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
                         } else {
-                            Timber.d("syncLocationActivity (Activity Screen) : ERROR : " + error.localizedMessage)
+                            //Timber.d("syncLocationActivity (Activity Screen) : ERROR : " + error.localizedMessage)
                             error.printStackTrace()
                         }
 

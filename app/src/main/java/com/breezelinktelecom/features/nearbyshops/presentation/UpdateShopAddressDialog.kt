@@ -110,7 +110,7 @@ class UpdateShopAddressDialog : DialogFragment() {
             new_address_EDT.setText(LocationWizard.getLocationName(mContext, loc.latitude, loc.longitude))
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.e("Update Shop Address", "Address calculation error(From shop list)=========> " + e.localizedMessage + " for shop " + addShopData.shopName)
+            //Timber.e("Update Shop Address", "Address calculation error(From shop list)=========> " + e.localizedMessage + " for shop " + addShopData.shopName)
             new_address_EDT.setText("Unknown")
         }
 

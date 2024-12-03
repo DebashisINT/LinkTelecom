@@ -169,8 +169,8 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
         if (Pref.user_id.isNullOrEmpty())
             return
 
-        Timber.e("BaseActivity: Login Date====> " + Pref.login_date)
-        Timber.e("BaseActivity: Current Date====> " + AppUtils.getCurrentDateChanged())
+        //Timber.e("BaseActivity: Login Date====> " + Pref.login_date)
+        //Timber.e("BaseActivity: Current Date====> " + AppUtils.getCurrentDateChanged())
 
         if (Pref.user_id!!.isNotEmpty() && AppUtils.getLongTimeStampFromDate2(Pref.login_date!!) != AppUtils.getLongTimeStampFromDate2(AppUtils.getCurrentDateChanged())) {
             Pref.isAutoLogout = true
@@ -182,7 +182,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
             //Pref.isAddAttendence = false
             //Pref.DayStartMarked = false
             //Pref.DayEndMarked = false
-            Timber.d("MID: 26980 ${Pref.isAutoLogout}")
+           // //Timber.d("MID: 26980 ${Pref.isAutoLogout}")
             performLogout()
             //syncShopList()
             //uploadShopRevisitData()
@@ -252,7 +252,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
     private fun performLogout() {
 
         if (autoLogoutDialog == null) {
-            Timber.d("MID: 26980 performLogout if")
+            //Timber.d("MID: 26980 performLogout if")
             autoLogoutDialog = CommonDialogSingleBtn.getInstance(AppUtils.hiFirstNameText()+"!", "Final logout for the date ${AppUtils.convertLoginTimeToAutoLogoutTimeFormat(Pref.login_date!!)} is pending. Click Ok to complete final logout.", getString(R.string.ok), object : OnDialogClickListener {
 
                 override fun onOkClick() {
@@ -262,20 +262,20 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
 
 
                     if (AppUtils.isOnline(this@BaseActivity)) {
-                        Timber.d("MID: 26980 isOnline if")
+                        //Timber.d("MID: 26980 isOnline if")
 
                         if (list != null && list.isNotEmpty()) {
-                            Timber.d("MID: 26980 isOnline getDataSyncStateWise if")
+                            //Timber.d("MID: 26980 isOnline getDataSyncStateWise if")
 
                             i = 0
                             callUpdateGpsStatusApi(list)
                         } else {
-                            Timber.d("MID: 26980 isOnline getDataSyncStateWise else")
+                            //Timber.d("MID: 26980 isOnline getDataSyncStateWise else")
 
                             checkToCallLocationSync()
                         }
                     } else {
-                        Timber.d("MID: 26980 isOnline else")
+                        //Timber.d("MID: 26980 isOnline else")
 
                         Toaster.msgShort(this@BaseActivity, getString(R.string.no_internet))
                         performLogout()
@@ -287,14 +287,14 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
             //if (autoLogoutDialog?.dialog != null && !autoLogoutDialog?.dialog?.isShowing!!)
             autoLogoutDialog?.show(supportFragmentManager, "CommonDialogSingleBtn")
         } else {
-            Timber.d("MID: 26980 performLogout else")
+            //Timber.d("MID: 26980 performLogout else")
             if (autoLogoutDialog?.dialog != null && !autoLogoutDialog?.dialog?.isShowing!!) {
-                Timber.d("MID: 26980 autoLogoutDialog if")
+                //Timber.d("MID: 26980 autoLogoutDialog if")
 
                 autoLogoutDialog?.show(supportFragmentManager, "CommonDialogSingleBtn")
             }
             else {
-                Timber.d("MID: 26980 autoLogoutDialog else")
+                //Timber.d("MID: 26980 autoLogoutDialog else")
 
                 if (autoLogoutDialog?.dialog == null)
                     autoLogoutDialog?.show(supportFragmentManager, "CommonDialogSingleBtn")
@@ -306,11 +306,11 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
     private fun checkToCallLocationSync() {
 
         val locationList = AppDatabase.getDBInstance()!!.userLocationDataDao().getLocationNotUploaded(false)
-        Timber.d("MID: 26980 checkToCallLocationSync getLocationNotUploaded ")
+        //Timber.d("MID: 26980 checkToCallLocationSync getLocationNotUploaded ")
 
         if (locationList != null && locationList.isNotEmpty()) {
 
-            Timber.d("MID: 26980 checkToCallLocationSync in method block locationList")
+            //Timber.d("MID: 26980 checkToCallLocationSync in method block locationList")
 
             syncLocationActivity(locationList)
         }
@@ -323,7 +323,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
     private fun syncLocationActivity(list: List<UserLocationDataEntity>) {
 
 //        XLog.d("syncLocationActivity Logout : ENTER")
-        Timber.d("syncLocationActivity Logout : ENTER")
+        //Timber.d("syncLocationActivity Logout : ENTER")
 
 
         if (Pref.user_id.isNullOrEmpty())
@@ -347,7 +347,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
         val apiLocationList: MutableList<UserLocationDataEntity> = ArrayList()
 
         val syncList = AppDatabase.getDBInstance()!!.userLocationDataDao().getLocationUpdateForADayNotSyn(AppUtils.convertFromRightToReverseFormat(Pref.login_date!!), true)
-        Timber.e("MID: 26980 ${syncList.size} after data putting on getLocationUpdateForADayNotSyn ")
+        //Timber.e("MID: 26980 ${syncList.size} after data putting on getLocationUpdateForADayNotSyn ")
 
 //        for (i in 0 until list.size) {
 //            if (list[i].latitude == null || list[i].longitude == null)
@@ -412,7 +412,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
             fiveMinsRowGap = 10
 
         for (i in 0 until allLocationList.size) {
-            Timber.d("MID: 26980 allLocationList.size forloop")
+            //Timber.d("MID: 26980 allLocationList.size forloop")
 
             if (allLocationList[i].latitude == null || allLocationList[i].longitude == null)
                 continue
@@ -421,7 +421,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
 
             if (i == 0) {
                 apiLocationList.add(allLocationList[i])
-                Timber.d("MID: 26980 add apiLocationList")
+                //Timber.d("MID: 26980 add apiLocationList")
 
             }
 
@@ -429,8 +429,8 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
 
             if (!TextUtils.isEmpty(allLocationList[i].home_duration)) {
 
-                Timber.e("Home Duration (Location Fuzed Service)=================> ${allLocationList[i].home_duration}")
-                Timber.e("Time (Location Fuzed Service)=================> ${allLocationList[i].time}")
+                //Timber.e("Home Duration (Location Fuzed Service)=================> ${allLocationList[i].home_duration}")
+                //Timber.e("Time (Location Fuzed Service)=================> ${allLocationList[i].time}")
                 val arr = allLocationList[i].home_duration?.split(":".toRegex())?.toTypedArray()
                 timeStamp += arr?.get(2)?.toInt()?.toLong()!!
                 timeStamp += 60 * arr[1].toInt().toLong()
@@ -441,11 +441,11 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                 try {
 
                     val timeStamp_ = allLocationList[i].timestamp.toLong()
-                    Timber.d("MID: 26980 allLocationList index try ")
+                    //Timber.d("MID: 26980 allLocationList index try ")
 
                     if (i % fiveMinsRowGap == 0) {
                         allLocationList[i].distance = distanceCovered.toString()
-                        Timber.d("MID: 26980 allLocationList index distance ")
+                        //Timber.d("MID: 26980 allLocationList index distance ")
 
                         if (timeStamp != 0L) {
                             val hh = timeStamp / 3600
@@ -463,13 +463,13 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                 } catch (e: Exception) {
                     e.printStackTrace()
 
-                    Timber.d("MID: 26980 allLocationList index exception ")
+                    //Timber.d("MID: 26980 allLocationList index exception ")
 
                     allLocationList[i].distance = distanceCovered.toString()
 
                     if (timeStamp != 0L) {
 
-                        Timber.d("MID: 26980 timestamp if ")
+                        //Timber.d("MID: 26980 timestamp if ")
 
                         val hh = timeStamp / 3600
                         timeStamp %= 3600
@@ -480,7 +480,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                     }
                     apiLocationList.add(allLocationList[i])
 
-                    Timber.d("MID: 26980 allLocationList index add to apiLocationList")
+                    //Timber.d("MID: 26980 allLocationList index add to apiLocationList")
 
                     distanceCovered = 0.0
                 }
@@ -490,8 +490,8 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
         for (i in apiLocationList.indices) {
             if (!apiLocationList[i].isUploaded) {
 
-                Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
-                Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
+                //Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
+                //Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
 
 
                 val locationData = LocationData()
@@ -510,26 +510,26 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                 locationData.home_duration = apiLocationList[i].home_duration
                 locationList.add(locationData)
 
-                Timber.e("MID: 26980 locationData add to locationList=================> ${locationList.size}")
+                //Timber.e("MID: 26980 locationData add to locationList=================> ${locationList.size}")
 
 
                 val locationDataAll = LocationData()
                 locationDataAll.locationId = apiLocationList[i].locationId.toString()
                 locationListAllId.add(locationDataAll)
-                Timber.e("MID: 26980 locationDataAll add to locationListAllId=================> ${locationListAllId.size}")
+                //Timber.e("MID: 26980 locationDataAll add to locationListAllId=================> ${locationListAllId.size}")
 
             }
         }
 
         if (locationList.size > 0) {
 
-            Timber.e("MID: 26980 locationList.size if")
+            //Timber.e("MID: 26980 locationList.size if")
 
             locationUpdateReq.location_details = locationList
             val repository = LocationUpdateRepositoryProviders.provideLocationUpdareRepository()
 
 //            XLog.d("syncLocationActivity Logout : REQUEST")
-            Timber.d("syncLocationActivity Logout : REQUEST")
+            //Timber.d("syncLocationActivity Logout : REQUEST")
             getProgressInstance().showDialogForLoading(this)
 
             BaseActivity.compositeDisposable.add(
@@ -541,45 +541,45 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                                 val updateShopActivityResponse = result as BaseResponse
 
 //                                XLog.d("syncLocationActivity Logout : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
-                                Timber.d("syncLocationActivity Logout : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
+                                //Timber.d("syncLocationActivity Logout : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
 
                                 if (updateShopActivityResponse.status == NetworkConstant.SUCCESS) {
 
-                                    Timber.e("MID: 26980 updateShopActivityResponse status & success is true")
+                                    //Timber.e("MID: 26980 updateShopActivityResponse status & success is true")
 
                                     doAsync {
 
                                         for (i in 0 until locationListAllId/*locationList*/.size) {
 
-                                            Timber.e("MID: 26980 locationListAllId.size for loop")
+                                            //Timber.e("MID: 26980 locationListAllId.size for loop")
 
                                             //AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploaded(true, locationList[i].locationId.toInt())
 
                                             if (syncList != null && syncList.isNotEmpty()) {
 
-                                                Timber.e("MID: 26980 sendLocationUpdate api calling syncList is not null if")
+                                                //Timber.e("MID: 26980 sendLocationUpdate api calling syncList is not null if")
 
                                                 if (i == 0) {
                                                     AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploadedFor5Items(true, syncList[syncList.size - 1].locationId.toInt(), locationListAllId[i].locationId.toInt())
-                                                    Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploadedFor5Items syncList ")
+                                                    //Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploadedFor5Items syncList ")
                                                 }
 
                                                 else {
                                                     AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploadedFor5Items(true, locationListAllId[i - 1].locationId.toInt(), locationListAllId[i].locationId.toInt())
-                                                    Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploadedFor5Items locationListAllId ")
+                                                    //Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploadedFor5Items locationListAllId ")
                                                 }
 
                                             } else {
 
-                                                Timber.e("MID: 26980 sendLocationUpdate api calling syncList is not null else")
+                                                //Timber.e("MID: 26980 sendLocationUpdate api calling syncList is not null else")
 
                                                 if (i == 0) {
                                                     AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploaded(true, locationListAllId[i].locationId.toInt())
-                                                    Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploaded locationListAllId with position")
+                                                    //Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploaded locationListAllId with position")
 
                                                 } else {
                                                     AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploadedFor5Items(true, locationListAllId[i - 1].locationId.toInt(), locationListAllId[i].locationId.toInt())
-                                                    Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploaded locationListAllId with position-1 ")
+                                                    //Timber.e("MID: 26980 sendLocationUpdate api calling updateIsUploaded locationListAllId with position-1 ")
 
                                                 }
                                             }
@@ -589,44 +589,44 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                                             AppUtils.isLocationActivityUpdating = false
                                             getProgressInstance().dismissDialog()
                                             initiateLogoutApi()
-                                            Timber.e("MID: 26980 sendLocationUpdate api calling initiateLogoutApi calling in uiThread")
+                                            //Timber.e("MID: 26980 sendLocationUpdate api calling initiateLogoutApi calling in uiThread")
 
                                         }
                                     }
                                 } else {
 
-                                    Timber.e("MID: 26980 updateShopActivityResponse status & success is false")
+                                    //Timber.e("MID: 26980 updateShopActivityResponse status & success is false")
 
                                     AppUtils.isLocationActivityUpdating = false
                                     getProgressInstance().dismissDialog()
                                     initiateLogoutApi()
-                                    Timber.e("MID: 26980 sendLocationUpdate updateShopActivityResponse status & success is false block initiateLogoutApi calling")
+                                    //Timber.e("MID: 26980 sendLocationUpdate updateShopActivityResponse status & success is false block initiateLogoutApi calling")
 
                                 }
 
                             }, { error ->
 
-                                Timber.e("MID: 26980 sendLocationUpdate sendLocationUpdate api calling error block execute ")
+                                //Timber.e("MID: 26980 sendLocationUpdate sendLocationUpdate api calling error block execute ")
 
                                 AppUtils.isLocationActivityUpdating = false
                                 getProgressInstance().dismissDialog()
                                 initiateLogoutApi()
 
-                                Timber.e("MID: 26980 sendLocationUpdate sendLocationUpdate api calling in error block initiateLogoutApi calling ")
+                                //Timber.e("MID: 26980 sendLocationUpdate sendLocationUpdate api calling in error block initiateLogoutApi calling ")
 
                                 if (error == null) {
 //                                    XLog.d("syncLocationActivity Logout : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
-                                    Timber.d("syncLocationActivity Logout : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
+                                    //Timber.d("syncLocationActivity Logout : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
                                 } else {
 //                                    XLog.d("syncLocationActivity Logout : ERROR : " + error.localizedMessage)
-                                    Timber.d("syncLocationActivity Logout : ERROR : " + error.localizedMessage)
+                                    //Timber.d("syncLocationActivity Logout : ERROR : " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
             )
         } else {
-            Timber.e("=======locationList is empty (Auto Logout)=========")
-            Timber.e("MID: 26980 locationList.size else")
+            //Timber.e("=======locationList is empty (Auto Logout)=========")
+            //Timber.e("MID: 26980 locationList.size else")
 
             AppUtils.isLocationActivityUpdating = false
             initiateLogoutApi()
@@ -637,16 +637,16 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun initiateLogoutApi() {
 
-        Timber.e("MID: 26980 under initiateLogoutApi block")
+        //Timber.e("MID: 26980 under initiateLogoutApi block")
 
         getProgressInstance().showDialogForLoading(this@BaseActivity)
         Pref.logout_time = "11:59 PM"
         if(Pref.DayStartMarked && Pref.IsShowDayStart){
 
-            Timber.e("MID: 26980 under initiateLogoutApi block DayStartMarked & IsShowDayStart is true if block ")
+            //Timber.e("MID: 26980 under initiateLogoutApi block DayStartMarked & IsShowDayStart is true if block ")
             singleLocationEnd()
         }else{
-            Timber.e("MID: 26980 under initiateLogoutApi block DayStartMarked & IsShowDayStart is true if block ")
+            //Timber.e("MID: 26980 under initiateLogoutApi block DayStartMarked & IsShowDayStart is true if block ")
 
             calllogoutApi(Pref.user_id!!, Pref.session_token!!)
         }
@@ -707,7 +707,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
 //                                XLog.d("DashboardFragment DayEnd : RESPONSE " + result.status)
-                                Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
+                                //Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
                                 val response = result as BaseResponse
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     calllogoutApi(Pref.user_id!!, Pref.session_token!!)
@@ -716,11 +716,11 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                                 if (error == null) {
                                     calllogoutApi(Pref.user_id!!, Pref.session_token!!)
 //                                    XLog.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
-                                    Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
+                                    //Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
                                 } else {
                                     calllogoutApi(Pref.user_id!!, Pref.session_token!!)
 //                                    XLog.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
-                                    Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
+                                    //Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
@@ -816,8 +816,8 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                     val gpsStatusResponse = result as BaseResponse
                    /* XLog.d("GPS_STATUS : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
                             + ",MESSAGE : " + gpsStatusResponse.message)*/
-                    Timber.d("GPS_STATUS : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
-                            + ",MESSAGE : " + gpsStatusResponse.message)
+                    //Timber.d("GPS_STATUS : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
+                            //+ ",MESSAGE : " + gpsStatusResponse.message)
                     if (gpsStatusResponse.status == NetworkConstant.SUCCESS) {
                         // mantis 0026013 work
                         for (i in 0 until list.size) {
@@ -839,7 +839,7 @@ open class BaseActivity : AppCompatActivity(), GpsStatusDetector.GpsStatusDetect
                 }, { error ->
                     //
 //                    XLog.d("GPS_STATUS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                    Timber.d("GPS_STATUS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GPS_STATUS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     getProgressInstance().dismissDialog()
                     checkToCallLocationSync()
@@ -903,18 +903,18 @@ private fun calllogoutApi(user_id: String, session_id: String) {
 
         val unSyncedList = AppDatabase.getDBInstance()!!.userLocationDataDao().getLocationUpdateForADayNotSyn(AppUtils.convertFromRightToReverseFormat(Pref.login_date!!), false)
 
-        Timber.e("MID: 26980 ${unSyncedList.size} data insert this getLocationUpdateForADayNotSyn ")
+        //Timber.e("MID: 26980 ${unSyncedList.size} data insert this getLocationUpdateForADayNotSyn ")
 
         if (unSyncedList != null && unSyncedList.isNotEmpty()) {
 
-            Timber.e("MID: 26980 ${unSyncedList.size} is not null")
+            //Timber.e("MID: 26980 ${unSyncedList.size} is not null")
 
             var totalDistance = 0.0
 
             for (i in unSyncedList.indices) {
                 totalDistance += unSyncedList[i].distance.toDouble()
 
-                Timber.e("MID: 26980 getiing calculate totalDistance from unSyncedList.indices for loop")
+                //Timber.e("MID: 26980 getiing calculate totalDistance from unSyncedList.indices for loop")
 
             }
 
@@ -928,7 +928,7 @@ private fun calllogoutApi(user_id: String, session_id: String) {
         if (Pref.logout_latitude != "0.0" && Pref.logout_longitude != "0.0") {
             location = LocationWizard.getAdressFromLatlng(this, Pref.logout_latitude.toDouble(), Pref.logout_longitude.toDouble())
 
-            Timber.e("MID: 26980 getAdressFromLatlng method getinng logout lat long")
+            //Timber.e("MID: 26980 getAdressFromLatlng method getinng logout lat long")
 
             if (location.contains("http"))
                 location = "Unknown"
@@ -947,18 +947,18 @@ private fun calllogoutApi(user_id: String, session_id: String) {
         XLog.d("AUTO_LOGOUT : LOCATION=======> $location")
         XLog.d("=======================================")*/
 
-        Timber.d("AUTO_LOGOUT : " + "REQUEST : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
+        //Timber.d("AUTO_LOGOUT : " + "REQUEST : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
 
-        Timber.d("=======AUTO_LOGOUT INPUT PARAMS======")
-        Timber.d("AUTO_LOGOUT : USER ID======> $user_id")
-        Timber.d("AUTO_LOGOUT : SESSION ID======> $session_id")
-        Timber.d("AUTO_LOGOUT : LAT====> " + Pref.logout_latitude)
-        Timber.d("AUTO_LOGOUT : LONG=====> " + Pref.logout_longitude)
-        Timber.d("AUTO_LOGOUT : DISTANCE=====> $distance")
-        Timber.d("AUTO_LOGOUT : LOGOUT TIME========> " + AppUtils.getCurrentDateTime12(Pref.login_date!!))
-        Timber.d("AUTO_LOGOUT : IS AUTO LOGOUT=======> 1")
-        Timber.d("AUTO_LOGOUT : LOCATION=======> $location")
-        Timber.d("=======================================")
+        //Timber.d("=======AUTO_LOGOUT INPUT PARAMS======")
+        //Timber.d("AUTO_LOGOUT : USER ID======> $user_id")
+        //Timber.d("AUTO_LOGOUT : SESSION ID======> $session_id")
+        //Timber.d("AUTO_LOGOUT : LAT====> " + Pref.logout_latitude)
+        //Timber.d("AUTO_LOGOUT : LONG=====> " + Pref.logout_longitude)
+        //Timber.d("AUTO_LOGOUT : DISTANCE=====> $distance")
+        //Timber.d("AUTO_LOGOUT : LOGOUT TIME========> " + AppUtils.getCurrentDateTime12(Pref.login_date!!))
+        //Timber.d("AUTO_LOGOUT : IS AUTO LOGOUT=======> 1")
+        //Timber.d("AUTO_LOGOUT : LOCATION=======> $location")
+        //Timber.d("=======================================")
 
 
 
@@ -971,10 +971,10 @@ private fun calllogoutApi(user_id: String, session_id: String) {
                         .subscribe({ result ->
                             val logoutResponse = result as BaseResponse
 //                            XLog.d("AUTO_LOGOUT : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
-                            Timber.d("AUTO_LOGOUT : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("AUTO_LOGOUT : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
 
-                                Timber.e("MID: 26980 logout api calling success true block")
+                                //Timber.e("MID: 26980 logout api calling success true block")
 
                                 Pref.tempDistance = "0.0"
                                 //Pref.prevOrderCollectionCheckTimeStamp = 0L
@@ -982,7 +982,7 @@ private fun calllogoutApi(user_id: String, session_id: String) {
                                 if (unSyncedList != null && unSyncedList.isNotEmpty()) {
                                     for (i in unSyncedList.indices) {
                                         AppDatabase.getDBInstance()!!.userLocationDataDao().updateIsUploaded(true, unSyncedList[i].locationId)
-                                        Timber.e("MID: 26980 logout api calling success block updateIsUploaded calling")
+                                        //Timber.e("MID: 26980 logout api calling success block updateIsUploaded calling")
 
                                     }
                                 }
@@ -998,7 +998,7 @@ private fun calllogoutApi(user_id: String, session_id: String) {
                                 Pref.isAddAttendence = false
                             } else
                                 performLogout()
-                            Timber.e("MID: 26980 logout api calling success false block")
+                            //Timber.e("MID: 26980 logout api calling success false block")
 
                             BaseActivity.isApiInitiated = false
                             takeActionOnGeofence()
@@ -1006,11 +1006,11 @@ private fun calllogoutApi(user_id: String, session_id: String) {
                         },
                                 { error ->
                                     //
-                                    Timber.e("MID: 26980 logout api calling error block")
+                                    //Timber.e("MID: 26980 logout api calling error block")
 
                                     Toaster.msgShort(this@BaseActivity, getString(R.string.something_went_wrong))
 //                                    XLog.d("AUTO_LOGOUT : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                                    Timber.d("AUTO_LOGOUT : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                    //Timber.d("AUTO_LOGOUT : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                     error.printStackTrace()
                                     getProgressInstance().dismissDialog()
                                     performLogout()
@@ -1023,7 +1023,7 @@ private fun calllogoutApi(user_id: String, session_id: String) {
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 fun clearData() {
 //    XLog.d("AUTO_LOGOUT New: clearData" + AppUtils.getCurrentDateTime())
-    Timber.d("AUTO_LOGOUT New: clearData" + AppUtils.getCurrentDateTime())
+    //Timber.d("AUTO_LOGOUT New: clearData" + AppUtils.getCurrentDateTime())
     println("BaseActivity ClearData");
     doAsync {
         val result = runLongTask()
@@ -1063,7 +1063,7 @@ fun clearData() {
 
 
                 try {
-                    Timber.e("MID: 26980 logout api calling error block")
+                    //Timber.e("MID: 26980 logout api calling error block")
 
                     val intent = Intent(this@BaseActivity, ToastBroadcastReceiver::class.java)
                     //intent.setAction(MyReceiver.ACTION_ALARM_RECEIVER)
@@ -1199,18 +1199,18 @@ fun checkGPSAvailability() {
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 fun serviceStatusActionable() {
     try {
-        Timber.d("serviceStatusActionable try block" )
+        //Timber.d("serviceStatusActionable try block" )
 
         if (Pref.IsLeavePressed == true && Pref.IsLeaveGPSTrack == false) {
             return
         }
         val serviceLauncher = Intent(this, LocationFuzedService::class.java)
         if (Pref.user_id != null && Pref.user_id!!.isNotEmpty()) {
-            Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null")
+            //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null")
             startMonitorService()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-                Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null, SDK_VERSION is above 26")
+                //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null, SDK_VERSION is above 26")
 
                 val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
                 val componentName = ComponentName(this, LocationJobService::class.java)
@@ -1221,22 +1221,22 @@ fun serviceStatusActionable() {
                         .setOverrideDeadline(1000)
                         .build()
 
-                Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
                 val resultCode = jobScheduler.schedule(jobInfo)
 
-                Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null $resultCode")
+                //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null $resultCode")
 
                 if (resultCode == JobScheduler.RESULT_SUCCESS) {
 //                    XLog.d("===============================Job scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "============================")
-                    Timber.d("===============================Job scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "============================")
+                    //Timber.d("===============================Job scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "============================")
                 } else {
 //                    XLog.d("=====================Job not scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "====================================")
-                    Timber.d("=====================Job not scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "====================================")
+                    //Timber.d("=====================Job not scheduled (Base Activity) " + AppUtils.getCurrentDateTime() + "====================================")
                 }
             } else {
 
-                Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null, SDK_VERSION is less 26")
-                Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is not null, SDK_VERSION is less 26")
+                //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
 
                 startService(serviceLauncher)
                 startMonitorService()
@@ -1247,10 +1247,10 @@ fun serviceStatusActionable() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
                 jobScheduler.cancelAll()
-                Timber.e("MID: 26980 in serviceStatusActionable method if user_id is null,Job scheduler cancel (Base Activity)")
+                //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is null,Job scheduler cancel (Base Activity)")
 
 //                XLog.d("===============================Job scheduler cancel (Base Activity)" + AppUtils.getCurrentDateTime() + "============================")
-                Timber.d("===============================Job scheduler cancel (Base Activity)" + AppUtils.getCurrentDateTime() + "============================")
+                //Timber.d("===============================Job scheduler cancel (Base Activity)" + AppUtils.getCurrentDateTime() + "============================")
                 /*if (AppUtils.mGoogleAPIClient != null) {
                     AppUtils.mGoogleAPIClient?.disconnect()
                     AppUtils.mGoogleAPIClient = null
@@ -1262,13 +1262,13 @@ fun serviceStatusActionable() {
 
             AlarmReceiver.stopServiceAlarm(this, 123)
 //            XLog.d("===========Service alarm is stopped (Base Activity)================")
-            Timber.d("===========Service alarm is stopped (Base Activity)================")
+            //Timber.d("===========Service alarm is stopped (Base Activity)================")
         }
     } catch (e: Exception) {
-        Timber.d("serviceStatusActionable catch block" )
+        //Timber.d("serviceStatusActionable catch block" )
 
         e.printStackTrace()
-        Timber.d("serviceStatusActionable catch block ${e.localizedMessage}" )
+        //Timber.d("serviceStatusActionable catch block ${e.localizedMessage}" )
 
     }
 }
@@ -1397,17 +1397,16 @@ override fun onDestroy() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 fun startMonitorService() {
-    return
     if (!isMonitorServiceRunning()) {
         try{
             //        XLog.d("MonitorService Started : " + " Time :" + AppUtils.getCurrentDateTime())
-            Timber.d("MonitorService Started : " + " Time :" + AppUtils.getCurrentDateTime())
+            //Timber.d("MonitorService Started : " + " Time :" + AppUtils.getCurrentDateTime())
             val intent = Intent(applicationContext, MonitorService::class.java)
             intent.action = CustomConstants.START_MONITOR_SERVICE
             startService(intent)
             //Toast.makeText(this, "Loc service started", Toast.LENGTH_SHORT).show()
         }catch (ex:Exception){
-            Timber.d("MonitorService Start error ${ex.localizedMessage} : " + " Time :" + AppUtils.getCurrentDateTime())
+            //Timber.d("MonitorService Start error ${ex.localizedMessage} : " + " Time :" + AppUtils.getCurrentDateTime())
             ex.printStackTrace()
         }
     }
@@ -1427,7 +1426,7 @@ fun isMonitorServiceRunning(): Boolean {
     val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
     if (activityManager != null) {
 
-        Timber.e("MID: 26980 in r method if activityManager is null,servicesList (Base Activity)")
+        //Timber.e("MID: 26980 in r method if activityManager is null,servicesList (Base Activity)")
 
         val servicesList = activityManager.getRunningServices(Int.MAX_VALUE)
         for (serviceInfo in servicesList) {
@@ -1455,7 +1454,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
     var logout_date=AppUtils.convertLoginTimeToAutoLogoutTimeFormatyymmdd(Pref.login_date!!)
 
 //        XLog.d("AUTO_LOGOUT New: logout_date_prev" + logout_date)
-        Timber.d("AUTO_LOGOUT New: logout_date_prev" + logout_date)
+        //Timber.d("AUTO_LOGOUT New: logout_date_prev" + logout_date)
 
         //logout_date="2021-11-28"
         ShopActivityEntityListNew = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(logout_date)
@@ -1518,7 +1517,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
     // tested on 23-11-2021 end
 
 //        XLog.d("AUTO_LOGOUT New: uploadShopRevisitData" + AppUtils.getCurrentDateTime())
-        Timber.d("AUTO_LOGOUT New: uploadShopRevisitData" + AppUtils.getCurrentDateTime())
+        //Timber.d("AUTO_LOGOUT New: uploadShopRevisitData" + AppUtils.getCurrentDateTime())
 
     if (!Pref.isMultipleVisitEnable) {
         if (ShopActivityEntityListNew != null && ShopActivityEntityListNew.isNotEmpty()) {
@@ -1702,29 +1701,29 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
             shopDataList.add(shopDurationData)
 
 
-            Timber.d("========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)=====")
-            Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-            Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-            Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-            Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-            Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-            Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-            Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-            Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-            Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-            Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-            Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-            Timber.d("device_model========> " + shopDurationData.device_model)
-            Timber.d("android_version========> " + shopDurationData.android_version)
-            Timber.d("battery========> " + shopDurationData.battery)
-            Timber.d("net_status========> " + shopDurationData.net_status)
-            Timber.d("net_type========> " + shopDurationData.net_type)
-            Timber.d("in_time========> " + shopDurationData.in_time)
-            Timber.d("out_time========> " + shopDurationData.out_time)
-            Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-            Timber.d("in_location========> " + shopDurationData.in_location)
-            Timber.d("out_location========> " + shopDurationData.out_location)
-            Timber.d("=======================================================")
+            //Timber.d("========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)=====")
+            //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+            //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+            //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+            //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+            //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+            //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+            //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+            //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+            //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+            //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+            //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+            //Timber.d("device_model========> " + shopDurationData.device_model)
+            //Timber.d("android_version========> " + shopDurationData.android_version)
+            //Timber.d("battery========> " + shopDurationData.battery)
+            //Timber.d("net_status========> " + shopDurationData.net_status)
+            //Timber.d("net_type========> " + shopDurationData.net_type)
+            //Timber.d("in_time========> " + shopDurationData.in_time)
+            //Timber.d("out_time========> " + shopDurationData.out_time)
+            //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+            //Timber.d("in_location========> " + shopDurationData.in_location)
+            //Timber.d("out_location========> " + shopDurationData.out_location)
+            //Timber.d("=======================================================")
         }
 
         if (shopDataList.isEmpty()) {
@@ -1762,8 +1761,8 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                         .subscribe({ result ->
                            /* XLog.d("ShopActivityFromAverageShop : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
                                     "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token)*/
-                            Timber.d("ShopActivityFromAverageShop : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
-                                    "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token)
+                            //Timber.d("ShopActivityFromAverageShop : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
+                                    //"\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 shopDataList.forEach {
                                     AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, it.shop_id!!, AppUtils.changeAttendanceDateFormatToCurrent(it.visited_date!!), it.start_timestamp!!)
@@ -1782,8 +1781,8 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                              /*   XLog.d("=======UPDATE ADAPTER FOR SYNC ALL VISIT SHOP DATA (AVERAGE SHOP)=======")
                                 XLog.d("shop list size====> " + dateWiseList.size)*/
 
-                                 Timber.d("=======UPDATE ADAPTER FOR SYNC ALL VISIT SHOP DATA (AVERAGE SHOP)=======")
-                                Timber.d("shop list size====> " + dateWiseList.size)
+                                 //Timber.d("=======UPDATE ADAPTER FOR SYNC ALL VISIT SHOP DATA (AVERAGE SHOP)=======")
+                                //Timber.d("shop list size====> " + dateWiseList.size)
 
 
 
@@ -1808,8 +1807,8 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             if (error != null) {
                              /*   XLog.d("ShopActivityFromAverageShop : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
                                         ", Session Token" + Pref.session_token)*/
-                                Timber.d("ShopActivityFromAverageShop : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
-                                        ", Session Token" + Pref.session_token)
+                                //Timber.d("ShopActivityFromAverageShop : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
+                                        //", Session Token" + Pref.session_token)
 
                                 (this as DashboardActivity).showSnackMessage(this.getString(R.string.unable_to_sync))
 
@@ -1980,29 +1979,29 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
         XLog.d("out_location========> " + shopDurationData.out_location)
         XLog.d("=======================================================")*/
 
-        Timber.d("========SYNC ALL VISITED SHOP DATA AUTO_LOGOUT New (AVERAGE SHOP)=====" + " date-time : "+AppUtils.getCurrentDateTime())
-        Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-        Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-        Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-        Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-        Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-        Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-        Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-        Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-        Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-        Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-        Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-        Timber.d("device_model========> " + shopDurationData.device_model)
-        Timber.d("android_version========> " + shopDurationData.android_version)
-        Timber.d("battery========> " + shopDurationData.battery)
-        Timber.d("net_status========> " + shopDurationData.net_status)
-        Timber.d("net_type========> " + shopDurationData.net_type)
-        Timber.d("in_time========> " + shopDurationData.in_time)
-        Timber.d("out_time========> " + shopDurationData.out_time)
-        Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-        Timber.d("in_location========> " + shopDurationData.in_location)
-        Timber.d("out_location========> " + shopDurationData.out_location)
-        Timber.d("=======================================================")
+        //Timber.d("========SYNC ALL VISITED SHOP DATA AUTO_LOGOUT New (AVERAGE SHOP)=====" + " date-time : "+AppUtils.getCurrentDateTime())
+        //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+        //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+        //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+        //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+        //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+        //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+        //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+        //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+        //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+        //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+        //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+        //Timber.d("device_model========> " + shopDurationData.device_model)
+        //Timber.d("android_version========> " + shopDurationData.android_version)
+        //Timber.d("battery========> " + shopDurationData.battery)
+        //Timber.d("net_status========> " + shopDurationData.net_status)
+        //Timber.d("net_type========> " + shopDurationData.net_type)
+        //Timber.d("in_time========> " + shopDurationData.in_time)
+        //Timber.d("out_time========> " + shopDurationData.out_time)
+        //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+        //Timber.d("in_location========> " + shopDurationData.in_location)
+        //Timber.d("out_location========> " + shopDurationData.out_location)
+        //Timber.d("=======================================================")
 
         ////////
         revisitStatusList.clear()
@@ -2035,9 +2034,9 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                            /* XLog.d("ShopActivityFromAverageShop BaseActivity AUTO_LOGOUT New: RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
                                     "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid +
                                     ", SHOP: " + mList[0].shop_name+" date-time : "+AppUtils.getCurrentDateTime())*/
-                            Timber.d("ShopActivityFromAverageShop BaseActivity AUTO_LOGOUT New: RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
-                                    "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid +
-                                    ", SHOP: " + mList[0].shop_name+" date-time : "+AppUtils.getCurrentDateTime())
+                            //Timber.d("ShopActivityFromAverageShop BaseActivity AUTO_LOGOUT New: RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
+                                    //"\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid +
+                                    //", SHOP: " + mList[0].shop_name+" date-time : "+AppUtils.getCurrentDateTime())
                             if (result.status == NetworkConstant.SUCCESS) {
 
 
@@ -2140,9 +2139,9 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                                             XLog.d("shop list size====> " + dateWiseList.size)
                                             XLog.d("specific date====> $selectedDate")*/
 
-                                            Timber.d("=======UPDATE ADAPTER FOR SYNC ALL VISIT SHOP DATA (AVERAGE SHOP)=======")
-                                            Timber.d("shop list size====> " + dateWiseList.size)
-                                            Timber.d("specific date====> $selectedDate")
+                                            //Timber.d("=======UPDATE ADAPTER FOR SYNC ALL VISIT SHOP DATA (AVERAGE SHOP)=======")
+                                            //Timber.d("shop list size====> " + dateWiseList.size)
+                                            //Timber.d("specific date====> $selectedDate")
 
 
 
@@ -2177,8 +2176,8 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                                /* XLog.d("ShopActivityFromAverageShop BaseActivity : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
                                         ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name)*/
 
-                                Timber.d("ShopActivityFromAverageShop BaseActivity : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
-                                        ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name)
+                                //Timber.d("ShopActivityFromAverageShop BaseActivity : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
+                                        //", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name)
                                 (this as DashboardActivity).showSnackMessage(this.getString(R.string.unable_to_sync))
 
                                 ShopActivityEntityListNew = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
@@ -2203,7 +2202,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
 //                            XLog.d("callRevisitStatusUploadApi BaseActivity: RESPONSE " + result.status)
-                            Timber.d("callRevisitStatusUploadApi BaseActivity: RESPONSE " + result.status)
+                            //Timber.d("callRevisitStatusUploadApi BaseActivity: RESPONSE " + result.status)
                             if (result.status == NetworkConstant.SUCCESS){
                                 for(i in revisitStatusList.indices){
                                     AppDatabase.getDBInstance()?.shopVisitOrderStatusRemarksDao()!!.updateOrderStatus(revisitStatusList[i]!!.shop_revisit_uniqKey!!)
@@ -2213,10 +2212,10 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                         },{error ->
                             if (error == null) {
 //                                XLog.d("callRevisitStatusUploadApi BaseActivity: ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
-                                Timber.d("callRevisitStatusUploadApi BaseActivity: ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                                //Timber.d("callRevisitStatusUploadApi BaseActivity: ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                             } else {
 //                                XLog.d("callRevisitStatusUploadApi BaseActivity: ERROR " + error.localizedMessage)
-                                Timber.d("callRevisitStatusUploadApi BaseActivity: ERROR " + error.localizedMessage)
+                                //Timber.d("callRevisitStatusUploadApi BaseActivity: ERROR " + error.localizedMessage)
                                 error.printStackTrace()
                             }
                         })
@@ -2249,16 +2248,16 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             if(response.status==NetworkConstant.SUCCESS){
                                 AppDatabase.getDBInstance()!!.shopVisitCompetetorImageDao().updateisUploaded(true,shop_id)
 //                                XLog.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Success: ")
-                                Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Success: ")
+                                //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Success: ")
                             }else{
 //                                XLog.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Failed: ")
-                                Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Failed: ")
+                                //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", Failed: ")
                             }
                         },{
                             error ->
                             if (error != null) {
 //                                XLog.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", ERROR: " + error.localizedMessage)
-                                Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shop_id + ", ERROR: " + error.localizedMessage)
                             }
                         })
         )
@@ -2294,13 +2293,13 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
         XLog.d("IMAGE========> " + unSyncedList[j].shop_image)
         XLog.d("=====================================================================")*/
 
-        Timber.d("========UPLOAD REVISIT ALL IMAGE INPUT PARAMS (AVERAGE SHOP)======")
-        Timber.d("USER ID======> " + visitImageShop.user_id)
-        Timber.d("SESSION ID======> " + visitImageShop.session_token)
-        Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-        Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-        Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
-        Timber.d("=====================================================================")
+        //Timber.d("========UPLOAD REVISIT ALL IMAGE INPUT PARAMS (AVERAGE SHOP)======")
+        //Timber.d("USER ID======> " + visitImageShop.user_id)
+        //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+        //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+        //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+        //Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
+        //Timber.d("=====================================================================")
 
         val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
         BaseActivity.compositeDisposable.add(
@@ -2310,7 +2309,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                         .subscribe({ result ->
                             val logoutResponse = result as BaseResponse
 //                            XLog.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
-                            Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopVisitImageDao().updateisUploaded(true, unSyncedList.get(j).shop_id!!)
 
@@ -2356,7 +2355,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             }
                         }, { error ->
 //                            XLog.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             BaseActivity.isShopActivityUpdating = false
                             (this as DashboardActivity).showSnackMessage(this.getString(R.string.unable_to_sync))
@@ -2446,13 +2445,13 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
         XLog.d("AUDIO========> " + unSyncedList[j].audio)
         XLog.d("=====================================================================")*/
 
-        Timber.d("========UPLOAD REVISIT ALL AUDIO INPUT PARAMS (AVERAGE SHOP)======")
-        Timber.d("USER ID======> " + visitImageShop.user_id)
-        Timber.d("SESSION ID======> " + visitImageShop.session_token)
-        Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-        Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-        Timber.d("AUDIO========> " + unSyncedList[j].audio)
-        Timber.d("=====================================================================")
+        //Timber.d("========UPLOAD REVISIT ALL AUDIO INPUT PARAMS (AVERAGE SHOP)======")
+        //Timber.d("USER ID======> " + visitImageShop.user_id)
+        //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+        //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+        //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+        //Timber.d("AUDIO========> " + unSyncedList[j].audio)
+        //Timber.d("=====================================================================")
 
         val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -2463,7 +2462,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                         .subscribe({ result ->
                             val logoutResponse = result as BaseResponse
 //                            XLog.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
-                            Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopVisitAudioDao().updateisUploaded(true, unSyncedList.get(j).shop_id!!)
 
@@ -2487,7 +2486,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             }
                         }, { error ->
 //                            XLog.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             BaseActivity.isShopActivityUpdating = false
 
@@ -2503,7 +2502,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
     private fun syncShopList() {
         val shopList = AppDatabase.getDBInstance()!!.addShopEntryDao().getUnSyncedShops(false)
 //        XLog.d("AUTO_LOGOUT New : syncShopList" + AppUtils.getCurrentDateTime())
-        Timber.d("AUTO_LOGOUT New : syncShopList" + AppUtils.getCurrentDateTime())
+        //Timber.d("AUTO_LOGOUT New : syncShopList" + AppUtils.getCurrentDateTime())
         if (shopList.isEmpty() || shopList.size==0){
             uploadShopRevisitData()
         }else{
@@ -2646,8 +2645,8 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
 
    /*     XLog.d("=============SyncShop Input Params=================")
         XLog.d("shop id=======> " + addShop.shop_id)*/
-        Timber.d("=============SyncShop Input Params=================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("=============SyncShop Input Params=================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
      /*   XLog.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
         XLog.d("shop added date=======> " + addShop.added_date)
@@ -2677,38 +2676,38 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
         XLog.d("booking amount=======> " + addShop.booking_amount)
         XLog.d("type id=======> " + addShop.type_id)*/
 
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
       /*  if (shop_imgPath != null)
             XLog.d("shop image path=======> $shop_imgPath")*/
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
      /*   XLog.d("director name=======> " + addShop.director_name)
         XLog.d("family member dob=======> " + addShop.family_member_dob)
@@ -2745,48 +2744,48 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
         XLog.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
         XLog.d("actual address=======> " + addShop.actual_address)*/
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 /*
         if (degree_imgPath != null)
             XLog.d("doctor degree image path=======> $degree_imgPath")
         XLog.d("====================================================")*/
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("====================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("====================================================")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -2797,7 +2796,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
 //                                XLog.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
-                                Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
@@ -2811,7 +2810,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
 //                                        XLog.d("DuplicateShop : BaseActivity " + ", SHOP: " + addShop.shop_name)
-                                        Timber.d("DuplicateShop : BaseActivity " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : BaseActivity " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
 
@@ -2833,9 +2832,9 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             }, { error ->
                                 error.printStackTrace()
                                 (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
+                                if (error != null){}
 //                                    XLog.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
-                                Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                //Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -2848,7 +2847,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
 //                                XLog.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
@@ -2863,7 +2862,7 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
 //                                        XLog.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
                                         if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
@@ -2884,9 +2883,9 @@ val revisitStatusList : MutableList<ShopRevisitStatusRequestData> = ArrayList()
                             }, { error ->
                                 error.printStackTrace()
                                 (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
+                                if (error != null){}
 //                                    XLog.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }

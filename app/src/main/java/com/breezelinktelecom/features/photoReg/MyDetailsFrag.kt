@@ -125,13 +125,13 @@ class MyDetailsFrag : BaseFragment(), View.OnClickListener {
                             }else{
                                 BaseActivity.isApiInitiated = false
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_reg_face))
-                                Timber.d("MyDetailsFrag : FaceGet : " + response.status.toString() +", : "  + ", Failed: ")
+                                //Timber.d("MyDetailsFrag : FaceGet : " + response.status.toString() +", : "  + ", Failed: ")
                                 progress_wheel.stopSpinning()
                             }
                         },{
                             error ->
                             if (error != null) {
-                                Timber.d("MyDetailsFrag : FaceGet : " + " : "  + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("MyDetailsFrag : FaceGet : " + " : "  + ", ERROR: " + error.localizedMessage)
                             }
                             progress_wheel.stopSpinning()
                             BaseActivity.isApiInitiated = false

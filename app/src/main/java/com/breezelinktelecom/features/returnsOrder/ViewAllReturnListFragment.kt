@@ -362,16 +362,16 @@ class ViewAllReturnListFragment: BaseFragment(), View.OnClickListener {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
-                                    Timber.d("Return : RESPONSE " + result.status)
+                                    //Timber.d("Return : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS) {
                                         AppDatabase.getDBInstance()?.returnDetailsDao()?.updateIsUploaded(true, returnList.return_id!!)
                                         syncAddReturnApi()
                                     }
                                 }, { error ->
                                     if (error == null) {
-                                        Timber.d("Return : ERROR " + "UNEXPECTED ERROR IN Add Return API")
+                                        //Timber.d("Return : ERROR " + "UNEXPECTED ERROR IN Add Return API")
                                     } else {
-                                        Timber.d("Return : ERROR " + error.localizedMessage)
+                                        //Timber.d("Return : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                 })

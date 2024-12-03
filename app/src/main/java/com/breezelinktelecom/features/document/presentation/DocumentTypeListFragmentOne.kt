@@ -84,7 +84,7 @@ class DocumentTypeListFragmentOne : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as DocumentTypeResponseModel
-                            Timber.d("DOCUMENT TYPE LIST RESPONSE=======> " + response.status)
+                            //Timber.d("DOCUMENT TYPE LIST RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.type_list != null && response.type_list!!.size > 0) {
@@ -123,7 +123,7 @@ class DocumentTypeListFragmentOne : BaseFragment() {
                             progress_wheel.stopSpinning()
                             tv_no_data_available.visibility = View.VISIBLE
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("DOCUMENT TYPE LIST ERROR=======> " + error.localizedMessage)
+                            //Timber.d("DOCUMENT TYPE LIST ERROR=======> " + error.localizedMessage)
                         })
         )
     }

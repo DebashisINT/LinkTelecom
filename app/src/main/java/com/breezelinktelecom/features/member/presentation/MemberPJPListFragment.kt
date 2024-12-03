@@ -237,7 +237,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as TeamPjpResponseModel
-                            Timber.d("GET TEAM PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET TEAM PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             if (response.status == NetworkConstant.SUCCESS) {
                                 tv_supervisor_name.text = response.supervisor_name
@@ -257,7 +257,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET TEAM PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET TEAM PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                             tv_no_data.visibility = View.VISIBLE
@@ -307,7 +307,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("DELETE PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("DELETE PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
 
@@ -318,7 +318,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
                             }
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("DELETE PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("DELETE PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -335,7 +335,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as UserPjpResponseModel
-                            Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.pjp_list != null && response.pjp_list.isNotEmpty()) {
                                     doAsync {
@@ -371,7 +371,7 @@ class MemberPJPListFragment : BaseFragment(), View.OnClickListener {
                             }
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             getTeamPjpList()
                         })

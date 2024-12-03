@@ -112,7 +112,6 @@ public class MonitorBroadcast extends BroadcastReceiver {
                 funcc(context);
             }
         }catch (Exception ex){
-            Timber.e("MonitorBroadcast error "+ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -148,7 +147,7 @@ public class MonitorBroadcast extends BroadcastReceiver {
             }
             //vibrator.vibrate(10*60*1000);
         }catch (Exception ex){
-            Timber.e("MonitorBroadcast funcc error "+ex.getLocalizedMessage().toString());
+            //Timber.e("MonitorBroadcast funcc error "+ex.getLocalizedMessage().toString());
             ex.printStackTrace();
         }
 

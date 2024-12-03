@@ -673,7 +673,7 @@ class AddOpptFrag : BaseFragment(), View.OnClickListener {
                 cv_add_oppt_frag_add_submit.isEnabled = true
             }
             override fun onRightClick(editableData: String) {
-                Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
+                //Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
                 if (editOprtntyID.equals("")) {
                     isValueInserted =false
                     saveOpportunity(shop_id)

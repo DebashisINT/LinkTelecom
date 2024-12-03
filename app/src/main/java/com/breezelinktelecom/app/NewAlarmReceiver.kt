@@ -28,14 +28,14 @@ class NewAlarmReceiver : BroadcastReceiver() {
         if (intent.hasExtra("request_code")) {
             if (intent.getIntExtra("request_code", 0) == 123) {
                 println("tag_service_call_check onReceive if")
-                Timber.e("Time(NewAlarmReceiver): " + AppUtils.getCurrentDateTime())
+                //Timber.e("Time(NewAlarmReceiver): " + AppUtils.getCurrentDateTime())
 
                 if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, context)) {
-                    Timber.e("==========Service is running (NewAlarmReceiver)===========")
+                    //Timber.e("==========Service is running (NewAlarmReceiver)===========")
                     println("tag_service_call_check onReceive service running")
                 } else {
                     println("tag_service_call_check onReceive service not running")
-                    Timber.e("==========Service is stopped (NewAlarmReceiver)===========")
+                    //Timber.e("==========Service is stopped (NewAlarmReceiver)===========")
 
                     if (Pref.user_id != null && Pref.user_id!!.isNotEmpty()) {
 
@@ -53,19 +53,19 @@ class NewAlarmReceiver : BroadcastReceiver() {
                                     .setOverrideDeadline(1000)
                                     .build()
 
-                            Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                           // //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
                             val resultCode = jobScheduler.schedule(jobInfo)
 
                             if (resultCode == JobScheduler.RESULT_SUCCESS) {
 //                                XLog.d("===============================Job scheduled (NewAlarmReceiver)============================")
-                                Timber.d("===============================Job scheduled (NewAlarmReceiver)============================")
+                               // //Timber.d("===============================Job scheduled (NewAlarmReceiver)============================")
                             } else {
 //                                XLog.d("=====================Job not scheduled (NewAlarmReceiver)====================================")
-                                Timber.d("=====================Job not scheduled (NewAlarmReceiver)====================================")
+                                //Timber.d("=====================Job not scheduled (NewAlarmReceiver)====================================")
                             }
                         } else {
                             val serviceLauncher = Intent(context, LocationFuzedService::class.java)
-                            Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                            //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
                             context.startService(serviceLauncher)
                         }
                     }

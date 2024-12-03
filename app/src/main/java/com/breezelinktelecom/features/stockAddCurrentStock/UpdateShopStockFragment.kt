@@ -167,7 +167,7 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("Stock/CurrentStockList " + result.status)
+                                //Timber.d("Stock/CurrentStockList " + result.status)
                                 val response = result as CurrentStockGetData
                                 if (response.status == NetworkConstant.SUCCESS){
                                     if (response.stock_list!! != null && response.stock_list!!.isNotEmpty()){
@@ -211,15 +211,15 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
                                 }
                             },{error ->
                                 if (error == null) {
-                                    Timber.d("Stock/CurrentStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+                                    //Timber.d("Stock/CurrentStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
                                 } else {
-                                    Timber.d("Stock/CurrentStockList : ERROR " + error.localizedMessage)
+                                    //Timber.d("Stock/CurrentStockList : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
             )
         }catch (ex:Exception){
-            Timber.d("Stock/CurrentStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+            //Timber.d("Stock/CurrentStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
         }
     }
 

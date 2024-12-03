@@ -3624,7 +3624,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             //val response = result as ModelListResponseModel
                             val response = result as ModelListResponse
-                            Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.model_list != null && response.model_list!!.isNotEmpty()) {
@@ -3659,7 +3659,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -3690,7 +3690,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as PrimaryAppListResponseModel
-                            Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.primary_application_list != null && response.primary_application_list!!.isNotEmpty()) {
@@ -3723,7 +3723,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -3754,7 +3754,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as SecondaryAppListResponseModel
-                            Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.secondary_application_list != null && response.secondary_application_list!!.isNotEmpty()) {
@@ -3787,7 +3787,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -3817,7 +3817,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as LeadListResponseModel
-                            Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.lead_type_list != null && response.lead_type_list!!.isNotEmpty()) {
@@ -3850,7 +3850,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -3880,7 +3880,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as StageListResponseModel
-                            Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.stage_list != null && response.stage_list!!.isNotEmpty()) {
@@ -3913,7 +3913,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -3944,7 +3944,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as FunnelStageListResponseModel
-                            Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.funnel_stage_list != null && response.funnel_stage_list!!.isNotEmpty()) {
@@ -3977,7 +3977,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -5017,7 +5017,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
         if (TextUtils.isEmpty(addShopData.actual_address)) {
             var address_ = LocationWizard.getAdressFromLatlng(mContext, addShopData.shopLat, addShopData.shopLong)
-            Timber.e("Actual Shop address (Update address)======> $address_")
+            //Timber.e("Actual Shop address (Update address)======> $address_")
 
             if (address_.contains("http"))
                 address_ = "Unknown"
@@ -5250,7 +5250,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                 addShopReqData.saved_from_status=  addShopData.crm_saved_from
             }catch (ex:Exception){
                 ex.printStackTrace()
-                Timber.d("Logout edit sync err ${ex.message}")
+                //Timber.d("Logout edit sync err ${ex.message}")
             }
 
             callEditShopApi(addShopReqData, addShopData.shopImageLocalPath)
@@ -5262,68 +5262,68 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun callEditShopApi(addShopReqData: AddShopRequestData, shopImageLocalPath: String?) {
 
-        Timber.d("=====EditShop Input Params (Shop Details)======")
-        Timber.d("shop id====> " + addShopReqData.shop_id)
+        //Timber.d("=====EditShop Input Params (Shop Details)======")
+        //Timber.d("shop id====> " + addShopReqData.shop_id)
         val index = addShopReqData.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id====> " + addShopReqData.user_id + "_" + AppUtils.getDate(addShopReqData.shop_id!!.substring(index + 1, addShopReqData.shop_id!!.length).toLong()))
-        Timber.d("shop added date====> " + addShopReqData.added_date)
-        Timber.d("shop address====> " + addShopReqData.address)
-        Timber.d("assigned to dd id====> " + addShopReqData.assigned_to_dd_id)
-        Timber.d("assigned to pp id=====> " + addShopReqData.assigned_to_pp_id)
-        Timber.d("date aniversery=====> " + addShopReqData.date_aniversary)
-        Timber.d("dob====> " + addShopReqData.dob)
-        Timber.d("shop owner phn no===> " + addShopReqData.owner_contact_no)
-        Timber.d("shop owner email====> " + addShopReqData.owner_email)
-        Timber.d("shop owner name====> " + addShopReqData.owner_name)
-        Timber.d("shop pincode====> " + addShopReqData.pin_code)
-        Timber.d("session token====> " + addShopReqData.session_token)
-        Timber.d("shop lat====> " + addShopReqData.shop_lat)
-        Timber.d("shop long===> " + addShopReqData.shop_long)
-        Timber.d("shop name====> " + addShopReqData.shop_name)
-        Timber.d("shop type===> " + addShopReqData.type)
-        Timber.d("user id====> " + addShopReqData.user_id)
-        Timber.d("amount=======> " + addShopReqData.amount)
-        Timber.d("area id=======> " + addShopReqData.area_id)
-        Timber.d("model id=======> " + addShopReqData.model_id)
-        Timber.d("primary app id=======> " + addShopReqData.primary_app_id)
-        Timber.d("secondary app id=======> " + addShopReqData.secondary_app_id)
-        Timber.d("lead id=======> " + addShopReqData.lead_id)
-        Timber.d("stage id=======> " + addShopReqData.stage_id)
-        Timber.d("funnel stage id=======> " + addShopReqData.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShopReqData.booking_amount)
-        Timber.d("type id=======> " + addShopReqData.type_id)
-        Timber.d("shop image path====> $shopImageLocalPath")
-        Timber.d("director name=======> " + addShopReqData.director_name)
-        Timber.d("family member dob=======> " + addShopReqData.family_member_dob)
-        Timber.d("key person's name=======> " + addShopReqData.key_person_name)
-        Timber.d("phone no=======> " + addShopReqData.phone_no)
-        Timber.d("additional dob=======> " + addShopReqData.addtional_dob)
-        Timber.d("additional doa=======> " + addShopReqData.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShopReqData.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShopReqData.specialization)
-        Timber.d("average patient count per day=======> " + addShopReqData.average_patient_per_day)
-        Timber.d("category=======> " + addShopReqData.category)
-        Timber.d("doctor address=======> " + addShopReqData.doc_address)
-        Timber.d("doctor pincode=======> " + addShopReqData.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShopReqData.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShopReqData.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShopReqData.chemist_name)
-        Timber.d("chemist name=======> " + addShopReqData.chemist_address)
-        Timber.d("chemist pincode=======> " + addShopReqData.chemist_pincode)
-        Timber.d("assistant name=======> " + addShopReqData.assistant_name)
-        Timber.d("assistant contact no=======> " + addShopReqData.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShopReqData.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShopReqData.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShopReqData.assistant_family_dob)
-        Timber.d("doctor degree image path=======> $degreeImgLink")
-        Timber.d("entity id=======> " + addShopReqData.entity_id)
-        Timber.d("party status id=======> " + addShopReqData.party_status_id)
-        Timber.d("retailer id=======> " + addShopReqData.retailer_id)
-        Timber.d("dealer id=======> " + addShopReqData.dealer_id)
-        Timber.d("beat id=======> " + addShopReqData.beat_id)
-        Timber.d("assigned to shop id=======> " + addShopReqData.assigned_to_shop_id)
-        Timber.d("actual_address=======> " + addShopReqData.actual_address)
-        Timber.d("================================================")
+        //Timber.d("decoded shop id====> " + addShopReqData.user_id + "_" + AppUtils.getDate(addShopReqData.shop_id!!.substring(index + 1, addShopReqData.shop_id!!.length).toLong()))
+        //Timber.d("shop added date====> " + addShopReqData.added_date)
+        //Timber.d("shop address====> " + addShopReqData.address)
+        //Timber.d("assigned to dd id====> " + addShopReqData.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=====> " + addShopReqData.assigned_to_pp_id)
+        //Timber.d("date aniversery=====> " + addShopReqData.date_aniversary)
+        //Timber.d("dob====> " + addShopReqData.dob)
+        //Timber.d("shop owner phn no===> " + addShopReqData.owner_contact_no)
+        //Timber.d("shop owner email====> " + addShopReqData.owner_email)
+        //Timber.d("shop owner name====> " + addShopReqData.owner_name)
+        //Timber.d("shop pincode====> " + addShopReqData.pin_code)
+        //Timber.d("session token====> " + addShopReqData.session_token)
+        //Timber.d("shop lat====> " + addShopReqData.shop_lat)
+        //Timber.d("shop long===> " + addShopReqData.shop_long)
+        //Timber.d("shop name====> " + addShopReqData.shop_name)
+        //Timber.d("shop type===> " + addShopReqData.type)
+        //Timber.d("user id====> " + addShopReqData.user_id)
+        //Timber.d("amount=======> " + addShopReqData.amount)
+        //Timber.d("area id=======> " + addShopReqData.area_id)
+        //Timber.d("model id=======> " + addShopReqData.model_id)
+        //Timber.d("primary app id=======> " + addShopReqData.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShopReqData.secondary_app_id)
+        //Timber.d("lead id=======> " + addShopReqData.lead_id)
+        //Timber.d("stage id=======> " + addShopReqData.stage_id)
+        //Timber.d("funnel stage id=======> " + addShopReqData.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShopReqData.booking_amount)
+        //Timber.d("type id=======> " + addShopReqData.type_id)
+        //Timber.d("shop image path====> $shopImageLocalPath")
+        //Timber.d("director name=======> " + addShopReqData.director_name)
+        //Timber.d("family member dob=======> " + addShopReqData.family_member_dob)
+        //Timber.d("key person's name=======> " + addShopReqData.key_person_name)
+        //Timber.d("phone no=======> " + addShopReqData.phone_no)
+        //Timber.d("additional dob=======> " + addShopReqData.addtional_dob)
+        //Timber.d("additional doa=======> " + addShopReqData.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShopReqData.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShopReqData.specialization)
+        //Timber.d("average patient count per day=======> " + addShopReqData.average_patient_per_day)
+        //Timber.d("category=======> " + addShopReqData.category)
+        //Timber.d("doctor address=======> " + addShopReqData.doc_address)
+        //Timber.d("doctor pincode=======> " + addShopReqData.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShopReqData.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShopReqData.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShopReqData.chemist_name)
+        //Timber.d("chemist name=======> " + addShopReqData.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShopReqData.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShopReqData.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShopReqData.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShopReqData.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShopReqData.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShopReqData.assistant_family_dob)
+        //Timber.d("doctor degree image path=======> $degreeImgLink")
+        //Timber.d("entity id=======> " + addShopReqData.entity_id)
+        //Timber.d("party status id=======> " + addShopReqData.party_status_id)
+        //Timber.d("retailer id=======> " + addShopReqData.retailer_id)
+        //Timber.d("dealer id=======> " + addShopReqData.dealer_id)
+        //Timber.d("beat id=======> " + addShopReqData.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShopReqData.assigned_to_shop_id)
+        //Timber.d("actual_address=======> " + addShopReqData.actual_address)
+        //Timber.d("================================================")
 
         progress_wheel.spin()
 
@@ -5335,7 +5335,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsEditUploaded(1, addShopReqData.shop_id)
@@ -5378,7 +5378,7 @@ class ShopDetailFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsEditUploaded(1, addShopReqData.shop_id)

@@ -138,6 +138,11 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
         val view = inflater.inflate(R.layout.frag_view_all_ord_list, container, false)
         initView(view)
 
+        try {
+            shopId = mSShopID_Str!!
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         AppUtils.stockStatus = 0
 
@@ -356,6 +361,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                     } else {
                         progress_wheel.stopSpinning()
+                        setAdapter()
                     }
                 }, { error ->
                     error.printStackTrace()
@@ -1073,77 +1079,77 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
         isShopRegistrationInProcess = true
 
-        Timber.d("================SyncShop Input Params (Order)====================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("================SyncShop Input Params (Order)====================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+            //Timber.d("shop image path=======> $shop_imgPath")
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("===================================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("===================================================================")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -1153,7 +1159,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -1171,7 +1177,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -1203,8 +1209,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -1216,7 +1222,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -1234,7 +1240,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -1266,8 +1272,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -1515,15 +1521,15 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
-                            Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
 
                             }
 
                         }, { error ->
                             error.printStackTrace()
-                            if (error != null)
-                                Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
+                            if (error != null){}
+                                //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
 //                                (mContext as DashboardActivity).showSnackMessage("ERROR")
                         })
         )
@@ -2096,73 +2102,73 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
         isShopRegistrationInProcess = true
 
-        Timber.d("==============================SyncShop Input Params(Shop List)==============================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("==============================SyncShop Input Params(Shop List)==============================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("=================================================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("=================================================================================")
 
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
@@ -2173,7 +2179,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -2192,7 +2198,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -2225,8 +2231,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage("Collection added successfully")
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -2238,7 +2244,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -2257,7 +2263,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -2290,8 +2296,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage("Collection added successfully")
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -2551,72 +2557,72 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
         isShopRegistrationInProcess = true
 
-        Timber.d("==============================SyncShop Input Params (Order)==============================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("==============================SyncShop Input Params (Order)==============================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("=================================================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("=================================================================================")
 
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
@@ -2627,7 +2633,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -2646,7 +2652,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -2679,8 +2685,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -2692,7 +2698,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -2711,7 +2717,7 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
 
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                         progress_wheel.stopSpinning()
                                         (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -2744,8 +2750,8 @@ class ViewAllOrderListFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 isShopRegistrationInProcess = false
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }

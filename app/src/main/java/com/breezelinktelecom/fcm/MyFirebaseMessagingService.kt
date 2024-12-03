@@ -16,7 +16,6 @@ import androidx.core.app.NotificationManagerCompat
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.AppDatabase
 import com.breezelinktelecom.app.Pref
-import com.breezelinktelecom.app.domain.LMSNotiEntity
 import com.breezelinktelecom.app.types.FragType
 import com.breezelinktelecom.app.utils.AppUtils
 
@@ -49,7 +48,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var messageDetails = ""
 
     override fun onNewToken(token: String) {
-        Timber.e("Refreshed token: $token")
+        //Timber.e("Refreshed token: $token")
         println("MyFirebaseMessagingService onNewToken");
 
         doAsync {
@@ -60,7 +59,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 refreshedToken = token
             }
 
-            Timber.e("MyFirebaseInstanceIDService : \nDevice Token=====> $token")
+            //Timber.e("MyFirebaseInstanceIDService : \nDevice Token=====> $token")
             // 2.0 MyFirebaseMessagingService AppV 4.0.8 Suman    19/04/2023 thread safe for token updation 0025873
             uiThread {
 
@@ -88,11 +87,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         println("Refreshed token onMessageReceived"+remoteMessage);
-        Timber.e("FirebaseMessageService : ============Push has come============ ${AppUtils.getCurrentDateTime()}")
+        //Timber.e("FirebaseMessageService : ============Push has come============ ${AppUtils.getCurrentDateTime()}")
 
 
         if (TextUtils.isEmpty(Pref.user_id)) {
-            Timber.e("FirebaseMessageService : ============Logged out scenario============")
+            //Timber.e("FirebaseMessageService : ============Logged out scenario============")
 
             if (!TextUtils.isEmpty(remoteMessage?.data?.get("type")) && remoteMessage?.data?.get("type") == "clearData") {
                 val packageName = applicationContext.packageName
@@ -108,12 +107,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val body = remoteMessage?.data?.get("body")
         val tag = remoteMessage?.data?.get("flag")
 
-        Timber.d("quto_mail FCM class tag ${remoteMessage?.data?.get("type")}")
+       // //Timber.d("quto_mail FCM class tag ${remoteMessage?.data?.get("type")}")
 
         val notification = NotificationUtils(getString(R.string.app_name), "", "", "")
 
         if (!TextUtils.isEmpty(body)) {
-            Timber.e("FirebaseMessageService : \nNotification Message=====> $body")
+            //Timber.e("FirebaseMessageService : \nNotification Message=====> $body")
             //Timber.e("FirebaseMessageService : \nNotification Title=====> $title")
             if (remoteMessage?.data?.get("type") == "clearData") {
                 Pref.isClearData = true
@@ -162,7 +161,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 intent.action = "FCM_ACTION_RECEIVER_LEAVE_STATUS"
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
             }else if(remoteMessage?.data?.get("type").equals("flag_status_quotation_approval")){
-                Timber.d("quto_mail FCM class... ${AppUtils.getCurrentDateTime()}")
+                //Timber.d("quto_mail FCM class... ${AppUtils.getCurrentDateTime()}")
                 //notification.sendFCMNotificaitonQuotationapprova(applicationContext, remoteMessage)
                 notification.sendFCMNotificaitonQuotationapprova1(applicationContext, remoteMessage)
                 val intent = Intent()
@@ -173,31 +172,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 //val intent = Intent()
                 //intent.action = "FCM_ACTION_RECEIVER_LEAD"
                 //LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
-            }else if(remoteMessage?.data?.get("type").equals("lms_content_assign")){
-
-                try {
-                    var obj : LMSNotiEntity = LMSNotiEntity()
-                    obj.noti_datetime = AppUtils.getCurrentDateTime()
-                    obj.noti_date = AppUtils.getCurrentDateForShopActi()//.replace("-20","-19")
-                    obj.noti_time = AppUtils.getCurrentTime()
-                    obj.noti_header = remoteMessage?.data?.get("header").toString()
-                    if(obj.noti_header == "null"){
-                        obj.noti_header = "New Assignment"
-                    }
-                    obj.noti_message = remoteMessage?.data?.get("body").toString()
-                    obj.isViwed=false
-                    AppDatabase.getDBInstance()!!.lmsNotiDao().insert(obj)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-
-                notification.sendFCMNotificaiton(applicationContext, remoteMessage)
-
-                val intent = Intent()
-                intent.action = "FCM_ACTION_RECEIVER"
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
-            }else if(remoteMessage?.data?.get("type").equals("UpdateOrderStatus")){
+            }
+            else if(remoteMessage?.data?.get("type").equals("UpdateOrderStatus")){
                 notification.sendFCMNotificaiton(applicationContext, remoteMessage)
                 val intent = Intent()
                 intent.action = "FCM_ACTION_RECEIVER"
@@ -228,11 +204,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("UpdateDeviceTokenResponse : " + "\n" + "Status====> " + response.status + ", Message===> " + response.message)
+                            //Timber.d("UpdateDeviceTokenResponse : " + "\n" + "Status====> " + response.status + ", Message===> " + response.message)
 
                         }, { error ->
                             error.printStackTrace()
-                            Timber.d("UpdateDeviceTokenResponse ERROR: " + error.localizedMessage + "\n" + "Username :" + Pref.user_name + ", Time :" + AppUtils.getCurrentDateTime())
+                            //Timber.d("UpdateDeviceTokenResponse ERROR: " + error.localizedMessage + "\n" + "Username :" + Pref.user_name + ", Time :" + AppUtils.getCurrentDateTime())
                         })
         )
     }

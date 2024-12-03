@@ -329,7 +329,7 @@ class ViewCrmOpptFrag : BaseFragment(), View.OnClickListener {
                 iv_delete_opt.isEnabled =true
             }
             override fun onRightClick(editableData: String) {
-                Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
+                //Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
                 iv_delete_opt.isEnabled =true
                 var opprDtls = AppDatabase.getDBInstance()!!.opportunityAddDao().getSingleOpportunityL(obj.opportunity_id)
                 if(opprDtls.isUpload){

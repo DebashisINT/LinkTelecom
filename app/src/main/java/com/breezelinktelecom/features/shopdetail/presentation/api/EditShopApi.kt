@@ -11,9 +11,14 @@ import com.breezelinktelecom.features.contacts.AutoMailDtls
 import com.breezelinktelecom.features.contacts.CallHisDtls
 import com.breezelinktelecom.features.contacts.CompanyReqData
 import com.breezelinktelecom.features.contacts.ContactMasterRes
+import com.breezelinktelecom.features.contacts.DateRangeResponse
 import com.breezelinktelecom.features.contacts.SourceMasterRes
 import com.breezelinktelecom.features.contacts.StageMasterRes
 import com.breezelinktelecom.features.contacts.StatusMasterRes
+import com.breezelinktelecom.features.contacts.TargetAcvhParam
+import com.breezelinktelecom.features.contacts.TargetAcvhResponse
+import com.breezelinktelecom.features.contacts.TargetLevelResponse
+import com.breezelinktelecom.features.contacts.TargetTypeResponse
 import com.breezelinktelecom.features.contacts.TypeMasterRes
 import com.breezelinktelecom.features.login.model.WhatsappApiData
 import com.breezelinktelecom.features.login.model.WhatsappApiFetchData
@@ -95,6 +100,21 @@ interface EditShopApi {
     @FormUrlEncoded
     @POST("SendAutoMail/SendAutoMailInfo")
     fun autoMailDtlsAPI(@Field("user_id") user_id: String): Observable<AutoMailDtls>
+
+    @FormUrlEncoded
+    @POST("TAInfoDetails/TargetTypeLists")
+    fun targetTypeAPI(@Field("user_id") user_id: String): Observable<TargetTypeResponse>
+
+    @FormUrlEncoded
+    @POST("TAInfoDetails/TargetLevelLists")
+    fun targetLevelAPI(@Field("user_id") user_id: String): Observable<TargetLevelResponse>
+
+    @FormUrlEncoded
+    @POST("TAInfoDetails/TargetTimeFrameLists")
+    fun dateRangeAPI(@Field("user_id") user_id: String): Observable<DateRangeResponse>
+
+    @POST("TAInfoDetails/FetchTargetAchievementDetails")
+    fun targetAchvDtlsAPI(@Body obj: TargetAcvhParam): Observable<TargetAcvhResponse>
 
     /**
      * Companion object to create the GithubApiService

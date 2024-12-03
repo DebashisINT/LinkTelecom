@@ -763,7 +763,7 @@ class AddCollectionWithOrderDialog : DialogFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as PaymentModeResponseModel
-                    Timber.d("PAYMENT RESPONSE=======> " + response.status)
+                    //Timber.d("PAYMENT RESPONSE=======> " + response.status)
 
                     if (response.status == NetworkConstant.SUCCESS) {
                         if (response.paymemt_mode_list != null && response.paymemt_mode_list!!.size > 0) {
@@ -800,7 +800,7 @@ class AddCollectionWithOrderDialog : DialogFragment(), View.OnClickListener {
                     error.printStackTrace()
                     progress_wheel.stopSpinning()
                     Toaster.msgShort(mContext, getString(R.string.something_went_wrong))
-                    Timber.d("PAYMENT ERROR=======> " + error.localizedMessage)
+                    //Timber.d("PAYMENT ERROR=======> " + error.localizedMessage)
                 })
         )
     }

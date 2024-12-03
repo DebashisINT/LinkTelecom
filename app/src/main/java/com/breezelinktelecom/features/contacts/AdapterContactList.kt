@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.breezelinktelecom.R
+import com.breezelinktelecom.app.AppDatabase
 import com.breezelinktelecom.app.Pref
 import com.breezelinktelecom.app.domain.AddShopDBModelEntity
 import com.breezelinktelecom.app.utils.AppUtils
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.row_contact_list.view.ll_contacStatus
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_expected_sales_value
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_goneView
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_headView
+import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_cont_loan_dtls_root
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_contact_addr_root
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_contact_list_auto_activity
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_contact_list_order_show
@@ -70,6 +72,7 @@ import kotlinx.android.synthetic.main.row_contact_list.view.tv_row_cont_list_con
 import kotlinx.android.synthetic.main.row_contact_list.view.tv_row_cont_list_expctd_sales_value
 import kotlinx.android.synthetic.main.row_contact_list.view.tv_row_cont_list_name
 import kotlinx.android.synthetic.main.row_contact_list.view.tv_row_cont_list_name_initial
+
 
 
 class AdapterContactList(var mContext:Context,var shopL:ArrayList<AddShopDBModelEntity>,var searchText:String,var listner:onClick):
@@ -322,6 +325,17 @@ class AdapterContactList(var mContext:Context,var shopL:ArrayList<AddShopDBModel
                 ll_assignedTo.setOnClickListener {
                     listner.onAssignToUpdateClick(shopL.get(adapterPosition))
                 }
+
+                //Suman 15-11-2024 mantis id 27805
+                if(Pref.WillShowLoanDetailsInParty){
+                    itemView.ll_row_cont_loan_dtls_root.visibility = View.VISIBLE
+                }
+                else{
+                    itemView.ll_row_cont_loan_dtls_root.visibility = View.GONE
+                }
+                itemView.ll_row_cont_loan_dtls_root.setOnClickListener {
+                    listner.onLoanDtlsClick(shopL.get(adapterPosition))
+                }
         }
     }
     }
@@ -345,6 +359,8 @@ class AdapterContactList(var mContext:Context,var shopL:ArrayList<AddShopDBModel
         fun onStageUpdateClick(obj:AddShopDBModelEntity)
         fun onStatusUpdateClick(obj:AddShopDBModelEntity)
         fun onAssignToUpdateClick(obj:AddShopDBModelEntity)
+
+        fun onLoanDtlsClick(obj:AddShopDBModelEntity)
     }
 
 }

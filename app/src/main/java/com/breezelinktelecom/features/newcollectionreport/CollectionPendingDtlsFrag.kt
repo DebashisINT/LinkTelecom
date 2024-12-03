@@ -641,9 +641,9 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
 
         val index = addShop.shop_id!!.indexOf("_")
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -653,7 +653,7 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                         when (addShopResult.status) {
                             NetworkConstant.SUCCESS -> {
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -671,7 +671,7 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
 
                             }
                             NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -704,8 +704,8 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
                         progress_wheel.stopSpinning()
                         (mContext as DashboardActivity).showSnackMessage("Collection added successfully")
                         isShopRegistrationInProcess = false
-                        if (error != null)
-                            Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                        if (error != null){}
+                            //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                     })
             )
         }
@@ -717,7 +717,7 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                         when (addShopResult.status) {
                             NetworkConstant.SUCCESS -> {
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
@@ -736,7 +736,7 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
 
                             }
                             NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -769,8 +769,8 @@ class CollectionPendingDtlsFrag : BaseFragment(), View.OnClickListener {
                         progress_wheel.stopSpinning()
                         (mContext as DashboardActivity).showSnackMessage("Collection added successfully")
                         isShopRegistrationInProcess = false
-                        if (error != null)
-                            Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                        if (error != null){}
+                            //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                     })
             )
         }

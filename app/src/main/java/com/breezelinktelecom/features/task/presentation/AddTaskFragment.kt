@@ -218,16 +218,16 @@ class AddTaskFragment : BaseFragment(), View.OnClickListener {
             return
         }
 
-        Timber.d("==============Add Task Input Params (Add Task)====================")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("date=======> " + task.date)
-        Timber.d("task_id=======> " + task.task_id)
-        Timber.d("task_name=======> " + task.task_name)
-        Timber.d("details=======> " + task.details)
-        Timber.d("isCompleted=======> " + task.isCompleted)
-        Timber.d("eventId=======> " + task.eventId)
-        Timber.d("===================================================================")
+        //Timber.d("==============Add Task Input Params (Add Task)====================")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("date=======> " + task.date)
+        //Timber.d("task_id=======> " + task.task_id)
+        //Timber.d("task_name=======> " + task.task_name)
+        //Timber.d("details=======> " + task.details)
+        //Timber.d("isCompleted=======> " + task.isCompleted)
+        //Timber.d("eventId=======> " + task.eventId)
+        //Timber.d("===================================================================")
 
         val taskInput = AddTaskInputModel(Pref.session_token!!, Pref.user_id!!, task.task_id!!, task.date!!, task.task_name!!,
                 task.details!!, task.isCompleted, task.eventId)
@@ -240,7 +240,7 @@ class AddTaskFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("ADD TASK: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("ADD TASK: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                             progress_wheel.stopSpinning()
 
@@ -255,7 +255,7 @@ class AddTaskFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ADD TASK: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("ADD TASK: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage("Task added successfully")
                             (mContext as DashboardActivity).onBackPressed()

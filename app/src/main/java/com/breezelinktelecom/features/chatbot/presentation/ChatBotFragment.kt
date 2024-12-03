@@ -1001,7 +1001,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
         }
 
 //        XLog.d("callShopDurationApi : ENTER")
-        Timber.d("callShopDurationApi : ENTER")
+        //Timber.d("callShopDurationApi : ENTER")
 
         Log.e("ChatBot", "isShopActivityUpdating=============> ${BaseActivity.isShopActivityUpdating}")
 
@@ -1169,29 +1169,29 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
                     XLog.d("out_location========> " + shopDurationData.out_location)
                     XLog.d("========================================================")*/
 
-                    Timber.d("====SYNC VISITED SHOP DATA (ChatBot)====")
-                    Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-                    Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-                    Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-                    Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-                    Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-                    Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-                    Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-                    Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-                    Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-                    Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-                    Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-                    Timber.d("device_model========> " + shopDurationData.device_model)
-                    Timber.d("android_version========> " + shopDurationData.android_version)
-                    Timber.d("battery========> " + shopDurationData.battery)
-                    Timber.d("net_status========> " + shopDurationData.net_status)
-                    Timber.d("net_type========> " + shopDurationData.net_type)
-                    Timber.d("in_time========> " + shopDurationData.in_time)
-                    Timber.d("out_time========> " + shopDurationData.out_time)
-                    Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-                    Timber.d("in_location========> " + shopDurationData.in_location)
-                    Timber.d("out_location========> " + shopDurationData.out_location)
-                    Timber.d("========================================================")
+                    //Timber.d("====SYNC VISITED SHOP DATA (ChatBot)====")
+                    //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+                    //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+                    //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+                    //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+                    //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+                    //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+                    //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+                    //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+                    //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+                    //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+                    //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+                    //Timber.d("device_model========> " + shopDurationData.device_model)
+                    //Timber.d("android_version========> " + shopDurationData.android_version)
+                    //Timber.d("battery========> " + shopDurationData.battery)
+                    //Timber.d("net_status========> " + shopDurationData.net_status)
+                    //Timber.d("net_type========> " + shopDurationData.net_type)
+                    //Timber.d("in_time========> " + shopDurationData.in_time)
+                    //Timber.d("out_time========> " + shopDurationData.out_time)
+                    //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+                    //Timber.d("in_location========> " + shopDurationData.in_location)
+                    //Timber.d("out_location========> " + shopDurationData.out_location)
+                    //Timber.d("========================================================")
                 }
             }
             else {
@@ -1304,28 +1304,28 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
                     XLog.d("out_location========> " + shopDurationData.out_location)
                     XLog.d("========================================================")*/
 
-                    Timber.d("====SYNC VISITED SHOP DATA (LOCATION FUZED SERVICE)====")
-                    Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-                    Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-                    Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-                    Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-                    Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-                    Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-                    Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-                    Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-                    Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-                    Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-                    Timber.d("device_model========> " + shopDurationData.device_model)
-                    Timber.d("android_version========> " + shopDurationData.android_version)
-                    Timber.d("battery========> " + shopDurationData.battery)
-                    Timber.d("net_status========> " + shopDurationData.net_status)
-                    Timber.d("net_type========> " + shopDurationData.net_type)
-                    Timber.d("in_time========> " + shopDurationData.in_time)
-                    Timber.d("out_time========> " + shopDurationData.out_time)
-                    Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-                    Timber.d("in_location========> " + shopDurationData.in_location)
-                    Timber.d("out_location========> " + shopDurationData.out_location)
-                    Timber.d("========================================================")
+                    //Timber.d("====SYNC VISITED SHOP DATA (LOCATION FUZED SERVICE)====")
+                    //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+                    //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+                    //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+                    //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+                    //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+                    //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+                    //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+                    //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+                    //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+                    //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+                    //Timber.d("device_model========> " + shopDurationData.device_model)
+                    //Timber.d("android_version========> " + shopDurationData.android_version)
+                    //Timber.d("battery========> " + shopDurationData.battery)
+                    //Timber.d("net_status========> " + shopDurationData.net_status)
+                    //Timber.d("net_type========> " + shopDurationData.net_type)
+                    //Timber.d("in_time========> " + shopDurationData.in_time)
+                    //Timber.d("out_time========> " + shopDurationData.out_time)
+                    //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+                    //Timber.d("in_location========> " + shopDurationData.in_location)
+                    //Timber.d("out_location========> " + shopDurationData.out_location)
+                    //Timber.d("========================================================")
                 }
             }
         }
@@ -1395,8 +1395,8 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
 //            XLog.e("====SYNC VISITED SHOP (ChatBot)====")
 //            XLog.e("ShopData List size===> " + shopDataList.size)
 
-            Timber.e("====SYNC VISITED SHOP (ChatBot)====")
-            Timber.e("ShopData List size===> " + shopDataList.size)
+            //Timber.e("====SYNC VISITED SHOP (ChatBot)====")
+            //Timber.e("ShopData List size===> " + shopDataList.size)
 
             //val newShopList = FTStorageUtils.removeDuplicateData(shopDataList)
 
@@ -1415,7 +1415,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
             shopDurationApiReq.session_token = Pref.session_token
             if (newShopList.size > 0) {
 //                XLog.e("Unique ShopData List size===> " + newShopList.size)
-                Timber.e("Unique ShopData List size===> " + newShopList.size)
+                //Timber.e("Unique ShopData List size===> " + newShopList.size)
                 shopDurationApiReq.shop_list = newShopList
             } else
                 shopDurationApiReq.shop_list = shopDataList
@@ -1423,7 +1423,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
             val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
 
 //            XLog.d("callShopDurationApi : REQUEST")
-            Timber.d("callShopDurationApi : REQUEST")
+            //Timber.d("callShopDurationApi : REQUEST")
 
 
             BaseActivity.compositeDisposable.add(
@@ -1433,7 +1433,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
 //                        .timeout(60 * 1, TimeUnit.SECONDS)
                             .subscribe({ result ->
 //                                XLog.d("callShopDurationApi : RESPONSE " + result.status)
-                                Timber.d("callShopDurationApi : RESPONSE " + result.status)
+                                //Timber.d("callShopDurationApi : RESPONSE " + result.status)
                                 if (result.status == NetworkConstant.SUCCESS) {
                                     if (newShopList.size > 0) {
                                         for (i in 0 until newShopList.size) {
@@ -1462,10 +1462,10 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
                                 BaseActivity.isShopActivityUpdating = false
                                 if (error == null) {
 //                                    XLog.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
-                                    Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                                    //Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                                 } else {
 //                                    XLog.d("callShopDurationApi : ERROR " + error.localizedMessage)
-                                    Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
+                                    //Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
 
@@ -1532,13 +1532,13 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
             XLog.d("IMAGE========> " + unSyncedList[i].shop_image)
             XLog.d("==============================================================")*/
 
-            Timber.d("========UPLOAD REVISIT ALL IMAGE INPUT PARAMS (ChatBot)======")
-            Timber.d("USER ID======> " + visitImageShop.user_id)
-            Timber.d("SESSION ID======> " + visitImageShop.session_token)
-            Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-            Timber.d("IMAGE========> " + unSyncedList[i].shop_image)
-            Timber.d("==============================================================")
+            //Timber.d("========UPLOAD REVISIT ALL IMAGE INPUT PARAMS (ChatBot)======")
+            //Timber.d("USER ID======> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+            //Timber.d("IMAGE========> " + unSyncedList[i].shop_image)
+            //Timber.d("==============================================================")
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -1549,7 +1549,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
 //                                XLog.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
-                                Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 if (logoutResponse.status == NetworkConstant.SUCCESS)
                                     AppDatabase.getDBInstance()!!.shopVisitImageDao().updateisUploaded(true, unSyncedList.get(i).shop_id!!)
 
@@ -1563,7 +1563,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
 //                                XLog.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                                Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 i++
                                 if (i < unSyncedList.size)
@@ -1643,13 +1643,13 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
             XLog.d("AUDIO=====> " + unSyncedList[i].audio)
             XLog.d("===============================================================")*/
 
-            Timber.d("====UPLOAD REVISIT ALL AUDIO INPUT PARAMS (LOCATION FUZED SERVICE)======")
-            Timber.d("USER ID====> " + visitImageShop.user_id)
-            Timber.d("SESSION ID====> " + visitImageShop.session_token)
-            Timber.d("SHOP ID====> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
-            Timber.d("AUDIO=====> " + unSyncedList[i].audio)
-            Timber.d("===============================================================")
+            //Timber.d("====UPLOAD REVISIT ALL AUDIO INPUT PARAMS (LOCATION FUZED SERVICE)======")
+            //Timber.d("USER ID====> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID====> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID====> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
+            //Timber.d("AUDIO=====> " + unSyncedList[i].audio)
+            //Timber.d("===============================================================")
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -1660,7 +1660,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
 //                                XLog.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
-                                Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 if (logoutResponse.status == NetworkConstant.SUCCESS)
                                     AppDatabase.getDBInstance()!!.shopVisitAudioDao().updateisUploaded(true, unSyncedList.get(i).shop_id!!)
 
@@ -1688,7 +1688,7 @@ class ChatBotFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
 //                                XLog.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                                Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
 
                                 i++

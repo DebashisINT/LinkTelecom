@@ -331,7 +331,7 @@ class OrderProductCartFrag : BaseFragment(), View.OnClickListener {
                                 }
                             }
                         } catch (e: Exception) {
-                            Timber.d("err ${e.printStackTrace()}")
+                            //Timber.d("err ${e.printStackTrace()}")
                         }
                         if (!isValidQty) {
                             progrwss_wheel.stopSpinning()
@@ -741,10 +741,7 @@ class OrderProductCartFrag : BaseFragment(), View.OnClickListener {
 
     // end 2.0 OrderProductCartFrag v 4.1.6 stock optmization mantis 0026391 20-06-2023 saheli
 
-    private fun syncOrder(
-        orderObj: OrderDetailsListEntity,
-        orderProductList: ArrayList<OrderProductListEntity>
-    ) {
+    private fun syncOrder(orderObj: OrderDetailsListEntity, orderProductList: ArrayList<OrderProductListEntity>) {
         progrwss_wheel.spin()
         val addOrderApiObj = AddOrderInputParamsModel()
         addOrderApiObj.product_list = ArrayList()
@@ -860,9 +857,9 @@ class OrderProductCartFrag : BaseFragment(), View.OnClickListener {
                 }
 
                 override fun onRightClick(editableData: String) {
-                    Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
+                    //Timber.d("Order onRightClick ${AppUtils.getCurrentDateTime()}")
 
-                    Timber.d("Order onRightClick process ${AppUtils.getCurrentDateTime()}")
+                    //Timber.d("Order onRightClick process ${AppUtils.getCurrentDateTime()}")
                     if (!Pref.isShowOrderRemarks && !Pref.isShowOrderSignature)
                         saveOrder()
                     else

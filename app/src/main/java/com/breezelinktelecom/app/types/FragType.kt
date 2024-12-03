@@ -48,8 +48,6 @@ enum class FragType {
     TaskManagementFrag,ViewTaskManagementFrag,MultipleImageFileUploadonStock,ShopListMarketAssistFrag,ShopDtlsMarketAssistFrag,OwnPerformanceFragment,
     MarketAssistTabFrag,ChurnProbFrag,allPerformanceFrag,ContactsFrag,ContactsAddFrag,ShopCallHisFrag, SchedulerViewFrag, SchedulerAddFormFrag,
     TemplateViewFrag,TemplateAddFrag,LeaderBoardFrag,
-    OrderListFrag,ProductListFrag,CartListFrag,ViewOrdDtls,ViewNewOrdHistoryFrag,ViewNewOrdHisAllFrag,ActivityDtlsFrag,ViewCrmOpptFrag,AddOpptFrag,MyLearningFragment,SearchLmsFrag,VideoPlayLMS,
-    LeaderboardLmsFrag,SearchLmsLearningFrag,SearchLmsKnowledgeFrag,MyLearningAllVideoList,KnowledgeHubAllVideoList,MyPerformanceFrag,NotificationLMSFragment,LmsQuestionAnswerSet,MyLearningVideoPlay,MyLearningTopicList,
-    BookmarkFrag,BookmarkPlayFrag,PerformanceInsightPage,MyTopicsWiseContents,AllTopicsWiseContents,RetryIncorrectQuizFrag,RetryPlayFrag,RetryQuestionFrag,InCorrectQuesAnsFrag,CorrectQuesAnsFrag,
-    TargetVSAchvFrag,TargetVSAchvDetlsFrag,
+    OrderListFrag,ProductListFrag,CartListFrag,ViewOrdDtls,ViewNewOrdHistoryFrag,ViewNewOrdHisAllFrag,ActivityDtlsFrag,ViewCrmOpptFrag,AddOpptFrag,
+    TargetVSAchvFrag,TargetVSAchvDetlsFrag,LoanDtlsFrag,TargetVSAchvDtlsFrag
 }

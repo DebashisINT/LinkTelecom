@@ -252,7 +252,7 @@ object MultiFun {
                     m.send()
                 }catch (ex:Exception){
                     ex.printStackTrace()
-                    Timber.e("Mail sent exception: "+ ex.message)
+                    //Timber.e("Mail sent exception: "+ ex.message)
                 }
                 uiThread {
 
@@ -323,7 +323,7 @@ object MultiFun {
                 }catch (ex:Exception){
                     ex.printStackTrace()
                     println("tag_main Mail sent exception ${ex.message}")
-                    Timber.e("Mail sent exception: "+ ex.message)
+                    //Timber.e("Mail sent exception: "+ ex.message)
                 }
                 uiThread {
 

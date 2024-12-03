@@ -75,6 +75,8 @@ import kotlinx.android.synthetic.main.inflate_registered_shops.view.ll_range
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.ll_shop_code
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.ll_shop_type
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.ll_stock
+import kotlinx.android.synthetic.main.inflate_registered_shops.view.loan_dtls_ll
+import kotlinx.android.synthetic.main.inflate_registered_shops.view.loan_dtls_view
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.low_value_month_tv
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.lowest_order_amount_tv
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.myshop_Gstin_TV
@@ -130,6 +132,7 @@ import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_addre
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_bank_details_TV
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_party_status_TV
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_stage_TV
+import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_cont_loan_dtls_root
 import timber.log.Timber
 
 
@@ -1135,7 +1138,7 @@ class NearByShopsListAdapter(context: Context, list: List<AddShopDBModelEntity>,
             println("sett_check ${Pref.ShowPartyWithGeoFence} ${Pref.ShowUserwisePartyWithGeoFence} ${Pref.ShowPartyWithCreateOrder} ${Pref.ShowUserwisePartyWithCreateOrder}")
 
             itemView.ll_order_range.setOnClickListener {
-                Timber.d("tag_range_click")
+                //Timber.d("tag_range_click")
             }
 
             if (Pref.ShowPartyWithGeoFence && Pref.ShowUserwisePartyWithGeoFence) {
@@ -1207,6 +1210,18 @@ class NearByShopsListAdapter(context: Context, list: List<AddShopDBModelEntity>,
             }
             itemView.ll_nearby_shop_create_order_root.setOnClickListener {
                 listener.createITCOrderClick(list[adapterPosition])
+            }
+
+            if(Pref.WillShowLoanDetailsInParty){
+                itemView.loan_dtls_ll.visibility = View.VISIBLE
+                itemView.loan_dtls_view.visibility = View.VISIBLE
+            }
+            else{
+                itemView.loan_dtls_ll.visibility = View.GONE
+                itemView.loan_dtls_view.visibility = View.GONE
+            }
+            itemView.loan_dtls_ll.setOnClickListener{
+                listener.loanDtlsClick(list[adapterPosition])
             }
 
         }

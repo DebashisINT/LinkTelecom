@@ -398,29 +398,29 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
             shopDataList.add(shopDurationData)
 
-            Timber.d("========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)=====")
-            Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-            Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-            Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-            Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-            Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-            Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-            Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-            Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-            Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-            Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-            Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-            Timber.d("device_model========> " + shopDurationData.device_model)
-            Timber.d("android_version========> " + shopDurationData.android_version)
-            Timber.d("battery========> " + shopDurationData.battery)
-            Timber.d("net_status========> " + shopDurationData.net_status)
-            Timber.d("net_type========> " + shopDurationData.net_type)
-            Timber.d("in_time========> " + shopDurationData.in_time)
-            Timber.d("out_time========> " + shopDurationData.out_time)
-            Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-            Timber.d("in_location========> " + shopDurationData.in_location)
-            Timber.d("out_location========> " + shopDurationData.out_location)
-            Timber.d("=======================================================")
+            //Timber.d("========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)=====")
+            //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+            //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+            //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+            //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+            //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+            //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+            //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+            //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+            //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+            //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+            //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+            //Timber.d("device_model========> " + shopDurationData.device_model)
+            //Timber.d("android_version========> " + shopDurationData.android_version)
+            //Timber.d("battery========> " + shopDurationData.battery)
+            //Timber.d("net_status========> " + shopDurationData.net_status)
+            //Timber.d("net_type========> " + shopDurationData.net_type)
+            //Timber.d("in_time========> " + shopDurationData.in_time)
+            //Timber.d("out_time========> " + shopDurationData.out_time)
+            //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+            //Timber.d("in_location========> " + shopDurationData.in_location)
+            //Timber.d("out_location========> " + shopDurationData.out_location)
+            //Timber.d("=======================================================")
         }
 
         if (shopDataList.isEmpty()) {
@@ -442,8 +442,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
-                            Timber.d("ShopActivityFromAverageShop : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
-                                    "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token)
+                            //Timber.d("ShopActivityFromAverageShop : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
+                                   // "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 shopDataList.forEach {
                                     AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, it.shop_id!!, AppUtils.changeAttendanceDateFormatToCurrent(it.visited_date!!), it.start_timestamp!!)
@@ -454,9 +454,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 progress_wheel.stopSpinning()
                                 BaseActivity.isShopActivityUpdating = false
 
-                                Timber.d("===========INIT ADAPTER FOR SYNC ALL REVISIT SHOP DATA (AVERAGE TIME SPENT SHOP)========")
-                                Timber.d("shop list size====> " + shopActivityEntityList.size)
-                                Timber.d("specific date====> $selectedDate")
+                                //Timber.d("===========INIT ADAPTER FOR SYNC ALL REVISIT SHOP DATA (AVERAGE TIME SPENT SHOP)========")
+                                //Timber.d("shop list size====> " + shopActivityEntityList.size)
+                                //Timber.d("specific date====> $selectedDate")
 
                                 initAdapter()
 
@@ -473,8 +473,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             error.printStackTrace()
                             BaseActivity.isShopActivityUpdating = false
                             if (error != null) {
-                                Timber.d("ShopActivityFromAverageShop : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
-                                        ", Session Token" + Pref.session_token)
+                                //Timber.d("ShopActivityFromAverageShop : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
+                                        //", Session Token" + Pref.session_token)
                                 (mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
 
                                 shopActivityEntityList = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
@@ -554,13 +554,13 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
         BaseActivity.isShopActivityUpdating = true
 
-        Timber.d("======UPLOAD REVISIT ALL IMAGE INPUT PARAMS (AVERAGE TIME SPENT SHOP)=======")
-        Timber.d("USER ID======> " + visitImageShop.user_id)
-        Timber.d("SESSION ID======> " + visitImageShop.session_token)
-        Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-        Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-        Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
-        Timber.d("============================================================================")
+        //Timber.d("======UPLOAD REVISIT ALL IMAGE INPUT PARAMS (AVERAGE TIME SPENT SHOP)=======")
+        //Timber.d("USER ID======> " + visitImageShop.user_id)
+        //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+        //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+        //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+        //Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
+        //Timber.d("============================================================================")
 
         val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
         progress_wheel.spin()
@@ -570,7 +570,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val logoutResponse = result as BaseResponse
-                            Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopVisitImageDao().updateisUploaded(true, unSyncedList.get(j).shop_id!!)
 
@@ -611,9 +611,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                         shopActivityEntityList = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
                                         Collections.reverse(shopActivityEntityList)
 
-                                        Timber.d("===========INIT ADAPTER FOR SYNC ALL IMAGE (AVERAGE TIME SPENT SHOP)========")
-                                        Timber.d("shop list size====> " + shopActivityEntityList.size)
-                                        Timber.d("specific date====> $selectedDate")
+                                        //Timber.d("===========INIT ADAPTER FOR SYNC ALL IMAGE (AVERAGE TIME SPENT SHOP)========")
+                                        //Timber.d("shop list size====> " + shopActivityEntityList.size)
+                                        //Timber.d("specific date====> $selectedDate")
 
                                         initAdapter()
                                         //callShopDurationApi()
@@ -628,7 +628,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             }
                         }, { error ->
                             BaseActivity.isShopActivityUpdating = false
-                            Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             shopActivityEntityList = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
@@ -656,13 +656,13 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
         BaseActivity.isShopActivityUpdating = true
 
-        Timber.d("========UPLOAD REVISIT ALL AUDIO INPUT PARAMS (AVERAGE SHOP)======")
-        Timber.d("USER ID======> " + visitImageShop.user_id)
-        Timber.d("SESSION ID======> " + visitImageShop.session_token)
-        Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-        Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-        Timber.d("AUDIO========> " + unSyncedList[j].audio)
-        Timber.d("=====================================================================")
+        //Timber.d("========UPLOAD REVISIT ALL AUDIO INPUT PARAMS (AVERAGE SHOP)======")
+        //Timber.d("USER ID======> " + visitImageShop.user_id)
+        //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+        //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+        //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+        //Timber.d("AUDIO========> " + unSyncedList[j].audio)
+        //Timber.d("=====================================================================")
 
         val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
         progress_wheel.spin()
@@ -672,7 +672,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val logoutResponse = result as BaseResponse
-                            Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopVisitAudioDao().updateisUploaded(true, unSyncedList.get(j).shop_id!!)
 
@@ -689,9 +689,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
                                     val list = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
 
-                                    Timber.d("=======UPDATE ADAPTER FOR SYNC ALL AUDIO (AVERAGE SHOP)=======")
-                                    Timber.d("shop list size====> " + list.size)
-                                    Timber.d("specific date====> $selectedDate")
+                                    //Timber.d("=======UPDATE ADAPTER FOR SYNC ALL AUDIO (AVERAGE SHOP)=======")
+                                    //Timber.d("shop list size====> " + list.size)
+                                    //Timber.d("specific date====> $selectedDate")
 
                                     initAdapter()
                                 }
@@ -701,7 +701,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 (mContext as DashboardActivity).showSnackMessage(logoutResponse.message!!)
                             }
                         }, { error ->
-                            Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             BaseActivity.isShopActivityUpdating = false
                             progress_wheel.stopSpinning()
@@ -728,9 +728,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
             noShopAvailable.visibility = View.GONE
             nearByShopsList.visibility = View.VISIBLE
 
-            Timber.d("===========INIT ADAPTER FOR SPECIFIC DATE (AVERAGE TIME SPENT SHOP)========")
-            Timber.d("shop list size====> " + shopActivityEntityList.size)
-            Timber.d("specific date====> $date")
+            //Timber.d("===========INIT ADAPTER FOR SPECIFIC DATE (AVERAGE TIME SPENT SHOP)========")
+            //Timber.d("shop list size====> " + shopActivityEntityList.size)
+            //Timber.d("specific date====> $date")
 
             try {
                 initAdapter()
@@ -941,73 +941,73 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
         progress_wheel.spin()
 
 
-        Timber.d("===========SyncShop Input Params (Average Shop time spent)=============")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("===========SyncShop Input Params (Average Shop time spent)=============")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("======================================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("======================================================================")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -1017,7 +1017,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
@@ -1033,14 +1033,14 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                     }
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     //progress_wheel.stopSpinning()
                                     //(mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
                                     if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().deleteShopById(addShop.shop_id)
 
-                                        Timber.d("=========Duplicate shop deleted from shop activity table (Average Shop Timespent)========")
+                                        //Timber.d("=========Duplicate shop deleted from shop activity table (Average Shop Timespent)========")
                                         AppDatabase.getDBInstance()!!.shopActivityDao().deleteShopByIdAndDate(addShop.shop_id!!, AppUtils.getCurrentDateForShopActi())
                                     }
                                     doAsync {
@@ -1064,8 +1064,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -1077,7 +1077,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
@@ -1093,14 +1093,14 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                     }
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     //progress_wheel.stopSpinning()
                                     //(mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
                                     if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().deleteShopById(addShop.shop_id)
 
-                                        Timber.d("=========Duplicate shop deleted from shop activity table (Average Shop Timespent)========")
+                                        //Timber.d("=========Duplicate shop deleted from shop activity table (Average Shop Timespent)========")
                                         AppDatabase.getDBInstance()!!.shopActivityDao().deleteShopByIdAndDate(addShop.shop_id!!, AppUtils.getCurrentDateForShopActi())
                                     }
                                     doAsync {
@@ -1124,8 +1124,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -1372,15 +1372,15 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
-                            Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
 
                             }
 
                         }, { error ->
                             error.printStackTrace()
-                            if (error != null)
-                                Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
+                            if (error != null){}
+                                //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
 //                                (mContext as DashboardActivity).showSnackMessage("ERROR")
                         })
         )
@@ -1688,29 +1688,29 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                 return
             }
 
-            Timber.d("===========SYNC VISITED SHOP DATA (AVERAGE SHOP)==============")
-            Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-            Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-            Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-            Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-            Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-            Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-            Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-            Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-            Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-            Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-            Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-            Timber.d("device_model========> " + shopDurationData.device_model)
-            Timber.d("android_version========> " + shopDurationData.android_version)
-            Timber.d("battery========> " + shopDurationData.battery)
-            Timber.d("net_status========> " + shopDurationData.net_status)
-            Timber.d("net_type========> " + shopDurationData.net_type)
-            Timber.d("in_time========> " + shopDurationData.in_time)
-            Timber.d("out_time========> " + shopDurationData.out_time)
-            Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-            Timber.d("in_location========> " + shopDurationData.in_location)
-            Timber.d("out_location========> " + shopDurationData.out_location)
-            Timber.d("===================================================================")
+            //Timber.d("===========SYNC VISITED SHOP DATA (AVERAGE SHOP)==============")
+            //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+            //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+            //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+            //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+            //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+            //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+            //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+            //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+            //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+            //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+            //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+            //Timber.d("device_model========> " + shopDurationData.device_model)
+            //Timber.d("android_version========> " + shopDurationData.android_version)
+            //Timber.d("battery========> " + shopDurationData.battery)
+            //Timber.d("net_status========> " + shopDurationData.net_status)
+            //Timber.d("net_type========> " + shopDurationData.net_type)
+            //Timber.d("in_time========> " + shopDurationData.in_time)
+            //Timber.d("out_time========> " + shopDurationData.out_time)
+            //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+            //Timber.d("in_location========> " + shopDurationData.in_location)
+            //Timber.d("out_location========> " + shopDurationData.out_location)
+            //Timber.d("===================================================================")
 
             progress_wheel.spin()
             shopDurationApiReq.shop_list = shopDataList
@@ -1721,7 +1721,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("ShopActivityFromAverageTime : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("ShopActivityFromAverageTime : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
                                 if (result.status == NetworkConstant.SUCCESS) {
                                     //AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shopId, selectedDate)
                                     //mAvgTimeSpentListAdapter.updateList(AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate))
@@ -1797,8 +1797,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 (mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
 
                                 if (error != null) {
-                                    Timber.d("ShopActivityFromAverageTime : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
-                                    // Timber.d("ShopActivityFromAverageTime : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                                    //Timber.d("ShopActivityFromAverageTime : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                                    // //Timber.d("ShopActivityFromAverageTime : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
                                 }
                             })
             )
@@ -2014,29 +2014,29 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
         BaseActivity.isShopActivityUpdating = true
 
-        Timber.d("===========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)========")
-        Timber.d("SHOP ID======> " + shopDurationData.shop_id)
-        Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
-        Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
-        Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
-        Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
-        Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
-        Timber.d("FEEDBACK========> " + shopDurationData.feedback)
-        Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
-        Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
-        Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
-        Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
-        Timber.d("device_model========> " + shopDurationData.device_model)
-        Timber.d("android_version========> " + shopDurationData.android_version)
-        Timber.d("battery========> " + shopDurationData.battery)
-        Timber.d("net_status========> " + shopDurationData.net_status)
-        Timber.d("net_type========> " + shopDurationData.net_type)
-        Timber.d("in_time========> " + shopDurationData.in_time)
-        Timber.d("out_time========> " + shopDurationData.out_time)
-        Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
-        Timber.d("in_location========> " + shopDurationData.in_location)
-        Timber.d("out_location========> " + shopDurationData.out_location)
-        Timber.d("==============================================================")
+        //Timber.d("===========SYNC ALL VISITED SHOP DATA (AVERAGE SHOP)========")
+        //Timber.d("SHOP ID======> " + shopDurationData.shop_id)
+        //Timber.d("SPENT DURATION======> " + shopDurationData.spent_duration)
+        //Timber.d("VISIT DATE=========> " + shopDurationData.visited_date)
+        //Timber.d("VISIT DATE TIME==========> " + shopDurationData.visited_date)
+        //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData.total_visit_count)
+        //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData.distance_travelled)
+        //Timber.d("FEEDBACK========> " + shopDurationData.feedback)
+        //Timber.d("isFirstShopVisited========> " + shopDurationData.isFirstShopVisited)
+        //Timber.d("distanceFromHomeLoc========> " + shopDurationData.distanceFromHomeLoc)
+        //Timber.d("next_visit_date========> " + shopDurationData.next_visit_date)
+        //Timber.d("early_revisit_reason========> " + shopDurationData.early_revisit_reason)
+        //Timber.d("device_model========> " + shopDurationData.device_model)
+        //Timber.d("android_version========> " + shopDurationData.android_version)
+        //Timber.d("battery========> " + shopDurationData.battery)
+        //Timber.d("net_status========> " + shopDurationData.net_status)
+        //Timber.d("net_type========> " + shopDurationData.net_type)
+        //Timber.d("in_time========> " + shopDurationData.in_time)
+        //Timber.d("out_time========> " + shopDurationData.out_time)
+        //Timber.d("start_timestamp========> " + shopDurationData.start_timestamp)
+        //Timber.d("in_location========> " + shopDurationData.in_location)
+        //Timber.d("out_location========> " + shopDurationData.out_location)
+        //Timber.d("==============================================================")
 
         progress_wheel.spin()
         shopDurationApiReq.shop_list = shopDataList
@@ -2048,9 +2048,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ShopActivityFromAverageTime : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
-                                    "\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid +
-                                    ", SHOP: " + mList[0].shop_name)
+                            //Timber.d("ShopActivityFromAverageTime : RESPONSE STATUS:= " + result.status + ", RESPONSE MESSAGE:= " + result.message +
+                                    //"\nUser Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid +
+                                   // ", SHOP: " + mList[0].shop_name)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 if (!Pref.isMultipleVisitEnable)
                                     AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shopId, selectedDate)
@@ -2139,9 +2139,9 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                             Collections.reverse(shopActivityEntityList)
                                             //mAvgTimeSpentListAdapter.updateList(AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate))
 
-                                            Timber.d("===========INIT ADAPTER FOR SYNC ALL REVISIT SHOP DATA (AVERAGE TIME SPENT SHOP)========")
-                                            Timber.d("shop list size====> " + shopActivityEntityList.size)
-                                            Timber.d("specific date====> $selectedDate")
+                                            //Timber.d("===========INIT ADAPTER FOR SYNC ALL REVISIT SHOP DATA (AVERAGE TIME SPENT SHOP)========")
+                                            //Timber.d("shop list size====> " + shopActivityEntityList.size)
+                                            //Timber.d("specific date====> $selectedDate")
 
                                             initAdapter()
                                         }
@@ -2161,10 +2161,10 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             progress_wheel.stopSpinning()
                             shopActivityEntityList = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
                             Collections.reverse(shopActivityEntityList)
-                            Timber.d("ShopActivityFromAverageTime : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
-                                    ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name)
+                            //Timber.d("ShopActivityFromAverageTime : ERROR:= " + error.localizedMessage + "\nUser Id" + Pref.user_id +
+                                    //", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name)
                             if (error != null) {
-                                //  Timber.d("ShopActivityFromAverageShop : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                                //  //Timber.d("ShopActivityFromAverageShop : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
                                 (mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
                             }
                         })
@@ -2182,13 +2182,13 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
             visitImageShop.shop_id = unSyncedList[0].shop_id
             visitImageShop.visit_datetime = unSyncedList[0].visit_datetime
 
-            Timber.d("========UPLOAD REVISIT SINGLE IMAGE INPUT PARAMS (AVERAGE TIME SPENT SHOP)======")
-            Timber.d("USER ID======> " + visitImageShop.user_id)
-            Timber.d("SESSION ID======> " + visitImageShop.session_token)
-            Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-            Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
-            Timber.d("================================================================================")
+            //Timber.d("========UPLOAD REVISIT SINGLE IMAGE INPUT PARAMS (AVERAGE TIME SPENT SHOP)======")
+            //Timber.d("USER ID======> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+            //Timber.d("IMAGE========> " + unSyncedList[j].shop_image)
+            //Timber.d("================================================================================")
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -2199,7 +2199,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
-                                Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 progress_wheel.stopSpinning()
                                 if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.shopVisitImageDao().updateisUploaded(true, unSyncedList[0].shop_id!!)
@@ -2223,7 +2223,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
                             }, { error ->
                                 error.printStackTrace()
-                                Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 progress_wheel.stopSpinning()
                                 if (!isAllSync) {
                                     shopActivityEntityList = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate)
@@ -2251,13 +2251,13 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
-            Timber.d("=======UPLOAD REVISIT SINGLE AUDIO INPUT PARAMS (AVERAGE SHOP)=======")
-            Timber.d("USER ID======> " + visitImageShop.user_id)
-            Timber.d("SESSION ID======> " + visitImageShop.session_token)
-            Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
-            Timber.d("AUDIO========> " + unSyncedAudioList[0].audio)
-            Timber.d("======================================================================")
+            //Timber.d("=======UPLOAD REVISIT SINGLE AUDIO INPUT PARAMS (AVERAGE SHOP)=======")
+            //Timber.d("USER ID======> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID======> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID=========> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME==========> " + visitImageShop.visit_datetime)
+            //Timber.d("AUDIO========> " + unSyncedAudioList[0].audio)
+            //Timber.d("======================================================================")
 
             progress_wheel.spin()
             BaseActivity.compositeDisposable.add(
@@ -2267,7 +2267,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
                                 progress_wheel.stopSpinning()
-                                Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.shopVisitAudioDao().updateisUploaded(true, unSyncedAudioList[0].shop_id!!)
 
@@ -2295,7 +2295,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                 }
 
                             }, { error ->
-                                Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT SINGLE IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
                                 if (!isAllSync) {
@@ -2431,78 +2431,78 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
             return
         }
 
-        Timber.d("=============SyncShop Input Params=================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("=============SyncShop Input Params=================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("====================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("====================================================")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -2512,7 +2512,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
@@ -2525,7 +2525,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                         }
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
 
@@ -2547,8 +2547,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             }, { error ->
                                 error.printStackTrace()
                                 (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -2560,7 +2560,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                                 when (addShopResult.status) {
                                     NetworkConstant.SUCCESS -> {
@@ -2574,7 +2574,7 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                                         }
                                     }
                                     NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                        Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                        //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
                                         if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
@@ -2595,8 +2595,8 @@ class AvgTimespentShopListFragment : BaseFragment(), DatePickerListener, View.On
                             }, { error ->
                                 error.printStackTrace()
                                 (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }

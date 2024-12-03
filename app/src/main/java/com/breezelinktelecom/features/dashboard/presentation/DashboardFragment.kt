@@ -343,8 +343,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 Pref.totalTimeSpenAtShop = (Pref.totalTimeSpenAtShop.toInt() - totalMinute).toString()
 
                                 val todaysShopVisitCount = InfoWizard.getAvergareShopVisitCount()
-                                Timber.e("=======RESPONSE FROM SHOP ACTIVITY API (DASHBOARD FRAGMENT)=======")
-                                Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
+                                //Timber.e("=======RESPONSE FROM SHOP ACTIVITY API (DASHBOARD FRAGMENT)=======")
+                                //Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
 
                                 avgShop.text = todaysShopVisitCount
                                 avgTime.text = InfoWizard.getAverageShopVisitTimeDuration() + " Hrs"
@@ -554,7 +554,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 var isPresent = (AppDatabase.getDBInstance()!!.callhisDao().getFilterData(obj.call_number,obj.call_date,obj.call_time,obj.call_type,obj.call_duration_sec) as ArrayList<CallHisEntity>).size
                                 if(isPresent==0){
                                     println("on_Resume call his insert ${obj.call_number}")
-                                    Timber.d("tag_log_insert ${obj.call_number} ${obj.call_duration}")
+                                    //Timber.d("tag_log_insert ${obj.call_number} ${obj.call_duration}")
                                     AppDatabase.getDBInstance()!!.callhisDao().insert(obj)
                                 }
                             }
@@ -636,8 +636,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             val length = file.length()
             val lengthInKB = length / 1024
 
-            Timber.e("Original today accurate table Size====> $length")
-            Timber.e("Today accurate table Size====> $lengthInKB KB")
+            //Timber.e("Original today accurate table Size====> $length")
+            //Timber.e("Today accurate table Size====> $lengthInKB KB")
 
         } catch (e: Exception) {
               e.printStackTrace()
@@ -648,10 +648,10 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                 CustomStatic.IsPJPAddEdited=false
                 //Toaster.msgShort(mContext,"DashboardFragment getOnlyPjpListApi() call")
                 if(Pref.isActivatePJPFeature){
-                    Timber.d("API_Optimization-> GET getPjpListApi : enable check->writeDataToFile" +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+                    //Timber.d("API_Optimization-> GET getPjpListApi : enable check->writeDataToFile" +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
                     getOnlyPjpListApi()
                 }else{
-                    Timber.d("API_Optimization-> GET getPjpListApi : disable check->writeDataToFile" +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+                    //Timber.d("API_Optimization-> GET getPjpListApi : disable check->writeDataToFile" +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
                 }
             }else{
                 //Toaster.msgShort(mContext,"DashboardFragment getOnlyPjpListApi() not call")
@@ -677,7 +677,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as UserPjpResponseModel
-                            Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.pjp_list != null && response.pjp_list.isNotEmpty()) {
                                     doAsync {
@@ -715,7 +715,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             initBottomAdapter()
                         })
@@ -727,8 +727,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         super.updateUI(any)
 
         val todaysShopVisitCount = InfoWizard.getAvergareShopVisitCount()
-        Timber.e("=======UPDATE UI (DASHBOARD FRAGMENT)=======")
-        Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
+        //Timber.e("=======UPDATE UI (DASHBOARD FRAGMENT)=======")
+        //Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
 
         avgShop.text = todaysShopVisitCount
         avgTime.text = InfoWizard.getAverageShopVisitTimeDuration() + " Hrs"
@@ -987,7 +987,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }
                     val megAvailable = bytesAvailable / (1024 * 1024)
                     println("storage " + megAvailable.toString());
-                    Timber.d("phone storage : FREE SPACE AVAILABLE : " + megAvailable.toString() + " Time :" + AppUtils.getCurrentDateTime())
+                    //Timber.d("phone storage : FREE SPACE AVAILABLE : " + megAvailable.toString() + " Time :" + AppUtils.getCurrentDateTime())
 
                     if (megAvailable < 1024) {
                         val simpleDialog = Dialog(mContext)
@@ -1092,7 +1092,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                 }
                 val megAvailable = bytesAvailable / (1024 * 1024)
                 println("storage " + megAvailable.toString());
-                Timber.d("phone storage : FREE SPACE AVAILABLE : " + megAvailable.toString() + " Time :" + AppUtils.getCurrentDateTime())
+                //Timber.d("phone storage : FREE SPACE AVAILABLE : " + megAvailable.toString() + " Time :" + AppUtils.getCurrentDateTime())
 
                 if (megAvailable < 1024) {
                     val simpleDialog = Dialog(mContext)
@@ -1204,8 +1204,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             tv_view_all.visibility = View.GONE
 
         val todaysShopVisitCount = InfoWizard.getAvergareShopVisitCount()
-        Timber.e("=======INIT VIEW (DASHBOARD FRAGMENT)=======")
-        Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
+        //Timber.e("=======INIT VIEW (DASHBOARD FRAGMENT)=======")
+        //Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
 
         avgShop.text = todaysShopVisitCount
         avgTime.text = InfoWizard.getAverageShopVisitTimeDuration() + " Hrs"
@@ -2118,7 +2118,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                 if (Pref.isOnLeave.equals("false", ignoreCase = true)) {
 
-                    Timber.e("=====User is at work (At meeting revisit time)=======")
+                    //Timber.e("=====User is at work (At meeting revisit time)=======")
 
                     val userlocation = UserLocationDataEntity()
                     userlocation.latitude = meetingEntity.lattitude!!
@@ -2134,11 +2134,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     }
                     val finalDistance = (Pref.tempDistance.toDouble() + loc_distance).toString()
 
-                    Timber.e("===Distance (At meeting revisit time)===")
-                    Timber.e("Temp Distance====> " + Pref.tempDistance)
-                    Timber.e("Normal Distance====> $loc_distance")
-                    Timber.e("Total Distance====> $finalDistance")
-                    Timber.e("=====================================")
+                    //Timber.e("===Distance (At meeting revisit time)===")
+                    //Timber.e("Temp Distance====> " + Pref.tempDistance)
+                    //Timber.e("Normal Distance====> $loc_distance")
+                    //Timber.e("Total Distance====> $finalDistance")
+                    //Timber.e("=====================================")
 
                     userlocation.distance = finalDistance
                     userlocation.locationName = LocationWizard.getNewLocationName(mContext, userlocation.latitude.toDouble(), userlocation.longitude.toDouble())
@@ -2178,7 +2178,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     Pref.totalS2SDistance = "0.0"
                     Pref.tempDistance = "0.0"
                 } else {
-                    Timber.e("=====User is on leave (At meeting revisit time)=======")
+                    //Timber.e("=====User is on leave (At meeting revisit time)=======")
                     distance = 0.0
                 }
 
@@ -2604,7 +2604,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as UserPjpResponseModel
-                            Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             if (response.status == NetworkConstant.SUCCESS) {
 
@@ -2630,7 +2630,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             //(mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                             rv_pjp_list.visibility = View.GONE
@@ -2939,7 +2939,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
 
     private fun checkToCallMemberList() {
-        Timber.e("==============checkToCallMemberList(Dashboard Fragment)==============")
+        //Timber.e("==============checkToCallMemberList(Dashboard Fragment)==============")
         Handler().postDelayed(Runnable {
             if (Pref.isOfflineTeam && Pref.isAddAttendence) {
                 var progress_wheel: ProgressWheel? = null
@@ -2975,7 +2975,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         if (customProgressDialog.isAdded)
             return
 
-        Timber.e("==============call offline member api(Dashboard Fragment)==============")
+        //Timber.e("==============call offline member api(Dashboard Fragment)==============")
 
         val repository = TeamRepoProvider.teamRepoProvider()
         customProgressDialog.show((mContext as DashboardActivity).supportFragmentManager, "")
@@ -3036,7 +3036,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     }
 
     private fun callMemberShopListApi() {
-        Timber.d("PJP api callMemberShopListApi DashFrag call")
+        //Timber.d("PJP api callMemberShopListApi DashFrag call")
         val repository = TeamRepoProvider.teamRepoProvider()
         BaseActivity.compositeDisposable.add(
                 repository.offlineTeamShopList("")
@@ -3110,8 +3110,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     fun updateUi() {
 
         val todaysShopVisitCount = InfoWizard.getAvergareShopVisitCount()
-        Timber.e("=======UPDATE UI FOR AUTO REVISIT (DASHBOARD FRAGMENT)=======")
-        Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
+        //Timber.e("=======UPDATE UI FOR AUTO REVISIT (DASHBOARD FRAGMENT)=======")
+        //Timber.e("Today's Shop Visit Count====> $todaysShopVisitCount")
 
         avgShop.text = todaysShopVisitCount
         avgTime.text = InfoWizard.getAverageShopVisitTimeDuration() + " Hrs"
@@ -3197,7 +3197,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
    /* private fun getProductRateListApi() {
         if(Pref.isOrderShow){
-            Timber.d("api_call_dash  getProductRateListApi()")
+            //Timber.d("api_call_dash  getProductRateListApi()")
             val repository = ProductListRepoProvider.productListProvider()
             progress_wheel.spin()
             BaseActivity.compositeDisposable.add(
@@ -3236,7 +3236,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     })
             )
         }else{
-            Timber.d("API_Optimization getProductRateListApi DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization getProductRateListApi DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             getBeatListApi()
         }
     }*/
@@ -3246,7 +3246,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         if(Pref.IsBeatAvailable){
         //if(Pref.isShowBeatGroup){
             // End of Rev 12.0 DashboardFragment AppV 4.0.8 Suman    24/04/2023 Beat api fetch updation 0025898
-            Timber.d("api_call_dash  beatList()")
+            //Timber.d("api_call_dash  beatList()")
             val repository = TypeListRepoProvider.provideTypeListRepository()
             progress_wheel.spin()
             BaseActivity.compositeDisposable.add(
@@ -3311,7 +3311,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             progress_wheel = progress_wheel_attendance
         else
             progress_wheel = this.progress_wheel
-        Timber.d("api_call_dash  assignToDDList()")
+        //Timber.d("api_call_dash  assignToDDList()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.assignToDDList(Pref.profile_state)
@@ -3400,7 +3400,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         else
             progress_wheel = this.progress_wheel
 
-        Timber.d("api_call_dash  assignToPPList()")
+        //Timber.d("api_call_dash  assignToPPList()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.assignToPPList(Pref.profile_state)
@@ -3452,7 +3452,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     private fun getAssignedToShopApi() {
         val repository = TypeListRepoProvider.provideTypeListRepository()
         progress_wheel.spin()
-        Timber.d("api_call_dash  assignToShopList()")
+        //Timber.d("api_call_dash  assignToShopList()")
         BaseActivity.compositeDisposable.add(
                 repository.assignToShopList(Pref.profile_state)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -3508,14 +3508,14 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun getProductList(date: String?) {
         if(Pref.isOrderShow){
-            Timber.d("API_Optimization  getProductList DashFrag  : enable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization  getProductList DashFrag  : enable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             val repository = ProductListRepoProvider.productListProvider()
             var progress_wheel: ProgressWheel? = null
             if (Pref.isAttendanceFeatureOnly)
                 progress_wheel = progress_wheel_attendance
             else
                 progress_wheel = this.progress_wheel
-            Timber.d("api_call_dash  getProductList()")
+            //Timber.d("api_call_dash  getProductList()")
             println("tag_dash_product api call start")
             progress_wheel?.spin()
             BaseActivity.compositeDisposable.add(
@@ -3580,7 +3580,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     })
             )
         }else{
-            Timber.d("API_Optimization getProductList DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization getProductList DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             println("dash_ref_flow getProductList else")
             getNewOrderDataList()
         }
@@ -3588,7 +3588,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun getProductRateListApi() {
         if(Pref.isOrderShow){
-            Timber.d("api_call_dash  getProductRateListApi()")
+            //Timber.d("api_call_dash  getProductRateListApi()")
             val repository = ProductListRepoProvider.productListProvider()
             progress_wheel.spin()
             BaseActivity.compositeDisposable.add(
@@ -3635,7 +3635,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     })
             )
         }else{
-            Timber.d("API_Optimization getProductRateListApi DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization getProductRateListApi DashFrag : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             getNewOrderDataList()
         }
     }
@@ -3774,7 +3774,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             progress_wheel = progress_wheel_attendance
         else
             progress_wheel = this.progress_wheel
-        Timber.d("api_call_dash  routeList()")
+        //Timber.d("api_call_dash  routeList()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.routeList()
@@ -3861,7 +3861,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         else
             progress_wheel = this.progress_wheel
 
-        Timber.d("api_call_dash  userConfig()")
+        //Timber.d("api_call_dash  userConfig()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.userConfig(Pref.user_id!!)
@@ -4515,7 +4515,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                                 if (Pref.DistributorGPSAccuracy.length == 0 || Pref.DistributorGPSAccuracy.equals("")) {
                                                     Pref.DistributorGPSAccuracy = "500"
                                                 }
-                                                Timber.d("DistributorGPSAccuracy " + Pref.DistributorGPSAccuracy)
+                                                //Timber.d("DistributorGPSAccuracy " + Pref.DistributorGPSAccuracy)
                                             }
 
                                             /*26-10-2021*/
@@ -5089,6 +5089,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                                 if (!TextUtils.isEmpty(response.getconfigure?.get(i)?.Value)) {
                                                     Pref.AllowOrderOnOutstandingAndClosingStockDifferenceUserWise = response.getconfigure?.get(i)?.Value == "1"
                                                 }
+                                            }else if (response.getconfigure?.get(i)?.Key.equals("ShowTargetOnApp", ignoreCase = true)) {
+                                                Pref.ShowTargetOnApp = response.getconfigure!![i].Value == "1"
+                                                if (!TextUtils.isEmpty(response.getconfigure?.get(i)?.Value)) {
+                                                    Pref.ShowTargetOnApp = response.getconfigure?.get(i)?.Value == "1"
+                                                }
                                             }
 
                                         }
@@ -5118,7 +5123,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         else
             progress_wheel = this.progress_wheel
 
-        Timber.d("api_call_dash  configFetch()")
+        //Timber.d("api_call_dash  configFetch()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.configFetch()
@@ -5127,7 +5132,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribe({ result ->
 
                             val configResponse = result as ConfigFetchResponseModel
-                            Timber.d("ConfigFetchApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
+                            //Timber.d("ConfigFetchApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -5622,6 +5627,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                     Pref.WillCreditDaysFollow = configResponse.WillCreditDaysFollow!!
                                 if (configResponse.AllowOrderOnOutstandingAndClosingStockDifference != null)
                                     Pref.AllowOrderOnOutstandingAndClosingStockDifference = configResponse.AllowOrderOnOutstandingAndClosingStockDifference!!
+
+                                if (configResponse.WillShowLoanDetailsInParty != null)
+                                    Pref.WillShowLoanDetailsInParty = configResponse.WillShowLoanDetailsInParty!!
                             }
                             BaseActivity.isApiInitiated = false
                             /*API_Optimization 02-03-2022*/
@@ -5660,7 +5668,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             //checkToCallAlarmConfigApi()
                             checkToCallAssignedDDListApi()   // calling instead of checkToCallAlarmConfigApi()
                             progress_wheel.stopSpinning()
-                            Timber.d("ConfigFetchApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("ConfigFetchApiResponse ERROR: " + error.localizedMessage)
                         })
         )
     }
@@ -5680,7 +5688,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             progress_wheel = progress_wheel_attendance
         else
             progress_wheel = this.progress_wheel
-        Timber.d("api_call_dash  alarmConfig()")
+        //Timber.d("api_call_dash  alarmConfig()")
         progress_wheel?.spin()
         BaseActivity.compositeDisposable.add(
                 repository.alarmConfig()
@@ -5689,7 +5697,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribe({ result ->
 
                             val configResponse = result as AlarmConfigResponseModel
-                            Timber.d("AlarmConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
+                            //Timber.d("AlarmConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -5722,7 +5730,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             BaseActivity.isApiInitiated = false
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("AlarmConfigApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("AlarmConfigApiResponse ERROR: " + error.localizedMessage)
                             getPjpListApi()
                         })
         )
@@ -5730,13 +5738,13 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun getPjpListApi() {
         if(Pref.isActivatePJPFeature){
-            Timber.d("API_Optimization-> GET getPjpListApi : enable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization-> GET getPjpListApi : enable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
         var progress_wheel: ProgressWheel? = null
         if (Pref.isAttendanceFeatureOnly)
             progress_wheel = progress_wheel_attendance
         else
             progress_wheel = this.progress_wheel
-            Timber.d("api_call_dash  getUserPJPList()")
+            //Timber.d("api_call_dash  getUserPJPList()")
         progress_wheel?.spin()
         val repository = TeamRepoProvider.teamRepoProvider()
         BaseActivity.compositeDisposable.add(
@@ -5745,7 +5753,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as UserPjpResponseModel
-                            Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET USER PJP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.pjp_list != null && response.pjp_list.isNotEmpty()) {
@@ -5786,27 +5794,27 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET USER PJP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             getTeamAreaListApi()
                         })
         )
         }else{
-            Timber.d("API_Optimization-> GET getPjpListApi : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization-> GET getPjpListApi : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             getTeamAreaListApi()
         }
     }
 
     private fun getTeamAreaListApi() {
         if(Pref.isOfflineTeam) {
-            Timber.d("API_Optimization-> isOfflineTeam Enable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
+            //Timber.d("API_Optimization-> isOfflineTeam Enable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
             val repository = TeamRepoProvider.teamRepoProvider()
             var progress_wheel: ProgressWheel? = null
             if (Pref.isAttendanceFeatureOnly)
                 progress_wheel = progress_wheel_attendance
             else
                 progress_wheel = this.progress_wheel
-            Timber.d("api_call_dash  teamAreaList()")
+            //Timber.d("api_call_dash  teamAreaList()")
             progress_wheel?.spin()
             BaseActivity.compositeDisposable.add(
                     repository.teamAreaList()
@@ -5854,20 +5862,20 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             )
         }
         else{
-            Timber.d("API_Optimization-> isOfflineTeam Disable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization-> isOfflineTeam Disable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             getTimesheetDropdownApi()
         }
     }
 
     private fun getTimesheetDropdownApi() {
         if (Pref.willTimesheetShow) {
-            Timber.d("API_Optimization-> TIMESHEET Enable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
+            //Timber.d("API_Optimization-> TIMESHEET Enable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
             var progress_wheel: ProgressWheel? = null
             if (Pref.isAttendanceFeatureOnly)
                 progress_wheel = progress_wheel_attendance
             else
                 progress_wheel = this.progress_wheel
-            Timber.d("api_call_dash  getTimeSheetDropdown()")
+            //Timber.d("api_call_dash  getTimeSheetDropdown()")
             progress_wheel?.spin()
             val repository = TimeSheetRepoProvider.timeSheetRepoProvider()
             BaseActivity.compositeDisposable.add(
@@ -5876,7 +5884,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as TimeSheetDropDownResponseModel
-                                Timber.d("TIMESHEET DROPDOWN: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("TIMESHEET DROPDOWN: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                                 if (response.status == NetworkConstant.SUCCESS) {
 
@@ -5932,14 +5940,14 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("TIMESHEET DROPDOWN: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("TIMESHEET DROPDOWN: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 getTimesheetConfig()
                             })
             )
         }
         else{
-            Timber.d("API_Optimization-> TIMESHEET Disable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization-> TIMESHEET Disable: " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             gePrimaryAppListApi()
         }
     }
@@ -5950,7 +5958,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             progress_wheel = progress_wheel_attendance
         else
             progress_wheel = this.progress_wheel
-        Timber.d("api_call_dash  timeSheetConfig()")
+        //Timber.d("api_call_dash  timeSheetConfig()")
         progress_wheel?.spin()
         val repository = TimeSheetRepoProvider.timeSheetRepoProvider()
         BaseActivity.compositeDisposable.add(
@@ -5959,7 +5967,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as TimeSheetConfigResponseModel
-                            Timber.d("TIMESHEET CONFIG: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("TIMESHEET CONFIG: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                             progress_wheel.stopSpinning()
 
@@ -5981,7 +5989,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("TIMESHEET CONFIG: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("TIMESHEET CONFIG: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             gePrimaryAppListApi()
                         })
@@ -5991,7 +5999,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     private fun gePrimaryAppListApi() {
         if(Pref.isCustomerFeatureEnable){
             progress_wheel.spin()
-            Timber.d("api_call_dash  getPrimaryAppList()")
+            //Timber.d("api_call_dash  getPrimaryAppList()")
             val repository = ShopListRepositoryProvider.provideShopListRepository()
             BaseActivity.compositeDisposable.add(
                 repository.getPrimaryAppList()
@@ -5999,7 +6007,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val response = result as PrimaryAppListResponseModel
-                        Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                        //Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                         if (response.status == NetworkConstant.SUCCESS) {
 
                             if (response.primary_application_list != null && response.primary_application_list!!.isNotEmpty()) {
@@ -6034,7 +6042,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                     }, { error ->
                         progress_wheel.stopSpinning()
-                        Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                        //Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                         error.printStackTrace()
                         geSecondaryAppListApi()
                     })
@@ -6047,7 +6055,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun geSecondaryAppListApi() {
         progress_wheel.spin()
-        Timber.d("api_call_dash  getSecondaryAppList()")
+        //Timber.d("api_call_dash  getSecondaryAppList()")
         val repository = ShopListRepositoryProvider.provideShopListRepository()
         BaseActivity.compositeDisposable.add(
                 repository.getSecondaryAppList()
@@ -6055,7 +6063,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as SecondaryAppListResponseModel
-                            Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.secondary_application_list != null && response.secondary_application_list!!.isNotEmpty()) {
@@ -6090,7 +6098,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             geLeadApi()
                         })
@@ -6099,7 +6107,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun geLeadApi() {
         progress_wheel.spin()
-        Timber.d("api_call_dash  getLeadTypeList()")
+        //Timber.d("api_call_dash  getLeadTypeList()")
         val repository = ShopListRepositoryProvider.provideShopListRepository()
         BaseActivity.compositeDisposable.add(
                 repository.getLeadTypeList()
@@ -6107,7 +6115,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as LeadListResponseModel
-                            Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.lead_type_list != null && response.lead_type_list!!.isNotEmpty()) {
@@ -6142,7 +6150,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             geStageApi()
                         })
@@ -6151,7 +6159,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun geStageApi() {
         progress_wheel.spin()
-        Timber.d("api_call_dash  getStagList()")
+        //Timber.d("api_call_dash  getStagList()")
         val repository = ShopListRepositoryProvider.provideShopListRepository()
         BaseActivity.compositeDisposable.add(
                 repository.getStagList()
@@ -6159,7 +6167,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as StageListResponseModel
-                            Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.stage_list != null && response.stage_list!!.isNotEmpty()) {
@@ -6194,7 +6202,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             geFunnelStageApi()
                         })
@@ -6203,7 +6211,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun geFunnelStageApi() {
         progress_wheel.spin()
-        Timber.d("api_call_dash  getFunnelStageList()")
+        //Timber.d("api_call_dash  getFunnelStageList()")
         val repository = ShopListRepositoryProvider.provideShopListRepository()
         BaseActivity.compositeDisposable.add(
                 repository.getFunnelStageList()
@@ -6211,7 +6219,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as FunnelStageListResponseModel
-                            Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.funnel_stage_list != null && response.funnel_stage_list!!.isNotEmpty()) {
@@ -6246,7 +6254,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             getEntityTypeListApi()
                         })
@@ -6257,7 +6265,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         if(Pref.willShowEntityTypeforShop){
             val repository = TypeListRepoProvider.provideTypeListRepository()
             progress_wheel.spin()
-            Timber.d("api_call_dash  entityList()")
+            //Timber.d("api_call_dash  entityList()")
             BaseActivity.compositeDisposable.add(
                 repository.entityList()
                     .observeOn(AndroidSchedulers.mainThread())
@@ -6308,7 +6316,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         if(Pref.willShowPartyStatus){
             val repository = TypeListRepoProvider.provideTypeListRepository()
             progress_wheel.spin()
-            Timber.d("api_call_dash  partyStatusList()")
+            //Timber.d("api_call_dash  partyStatusList()")
             BaseActivity.compositeDisposable.add(
                 repository.partyStatusList()
                     .observeOn(AndroidSchedulers.mainThread())
@@ -6358,7 +6366,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         if(Pref.isMeetingAvailable){
             val repository = LoginRepositoryProvider.provideLoginRepository()
             progress_wheel.spin()
-            Timber.d("api_call_dash  getMeetingList()")
+            //Timber.d("api_call_dash  getMeetingList()")
             BaseActivity.compositeDisposable.add(
                 repository.getMeetingList()
                     .observeOn(AndroidSchedulers.mainThread())
@@ -6412,7 +6420,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun getRemarksList() {
         progress_wheel.spin()
-        Timber.d("api_call_dash  getRemarksList()")
+        //Timber.d("api_call_dash  getRemarksList()")
         val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
         BaseActivity.compositeDisposable.add(
                 repository.getRemarksList()
@@ -6420,7 +6428,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as VisitRemarksResponseModel
-                            Timber.d("Visit Remarks List : RESPONSE " + response.status)
+                            //Timber.d("Visit Remarks List : RESPONSE " + response.status)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.visitRemarksDao()?.delete()
 
@@ -6447,7 +6455,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }, { error ->
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
-                            Timber.d("Visit Remarks List : ERROR " + error.localizedMessage)
+                            //Timber.d("Visit Remarks List : ERROR " + error.localizedMessage)
                             //changeUI()
                             getDocumentTypeApi()
                         })
@@ -6456,17 +6464,17 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun getDocumentTypeApi() {
         if (Pref.isDocumentRepoShow) {
-            Timber.d("API_Optimization GET getDocumentListApi dashboard : enable " + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
+            //Timber.d("API_Optimization GET getDocumentListApi dashboard : enable " + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
             val repository = DocumentRepoProvider.documentRepoProvider()
             progress_wheel.spin()
-            Timber.d("api_call_dash  getDocType()")
+            //Timber.d("api_call_dash  getDocType()")
             BaseActivity.compositeDisposable.add(
                     repository.getDocType()
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as DocumentTypeResponseModel
-                                Timber.d("DOCUMENT TYPE LIST RESPONSE=======> " + response.status)
+                                //Timber.d("DOCUMENT TYPE LIST RESPONSE=======> " + response.status)
 
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     if (response.type_list != null && response.type_list!!.size > 0) {
@@ -6512,13 +6520,13 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             }, { error ->
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
-                                Timber.d("DOCUMENT TYPE LIST ERROR=======> " + error.localizedMessage)
+                                //Timber.d("DOCUMENT TYPE LIST ERROR=======> " + error.localizedMessage)
                                 getDocumentListApi()
                             })
             )
         }
         else{
-            Timber.d("API_Optimization GET getDocumentListApi  dashboard : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
+            //Timber.d("API_Optimization GET getDocumentListApi  dashboard : disable " +  "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name )
             getNewProductList()
         }
     }
@@ -6526,14 +6534,14 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     private fun getDocumentListApi() {
         val repository = DocumentRepoProvider.documentRepoProvider()
         progress_wheel.spin()
-        Timber.d("api_call_dash  getDocList()")
+        //Timber.d("api_call_dash  getDocList()")
         BaseActivity.compositeDisposable.add(
                 repository.getDocList("")
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as DocumentListResponseModel
-                            Timber.d("DOCUMENT LIST RESPONSE=======> " + response.status)
+                            //Timber.d("DOCUMENT LIST RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.doc_list != null && response.doc_list!!.size > 0) {
@@ -6588,7 +6596,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             getNewProductList()
-                            Timber.d("DOCUMENT LIST ERROR=======> " + error.localizedMessage)
+                            //Timber.d("DOCUMENT LIST ERROR=======> " + error.localizedMessage)
                         })
         )
     }
@@ -6605,7 +6613,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val response = result as GetProductReq
-                        Timber.d("getNewProductList response ${response.status}")
+                        //Timber.d("getNewProductList response ${response.status}")
                         if (response.status == NetworkConstant.SUCCESS) {
                             var list = response.product_list
                             if (list != null && list.isNotEmpty()) {
@@ -6627,7 +6635,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }
                     }, { error ->
                         progress_wheel.stopSpinning()
-                        Timber.d("getNewProductList error ${error.message}")
+                        //Timber.d("getNewProductList error ${error.message}")
                         getNewProductRateList()
                     })
             )
@@ -6646,15 +6654,15 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val response = result as GetProductRateReq
-                        Timber.d("getNewProductRateList response ${response.status}")
+                        //Timber.d("getNewProductRateList response ${response.status}")
                         if (response.status == NetworkConstant.SUCCESS) {
                             var list = response.product_rate_list
                             if (list != null && list.isNotEmpty()) {
                                 doAsync {
-                                    Timber.d("rate insert process start ${AppUtils.getCurrentDateTime()}")
+                                    //Timber.d("rate insert process start ${AppUtils.getCurrentDateTime()}")
                                     AppDatabase.getDBInstance()!!.newRateListDao().deleteAll()
                                     AppDatabase.getDBInstance()?.newRateListDao()?.insertAll(list!!)
-                                    Timber.d("rate insert process end ${AppUtils.getCurrentDateTime()}")
+                                    //Timber.d("rate insert process end ${AppUtils.getCurrentDateTime()}")
                                     uiThread {
                                         progress_wheel.stopSpinning()
                                         getOrderHistoryList()
@@ -6670,7 +6678,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }
                     }, { error ->
                         progress_wheel.stopSpinning()
-                        Timber.d("getNewProductRateList error ${error.message}")
+                        //Timber.d("getNewProductRateList error ${error.message}")
                         getOrderHistoryList()
                     })
             )
@@ -6682,7 +6690,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     private fun getOrderHistoryList(){
         var ordHisL = AppDatabase.getDBInstance()!!.newOrderDataDao().getAllOrder() as java.util.ArrayList<NewOrderDataEntity>
         if(Pref.ShowPartyWithCreateOrder && ordHisL.size==0 && Pref.ShowUserwisePartyWithCreateOrder){
-            Timber.d("getOrderHistoryList call")
+            //Timber.d("getOrderHistoryList call")
             progress_wheel.spin()
             val repository = ProductListRepoProvider.productListProvider()
             BaseActivity.compositeDisposable.add(
@@ -6691,10 +6699,10 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val response = result as GetOrderHistory
-                        Timber.d("getOrderHistoryList response ${response.status}")
+                        //Timber.d("getOrderHistoryList response ${response.status}")
                         if (response.status == NetworkConstant.SUCCESS) {
                             doAsync {
-                                Timber.d("getOrderHistoryList data save begin ${AppUtils.getCurrentDateTime()}")
+                                //Timber.d("getOrderHistoryList data save begin ${AppUtils.getCurrentDateTime()}")
                                 var order_list = response.order_list
                                 for(i in 0..order_list.size-1){
                                     var obj = NewOrderDataEntity()
@@ -6730,7 +6738,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                                 }
                                 uiThread {
-                                    Timber.d("getOrderHistoryList data save end ${AppUtils.getCurrentDateTime()}")
+                                    //Timber.d("getOrderHistoryList data save end ${AppUtils.getCurrentDateTime()}")
                                     progress_wheel.stopSpinning()
                                     changeUI()
                                 }
@@ -6741,12 +6749,12 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }
                     }, { error ->
                         progress_wheel.stopSpinning()
-                        Timber.d("getOrderHistoryList error ${error.message}")
+                        //Timber.d("getOrderHistoryList error ${error.message}")
                         changeUI()
                     })
             )
         }else{
-            Timber.d("getOrderHistoryList call bypass")
+            //Timber.d("getOrderHistoryList call bypass")
             changeUI()
         }
     }
@@ -6755,7 +6763,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     @SuppressLint("RestrictedApi")
     private fun changeUI() {
-        Timber.d("api_call_dash  changeUI()")
+        //Timber.d("api_call_dash  changeUI()")
         tv_shop.text = Pref.shopText + "(s)"
 
         if (Pref.willShowUpdateDayPlan)
@@ -7131,11 +7139,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         singleLocation()
                     }
                 } else {
-                    Timber.d("=====Inaccurate current location (Local Shop List)=====")
+                    //Timber.d("=====Inaccurate current location (Local Shop List)=====")
                     singleLocation()
                 }
             } else {
-                Timber.d("=====null location (Local Shop List)======")
+                //Timber.d("=====null location (Local Shop List)======")
                 singleLocation()
             }
         } else
@@ -7362,13 +7370,13 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         }
 
         if (finalNearByDD.dd_id != null && finalNearByDD.dd_id!!.length > 1) {
-            Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby dd found")
+            //Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby dd found")
             startDay(finalNearByShop, finalNearByDD, location, false)
         } else if (finalNearByShop.shop_id != null && finalNearByShop.shop_id!!.length > 1) {
-            Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby shop found")
+            //Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby shop found")
             startDay(finalNearByShop, finalNearByDD, location, true)
         } else {
-            Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"no nearby shop/dd "+"user lat: "+location.latitude.toString()+" long :"+location.longitude)
+            //Timber.d("DAYSTART" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"no nearby shop/dd "+"user lat: "+location.latitude.toString()+" long :"+location.longitude)
 
             progress_wheel.stopSpinning()
             // 27-08-21 For ITC
@@ -7435,7 +7443,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("DashboardFragment DayStart : RESPONSE " + result.status)
+                                //Timber.d("DashboardFragment DayStart : RESPONSE " + result.status)
                                 val response = result as BaseResponse
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     //(mContext as DashboardActivity).showSnackMessage("Thanks! Updated Successfully.")
@@ -7444,9 +7452,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 }
                             }, { error ->
                                 if (error == null) {
-                                    Timber.d("DashboardFragment DayStart : ERROR " + "UNEXPECTED ERROR IN DayStart API")
+                                    //Timber.d("DashboardFragment DayStart : ERROR " + "UNEXPECTED ERROR IN DayStart API")
                                 } else {
-                                    Timber.d("DashboardFragment DayStart : ERROR " + error.localizedMessage)
+                                    //Timber.d("DashboardFragment DayStart : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                                 progress_wheel.stopSpinning()
@@ -7474,11 +7482,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         singleLocationEnd()
                     }
                 } else {
-                    Timber.d("=====Inaccurate current location (Local Shop List)=====")
+                    //Timber.d("=====Inaccurate current location (Local Shop List)=====")
                     singleLocationEnd()
                 }
             } else {
-                Timber.d("=====null location (Local Shop List)======")
+                //Timber.d("=====null location (Local Shop List)======")
                 singleLocationEnd()
             }
         } else
@@ -7712,13 +7720,13 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         //finalNearByDD=newDDList[5]
 
         if (finalNearByDD.dd_id != null && finalNearByDD.dd_id!!.length > 1) {
-            Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby dd found")
+            //Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby dd found")
             endDay(finalNearByShop, finalNearByDD, location, false)
         } else if (finalNearByShop.shop_id != null && finalNearByShop.shop_id!!.length > 1) {
-            Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby shop found")
+            //Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"nearby shop found")
             endDay(finalNearByShop, finalNearByDD, location, true)
         } else {
-            Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"no nearby shop/dd "+"user lat: "+location.latitude.toString()+" long :"+location.longitude)
+            //Timber.d("DAYEND" + " , " + " Time :" + AppUtils.getCurrentDateTime()+"no nearby shop/dd "+"user lat: "+location.latitude.toString()+" long :"+location.longitude)
             progress_wheel.stopSpinning()
             // 27-08-21 For ITC
             val simpleDialog = Dialog(mContext)
@@ -7822,7 +7830,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.io())
                                     .subscribe({ result ->
-                                        Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
+                                        //Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
                                         val response = result as BaseResponse
                                         if (response.status == NetworkConstant.SUCCESS) {
                                             //(mContext as DashboardActivity).showSnackMessage("Thanks! Updated Successfully.")
@@ -7831,9 +7839,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                         }
                                     }, { error ->
                                         if (error == null) {
-                                            Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
+                                            //Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
                                         } else {
-                                            Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
+                                            //Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
                                             error.printStackTrace()
                                         }
                                         progress_wheel.stopSpinning()
@@ -7868,7 +7876,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("DashboardFragment isStartOrEndDay : RESPONSE " + result.status + " " + AppUtils.getCurrentDateTime())
+                                //Timber.d("DashboardFragment isStartOrEndDay : RESPONSE " + result.status + " " + AppUtils.getCurrentDateTime())
                                 val response = result as StatusDayStartEnd
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     doAsync {
@@ -7958,9 +7966,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 }
                             }, { error ->
                                 if (error == null) {
-                                    Timber.d("DashboardFragment isStartOrEndDay : ERROR " + "UNEXPECTED ERROR IN DayStartEnd API")
+                                    //Timber.d("DashboardFragment isStartOrEndDay : ERROR " + "UNEXPECTED ERROR IN DayStartEnd API")
                                 } else {
-                                    Timber.d("DashboardFragment isStartOrEndDay : ERROR " + error.localizedMessage)
+                                    //Timber.d("DashboardFragment isStartOrEndDay : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                                 progress_wheel.stopSpinning()
@@ -7976,7 +7984,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
     }
 
     private fun callShopActivityApiForActivityCheck() {
-        Timber.d("DashboardFragment callShopActivityApiForActivityCheck started " + AppUtils.getCurrentDateTime())
+        //Timber.d("DashboardFragment callShopActivityApiForActivityCheck started " + AppUtils.getCurrentDateTime())
         dialogHeaderProcess.text = "Syncing Important Data. Please wait..."
         val dialogYes = simpleDialogProcess.findViewById(R.id.tv_message_ok) as AppCustomTextView
         val progD = simpleDialogProcess.findViewById(R.id.progress_wheel_progress) as ProgressWheel
@@ -7998,7 +8006,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                 .subscribe({ result ->
                     var shopActityResponse = result as ShopActivityResponse
                     //simpleDialogProcess.dismiss()
-                    Timber.d("DashboardFragment callShopActivityApiForActivityCheck response ${shopActityResponse.status}" + AppUtils.getCurrentDateTime())
+                    //Timber.d("DashboardFragment callShopActivityApiForActivityCheck response ${shopActityResponse.status}" + AppUtils.getCurrentDateTime())
                     if (shopActityResponse.status == "200") {
                         if(shopActityResponse.date_list!!.size>0){
                             var actiList = shopActityResponse.date_list as ArrayList<ShopActivityResponseDataList>
@@ -8014,7 +8022,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         endShopDuration()
                     }
                 }, { error ->
-                    Timber.d("DashboardFragment callShopActivityApiForActivityCheck error" + AppUtils.getCurrentDateTime())
+                    //Timber.d("DashboardFragment callShopActivityApiForActivityCheck error" + AppUtils.getCurrentDateTime())
                     simpleDialogProcess.dismiss()
                     error.printStackTrace()
                     endShopDuration()
@@ -8034,7 +8042,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                 }
             }
 
-            Timber.d("updateActivityGarbage DashFrag started " + AppUtils.getCurrentDateTime())
+            //Timber.d("updateActivityGarbage DashFrag started " + AppUtils.getCurrentDateTime())
             for(i in 0..listUnsync.size-1){
                 var shopListRoom = AppDatabase.getDBInstance()!!.shopActivityDao().getAllShopActivityByDate(listUnsync.get(i)!!.date!!.toString()) as ArrayList<String>
                 var shopListApi : ArrayList<String> = listUnsync.get(i)?.shop_list!!.map { it.shopid } as ArrayList<String>
@@ -8042,7 +8050,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     var unsyncedList: List<String> = shopListRoom - shopListApi
                     for(j in 0..unsyncedList.size-1){
                         try{
-                            Timber.d("updateActivityGarbage DashFrag marked unsync for  ${unsyncedList.get(j)} " + AppUtils.getCurrentDateTime())
+                            //Timber.d("updateActivityGarbage DashFrag marked unsync for  ${unsyncedList.get(j)} " + AppUtils.getCurrentDateTime())
                         }catch (ex:Exception){
                             ex.printStackTrace()
                         }
@@ -8058,7 +8066,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             uiThread {
                 //simpleDialogProcess.dismiss()
                 //callShopDurationApiNew()
-                Timber.d("DashboardFragment updateActivityGarbage success calling endShopDuration " + AppUtils.getCurrentDateTime())
+                //Timber.d("DashboardFragment updateActivityGarbage success calling endShopDuration " + AppUtils.getCurrentDateTime())
                 endShopDuration()
             }
         }
@@ -8270,7 +8278,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             newFile = processImage.ProcessImageSelfie()
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     val fileSize = AppUtils.getCompressImage(filePath)
                     setCameraImage(filePath)
                 } else {
@@ -8294,11 +8302,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         singleLocationDD()
                     }
                 } else {
-                    Timber.d("=====Inaccurate current location (Local Shop List)=====")
+                    //Timber.d("=====Inaccurate current location (Local Shop List)=====")
                     singleLocationDD()
                 }
             } else {
-                Timber.d("=====null location (Local Shop List)======")
+                //Timber.d("=====null location (Local Shop List)======")
                 singleLocationDD()
             }
         } else
@@ -8495,7 +8503,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.io())
                                     .subscribe({ result ->
-                                        Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
+                                        //Timber.d("DashboardFragment DayEnd : RESPONSE " + result.status)
                                         val response = result as BaseResponse
                                         if (response.status == NetworkConstant.SUCCESS) {
                                             (mContext as DashboardActivity).showSnackMessage("Thanks! Updated Successfully.")
@@ -8503,9 +8511,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                         }
                                     }, { error ->
                                         if (error == null) {
-                                            Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
+                                            //Timber.d("DashboardFragment DayEnd : ERROR " + "UNEXPECTED ERROR IN DayStart API")
                                         } else {
-                                            Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
+                                            //Timber.d("DashboardFragment DayEnd : ERROR " + error.localizedMessage)
                                             error.printStackTrace()
                                         }
                                         progress_wheel.stopSpinning()
@@ -8587,17 +8595,17 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 println("reg_face - GetImageFromUrl called"+AppUtils.getCurrentDateTime());
                                 GetImageFromUrl().execute(CustomStatic.FaceUrl)
 
-                                Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
+                                //Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
                             }else{
                                 BaseActivity.isApiInitiated = false
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_reg_face))
                                 progress_wheel.stopSpinning()
-                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
+                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
                             }
                         },{
                             error ->
                             if (error != null) {
-                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
                             }
                             BaseActivity.isApiInitiated = false
                         })
@@ -8814,7 +8822,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             // updateResults(currTimestamp, mappedRecognitions);
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.d("onfacedetected error ${e.printStackTrace()}")
+            //Timber.d("onfacedetected error ${e.printStackTrace()}")
         }
     }
 
@@ -9147,7 +9155,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
     private fun revisitShop() {
 
-        Timber.e("revisitShop started")
+        //Timber.e("revisitShop started")
         try {
             val shopActivityEntity = AppDatabase.getDBInstance()!!.shopActivityDao()
                 .getShopForDay(shop_id, AppUtils.getCurrentDateForShopActi())
@@ -9181,7 +9189,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                 var distance = 0.0
                 var address = ""
-                Timber.e("======New Distance (At auto revisit time)=========")
+                //Timber.e("======New Distance (At auto revisit time)=========")
 
                 val shop = AppDatabase.getDBInstance()!!.addShopEntryDao().getShopDetail(shop_id)
                 address = if (!TextUtils.isEmpty(shop.actual_address))
@@ -9195,7 +9203,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                 if (Pref.isOnLeave.equals("false", ignoreCase = true)) {
 
-                    Timber.e("=====User is at work (At auto revisit time)=======")
+                    //Timber.e("=====User is at work (At auto revisit time)=======")
 
                     val locationList = AppDatabase.getDBInstance()!!.userLocationDataDao()
                         .getLocationUpdateForADay(AppUtils.getCurrentDateForShopActi())
@@ -9218,11 +9226,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     }
                     val finalDistance = (Pref.tempDistance.toDouble() + loc_distance).toString()
 
-                    Timber.e("===Distance (At auto shop revisit time)===")
-                    Timber.e("Temp Distance====> " + Pref.tempDistance)
-                    Timber.e("Normal Distance====> $loc_distance")
-                    Timber.e("Total Distance====> $finalDistance")
-                    Timber.e("===========================================")
+                    //Timber.e("===Distance (At auto shop revisit time)===")
+                    //Timber.e("Temp Distance====> " + Pref.tempDistance)
+                    //Timber.e("Normal Distance====> $loc_distance")
+                    //Timber.e("Total Distance====> $finalDistance")
+                    //Timber.e("===========================================")
 
                     userlocation.distance = finalDistance
                     userlocation.locationName = LocationWizard.getNewLocationName(
@@ -9262,7 +9270,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
 
                     AppDatabase.getDBInstance()!!.userLocationDataDao().insertAll(userlocation)
 
-                    Timber.e("=====Shop auto revisit data added=======")
+                    //Timber.e("=====Shop auto revisit data added=======")
 
                     Pref.totalS2SDistance =
                         (Pref.totalS2SDistance.toDouble() + userlocation.distance.toDouble()).toString()
@@ -9271,11 +9279,11 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     Pref.totalS2SDistance = "0.0"
                     Pref.tempDistance = "0.0"
                 } else {
-                    Timber.e("=====User is on leave (At auto revisit time)=======")
+                    //Timber.e("=====User is on leave (At auto revisit time)=======")
                     distance = 0.0
                 }
 
-                Timber.e("shop to shop distance (At auto revisit time)=====> $distance")
+                //Timber.e("shop to shop distance (At auto revisit time)=====> $distance")
 
                 mShopActivityEntity.distance_travelled = distance.toString()
                 mShopActivityEntity.in_time = AppUtils.getCurrentTimeWithMeredian()
@@ -9422,7 +9430,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
             val intent = Intent()
             intent.action = "AUTO_REVISIT_BROADCAST"
             LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent)
-            Timber.e("revisitShop ended")
+            //Timber.e("revisitShop ended")
         } catch (e: Exception) {
             e.printStackTrace()
             progress_wheel.stopSpinning()
@@ -9492,9 +9500,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         }
                     }, { error ->
                         if (error == null) {
-                            Timber.d("App Info : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
+                            //Timber.d("App Info : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
                         } else {
-                            Timber.d("App Info : ERROR : " + error.localizedMessage)
+                            //Timber.d("App Info : ERROR : " + error.localizedMessage)
                             error.printStackTrace()
                         }
                         progress_wheel.stopSpinning()
@@ -9645,10 +9653,10 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
         }
         val index = addShop.shop_id!!.indexOf("_")
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -9658,7 +9666,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                         when (addShopResult.status) {
                             NetworkConstant.SUCCESS -> {
@@ -9667,7 +9675,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 syncShopListOnebyOne()
                             }
                             NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                Timber.d("DuplicateShop : BaseActivity " + ", SHOP: " + addShop.shop_name)
+                                //Timber.d("DuplicateShop : BaseActivity " + ", SHOP: " + addShop.shop_name)
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
 
@@ -9690,8 +9698,8 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         error.printStackTrace()
                         (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                         syncShopListOnebyOne()
-                        if (error != null)
-                            Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                        if (error != null){}
+                            //Timber.d("syncShopFromShopList : BaseActivity " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                     })
             )
         }
@@ -9703,7 +9711,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
 
                         when (addShopResult.status) {
                             NetworkConstant.SUCCESS -> {
@@ -9717,7 +9725,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                 }
                             }
                             NetworkConstant.DUPLICATE_SHOP_ID -> {
-                                Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                 AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
                                 if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
@@ -9739,15 +9747,15 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                         error.printStackTrace()
                         (this as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                         syncShopListOnebyOne()
-                        if (error != null)
-                            Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                        if (error != null){}
+                            //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                     })
             )
         }
     }
 
     private fun callShopDurationApi() {
-        Timber.e("visit_tag : callShopDurationApi")
+        //Timber.e("visit_tag : callShopDurationApi")
         //dialogHeaderProcess.text = "Syncing Important Data. Please wait..."
         //val dialogYes = simpleDialogProcess.findViewById(R.id.tv_message_ok) as AppCustomTextView
         //simpleDialogProcess.show()
@@ -9893,28 +9901,28 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             }
 
                             try{
-                                Timber.d("====SYNC VISITED SHOP DATA (Dashboard)====")
-                                Timber.d("SHOP ID======> " + shopDurationData!!.shop_id)
-                                Timber.d("SPENT DURATION======> " + shopDurationData!!.spent_duration)
-                                Timber.d("VISIT DATE=========> " + shopDurationData?.visited_date)
-                                Timber.d("VISIT DATE TIME==========> " + shopDurationData?.visited_date)
-                                Timber.d("TOTAL VISIT COUNT========> " + shopDurationData?.total_visit_count)
-                                Timber.d("DISTANCE TRAVELLED========> " + shopDurationData?.distance_travelled)
-                                Timber.d("FEEDBACK========> " + shopDurationData?.feedback)
-                                Timber.d("isFirstShopVisited========> " + shopDurationData?.isFirstShopVisited)
-                                Timber.d("distanceFromHomeLoc========> " + shopDurationData?.distanceFromHomeLoc)
-                                Timber.d("next_visit_date========> " + shopDurationData?.next_visit_date)
-                                Timber.d("device_model========> " + shopDurationData?.device_model)
-                                Timber.d("android_version========> " + shopDurationData?.android_version)
-                                Timber.d("battery========> " + shopDurationData?.battery)
-                                Timber.d("net_status========> " + shopDurationData?.net_status)
-                                Timber.d("net_type========> " + shopDurationData?.net_type)
-                                Timber.d("in_time========> " + shopDurationData?.in_time)
-                                Timber.d("out_time========> " + shopDurationData?.out_time)
-                                Timber.d("start_timestamp========> " + shopDurationData?.start_timestamp)
-                                Timber.d("in_location========> " + shopDurationData?.in_location)
-                                Timber.d("out_location========> " + shopDurationData?.out_location)
-                                Timber.d("========================================================")
+                                //Timber.d("====SYNC VISITED SHOP DATA (Dashboard)====")
+                                //Timber.d("SHOP ID======> " + shopDurationData!!.shop_id)
+                                //Timber.d("SPENT DURATION======> " + shopDurationData!!.spent_duration)
+                                //Timber.d("VISIT DATE=========> " + shopDurationData?.visited_date)
+                                //Timber.d("VISIT DATE TIME==========> " + shopDurationData?.visited_date)
+                                //Timber.d("TOTAL VISIT COUNT========> " + shopDurationData?.total_visit_count)
+                                //Timber.d("DISTANCE TRAVELLED========> " + shopDurationData?.distance_travelled)
+                                //Timber.d("FEEDBACK========> " + shopDurationData?.feedback)
+                                //Timber.d("isFirstShopVisited========> " + shopDurationData?.isFirstShopVisited)
+                                //Timber.d("distanceFromHomeLoc========> " + shopDurationData?.distanceFromHomeLoc)
+                                //Timber.d("next_visit_date========> " + shopDurationData?.next_visit_date)
+                                //Timber.d("device_model========> " + shopDurationData?.device_model)
+                                //Timber.d("android_version========> " + shopDurationData?.android_version)
+                                //Timber.d("battery========> " + shopDurationData?.battery)
+                                //Timber.d("net_status========> " + shopDurationData?.net_status)
+                                //Timber.d("net_type========> " + shopDurationData?.net_type)
+                                //Timber.d("in_time========> " + shopDurationData?.in_time)
+                                //Timber.d("out_time========> " + shopDurationData?.out_time)
+                                //Timber.d("start_timestamp========> " + shopDurationData?.start_timestamp)
+                                //Timber.d("in_location========> " + shopDurationData?.in_location)
+                                //Timber.d("out_location========> " + shopDurationData?.out_location)
+                                //Timber.d("========================================================")
                             }catch (ex:Exception){
 
                             }
@@ -10036,21 +10044,21 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                             shopDurationApiReq.user_id = Pref.user_id
                             shopDurationApiReq.session_token = Pref.session_token
                             if (newShopList.size > 0) {
-                                Timber.e("Unique ShopData List size===> " + newShopList.size)
+                                //Timber.e("Unique ShopData List size===> " + newShopList.size)
                                 shopDurationApiReq.shop_list = newShopList
                             } else
                                 shopDurationApiReq.shop_list = shopDataList
 
                             val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
 
-                            Timber.d("callShopDurationApi : REQUEST")
+                            //Timber.d("callShopDurationApi : REQUEST")
 
                             BaseActivity.compositeDisposable.add(
                                 repository.shopDuration(shopDurationApiReq)
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.io())
                                     .subscribe({ result ->
-                                        Timber.d("callShopDurationApi : RESPONSE " + result.status)
+                                        //Timber.d("callShopDurationApi : RESPONSE " + result.status)
                                         if (result.status == NetworkConstant.SUCCESS) {
 
                                             if(!revisitStatusList.isEmpty()){
@@ -10098,9 +10106,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                                             (mContext as DashboardActivity).loadFragment(FragType.LogoutSyncFragment, false, "")
                                         }
                                         if (error == null) {
-                                            Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                                            //Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                                         } else {
-                                            Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
+                                            //Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
                                             error.printStackTrace()
                                         }
                                     })
@@ -10124,7 +10132,7 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
-                    Timber.d("callRevisitStatusUploadApi : RESPONSE " + result.status)
+                    //Timber.d("callRevisitStatusUploadApi : RESPONSE " + result.status)
                     if (result.status == NetworkConstant.SUCCESS){
                         for(i in revisitStatusList.indices){
                             AppDatabase.getDBInstance()?.shopVisitOrderStatusRemarksDao()!!.updateOrderStatus(revisitStatusList[i]!!.shop_revisit_uniqKey!!)
@@ -10132,9 +10140,9 @@ class DashboardFragment : BaseFragment(), View.OnClickListener/*, HBRecorderList
                     }
                 },{error ->
                     if (error == null) {
-                        Timber.d("callRevisitStatusUploadApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                        //Timber.d("callRevisitStatusUploadApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                     } else {
-                        Timber.d("callRevisitStatusUploadApi : ERROR " + error.localizedMessage)
+                        //Timber.d("callRevisitStatusUploadApi : ERROR " + error.localizedMessage)
                         error.printStackTrace()
                     }
                 })

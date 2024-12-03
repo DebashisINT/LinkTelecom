@@ -227,13 +227,13 @@ class ReimbursementListFragment : BaseFragment(), View.OnClickListener {
         XLog.d("year===> " + tv_year.text.toString().trim())
         XLog.d("visit id===> $visitId")
         XLog.d("========================================")*/
-        Timber.d("====ReimbursementList Input params======")
-        Timber.d("user id===> " + Pref.user_id!!)
-        Timber.d("session token===> " + Pref.session_token!!)
-        Timber.d("month===> " + AppUtils.getMonthValue(month))
-        Timber.d("year===> " + tv_year.text.toString().trim())
-        Timber.d("visit id===> $visitId")
-        Timber.d("========================================")
+        //Timber.d("====ReimbursementList Input params======")
+        //Timber.d("user id===> " + Pref.user_id!!)
+        //Timber.d("session token===> " + Pref.session_token!!)
+        //Timber.d("month===> " + AppUtils.getMonthValue(month))
+        //Timber.d("year===> " + tv_year.text.toString().trim())
+        //Timber.d("visit id===> $visitId")
+        //Timber.d("========================================")
 
         val repository = ReimbursementListRepoProvider.getReimbursementListRepository()
         progress_wheel.spin()
@@ -245,7 +245,7 @@ class ReimbursementListFragment : BaseFragment(), View.OnClickListener {
 
                             val reimbursementResponse = result as ReimbursementListResponseModel
 //                            XLog.d("ReimbursementList Api Response : " + "\n" + "Status=====> " + reimbursementResponse.status + ", Message====> " + reimbursementResponse.message)
-                            Timber.d("ReimbursementList Api Response : " + "\n" + "Status=====> " + reimbursementResponse.status + ", Message====> " + reimbursementResponse.message)
+                            //Timber.d("ReimbursementList Api Response : " + "\n" + "Status=====> " + reimbursementResponse.status + ", Message====> " + reimbursementResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (reimbursementResponse.status == NetworkConstant.SUCCESS) {
@@ -302,7 +302,7 @@ class ReimbursementListFragment : BaseFragment(), View.OnClickListener {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("ReimbursementList Api ERROR: " + error.localizedMessage)
-                            Timber.d("ReimbursementList Api ERROR: " + error.localizedMessage)
+                            //Timber.d("ReimbursementList Api ERROR: " + error.localizedMessage)
                             rv_expense_list.visibility = View.GONE
                             //tv_no_data.visibility = View.VISIBLE
                             tv_no_ta.visibility = View.VISIBLE
@@ -552,7 +552,7 @@ class ReimbursementListFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             val configResponse = result as BaseResponse
 //                            XLog.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
-                            Timber.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -564,7 +564,7 @@ class ReimbursementListFragment : BaseFragment(), View.OnClickListener {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
-                            Timber.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

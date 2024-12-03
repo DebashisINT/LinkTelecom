@@ -104,6 +104,7 @@ import com.breezelinktelecom.features.addshop.model.assigntopplist.AddShopUpload
 import com.breezelinktelecom.features.addshop.presentation.ShopExtraContactReq
 import com.breezelinktelecom.features.addshop.presentation.multiContactRequestData
 import com.breezelinktelecom.features.contacts.CallHisDtls
+import com.breezelinktelecom.features.contacts.LoanDtlsResponse
 import com.breezelinktelecom.features.dashboard.presentation.model.AudioSyncModel
 import com.breezelinktelecom.features.location.LocationFuzedService
 import com.breezelinktelecom.features.login.api.LoginRepositoryProvider
@@ -442,7 +443,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.io())
                                     .subscribe({ result ->
-                                        Timber.d("Stock/AddCurrentStock : RESPONSE " + result.status)
+                                        //Timber.d("Stock/AddCurrentStock : RESPONSE " + result.status)
                                         if (result.status == NetworkConstant.SUCCESS){
                                             AppDatabase.getDBInstance()?.shopCurrentStockEntryDao()!!.syncShopStocktable(currentStock.stock_id.toString())
                                             AppDatabase.getDBInstance()?.shopCurrentStockProductsEntryDao()!!.syncShopProductsStock(currentStock?.stock_id.toString())
@@ -453,9 +454,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                         }
                                     },{error ->
                                         if (error == null) {
-                                            Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+                                            //Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
                                         } else {
-                                            Timber.d("Stock/AddCurrentStock : ERROR " + error.localizedMessage)
+                                            //Timber.d("Stock/AddCurrentStock : ERROR " + error.localizedMessage)
                                             error.printStackTrace()
                                         }
                                         callShopCompetetorProductStockApi()
@@ -469,7 +470,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_internet))
             }
         }catch (ex:Exception){
-            Timber.d("LogoutSync : Stock/AddCurrentStock : ERROR " )
+            //Timber.d("LogoutSync : Stock/AddCurrentStock : ERROR " )
         callShopCompetetorProductStockApi()
         }
 
@@ -509,7 +510,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribeOn(Schedulers.io())
                                     .subscribe({ result ->
-                                        Timber.d("CompetitorStock/AddCompetitorStock : RESPONSE " + result.status)
+                                        //Timber.d("CompetitorStock/AddCompetitorStock : RESPONSE " + result.status)
                                         if (result.status == NetworkConstant.SUCCESS){
                                             AppDatabase.getDBInstance()?.competetorStockEntryDao()?.syncShopCompStocktable(currentStock?.competitor_stock_id.toString())
                                             AppDatabase.getDBInstance()?.competetorStockEntryProductDao()?.syncShopCompProductable(currentStock?.competitor_stock_id.toString())
@@ -520,9 +521,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                         }
                                     },{error ->
                                         if (error == null) {
-                                            Timber.d("CompetitorStock/AddCompetitorStock : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+                                            //Timber.d("CompetitorStock/AddCompetitorStock : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
                                         } else {
-                                            Timber.d("CompetitorStock/AddCompetitorStock : ERROR " + error.localizedMessage)
+                                            //Timber.d("CompetitorStock/AddCompetitorStock : ERROR " + error.localizedMessage)
                                             error.printStackTrace()
                                         }
                                         //checkToCallActivity()
@@ -629,7 +630,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
-                                    Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : RESPONSE " + result.status)
+                                    //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS){
 
                                         doAsync {
@@ -644,9 +645,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
                                 },{error ->
                                     if (error == null) {
-                                        Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " )
+                                        //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " )
                                     } else {
-                                        Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " + error.localizedMessage)
+                                        //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                     //checkToCallActivity()
@@ -683,7 +684,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
-                                    Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : RESPONSE " + result.status)
+                                    //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS){
 
                                         doAsync {
@@ -699,9 +700,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
                                 },{error ->
                                     if (error == null) {
-                                        Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " )
+                                        //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " )
                                     } else {
-                                        Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " + error.localizedMessage)
+                                        //Timber.d("NewOrderScrCartFrag OrderWithProductAttribute/OrderWithProductAttribute : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                     checkToCallActivity()
@@ -725,13 +726,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
     //8-12-2021
     private fun syncQuesSubmit(){
         try{
-            Timber.d("tag_logout_ques syncQuesSubmit")
+            //Timber.d("tag_logout_ques syncQuesSubmit")
             var questionSubmit : AddQuestionSubmitRequestData = AddQuestionSubmitRequestData()
 
             var uniqUnsyncShopID=AppDatabase.getDBInstance()?.questionSubmitDao()?.getUnSyncUniqShopID(false)
 
             if(uniqUnsyncShopID != null && uniqUnsyncShopID.isNotEmpty() && uniqUnsyncShopID.size!=0){
-                Timber.d("tag_logout_ques syncQuesSubmit if")
+                //Timber.d("tag_logout_ques syncQuesSubmit if")
                 questionSubmit.user_id=Pref.user_id
                 questionSubmit.session_token=Pref.session_token
                 questionSubmit.shop_id=uniqUnsyncShopID?.get(0)
@@ -746,7 +747,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
                                     val questionSubmitResponse= result as BaseResponse
-                                    Timber.d("QuestionSubmit : RESPONSE " + result.status)
+                                    //Timber.d("QuestionSubmit : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS){
 
                                         doAsync {
@@ -758,9 +759,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
                                 },{error ->
                                     if (error == null) {
-                                        Timber.d("QuestionSubmit : ERROR " )
+                                        //Timber.d("QuestionSubmit : ERROR " )
                                     } else {
-                                        Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
+                                        //Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                     syncUpdatedQuesSubmit()
@@ -768,13 +769,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 })
                 )
             }else{
-                Timber.d("tag_logout_ques syncQuesSubmit else")
+                //Timber.d("tag_logout_ques syncQuesSubmit else")
                 syncUpdatedQuesSubmit()
 //                checkToCallActivity()
             }
         }catch (ex:Exception){
-            Timber.d("QuestionSubmit : ERROR " + ex.toString())
-            Timber.d("tag_logout_ques syncQuesSubmit ex")
+            //Timber.d("QuestionSubmit : ERROR " + ex.toString())
+            //Timber.d("tag_logout_ques syncQuesSubmit ex")
             ex.printStackTrace()
             syncUpdatedQuesSubmit()
 //            checkToCallActivity()
@@ -787,9 +788,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             var questionSubmit : AddQuestionSubmitRequestData = AddQuestionSubmitRequestData()
 
             var uniqUnsyncShopID=AppDatabase.getDBInstance()?.questionSubmitDao()?.getUnSyncUpdatedUniqShopID(false)
-            Timber.d("tag_logout_ques syncUpdatedQuesSubmit")
+            //Timber.d("tag_logout_ques syncUpdatedQuesSubmit")
             if(uniqUnsyncShopID != null && uniqUnsyncShopID.isNotEmpty() && uniqUnsyncShopID.size!=0){
-                Timber.d("tag_logout_ques syncUpdatedQuesSubmit if")
+                //Timber.d("tag_logout_ques syncUpdatedQuesSubmit if")
                 questionSubmit.user_id=Pref.user_id
                 questionSubmit.session_token=Pref.session_token
                 questionSubmit.shop_id=uniqUnsyncShopID?.get(0)
@@ -804,7 +805,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
                                     val questionSubmitResponse= result as BaseResponse
-                                    Timber.d("QuestionSubmit : RESPONSE " + result.status)
+                                    //Timber.d("QuestionSubmit : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS){
 
                                         doAsync {
@@ -816,9 +817,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
                                 },{error ->
                                     if (error == null) {
-                                        Timber.d("QuestionSubmit : ERROR " )
+                                        //Timber.d("QuestionSubmit : ERROR " )
                                     } else {
-                                        Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
+                                        //Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                     addShopSeconaryUploadImg()
@@ -826,13 +827,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 })
                 )
             }else{
-                Timber.d("tag_logout_ques syncUpdatedQuesSubmit else")
+                //Timber.d("tag_logout_ques syncUpdatedQuesSubmit else")
                 addShopSeconaryUploadImg()
 //                checkToCallActivity()
             }
         }catch (ex:Exception){
-            Timber.d("QuestionSubmit : ERROR " + ex.toString())
-            Timber.d("tag_logout_ques syncUpdatedQuesSubmit ex")
+            //Timber.d("QuestionSubmit : ERROR " + ex.toString())
+            //Timber.d("tag_logout_ques syncUpdatedQuesSubmit ex")
             ex.printStackTrace()
             addShopSeconaryUploadImg()
 //            checkToCallActivity()
@@ -844,12 +845,12 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
     private fun addShopSeconaryUploadImg() {
 
         println("sec-image addShopSeconaryUploadImg")
-        Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1")
+        //Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1")
         var objCompetetor: AddShopUploadImg = AddShopUploadImg()
         var secondaryImgShopID=AppDatabase.getDBInstance()?.addShopSecondaryImgDao()!!.getUnsnycShopImage1(false) as ArrayList<SecondaryShopImg1>
 
         if(secondaryImgShopID != null && secondaryImgShopID.isNotEmpty() && secondaryImgShopID.size!=0){
-            Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1 if")
+            //Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1 if")
             var shopId=secondaryImgShopID.get(0).lead_shop_id
             var imagePathupload=secondaryImgShopID.get(0).rubylead_image1
 
@@ -868,22 +869,22 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopSecondaryImgDao().updateisUploaded1(true, shopId)
                                     addShopSeconaryUploadImg()
-                                    Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Success: ")
+                                    //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Success: ")
                                 } else {
-                                    Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Failed: ")
+                                    //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Failed: ")
                                     checkToCallActivity()
                                 }
                             }, { error ->
                                 println("sec-image addShopSeconaryUploadImg error")
                                 if (error != null) {
-                                    Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                                    //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                                 }
                                 checkToCallActivity()
                             })
             )
 
         }else{
-            Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1 else")
+            //Timber.d("tag_logout_ques syncUpdatedQuesSubmit SecondaryShopImg1 else")
             addShopSeconaryUploadImg2()
         }
 
@@ -914,9 +915,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopSecondaryImgDao().updateisUploaded2(true, shopId)
                                     addShopSeconaryUploadImg2()
-                                    Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Success: ")
+                                    //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Success: ")
                                 } else {
-                                    Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Failed: ")
+                                    //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Failed: ")
                                     /*call return*/
                                     callReturnApi()
 //                                    checkToCallActivity()
@@ -924,7 +925,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }, { error ->
                                 println("sec-image addShopSeconaryUploadImg2 error")
                                 if (error != null) {
-                                    Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                                    //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                                 }
                                 /*call return*/
                                 callReturnApi()
@@ -957,7 +958,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             error.printStackTrace()
                             //(mContext as DashboardActivity).showSnackMessage("Something went wrong.")
                             //(mContext as DashboardActivity).showSnackMessage("Order added successfully")
-                            Timber.d("LogoutSync OrderWithProductAttribute/updateSecondaryOrderApi : ERROR "+ error.toString())
+                            //Timber.d("LogoutSync OrderWithProductAttribute/updateSecondaryOrderApi : ERROR "+ error.toString())
                             syncNewOrderScr()
                         })
         )
@@ -970,7 +971,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     private fun checkToCallAddShopApi() {
 
-        Timber.d("logout check else ${Pref.IsAutoLogoutFromBatteryCheck} ${AppUtils.isOnline(mContext)}")
+        //Timber.d("logout check else ${Pref.IsAutoLogoutFromBatteryCheck} ${AppUtils.isOnline(mContext)}")
         stopAnimation(addCompetetorStockSyncImg)
         addCompetetorStockSyncImg.visibility=View.GONE
         addCompetetorStockTickImg.visibility=View.VISIBLE
@@ -1449,73 +1450,73 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
         progress_wheel.spin()
 
-        Timber.d("=======SyncShop Input Params (Logout sync)======")
-        Timber.d("shop id====> " + addShop.shop_id)
+        //Timber.d("=======SyncShop Input Params (Logout sync)======")
+        //Timber.d("shop id====> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id====> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date====> " + addShop.added_date)
-        Timber.d("shop address====> " + addShop.address)
-        Timber.d("assigned to dd id=====> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=====> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery====> " + addShop.date_aniversary)
-        Timber.d("dob====> " + addShop.dob)
-        Timber.d("shop owner phn no====> " + addShop.owner_contact_no)
-        Timber.d("shop owner email====> " + addShop.owner_email)
-        Timber.d("shop owner name====> " + addShop.owner_name)
-        Timber.d("shop pincode====> " + addShop.pin_code)
-        Timber.d("session token====> " + addShop.session_token)
-        Timber.d("shop lat====> " + addShop.shop_lat)
-        Timber.d("shop long====> " + addShop.shop_long)
-        Timber.d("shop name====> " + addShop.shop_name)
-        Timber.d("shop type====> " + addShop.type)
-        Timber.d("user id====> " + addShop.user_id)
-        Timber.d("amount=====> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id====> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date====> " + addShop.added_date)
+        //Timber.d("shop address====> " + addShop.address)
+        //Timber.d("assigned to dd id=====> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=====> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery====> " + addShop.date_aniversary)
+        //Timber.d("dob====> " + addShop.dob)
+        //Timber.d("shop owner phn no====> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email====> " + addShop.owner_email)
+        //Timber.d("shop owner name====> " + addShop.owner_name)
+        //Timber.d("shop pincode====> " + addShop.pin_code)
+        //Timber.d("session token====> " + addShop.session_token)
+        //Timber.d("shop lat====> " + addShop.shop_lat)
+        //Timber.d("shop long====> " + addShop.shop_long)
+        //Timber.d("shop name====> " + addShop.shop_name)
+        //Timber.d("shop type====> " + addShop.type)
+        //Timber.d("user id====> " + addShop.user_id)
+        //Timber.d("amount=====> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path====> $shop_imgPath")
+            //Timber.d("shop image path====> $shop_imgPath")
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (degree_imgPath != null)
-            Timber.d("doctor degree image path=======> $degree_imgPath")
-        Timber.d("=================================================")
+            //Timber.d("doctor degree image path=======> $degree_imgPath")
+        //Timber.d("=================================================")
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(degree_imgPath)) {
             val repository = AddShopRepositoryProvider.provideAddShopWithoutImageRepository()
@@ -1525,7 +1526,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     if(AppUtils.isOnline(mContext)){
@@ -1555,7 +1556,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     progress_wheel.stopSpinning()
 
@@ -1614,8 +1615,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     checkToCallSyncEditShop()
                                 }
 
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + "ERROR: " + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + "ERROR: " + error.localizedMessage)
                             })
             )
         }
@@ -1627,7 +1628,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     if(AppUtils.isOnline(mContext)){
@@ -1657,7 +1658,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     }
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     progress_wheel.stopSpinning()
 
@@ -1716,8 +1717,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     checkToCallSyncEditShop()
                                 }
 
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + "ERROR: " + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + "ERROR: " + error.localizedMessage)
                             })
             )
         }
@@ -2002,7 +2003,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
-                            Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 if (!Pref.isMultipleVisitEnable) {
                                     if (list[0].isVisited && list[0].isDurationCalculated) {
@@ -2019,8 +2020,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             error.printStackTrace()
-                            if (error != null)
-                                Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + "ERROR:" + error.localizedMessage)
+                            if (error != null){}
+                                //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + "ERROR:" + error.localizedMessage)
 //                                (mContext as DashboardActivity).showSnackMessage("ERROR")
                         })
         )
@@ -2173,11 +2174,11 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             }else{
                 addShopData.isUpdateAddressFromShopMaster = false
             }
-            Timber.d("tag_update addr ${mAddShopDBModelEntity.isUpdateAddressFromShopMaster} ${addShopData.isUpdateAddressFromShopMaster}")
+            //Timber.d("tag_update addr ${mAddShopDBModelEntity.isUpdateAddressFromShopMaster} ${addShopData.isUpdateAddressFromShopMaster}")
         }catch (ex:Exception){
             ex.printStackTrace()
             addShopData.isUpdateAddressFromShopMaster = false
-            Timber.d("tag_update addr ex ${addShopData.isUpdateAddressFromShopMaster}")
+            //Timber.d("tag_update addr ex ${addShopData.isUpdateAddressFromShopMaster}")
         }
 
         // contact module
@@ -2199,75 +2200,75 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             addShopData.saved_from_status=  mAddShopDBModelEntity.crm_saved_from
         }catch (ex:Exception){
             ex.printStackTrace()
-            Timber.d("Logout edit sync err ${ex.message}")
+            //Timber.d("Logout edit sync err ${ex.message}")
         }
 
 
 
-        Timber.d("=====SyncEditShop Input Params (Logout sync)======")
-        Timber.d("shop id====> " + addShopData.shop_id)
+        //Timber.d("=====SyncEditShop Input Params (Logout sync)======")
+        //Timber.d("shop id====> " + addShopData.shop_id)
         val index = addShopData.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id====> " + addShopData.user_id + "_" + AppUtils.getDate(addShopData.shop_id!!.substring(index + 1, addShopData.shop_id!!.length).toLong()))
-        Timber.d("shop added date====> " + addShopData.added_date)
-        Timber.d("shop address====> " + addShopData.address)
-        Timber.d("assigned to dd id====> " + addShopData.assigned_to_dd_id)
-        Timber.d("assigned to pp id=====> " + addShopData.assigned_to_pp_id)
-        Timber.d("date aniversery=====> " + addShopData.date_aniversary)
-        Timber.d("dob====> " + addShopData.dob)
-        Timber.d("shop owner phn no===> " + addShopData.owner_contact_no)
-        Timber.d("shop owner email====> " + addShopData.owner_email)
-        Timber.d("shop owner name====> " + addShopData.owner_name)
-        Timber.d("shop pincode====> " + addShopData.pin_code)
-        Timber.d("session token====> " + addShopData.session_token)
-        Timber.d("shop lat====> " + addShopData.shop_lat)
-        Timber.d("shop long===> " + addShopData.shop_long)
-        Timber.d("shop name====> " + addShopData.shop_name)
-        Timber.d("shop type===> " + addShopData.type)
-        Timber.d("user id====> " + addShopData.user_id)
-        Timber.d("amount=======> " + addShopData.amount)
-        Timber.d("area id=======> " + addShopData.area_id)
-        Timber.d("model id=======> " + addShopData.model_id)
-        Timber.d("primary app id=======> " + addShopData.primary_app_id)
-        Timber.d("secondary app id=======> " + addShopData.secondary_app_id)
-        Timber.d("lead id=======> " + addShopData.lead_id)
-        Timber.d("stage id=======> " + addShopData.stage_id)
-        Timber.d("funnel stage id=======> " + addShopData.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShopData.booking_amount)
-        Timber.d("type id=======> " + addShopData.type_id)
+        //Timber.d("decoded shop id====> " + addShopData.user_id + "_" + AppUtils.getDate(addShopData.shop_id!!.substring(index + 1, addShopData.shop_id!!.length).toLong()))
+        //Timber.d("shop added date====> " + addShopData.added_date)
+        //Timber.d("shop address====> " + addShopData.address)
+        //Timber.d("assigned to dd id====> " + addShopData.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=====> " + addShopData.assigned_to_pp_id)
+        //Timber.d("date aniversery=====> " + addShopData.date_aniversary)
+        //Timber.d("dob====> " + addShopData.dob)
+        //Timber.d("shop owner phn no===> " + addShopData.owner_contact_no)
+        //Timber.d("shop owner email====> " + addShopData.owner_email)
+        //Timber.d("shop owner name====> " + addShopData.owner_name)
+        //Timber.d("shop pincode====> " + addShopData.pin_code)
+        //Timber.d("session token====> " + addShopData.session_token)
+        //Timber.d("shop lat====> " + addShopData.shop_lat)
+        //Timber.d("shop long===> " + addShopData.shop_long)
+        //Timber.d("shop name====> " + addShopData.shop_name)
+        //Timber.d("shop type===> " + addShopData.type)
+        //Timber.d("user id====> " + addShopData.user_id)
+        //Timber.d("amount=======> " + addShopData.amount)
+        //Timber.d("area id=======> " + addShopData.area_id)
+        //Timber.d("model id=======> " + addShopData.model_id)
+        //Timber.d("primary app id=======> " + addShopData.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShopData.secondary_app_id)
+        //Timber.d("lead id=======> " + addShopData.lead_id)
+        //Timber.d("stage id=======> " + addShopData.stage_id)
+        //Timber.d("funnel stage id=======> " + addShopData.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShopData.booking_amount)
+        //Timber.d("type id=======> " + addShopData.type_id)
         if (mAddShopDBModelEntity.shopImageLocalPath != null)
-            Timber.d("shop image path====> " + mAddShopDBModelEntity.shopImageLocalPath)
-        Timber.d("family member dob=======> " + addShopData.family_member_dob)
-        Timber.d("director name=======> " + addShopData.director_name)
-        Timber.d("key person's name=======> " + addShopData.key_person_name)
-        Timber.d("phone no=======> " + addShopData.phone_no)
-        Timber.d("additional dob=======> " + addShopData.addtional_dob)
-        Timber.d("additional doa=======> " + addShopData.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShopData.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShopData.specialization)
-        Timber.d("average patient count per day=======> " + addShopData.average_patient_per_day)
-        Timber.d("category=======> " + addShopData.category)
-        Timber.d("doctor address=======> " + addShopData.doc_address)
-        Timber.d("doctor pincode=======> " + addShopData.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShopData.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShopData.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShopData.chemist_name)
-        Timber.d("chemist name=======> " + addShopData.chemist_address)
-        Timber.d("chemist pincode=======> " + addShopData.chemist_pincode)
-        Timber.d("assistant name=======> " + addShopData.assistant_name)
-        Timber.d("assistant contact no=======> " + addShopData.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShopData.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShopData.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShopData.assistant_family_dob)
-        Timber.d("entity id=======> " + addShopData.entity_id)
-        Timber.d("party status id=======> " + addShopData.party_status_id)
-        Timber.d("retailer id=======> " + addShopData.retailer_id)
-        Timber.d("dealer id=======> " + addShopData.dealer_id)
-        Timber.d("beat id=======> " + addShopData.beat_id)
+            //Timber.d("shop image path====> " + mAddShopDBModelEntity.shopImageLocalPath)
+        //Timber.d("family member dob=======> " + addShopData.family_member_dob)
+        //Timber.d("director name=======> " + addShopData.director_name)
+        //Timber.d("key person's name=======> " + addShopData.key_person_name)
+        //Timber.d("phone no=======> " + addShopData.phone_no)
+        //Timber.d("additional dob=======> " + addShopData.addtional_dob)
+        //Timber.d("additional doa=======> " + addShopData.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShopData.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShopData.specialization)
+        //Timber.d("average patient count per day=======> " + addShopData.average_patient_per_day)
+        //Timber.d("category=======> " + addShopData.category)
+        //Timber.d("doctor address=======> " + addShopData.doc_address)
+        //Timber.d("doctor pincode=======> " + addShopData.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShopData.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShopData.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShopData.chemist_name)
+        //Timber.d("chemist name=======> " + addShopData.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShopData.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShopData.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShopData.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShopData.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShopData.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShopData.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShopData.entity_id)
+        //Timber.d("party status id=======> " + addShopData.party_status_id)
+        //Timber.d("retailer id=======> " + addShopData.retailer_id)
+        //Timber.d("dealer id=======> " + addShopData.dealer_id)
+        //Timber.d("beat id=======> " + addShopData.beat_id)
         if (mAddShopDBModelEntity.doc_degree != null)
-            Timber.d("doctor degree image path=======> " + mAddShopDBModelEntity.doc_degree)
-        Timber.d("assigned to shop id=======> " + addShopData.assigned_to_shop_id)
-        Timber.d("actual_address=======> " + addShopData.actual_address)
-        Timber.d("================================================")
+            //Timber.d("doctor degree image path=======> " + mAddShopDBModelEntity.doc_degree)
+        //Timber.d("assigned to shop id=======> " + addShopData.assigned_to_shop_id)
+        //Timber.d("actual_address=======> " + addShopData.actual_address)
+        //Timber.d("================================================")
 
         progress_wheel.spin()
 
@@ -2279,7 +2280,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", STATUS: " + addShopResult.status + ",RESPONSE:" + result.message)
+                                //Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", STATUS: " + addShopResult.status + ",RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsEditUploaded(1, addShopData.shop_id)
                                     progress_wheel.stopSpinning()
@@ -2347,7 +2348,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 //(mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 try {
-                                    Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", ERROR: " + error.message)
+                                    //Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", ERROR: " + error.message)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -2377,7 +2378,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", STATUS: " + addShopResult.status + ",RESPONSE:" + result.message)
+                                //Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", STATUS: " + addShopResult.status + ",RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsEditUploaded(1, addShopData.shop_id)
                                     progress_wheel.stopSpinning()
@@ -2445,7 +2446,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
                                 //(mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
                                 try {
-                                    Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", ERROR: " + error.message)
+                                    //Timber.d("Edit Shop : " + ", SHOP: " + addShopData.shop_name + ", ERROR: " + error.message)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -2666,7 +2667,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val orderListResponse = result as BaseResponse
-                                Timber.e("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", STATUS====> " + orderListResponse.status + ",RESPONSE MESSAGE:" + orderListResponse.message)
+                                //Timber.e("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", STATUS====> " + orderListResponse.status + ",RESPONSE MESSAGE:" + orderListResponse.message)
                                 if (orderListResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.orderDetailsListDao().updateIsUploaded(true, order.order_id!!)
 
@@ -2743,7 +2744,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 //(mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
 
                                 try {
-                                    Timber.d("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", ERROR====> " + error.message)
+                                    //Timber.d("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", ERROR====> " + error.message)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -2778,7 +2779,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val orderListResponse = result as BaseResponse
-                                Timber.e("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", STATUS====> " + orderListResponse.status + ",RESPONSE MESSAGE:" + orderListResponse.message)
+                                //Timber.e("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", STATUS====> " + orderListResponse.status + ",RESPONSE MESSAGE:" + orderListResponse.message)
                                 if (orderListResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.orderDetailsListDao().updateIsUploaded(true, order.order_id!!)
 
@@ -2855,7 +2856,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 //(mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
 
                                 try {
-                                    Timber.d("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", ERROR====> " + error.message)
+                                    //Timber.d("Add Order : \n" + ", SHOP ID===> " + orderList[i].shop_id + ", ERROR====> " + error.message)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -2895,7 +2896,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 var ordProductDtls = AppDatabase.getDBInstance()!!.newOrderProductDataDao().getProductsOrder(unsyncOrdL.get(0).order_id)
                 var syncOrd = SyncOrd()
                 var syncOrdProductL:ArrayList<SyncOrdProductL> = ArrayList()
-                Timber.d("Order sync for order id ${unsyncOrdL.get(0).order_id}")
+                //Timber.d("Order sync for order id ${unsyncOrdL.get(0).order_id}")
                 doAsync {
                     syncOrd.user_id = Pref.user_id!!
                     syncOrd.order_id = unsyncOrdL.get(0).order_id
@@ -2933,7 +2934,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
                                     val response = result as BaseResponse
-                                    Timber.d("Order sync status ${response.status}")
+                                    //Timber.d("Order sync status ${response.status}")
                                     if (response.status == NetworkConstant.SUCCESS) {
                                         doAsync {
                                             AppDatabase.getDBInstance()!!.newOrderDataDao().updateIsUploaded(syncOrd.order_id,true)
@@ -2942,7 +2943,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                             }
                                         }
                                     } else {
-                                        Timber.d("Order sync else status ${response.status}")
+                                        //Timber.d("Order sync else status ${response.status}")
                                         tv_order_retry.visibility = View.VISIBLE
                                         addOrderTickImg.visibility = View.GONE
                                         addOrderSyncImg.visibility = View.GONE
@@ -2950,7 +2951,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                         syncDeleteOpptL()
                                     }
                                 }, { error ->
-                                    Timber.d("Order sync else err ${error.message}")
+                                    //Timber.d("Order sync else err ${error.message}")
                                     tv_order_retry.visibility = View.VISIBLE
                                     addOrderTickImg.visibility = View.GONE
                                     addOrderSyncImg.visibility = View.GONE
@@ -2961,7 +2962,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                     }
                 }
             }else{
-                Timber.d("Order sync no order found to sync")
+                //Timber.d("Order sync no order found to sync")
                 addOrderTickImg.visibility = View.VISIBLE
                 addOrderSyncImg.visibility = View.GONE
                 tv_order_retry.visibility = View.GONE
@@ -2969,7 +2970,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 syncDeleteOpptL()
             }
         }else{
-            Timber.d("Order sync no order feature")
+            //Timber.d("Order sync no order feature")
             addOrderTickImg.visibility = View.VISIBLE
             addOrderSyncImg.visibility = View.GONE
             tv_order_retry.visibility = View.GONE
@@ -3197,15 +3198,15 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         updateGps.session_token = Pref.session_token
         updateGps.duration = AppUtils.getTimeInHourMinuteFormat(list[i].duration?.toLong()!!)
 
-        Timber.d("========SYNC GPS INPUT PARAMS========")
-        Timber.d("date====> " + updateGps.date)
-        Timber.d("gps_id====> " + updateGps.gps_id)
-        Timber.d("gps_off_time====> " + updateGps.gps_off_time)
-        Timber.d("gps_on_time====> " + updateGps.gps_on_time)
-        Timber.d("user_id====> " + updateGps.user_id)
-        Timber.d("session_token====> " + updateGps.session_token)
-        Timber.d("duration====> " + updateGps.duration)
-        Timber.d("=====================================")
+        //Timber.d("========SYNC GPS INPUT PARAMS========")
+        //Timber.d("date====> " + updateGps.date)
+        //Timber.d("gps_id====> " + updateGps.gps_id)
+        //Timber.d("gps_off_time====> " + updateGps.gps_off_time)
+        //Timber.d("gps_on_time====> " + updateGps.gps_on_time)
+        //Timber.d("user_id====> " + updateGps.user_id)
+        //Timber.d("session_token====> " + updateGps.session_token)
+        //Timber.d("duration====> " + updateGps.duration)
+        //Timber.d("=====================================")
 
         progress_wheel.spin()
 
@@ -3216,7 +3217,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val gpsStatusResponse = result as BaseResponse
-                            Timber.d("SYNC GPS : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
+                            //Timber.d("SYNC GPS : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
                                     + ",MESSAGE : " + gpsStatusResponse.message)
                             if (gpsStatusResponse.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.gpsStatusDao().updateIsUploadedAccordingToId(true, list[i].id)
@@ -3272,7 +3273,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             //
-                            Timber.d("SYNC GPS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("SYNC GPS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             i++
                             if (i < list.size) {
@@ -3321,15 +3322,15 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 //        updateGps.session_token = Pref.session_token
 //        updateGps.duration = AppUtils.getTimeInHourMinuteFormat(list[i].duration?.toLong()!!)
 //
-//        Timber.d("========SYNC GPS INPUT PARAMS========")
-//        Timber.d("date====> " + updateGps.date)
-//        Timber.d("gps_id====> " + updateGps.gps_id)
-//        Timber.d("gps_off_time====> " + updateGps.gps_off_time)
-//        Timber.d("gps_on_time====> " + updateGps.gps_on_time)
-//        Timber.d("user_id====> " + updateGps.user_id)
-//        Timber.d("session_token====> " + updateGps.session_token)
-//        Timber.d("duration====> " + updateGps.duration)
-//        Timber.d("=====================================")
+//        //Timber.d("========SYNC GPS INPUT PARAMS========")
+//        //Timber.d("date====> " + updateGps.date)
+//        //Timber.d("gps_id====> " + updateGps.gps_id)
+//        //Timber.d("gps_off_time====> " + updateGps.gps_off_time)
+//        //Timber.d("gps_on_time====> " + updateGps.gps_on_time)
+//        //Timber.d("user_id====> " + updateGps.user_id)
+//        //Timber.d("session_token====> " + updateGps.session_token)
+//        //Timber.d("duration====> " + updateGps.duration)
+//        //Timber.d("=====================================")
 
         progress_wheel.spin()
 
@@ -3340,8 +3341,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val gpsStatusResponse = result as BaseResponse
-                    Timber.d("SYNC GPS : " + "RESPONSE : ${gpsStatusResponse.status} " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
-                            + ",MESSAGE : " + gpsStatusResponse.message)
+                    //Timber.d("SYNC GPS : " + "RESPONSE : ${gpsStatusResponse.status} " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name
+                            //+ ",MESSAGE : " + gpsStatusResponse.message)
                     if (gpsStatusResponse.status == NetworkConstant.SUCCESS) {
                         // 4.0 LogoutSyncFragment mantis v 4.0.8 saheli 03-05-2023 0026013 work
                         for (i in 0 until list.size) {
@@ -3406,7 +3407,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     //
-                    Timber.d("SYNC GPS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("SYNC GPS : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
 //                    i++
 //                    if (i < list.size) {
@@ -3515,30 +3516,30 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         addCollection.Hospital = if (TextUtils.isEmpty(hospital)) "" else hospital!!
         addCollection.Email_Address = if (TextUtils.isEmpty(emailAddress)) "" else emailAddress!!
 
-        Timber.d("===SYNC COLLECTION INPUT PARAMS (Logout Sync)====")
-        Timber.d("Collection Amount===> " + addCollection.collection)
-        Timber.d("Collection Date==> " + addCollection.collection_date)
-        Timber.d("ColLection ID===> " + addCollection.collection_id)
-        Timber.d("Shop ID===> " + addCollection.shop_id)
-        Timber.d("user_id==> " + addCollection.user_id)
-        Timber.d("session_token===> " + addCollection.session_token)
-        Timber.d("billId===> " + addCollection.bill_id)
-        Timber.d("order_id===> " + addCollection.order_id)
-        Timber.d("payment_id===> " + addCollection.payment_id)
-        Timber.d("instrument_no===> " + addCollection.instrument_no)
-        Timber.d("bank===> " + addCollection.bank)
-        Timber.d("remarks===> " + addCollection.remarks)
-        Timber.d("patient_name===> " + addCollection.patient_name)
-        Timber.d("patient_address===> " + addCollection.patient_address)
-        Timber.d("patient_no===> " + addCollection.patient_no)
-        Timber.d("Hospital===> " + addCollection.Hospital)
-        Timber.d("Email Address===> " + addCollection.Email_Address)
+        //Timber.d("===SYNC COLLECTION INPUT PARAMS (Logout Sync)====")
+        //Timber.d("Collection Amount===> " + addCollection.collection)
+        //Timber.d("Collection Date==> " + addCollection.collection_date)
+        //Timber.d("ColLection ID===> " + addCollection.collection_id)
+        //Timber.d("Shop ID===> " + addCollection.shop_id)
+        //Timber.d("user_id==> " + addCollection.user_id)
+        //Timber.d("session_token===> " + addCollection.session_token)
+        //Timber.d("billId===> " + addCollection.bill_id)
+        //Timber.d("order_id===> " + addCollection.order_id)
+        //Timber.d("payment_id===> " + addCollection.payment_id)
+        //Timber.d("instrument_no===> " + addCollection.instrument_no)
+        //Timber.d("bank===> " + addCollection.bank)
+        //Timber.d("remarks===> " + addCollection.remarks)
+        //Timber.d("patient_name===> " + addCollection.patient_name)
+        //Timber.d("patient_address===> " + addCollection.patient_address)
+        //Timber.d("patient_no===> " + addCollection.patient_no)
+        //Timber.d("Hospital===> " + addCollection.Hospital)
+        //Timber.d("Email Address===> " + addCollection.Email_Address)
 
         if (filePath != null)
-            Timber.d("filePath===> $filePath")
+            //Timber.d("filePath===> $filePath")
         else
-            Timber.d("filePath===> ")
-        Timber.d("=====================================================")
+            //Timber.d("filePath===> ")
+        //Timber.d("=====================================================")
 
         progress_wheel.spin()
 
@@ -3551,8 +3552,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribe({ result ->
                                 val orderList = result as BaseResponse
 
-                                Timber.d("SYNC COLLECTION : " + "RESPONSE : " + "\n" + "STATUS : " + orderList.status + ",MESSAGE : " + orderList.message
-                                        + ", COLLECTION ID : " + addCollection.collection_id)
+                                //Timber.d("SYNC COLLECTION : " + "RESPONSE : " + "\n" + "STATUS : " + orderList.status + ",MESSAGE : " + orderList.message
+                                        //+ ", COLLECTION ID : " + addCollection.collection_id)
                                 progress_wheel.stopSpinning()
                                 if (orderList.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.collectionDetailsDao().updateIsUploaded(true, collection_id!!)
@@ -3626,7 +3627,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }, { error ->
 
                                 try {
-                                    Timber.d("SYNC COLLECTION : ERROR : " + error.message + ", COLLECTION ID : " + addCollection.collection_id)
+                                    //Timber.d("SYNC COLLECTION : ERROR : " + error.message + ", COLLECTION ID : " + addCollection.collection_id)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -3665,8 +3666,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribe({ result ->
                                 val orderList = result as BaseResponse
 
-                                Timber.d("SYNC COLLECTION : " + "RESPONSE : " + "\n" + "STATUS : " + orderList.status + ",MESSAGE : " + orderList.message
-                                        + ", COLLECTION ID : " + addCollection.collection_id)
+                                //Timber.d("SYNC COLLECTION : " + "RESPONSE : " + "\n" + "STATUS : " + orderList.status + ",MESSAGE : " + orderList.message
+                                         //, COLLECTION ID : " + addCollection.collection_id)
                                 progress_wheel.stopSpinning()
                                 if (orderList.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.collectionDetailsDao().updateIsUploaded(true, collection_id!!)
@@ -3740,7 +3741,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }, { error ->
 
                                 try {
-                                    Timber.d("SYNC COLLECTION : ERROR : " + error.message + ", COLLECTION ID : " + addCollection.collection_id)
+                                    //Timber.d("SYNC COLLECTION : ERROR : " + error.message + ", COLLECTION ID : " + addCollection.collection_id)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -4105,8 +4106,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             }
             else {
 
-                Timber.e("====SYNC VISITED SHOP (LOGOUT SYNC)====")
-                Timber.e("ShopData List size===> " + shopDataList.size)
+                //Timber.e("====SYNC VISITED SHOP (LOGOUT SYNC)====")
+                //Timber.e("ShopData List size===> " + shopDataList.size)
 
                 //val newShopList = FTStorageUtils.removeDuplicateData(shopDataList)
 
@@ -4124,14 +4125,14 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 shopDurationApiReq.user_id = Pref.user_id
                 shopDurationApiReq.session_token = Pref.session_token
                 if (newShopList.size > 0) {
-                    Timber.e("Unique ShopData List size===> " + newShopList.size)
+                    //Timber.e("Unique ShopData List size===> " + newShopList.size)
                     shopDurationApiReq.shop_list = newShopList
                 } else
                     shopDurationApiReq.shop_list = shopDataList
 
                 val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
 
-                Timber.d("callShopDurationApi (Logout Sync): REQUEST")
+                //Timber.d("callShopDurationApi (Logout Sync): REQUEST")
 
                 revisitStatusList.clear()
                 var data=AppDatabase.getDBInstance()?.shopVisitOrderStatusRemarksDao()!!.getUnsyncedList()
@@ -4172,7 +4173,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
-                                    Timber.d("callShopDurationApi : RESPONSE " + result.status)
+                                    //Timber.d("callShopDurationApi : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS) {
 
 
@@ -4226,9 +4227,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                     BaseActivity.isShopActivityUpdating = false
                                     //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
                                     if (error == null) {
-                                        Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                                        //Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                                     } else {
-                                        Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
+                                        //Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
                                     checkToRetryVisitButton()
@@ -4262,7 +4263,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
-                    Timber.d("callShopDurationApi : RESPONSE " + result.status)
+                    //Timber.d("callShopDurationApi : RESPONSE " + result.status)
                     if (result.status == NetworkConstant.SUCCESS) {
                         if (newShopList.size > 0) {
                             for (i in 0 until newShopList.size) {
@@ -4290,9 +4291,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 }, { error ->
                     BaseActivity.isShopActivityUpdating = false
                     if (error == null) {
-                        Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                        //Timber.d("callShopDurationApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                     } else {
-                        Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
+                        //Timber.d("callShopDurationApi : ERROR " + error.localizedMessage)
                         error.printStackTrace()
                     }
                 })
@@ -4313,7 +4314,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
-                        Timber.d("callRevisitStatusUploadApi : RESPONSE " + result.status)
+                        //Timber.d("callRevisitStatusUploadApi : RESPONSE " + result.status)
                         if (result.status == NetworkConstant.SUCCESS){
                             for(i in revisitStatusList.indices){
                                 AppDatabase.getDBInstance()?.shopVisitOrderStatusRemarksDao()!!.updateOrderStatus(revisitStatusList[i]!!.shop_revisit_uniqKey!!)
@@ -4321,9 +4322,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         }
                     },{error ->
                         if (error == null) {
-                            Timber.d("callRevisitStatusUploadApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
+                            //Timber.d("callRevisitStatusUploadApi : ERROR " + "UNEXPECTED ERROR IN SHOP ACTIVITY API")
                         } else {
-                            Timber.d("callRevisitStatusUploadApi : ERROR " + error.localizedMessage)
+                            //Timber.d("callRevisitStatusUploadApi : ERROR " + error.localizedMessage)
                             error.printStackTrace()
                         }
                     })
@@ -4359,14 +4360,14 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 if(response.status==NetworkConstant.SUCCESS){
                                     AppDatabase.getDBInstance()!!.shopVisitCompetetorImageDao().updateisUploaded(true,shop_id)
                                     callCompetetorImgUploadApi()
-                                    Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", Success: ")
+                                    //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", Success: ")
                                 }else{
-                                    Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", Failed: ")
+                                    //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", Failed: ")
                                 }
                             },{
                                 error ->
                                 if (error != null) {
-                                    Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                                    //Timber.d("FUSED LOCATION : CompetetorImg" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                                 }
                             })
             )
@@ -4593,13 +4594,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             visitImageShop.shop_id = unSyncedList[i].shop_id
             visitImageShop.visit_datetime = unSyncedList[i].visit_datetime
 
-            Timber.d("====UPLOAD REVISIT ALL IMAGE INPUT PARAMS (Logout Sync)======")
-            Timber.d("USER ID====> " + visitImageShop.user_id)
-            Timber.d("SESSION ID====> " + visitImageShop.session_token)
-            Timber.d("SHOP ID====> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
-            Timber.d("IMAGE=====> " + unSyncedList[i].shop_image)
-            Timber.d("===============================================================")
+            //Timber.d("====UPLOAD REVISIT ALL IMAGE INPUT PARAMS (Logout Sync)======")
+            //Timber.d("USER ID====> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID====> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID====> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
+            //Timber.d("IMAGE=====> " + unSyncedList[i].shop_image)
+            //Timber.d("===============================================================")
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -4609,7 +4610,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
-                                Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.shopVisitImageDao().updateisUploaded(true, unSyncedList.get(i).shop_id!!)
                                     BaseActivity.isShopActivityUpdating = false
@@ -4629,7 +4630,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT ALL IMAGE : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 BaseActivity.isShopActivityUpdating = false
                                 //checkToCallSyncOrder()
@@ -4678,13 +4679,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             visitImageShop.shop_id = unSyncedList[i].shop_id
             visitImageShop.visit_datetime = unSyncedList[i].visit_datetime
 
-            Timber.d("====UPLOAD REVISIT ALL AUDIO INPUT PARAMS (Logout Sync)======")
-            Timber.d("USER ID====> " + visitImageShop.user_id)
-            Timber.d("SESSION ID====> " + visitImageShop.session_token)
-            Timber.d("SHOP ID====> " + visitImageShop.shop_id)
-            Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
-            Timber.d("AUDIO=====> " + unSyncedList[i].audio)
-            Timber.d("===============================================================")
+            //Timber.d("====UPLOAD REVISIT ALL AUDIO INPUT PARAMS (Logout Sync)======")
+            //Timber.d("USER ID====> " + visitImageShop.user_id)
+            //Timber.d("SESSION ID====> " + visitImageShop.session_token)
+            //Timber.d("SHOP ID====> " + visitImageShop.shop_id)
+            //Timber.d("VISIT DATE TIME=====> " + visitImageShop.visit_datetime)
+            //Timber.d("AUDIO=====> " + unSyncedList[i].audio)
+            //Timber.d("===============================================================")
 
             val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
 
@@ -4694,7 +4695,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val logoutResponse = result as BaseResponse
-                                Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                                //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "RESPONSE : " + logoutResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                                 if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.shopVisitAudioDao().updateisUploaded(true, unSyncedList.get(i).shop_id!!)
                                     BaseActivity.isShopActivityUpdating = false
@@ -4720,7 +4721,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("UPLOAD REVISIT ALL AUDIO : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 BaseActivity.isShopActivityUpdating = false
                                 //checkToCallSyncOrder()
@@ -4794,30 +4795,30 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
         addBill.product_list = productList
 
-        Timber.d("======SYNC BILLING DETAILS INPUT PARAMS (SYNC ALL)======")
-        Timber.d("USER ID===> " + addBill.user_id)
-        Timber.d("SESSION ID====> " + addBill.session_token)
-        Timber.d("BILL ID====> " + addBill.bill_id)
-        Timber.d("INVOICE NO.====> " + addBill.invoice_no)
-        Timber.d("INVOICE DATE====> " + addBill.invoice_date)
-        Timber.d("INVOICE AMOUNT====> " + addBill.invoice_amount)
-        Timber.d("REMARKS====> " + addBill.remarks)
-        Timber.d("ORDER ID====> " + addBill.order_id)
+        //Timber.d("======SYNC BILLING DETAILS INPUT PARAMS (SYNC ALL)======")
+        //Timber.d("USER ID===> " + addBill.user_id)
+        //Timber.d("SESSION ID====> " + addBill.session_token)
+        //Timber.d("BILL ID====> " + addBill.bill_id)
+        //Timber.d("INVOICE NO.====> " + addBill.invoice_no)
+        //Timber.d("INVOICE DATE====> " + addBill.invoice_date)
+        //Timber.d("INVOICE AMOUNT====> " + addBill.invoice_amount)
+        //Timber.d("REMARKS====> " + addBill.remarks)
+        //Timber.d("ORDER ID====> " + addBill.order_id)
 
         try {
-            Timber.d("PATIENT NO====> " + addBill.patient_no)
-            Timber.d("PATIENT NAME====> " + addBill.patient_name)
-            Timber.d("PATIENT ADDRESS====> " + addBill.patient_address)
+            //Timber.d("PATIENT NO====> " + addBill.patient_no)
+            //Timber.d("PATIENT NAME====> " + addBill.patient_name)
+            //Timber.d("PATIENT ADDRESS====> " + addBill.patient_address)
         }
         catch (e: Exception) {
             e.printStackTrace()
         }
 
         if (!TextUtils.isEmpty(billing.attachment))
-            Timber.d("ATTACHMENT=======> " + billing.attachment)
+            //Timber.d("ATTACHMENT=======> " + billing.attachment)
 
-        Timber.d("PRODUCT LIST SIZE====> " + addBill.product_list?.size)
-        Timber.d("=========================================================")
+        //Timber.d("PRODUCT LIST SIZE====> " + addBill.product_list?.size)
+        //Timber.d("=========================================================")
 
         if (!TextUtils.isEmpty(billing.attachment)) {
             val repository = AddBillingRepoProvider.addBillImageRepository()
@@ -4828,7 +4829,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val baseResponse = result as BaseResponse
-                                Timber.d("SYNC BILLING DETAILS : " + "RESPONSE : " + baseResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + baseResponse.message)
+                                //Timber.d("SYNC BILLING DETAILS : " + "RESPONSE : " + baseResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + baseResponse.message)
                                 BaseActivity.isApiInitiated = false
 
                                 if (baseResponse.status == NetworkConstant.SUCCESS) {
@@ -4880,7 +4881,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
 
                             }, { error ->
-                                Timber.d("SYNC BILLING DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
+                                //Timber.d("SYNC BILLING DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 BaseActivity.isApiInitiated = false
 
@@ -4913,7 +4914,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val baseResponse = result as BaseResponse
-                                Timber.d("SYNC BILLING DETAILS : " + "RESPONSE : " + baseResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + baseResponse.message)
+                                //Timber.d("SYNC BILLING DETAILS : " + "RESPONSE : " + baseResponse.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + baseResponse.message)
                                 BaseActivity.isApiInitiated = false
 
                                 if (baseResponse.status == NetworkConstant.SUCCESS) {
@@ -4965,7 +4966,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 progress_wheel.stopSpinning()
 
                             }, { error ->
-                                Timber.d("SYNC BILLING DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
+                                //Timber.d("SYNC BILLING DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 BaseActivity.isApiInitiated = false
 
@@ -5088,7 +5089,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             val orderList = result as BaseResponse
                             progress_wheel.stopSpinning()
 
-                            Timber.e("Add STOCK : \n" + ", SHOP ID===> " + stockList[i].shop_id + ", STOCK ID===> " + stockList[i].stock_id + ", STATUS====> " + orderList.status + ",RESPONSE MESSAGE:" + orderList.message)
+                            //Timber.e("Add STOCK : \n" + ", SHOP ID===> " + stockList[i].shop_id + ", STOCK ID===> " + stockList[i].stock_id + ", STATUS====> " + orderList.status + ",RESPONSE MESSAGE:" + orderList.message)
 
                             if (orderList.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.stockDetailsListDao().updateIsUploaded(true, stockDetailsListEntity.stock_id!!)
@@ -5124,7 +5125,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         }, { error ->
                             error.printStackTrace()
 
-                            Timber.d("Add STOCK : \n" + ", SHOP ID===> " + stockList[i].shop_id + ", STOCK ID===> " + stockList[i].stock_id + ", ERROR====> " + error.message)
+                            //Timber.d("Add STOCK : \n" + ", SHOP ID===> " + stockList[i].shop_id + ", STOCK ID===> " + stockList[i].stock_id + ", ERROR====> " + error.message)
 
                             i++
                             if (i < list.size) {
@@ -5193,7 +5194,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
     //==========================================================Upload Meeting====================================================//
     private fun callMeetingUploadApi(list: List<MeetingEntity>) {
 
-        Timber.e("IS MEETING UPDATING (LOGOUT SYNC)===========> ${BaseActivity.isMeetingUpdating}")
+        //Timber.e("IS MEETING UPDATING (LOGOUT SYNC)===========> ${BaseActivity.isMeetingUpdating}")
 
         if (BaseActivity.isMeetingUpdating) {
 
@@ -5241,11 +5242,11 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
         meeting.meeting_list = meetingDataList
 
-        Timber.d("========UPLOAD MEETING DATA INPUT PARAMS (LOGOUT SYNC)======")
-        Timber.d("USER ID======> " + meeting.user_id)
-        Timber.d("SESSION ID======> " + meeting.session_token)
-        Timber.d("MEETING LIST SIZE=========> " + meeting.meeting_list.size)
-        Timber.d("=============================================================")
+        //Timber.d("========UPLOAD MEETING DATA INPUT PARAMS (LOGOUT SYNC)======")
+        //Timber.d("USER ID======> " + meeting.user_id)
+        //Timber.d("SESSION ID======> " + meeting.session_token)
+        //Timber.d("MEETING LIST SIZE=========> " + meeting.meeting_list.size)
+        //Timber.d("=============================================================")
 
         val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
         BaseActivity.compositeDisposable.add(
@@ -5254,7 +5255,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("UPLOAD MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPLOAD MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 doAsync {
@@ -5292,7 +5293,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }
 
                         }, { error ->
-                            Timber.d("UPLOAD MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPLOAD MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             BaseActivity.isMeetingUpdating = false
 
@@ -5342,35 +5343,35 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     //=====================================================ADD QUOTATION===========================================================
     private fun callAddQuotApi(quotEntity: QuotationEntity, quotList: ArrayList<QuotationEntity>) {
-        Timber.d("==============Sync Add Quot. Input Params (Logout Sync)====================")
-        Timber.d("shop id=======> " + quotEntity.shop_id)
-        Timber.d("quot. date=======> " + quotEntity.date)
-        Timber.d("quot. id=======> " + quotEntity.quo_id)
-        Timber.d("quot. no=======> " + quotEntity.quo_no)
-        Timber.d("hypothecation=======> " + quotEntity.hypothecation)
-        Timber.d("account_no=======> " + quotEntity.account_no)
-        Timber.d("model_id=======> " + quotEntity.model_id)
-        Timber.d("bs_id=======> " + quotEntity.bs_id)
-        Timber.d("gearbox=======> " + quotEntity.gearbox)
-        Timber.d("number1=======> " + quotEntity.number1)
-        Timber.d("value1=======> " + quotEntity.value1)
-        Timber.d("value2=======> " + quotEntity.value2)
-        Timber.d("tyres1=======> " + quotEntity.tyres1)
-        Timber.d("number2=======> " + quotEntity.number2)
-        Timber.d("value3=======> " + quotEntity.value3)
-        Timber.d("value4=======> " + quotEntity.value4)
-        Timber.d("tyres2=======> " + quotEntity.tyres2)
-        Timber.d("amount=======> " + quotEntity.amount)
-        Timber.d("discount=======> " + quotEntity.discount)
-        Timber.d("cgst=======> " + quotEntity.cgst)
-        Timber.d("sgst=======> " + quotEntity.sgst)
-        Timber.d("tcs=======> " + quotEntity.tcs)
-        Timber.d("insurance=======> " + quotEntity.insurance)
-        Timber.d("net_amount=======> " + quotEntity.net_amount)
-        Timber.d("remarks=======> " + quotEntity.remarks)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("=====================================================================")
+        //Timber.d("==============Sync Add Quot. Input Params (Logout Sync)====================")
+        //Timber.d("shop id=======> " + quotEntity.shop_id)
+        //Timber.d("quot. date=======> " + quotEntity.date)
+        //Timber.d("quot. id=======> " + quotEntity.quo_id)
+        //Timber.d("quot. no=======> " + quotEntity.quo_no)
+        //Timber.d("hypothecation=======> " + quotEntity.hypothecation)
+        //Timber.d("account_no=======> " + quotEntity.account_no)
+        //Timber.d("model_id=======> " + quotEntity.model_id)
+        //Timber.d("bs_id=======> " + quotEntity.bs_id)
+        //Timber.d("gearbox=======> " + quotEntity.gearbox)
+        //Timber.d("number1=======> " + quotEntity.number1)
+        //Timber.d("value1=======> " + quotEntity.value1)
+        //Timber.d("value2=======> " + quotEntity.value2)
+        //Timber.d("tyres1=======> " + quotEntity.tyres1)
+        //Timber.d("number2=======> " + quotEntity.number2)
+        //Timber.d("value3=======> " + quotEntity.value3)
+        //Timber.d("value4=======> " + quotEntity.value4)
+        //Timber.d("tyres2=======> " + quotEntity.tyres2)
+        //Timber.d("amount=======> " + quotEntity.amount)
+        //Timber.d("discount=======> " + quotEntity.discount)
+        //Timber.d("cgst=======> " + quotEntity.cgst)
+        //Timber.d("sgst=======> " + quotEntity.sgst)
+        //Timber.d("tcs=======> " + quotEntity.tcs)
+        //Timber.d("insurance=======> " + quotEntity.insurance)
+        //Timber.d("net_amount=======> " + quotEntity.net_amount)
+        //Timber.d("remarks=======> " + quotEntity.remarks)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("=====================================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -5388,7 +5389,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("ADD QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("ADD QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.quotDao()?.updateIsUploaded(true, quotEntity.quo_id!!)
                             }
@@ -5417,7 +5418,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ADD QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("ADD QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
 
                             i++
@@ -5491,35 +5492,35 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     //=====================================================EDIT QUOTATION===========================================================
     private fun callEditQuotApi(quotEntity: QuotationEntity, quotList: ArrayList<QuotationEntity>) {
-        Timber.d("==============Sync Edit Quot. Input Params (Logout Sync)====================")
-        Timber.d("shop id=======> " + quotEntity.shop_id)
-        Timber.d("quot. date=======> " + quotEntity.date)
-        Timber.d("quot. id=======> " + quotEntity.quo_id)
-        Timber.d("quot. no=======> " + quotEntity.quo_no)
-        Timber.d("hypothecation=======> " + quotEntity.hypothecation)
-        Timber.d("account_no=======> " + quotEntity.account_no)
-        Timber.d("model_id=======> " + quotEntity.model_id)
-        Timber.d("bs_id=======> " + quotEntity.bs_id)
-        Timber.d("gearbox=======> " + quotEntity.gearbox)
-        Timber.d("number1=======> " + quotEntity.number1)
-        Timber.d("value1=======> " + quotEntity.value1)
-        Timber.d("value2=======> " + quotEntity.value2)
-        Timber.d("tyres1=======> " + quotEntity.tyres1)
-        Timber.d("number2=======> " + quotEntity.number2)
-        Timber.d("value3=======> " + quotEntity.value3)
-        Timber.d("value4=======> " + quotEntity.value4)
-        Timber.d("tyres2=======> " + quotEntity.tyres2)
-        Timber.d("amount=======> " + quotEntity.amount)
-        Timber.d("discount=======> " + quotEntity.discount)
-        Timber.d("cgst=======> " + quotEntity.cgst)
-        Timber.d("sgst=======> " + quotEntity.sgst)
-        Timber.d("tcs=======> " + quotEntity.tcs)
-        Timber.d("insurance=======> " + quotEntity.insurance)
-        Timber.d("net_amount=======> " + quotEntity.net_amount)
-        Timber.d("remarks=======> " + quotEntity.remarks)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("=====================================================================")
+        //Timber.d("==============Sync Edit Quot. Input Params (Logout Sync)====================")
+        //Timber.d("shop id=======> " + quotEntity.shop_id)
+        //Timber.d("quot. date=======> " + quotEntity.date)
+        //Timber.d("quot. id=======> " + quotEntity.quo_id)
+        //Timber.d("quot. no=======> " + quotEntity.quo_no)
+        //Timber.d("hypothecation=======> " + quotEntity.hypothecation)
+        //Timber.d("account_no=======> " + quotEntity.account_no)
+        //Timber.d("model_id=======> " + quotEntity.model_id)
+        //Timber.d("bs_id=======> " + quotEntity.bs_id)
+        //Timber.d("gearbox=======> " + quotEntity.gearbox)
+        //Timber.d("number1=======> " + quotEntity.number1)
+        //Timber.d("value1=======> " + quotEntity.value1)
+        //Timber.d("value2=======> " + quotEntity.value2)
+        //Timber.d("tyres1=======> " + quotEntity.tyres1)
+        //Timber.d("number2=======> " + quotEntity.number2)
+        //Timber.d("value3=======> " + quotEntity.value3)
+        //Timber.d("value4=======> " + quotEntity.value4)
+        //Timber.d("tyres2=======> " + quotEntity.tyres2)
+        //Timber.d("amount=======> " + quotEntity.amount)
+        //Timber.d("discount=======> " + quotEntity.discount)
+        //Timber.d("cgst=======> " + quotEntity.cgst)
+        //Timber.d("sgst=======> " + quotEntity.sgst)
+        //Timber.d("tcs=======> " + quotEntity.tcs)
+        //Timber.d("insurance=======> " + quotEntity.insurance)
+        //Timber.d("net_amount=======> " + quotEntity.net_amount)
+        //Timber.d("remarks=======> " + quotEntity.remarks)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("=====================================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -5537,7 +5538,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.quotDao()?.updateIsEdit(1, quotEntity.quo_id!!)
                             }
@@ -5571,7 +5572,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
 
                             i++
@@ -5641,15 +5642,15 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     //=====================================================UPDATE TEAM SHOP ADDRESS===========================================================
     private fun callUpdateAddressApi(team: MemberShopEntity, teamList: ArrayList<MemberShopEntity>) {
-        Timber.d("==============Sync Team Shop Input Params (Logout Sync)====================")
-        Timber.d("shop id=======> " + team.shop_id)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("shop_lat=======> " + team.shop_lat)
-        Timber.d("shop_long=======> " + team.shop_long)
-        Timber.d("shop_address=======> " + team.shop_address)
-        Timber.d("shop_pincode=======> " + team.shop_pincode)
-        Timber.d("isAddressUpdated=======> 1")
-        Timber.d("===========================================================================")
+        //Timber.d("==============Sync Team Shop Input Params (Logout Sync)====================")
+        //Timber.d("shop id=======> " + team.shop_id)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("shop_lat=======> " + team.shop_lat)
+        //Timber.d("shop_long=======> " + team.shop_long)
+        //Timber.d("shop_address=======> " + team.shop_address)
+        //Timber.d("shop_pincode=======> " + team.shop_pincode)
+        //Timber.d("isAddressUpdated=======> 1")
+        //Timber.d("===========================================================================")
 
         progress_wheel.spin()
         val repository = ShopAddressUpdateRepoProvider.provideShopAddressUpdateRepo()
@@ -5671,7 +5672,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("UPDATE ADDRESS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPDATE ADDRESS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()?.memberShopDao()?.updateIsUploaded(true, team.shop_id!!)
                             }
@@ -5705,7 +5706,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("UPDATE ADDRESS DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPDATE ADDRESS DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
 
                             i++
@@ -5776,19 +5777,19 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     //=====================================================ADD TIMESHEET===========================================================
     private fun callAddTimesheetApi(timeSheet: TimesheetListEntity, list: List<TimesheetListEntity>) {
-        Timber.d("==============Sync Timesheet Input Params (Logout Sync)====================")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("date=======> " + timeSheet.date)
-        Timber.d("client_id=======> " + timeSheet.client_id)
-        Timber.d("project_id=======> " + timeSheet.project_id)
-        Timber.d("activity_id=======> " + timeSheet.activity_id)
-        Timber.d("product_id=======> " + timeSheet.product_id)
-        Timber.d("time=======> " + timeSheet.time)
-        Timber.d("comments=======> " + timeSheet.comments)
-        Timber.d("timesheet_id=======> " + timeSheet.timesheet_id)
-        Timber.d("image=======> " + timeSheet.image)
-        Timber.d("===========================================================================")
+        //Timber.d("==============Sync Timesheet Input Params (Logout Sync)====================")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("date=======> " + timeSheet.date)
+        //Timber.d("client_id=======> " + timeSheet.client_id)
+        //Timber.d("project_id=======> " + timeSheet.project_id)
+        //Timber.d("activity_id=======> " + timeSheet.activity_id)
+        //Timber.d("product_id=======> " + timeSheet.product_id)
+        //Timber.d("time=======> " + timeSheet.time)
+        //Timber.d("comments=======> " + timeSheet.comments)
+        //Timber.d("timesheet_id=======> " + timeSheet.timesheet_id)
+        //Timber.d("image=======> " + timeSheet.image)
+        //Timber.d("===========================================================================")
 
         progress_wheel.spin()
 
@@ -5804,7 +5805,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()?.timesheetDao()?.updateIsUploaded(true, timeSheet.timesheet_id!!)
@@ -5839,7 +5840,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
 
                                 i++
@@ -5878,7 +5879,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()?.timesheetDao()?.updateIsUploaded(true, timeSheet.timesheet_id!!)
@@ -5913,7 +5914,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
 
                                 i++
@@ -5992,16 +5993,16 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
     //========================================================Task================================================================//
 
     private fun callAddTaskApi(task: TaskEntity, taskList: ArrayList<TaskEntity>) {
-        Timber.d("==============Sync Add Task Input Params (Logout Sync)====================")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("date=======> " + task.date)
-        Timber.d("task_id=======> " + task.task_id)
-        Timber.d("task_name=======> " + task.task_name)
-        Timber.d("details=======> " + task.details)
-        Timber.d("isCompleted=======> " + task.isCompleted)
-        Timber.d("eventId=======> " + task.eventId)
-        Timber.d("===================================================================")
+        //Timber.d("==============Sync Add Task Input Params (Logout Sync)====================")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("date=======> " + task.date)
+        //Timber.d("task_id=======> " + task.task_id)
+        //Timber.d("task_name=======> " + task.task_name)
+        //Timber.d("details=======> " + task.details)
+        //Timber.d("isCompleted=======> " + task.isCompleted)
+        //Timber.d("eventId=======> " + task.eventId)
+        //Timber.d("===================================================================")
 
         val taskInput = AddTaskInputModel(Pref.session_token!!, Pref.user_id!!, task.task_id!!, task.date!!, task.task_name!!,
                 task.details!!, task.isCompleted, task.eventId)
@@ -6014,7 +6015,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("ADD TASK: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("ADD TASK: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                             progress_wheel.stopSpinning()
 
@@ -6086,7 +6087,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ADD TASK: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("ADD TASK: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
 
                             i++
@@ -6153,12 +6154,12 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun callStatusUpdateApi(task: TaskEntity, statusList: ArrayList<TaskEntity>) {
-        Timber.d("============Update Task Status Input Params (Task List)===========")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("task_id=======> " + task.task_id)
-        Timber.d("isCompleted=======> " + task.isCompleted)
-        Timber.d("===================================================================")
+        //Timber.d("============Update Task Status Input Params (Task List)===========")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("task_id=======> " + task.task_id)
+        //Timber.d("isCompleted=======> " + task.isCompleted)
+        //Timber.d("===================================================================")
 
         progress_wheel.spin()
         val repository = TaskRepoProvider.taskRepoProvider()
@@ -6168,7 +6169,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("UPDATE TASK STATUS: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPDATE TASK STATUS: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                             progress_wheel.stopSpinning()
 
@@ -6205,7 +6206,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("UPDATE TASK STATUS: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPDATE TASK STATUS: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
 
                             i++
@@ -6296,7 +6297,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                            Timber.d("SYNC DOCUMENT RESPONSE=======> " + response.status)
+                            //Timber.d("SYNC DOCUMENT RESPONSE=======> " + response.status)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 list.forEach {
@@ -6320,7 +6321,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         }, { error ->
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("SYNC DOCUMENT ERROR=======> " + error.localizedMessage)
+                            //Timber.d("SYNC DOCUMENT ERROR=======> " + error.localizedMessage)
 
                             stopAnimation(doc_sync_img)
                             doc_tick_img.visibility = View.VISIBLE
@@ -6397,13 +6398,13 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }
 
                         } else {
-                            Timber.d("syncCallHisInfo API Failure")
+                            //Timber.d("syncCallHisInfo API Failure")
                             checkToCallActivity()
                         }
                     }, { error ->
                         error.printStackTrace()
 
-                        Timber.d("syncCallHisInfo:==>"+error.message.toString())
+                        //Timber.d("syncCallHisInfo:==>"+error.message.toString())
 
                         checkToCallActivity()
                     })
@@ -6415,8 +6416,17 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
+    fun stopAllServices() {
+        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (service.service.packageName == requireContext().packageName) {
+                requireContext().stopService(Intent(requireContext(), service.service.className::class.java))
+            }
+        }
+    }
 
     private fun checkToCallActivity() {
+
 
         var intent = Intent(mContext, MonitorService::class.java)
         intent.action = CustomConstants.STOP_MONITOR_SERVICE
@@ -6429,9 +6439,16 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         SendBrod.stopBrodDOBDOA(mContext)
 
         try{
+            val stopIntent = Intent(mContext, LocationFuzedService::class.java)
+            mContext.stopService(stopIntent)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
+        try{
             WorkManager.getInstance(mContext).cancelAllWork()
             WorkManager.getInstance(mContext).cancelAllWorkByTag("workerTag")
-            Timber.d("Logout Sync workerservice status : " + isWorkerRunning("workerTag").toString())
+            //Timber.d("Logout Sync workerservice status : " + isWorkerRunning("workerTag").toString())
 
             //new code to stop service begin
             val serviceLauncher = Intent(mContext, LocationFuzedService::class.java)
@@ -6439,14 +6456,22 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val jobScheduler = mContext.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
                 jobScheduler.cancelAll()
-                Timber.e("MID: 26980 in serviceStatusActionable method if user_id is null,Job scheduler cancel")
-                Timber.d("===============================Job scheduler cancel" + AppUtils.getCurrentDateTime() + "============================")
+                //Timber.e("MID: 26980 in serviceStatusActionable method if user_id is null,Job scheduler cancel")
+                //Timber.d("===============================Job scheduler cancel" + AppUtils.getCurrentDateTime() + "============================")
             }
             AlarmReceiver.stopServiceAlarm(mContext, 123)
             //new code to stop service begin
         }catch (ex:Exception){
             ex.printStackTrace()
-            Timber.e("err logout ${ex.printStackTrace()}")
+            //Timber.e("err logout ${ex.printStackTrace()}")
+        }
+
+        try {
+            println("tag_service_Cancel ")
+            stopAllServices()
+        }catch (e:Exception){
+            e.printStackTrace()
+            println("tag_service_Cancel ex ${e.printStackTrace()}")
         }
 
         if (Pref.willActivityShow) {
@@ -6504,27 +6529,27 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     //=====================================================ADD ACTIVITY===========================================================
     private fun callAddActivityApi(activity: ActivityEntity, list: ArrayList<ActivityEntity>) {
-        Timber.d("==============Sync Activity Input Params (Logout Sync)====================")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("id=======> " + activity.activity_id)
-        Timber.d("party_id=======> " + activity.party_id)
-        Timber.d("details=======> " + activity.details)
-        Timber.d("date=======> " + activity.date)
-        Timber.d("time=======> " + activity.time)
-        Timber.d("name=======> " + activity.name)
-        Timber.d("time=======> " + activity.time)
-        Timber.d("activity_id=======> " + activity.activity_dropdown_id)
-        Timber.d("type_id=======> " + activity.type_id)
-        Timber.d("product_id=======> " + activity.product_id)
-        Timber.d("subject=======> " + activity.subject)
-        Timber.d("details=======> " + activity.details)
-        Timber.d("duration=======> " + activity.duration)
-        Timber.d("priority_id=======> " + activity.priority_id)
-        Timber.d("due_date=======> " + activity.due_date)
-        Timber.d("due_time=======> " + activity.due_time)
-        Timber.d("attachments=======> " + activity.attachments)
-        Timber.d("========================================================================")
+        //Timber.d("==============Sync Activity Input Params (Logout Sync)====================")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("id=======> " + activity.activity_id)
+        //Timber.d("party_id=======> " + activity.party_id)
+        //Timber.d("details=======> " + activity.details)
+        //Timber.d("date=======> " + activity.date)
+        //Timber.d("time=======> " + activity.time)
+        //Timber.d("name=======> " + activity.name)
+        //Timber.d("time=======> " + activity.time)
+        //Timber.d("activity_id=======> " + activity.activity_dropdown_id)
+        //Timber.d("type_id=======> " + activity.type_id)
+        //Timber.d("product_id=======> " + activity.product_id)
+        //Timber.d("subject=======> " + activity.subject)
+        //Timber.d("details=======> " + activity.details)
+        //Timber.d("duration=======> " + activity.duration)
+        //Timber.d("priority_id=======> " + activity.priority_id)
+        //Timber.d("due_date=======> " + activity.due_date)
+        //Timber.d("due_time=======> " + activity.due_time)
+        //Timber.d("attachments=======> " + activity.attachments)
+        //Timber.d("========================================================================")
 
         val activityInput = AddActivityInputModel(Pref.session_token!!, Pref.user_id!!, activity.activity_id!!, activity.party_id!!,
                 activity.date!!, activity.time!!, activity.name!!, activity.activity_dropdown_id!!, activity.type_id!!,
@@ -6540,7 +6565,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD ACTIVITY: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD ACTIVITY: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()?.activDao()?.updateIsUploaded(true, activity.activity_id!!)
                                 }
@@ -6557,7 +6582,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 }
 
                             }, { error ->
-                                Timber.d("ADD ACTIVITY: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD ACTIVITY: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 //progress_wheel.stopSpinning()
                                 error.printStackTrace()
 
@@ -6592,7 +6617,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD ACTIVITY: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD ACTIVITY: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()?.activDao()?.updateIsUploaded(true, activity.activity_id!!)
                                 }
@@ -6609,7 +6634,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 }
 
                             }, { error ->
-                                Timber.d("ADD ACTIVITY: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD ACTIVITY: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 //progress_wheel.stopSpinning()
                                 error.printStackTrace()
 
@@ -6689,19 +6714,19 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         chemistVisit.pob_product_list = podProductList
 
 
-        Timber.d("======SYNC CHEMIST VISIT INPUT PARAMS (LOGOUT SYNC)======")
-        Timber.d("USER ID===> " + chemistVisit.user_id)
-        Timber.d("SESSION ID====> " + chemistVisit.session_token)
-        Timber.d("CHEMIST VISIT ID====> " + chemistVisit.chemist_visit_id)
-        Timber.d("SHOP_ID====> " + chemistVisit.shop_id)
-        Timber.d("IS POB====> " + chemistVisit.isPob)
-        Timber.d("NEXT VISIT DATE====> " + chemistVisit.next_visit_date)
-        Timber.d("VOLUME====> " + chemistVisit.volume)
-        Timber.d("REMARKS====> " + chemistVisit.remarks)
-        Timber.d("REMARKS MR====> " + chemistVisit.remarks_mr)
-        Timber.d("PRODUCT LIST SIZE====> " + chemistVisit.product_list.size)
-        Timber.d("POB PRODUCT LIST SIZE====> " + chemistVisit.pob_product_list.size)
-        Timber.d("=========================================================")
+        //Timber.d("======SYNC CHEMIST VISIT INPUT PARAMS (LOGOUT SYNC)======")
+        //Timber.d("USER ID===> " + chemistVisit.user_id)
+        //Timber.d("SESSION ID====> " + chemistVisit.session_token)
+        //Timber.d("CHEMIST VISIT ID====> " + chemistVisit.chemist_visit_id)
+        //Timber.d("SHOP_ID====> " + chemistVisit.shop_id)
+        //Timber.d("IS POB====> " + chemistVisit.isPob)
+        //Timber.d("NEXT VISIT DATE====> " + chemistVisit.next_visit_date)
+        //Timber.d("VOLUME====> " + chemistVisit.volume)
+        //Timber.d("REMARKS====> " + chemistVisit.remarks)
+        //Timber.d("REMARKS MR====> " + chemistVisit.remarks_mr)
+        //Timber.d("PRODUCT LIST SIZE====> " + chemistVisit.product_list.size)
+        //Timber.d("POB PRODUCT LIST SIZE====> " + chemistVisit.pob_product_list.size)
+        //Timber.d("=========================================================")
 
         val repository = ActivityRepoProvider.activityRepoProvider()
         progress_wheel.spin()
@@ -6713,7 +6738,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
 
-                            Timber.d("SYNC CHEMIST VISIT DETAILS : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + response.message)
+                            //Timber.d("SYNC CHEMIST VISIT DETAILS : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + response.message)
                             BaseActivity.isApiInitiated = false
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.addChemistDao().updateIsUploaded(true, chemistVisit.chemist_visit_id)
@@ -6741,7 +6766,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
                             BaseActivity.isApiInitiated = false
-                            Timber.d("SYNC CHEMIST VISIT DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
+                            //Timber.d("SYNC CHEMIST VISIT DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
 
                             i++
                             if (i < list.size) {
@@ -6886,31 +6911,31 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         }
         docVisit.sample_product_list = sampleProductList
 
-        Timber.d("======SYNC DOCTOR VISIT INPUT PARAMS (SYNC ALL)======")
-        Timber.d("USER ID===> " + docVisit.user_id)
-        Timber.d("SESSION ID====> " + docVisit.session_token)
-        Timber.d("DOCTOR VISIT ID====> " + docVisit.doc_visit_id)
-        Timber.d("SHOP_ID====> " + docVisit.shop_id)
-        Timber.d("AMOUNT====> " + docVisit.amount)
-        Timber.d("NEXT VISIT DATE====> " + docVisit.next_visit_date)
-        Timber.d("VOLUME====> " + docVisit.crm_volume)
-        Timber.d("DOCTOR REMARKS====> " + docVisit.doc_remarks)
-        Timber.d("REMARKS MR====> " + docVisit.remarks_mr)
-        Timber.d("FROM DATE====> " + docVisit.from_cme_date)
-        Timber.d("TO DATE====> " + docVisit.to_crm_date)
-        Timber.d("IS GIFT====> " + docVisit.is_gift)
-        Timber.d("IS CRM====> " + docVisit.is_crm)
-        Timber.d("IS MONEY====> " + docVisit.is_money)
-        Timber.d("IS PRESCRIBER====> " + docVisit.is_prescriber)
-        Timber.d("IS QTY====> " + docVisit.is_qty)
-        Timber.d("IS SAMPLE====> " + docVisit.is_sample)
-        Timber.d("QTY VOL TEXT====> " + docVisit.qty_vol_text)
-        Timber.d("WHAT====> " + docVisit.what)
-        Timber.d("WHICH====> " + docVisit.which_kind)
-        Timber.d("PRODUCT LIST SIZE====> " + docVisit.product_list.size)
-        Timber.d("QTY PRODUCT LIST SIZE====> " + docVisit.qty_product_list.size)
-        Timber.d("SAMPLE PRODUCT LIST SIZE====> " + docVisit.sample_product_list.size)
-        Timber.d("=========================================================")
+        //Timber.d("======SYNC DOCTOR VISIT INPUT PARAMS (SYNC ALL)======")
+        //Timber.d("USER ID===> " + docVisit.user_id)
+        //Timber.d("SESSION ID====> " + docVisit.session_token)
+        //Timber.d("DOCTOR VISIT ID====> " + docVisit.doc_visit_id)
+        //Timber.d("SHOP_ID====> " + docVisit.shop_id)
+        //Timber.d("AMOUNT====> " + docVisit.amount)
+        //Timber.d("NEXT VISIT DATE====> " + docVisit.next_visit_date)
+        //Timber.d("VOLUME====> " + docVisit.crm_volume)
+        //Timber.d("DOCTOR REMARKS====> " + docVisit.doc_remarks)
+        //Timber.d("REMARKS MR====> " + docVisit.remarks_mr)
+        //Timber.d("FROM DATE====> " + docVisit.from_cme_date)
+        //Timber.d("TO DATE====> " + docVisit.to_crm_date)
+        //Timber.d("IS GIFT====> " + docVisit.is_gift)
+        //Timber.d("IS CRM====> " + docVisit.is_crm)
+        //Timber.d("IS MONEY====> " + docVisit.is_money)
+        //Timber.d("IS PRESCRIBER====> " + docVisit.is_prescriber)
+        //Timber.d("IS QTY====> " + docVisit.is_qty)
+        //Timber.d("IS SAMPLE====> " + docVisit.is_sample)
+        //Timber.d("QTY VOL TEXT====> " + docVisit.qty_vol_text)
+        //Timber.d("WHAT====> " + docVisit.what)
+        //Timber.d("WHICH====> " + docVisit.which_kind)
+        //Timber.d("PRODUCT LIST SIZE====> " + docVisit.product_list.size)
+        //Timber.d("QTY PRODUCT LIST SIZE====> " + docVisit.qty_product_list.size)
+        //Timber.d("SAMPLE PRODUCT LIST SIZE====> " + docVisit.sample_product_list.size)
+        //Timber.d("=========================================================")
 
         val repository = ActivityRepoProvider.activityRepoProvider()
         progress_wheel.spin()
@@ -6921,7 +6946,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                            Timber.d("SYNC DOCTOR VISIT DETAILS : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + response.message)
+                            //Timber.d("SYNC DOCTOR VISIT DETAILS : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + response.message)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.addDocDao().updateIsUploaded(true, docVisit.doc_visit_id)
@@ -7056,7 +7081,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
                             BaseActivity.isApiInitiated = false
-                            Timber.d("SYNC DOCTOR VISIT DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
+                            //Timber.d("SYNC DOCTOR VISIT DETAILS : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ", MESSAGE : " + error.localizedMessage)
 
                             i++
                             if (i < list.size) {
@@ -7155,7 +7180,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             }
                         },
                         Response.ErrorListener { error ->
-                            Timber.d("error in whatsapp report api ${error.message}")
+                            //Timber.d("error in whatsapp report api ${error.message}")
                         })
                     {
                         override fun getParams(): Map<String, String>? {
@@ -7226,7 +7251,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 objSync.shop_id = obj.shop_id
                 objSync.visit_datetime = obj.datetime
                 objSync.revisitORvisit = obj.revisitYN.toString()
-                Timber.d("tag_sync_audio for shop_id ${objSync.shop_id} and visit_datetime ${objSync.visit_datetime}")
+                //Timber.d("tag_sync_audio for shop_id ${objSync.shop_id} and visit_datetime ${objSync.visit_datetime}")
                 val repository = ShopVisitImageUploadRepoProvider.provideAddShopRepository()
                 BaseActivity.compositeDisposable.add(
                     repository.syncNewShopAudio(objSync, obj.audio_path, mContext)
@@ -7237,7 +7262,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             println("tag_sync_audio ${logoutResponse.status}")
                              if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                  doAsync {
-                                     Timber.d("tag_sync_audio updating for shop_id ${obj.shop_id} and visit_datetime ${obj.datetime}")
+                                     //Timber.d("tag_sync_audio updating for shop_id ${obj.shop_id} and visit_datetime ${obj.datetime}")
                                      AppDatabase.getDBInstance()!!.shopAudioDao().updateIsUploaded(true, obj.shop_id,obj.datetime)
                                      uiThread {
 
@@ -7300,16 +7325,71 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         }, { error ->
                             error.printStackTrace()
                             progress_wheel.stopNestedScroll()
-                            calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                            //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                            loanDetailsUpdate()
                         })
                 )
             }else{
                 progress_wheel.stopNestedScroll()
-                calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                loanDetailsUpdate()
             }
         } catch (e: Exception) {
             e.printStackTrace()
             progress_wheel.stopNestedScroll()
+            //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+            loanDetailsUpdate()
+        }
+    }
+
+    private fun loanDetailsUpdate() {
+        try {
+            var loanDtlsSyncL = AppDatabase.getDBInstance()?.loanDetailFetchDao()?.getForUpload(false) as ArrayList<LoanDetailFetchEntity>
+                if (loanDtlsSyncL.size > 0) {
+                    var syncObj = loanDtlsSyncL.get(0)
+                    var obj: LoanDtlsResponse = LoanDtlsResponse()
+                    obj.apply {
+                        user_id = Pref.user_id.toString()
+                        shop_id = syncObj.shop_id
+                        risk_id = syncObj.risk_id
+                        risk_name = syncObj.risk_name
+                        workable = syncObj.workable
+                        disposition_code_id = if(syncObj.disposition_code_id.equals("")) "0" else syncObj.disposition_code_id.toString()
+                        disposition_code_name = syncObj.disposition_code_name
+                        ptp_Date = syncObj.ptp_Date
+                        ptp_amt = if(syncObj.ptp_amt.equals("")) "0" else syncObj.ptp_amt.toString()
+                        collection_date = syncObj.collection_date
+                        collection_amount = if(syncObj.collection_amount.equals("")) "0" else syncObj.collection_amount.toString()
+                        final_status_id =if(syncObj.final_status_id.equals("")) "0" else syncObj.final_status_id.toString()
+                        final_status_name = syncObj.final_status_name
+                    }
+                    val repository = OpportunityRepoProvider.opportunityListRepo()
+                    BaseActivity.compositeDisposable.add(
+                        repository.syncLoanDtls(obj)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe({ result ->
+                                val response = result as BaseResponse
+                                if (response.status == NetworkConstant.SUCCESS) {
+                                    doAsync {
+                                        AppDatabase.getDBInstance()!!.loanDetailFetchDao().updateIsUploaded(true,obj.shop_id)
+                                        uiThread {
+                                            loanDetailsUpdate()
+                                        }
+                                    }
+                                }
+                            }, { error ->
+                                error.printStackTrace()
+                                calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                            })
+                    )
+                }
+                else{
+                    calllogoutApi(Pref.user_id!!, Pref.session_token!!)
+                }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
             calllogoutApi(Pref.user_id!!, Pref.session_token!!)
         }
     }
@@ -7339,7 +7419,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 //                    val distance = LocationWizard.getDistance(latestLat.toDouble(), latestLong.toDouble(),
 //                            Pref.latitude!!.toDouble(), Pref.longitude!!.toDouble())
 //
-//                    Timber.d("LOGOUT : DISTANCE=====> $distance")
+//                    //Timber.d("LOGOUT : DISTANCE=====> $distance")
 //                }*/
 //
 //                /*val distance = LocationWizard.getDistance(previousLat.toDouble(), previousLong.toDouble(),
@@ -7380,16 +7460,16 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                     Pref.logout_latitude = Pref.current_latitude
                     Pref.logout_longitude = Pref.current_longitude
                 }
-                Timber.d("logout lat-lon found  ${Pref.logout_latitude.toString()} ${Pref.logout_longitude.toString()}")
+                //Timber.d("logout lat-lon found  ${Pref.logout_latitude.toString()} ${Pref.logout_longitude.toString()}")
             } catch (e: Exception) {
-                Timber.d("error ${e.printStackTrace()}")
+                //Timber.d("error ${e.printStackTrace()}")
             }
             //5.0 LogoutSyncFragment AppV 4.1.6 Suman 30-05-2024  mantis 0027501 end
             //distance = distance + Pref.tempDistance.toDouble()
-            Timber.d("dist ${distance.toString()} temp_dist ${Pref.tempDistance.toString()}")
+            //Timber.d("dist ${distance.toString()} temp_dist ${Pref.tempDistance.toString()}")
         }else{
             distance = Pref.tempDistance.toDouble()
-            Timber.d("dist else ${distance.toString()} temp_dist ${Pref.tempDistance.toString()}")
+            //Timber.d("dist else ${distance.toString()} temp_dist ${Pref.tempDistance.toString()}")
         }
         //logout distance xalculation mantis id 27259 Suman 20-02-2023 end
 
@@ -7403,17 +7483,17 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                 location = "Unknown"
         }
 
-        Timber.d("LOGOUT : " + "REQUEST : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
-        Timber.d("=========LOGOUT INPUT PARAMS========")
-        Timber.d("LOGOUT : USER ID===> $user_id")
-        Timber.d("LOGOUT : SESSION ID==> $session_id")
-        Timber.d("LOGOUT : LAT====> " + Pref.logout_latitude)
-        Timber.d("LOGOUT : LONG=====> " + Pref.logout_longitude)
-        Timber.d("LOGOUT : DISTANCE=====> $distance")
-        Timber.d("LOGOUT : LOGOUT TIME====> " + AppUtils.getCurrentDateTime())
-        Timber.d("LOGOUT : IS AUTO LOGOUT===> 0")
-        Timber.d("LOGOUT : LOCATION====> $location")
-        Timber.d("=====================================")
+        //Timber.d("LOGOUT : " + "REQUEST : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name)
+        //Timber.d("=========LOGOUT INPUT PARAMS========")
+        //Timber.d("LOGOUT : USER ID===> $user_id")
+        //Timber.d("LOGOUT : SESSION ID==> $session_id")
+        //Timber.d("LOGOUT : LAT====> " + Pref.logout_latitude)
+        //Timber.d("LOGOUT : LONG=====> " + Pref.logout_longitude)
+        //Timber.d("LOGOUT : DISTANCE=====> $distance")
+        //Timber.d("LOGOUT : LOGOUT TIME====> " + AppUtils.getCurrentDateTime())
+        //Timber.d("LOGOUT : IS AUTO LOGOUT===> 0")
+        //Timber.d("LOGOUT : LOCATION====> $location")
+        //Timber.d("=====================================")
 
         val repository = LogoutRepositoryProvider.provideLogoutRepository()
         progress_wheel.spin()
@@ -7425,7 +7505,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val logoutResponse = result as BaseResponse
-                            Timber.d("LOGOUT : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
+                            //Timber.d("LOGOUT : " + "RESPONSE : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + logoutResponse.message)
                             if (logoutResponse.status == NetworkConstant.SUCCESS) {
                                 (mContext as DashboardActivity).isChangedPassword = false
                                 Pref.tempDistance = "0.0"
@@ -7446,7 +7526,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             BaseActivity.isApiInitiated = false
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
-                            Timber.d("LOGOUT : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("LOGOUT : " + "RESPONSE ERROR: " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(error.localizedMessage)
 
                             if ((mContext as DashboardActivity).isChangedPassword) {
@@ -7734,7 +7814,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
     private fun syncLocationActivity(list: List<UserLocationDataEntity>) {
 
-        Timber.d("syncLocationActivity Logout : ENTER")
+        //Timber.d("syncLocationActivity Logout : ENTER")
 
 
         if (Pref.user_id.isNullOrEmpty())
@@ -7933,8 +8013,8 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         for (i in apiLocationList.indices) {
             if (!apiLocationList[i].isUploaded) {
 
-                Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
-                Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
+                //Timber.e("Final Home Duration (Location Fuzed Service)=================> ${apiLocationList[i].home_duration}")
+                //Timber.e("Time (Location Fuzed Service)=================> ${apiLocationList[i].time} ${apiLocationList[i].meridiem}")
 
 
                 val locationData = LocationData()
@@ -7966,7 +8046,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
             locationUpdateReq.location_details = locationList
             val repository = LocationUpdateRepositoryProviders.provideLocationUpdareRepository()
 
-            Timber.d("syncLocationActivity Logout : REQUEST")
+            //Timber.d("syncLocationActivity Logout : REQUEST")
             progress_wheel.spin()
 
             BaseActivity.compositeDisposable.add(
@@ -7977,7 +8057,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .subscribe({ result ->
                                 val updateShopActivityResponse = result as BaseResponse
 
-                                Timber.d("syncLocationActivity Logout : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
+                                //Timber.d("syncLocationActivity Logout : RESPONSE : " + updateShopActivityResponse.status + ":" + updateShopActivityResponse.message)
 
                                 if (updateShopActivityResponse.status == NetworkConstant.SUCCESS) {
 
@@ -8046,15 +8126,15 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 getUnknownList()
 
                                 if (error == null) {
-                                    Timber.d("syncLocationActivity Logout : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
+                                    //Timber.d("syncLocationActivity Logout : ERROR : " + "UNEXPECTED ERROR IN LOCATION ACTIVITY API")
                                 } else {
-                                    Timber.d("syncLocationActivity Logout : ERROR : " + error.localizedMessage)
+                                    //Timber.d("syncLocationActivity Logout : ERROR : " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
             )
         } else {
-            Timber.e("=======locationList is empty (Logout)=========")
+            //Timber.e("=======locationList is empty (Logout)=========")
             AppUtils.isLocationActivityUpdating = false
             //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
             getUnknownList()
@@ -8131,7 +8211,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
         val unSyncData = AppDatabase.getDBInstance()?.batteryNetDao()?.getDataSyncStateWise(false)
 
         if (unSyncData == null || unSyncData.isEmpty()) {
-            Timber.e("=======Appinfo list is empty (Logout Sync)=========")
+            //Timber.e("=======Appinfo list is empty (Logout Sync)=========")
             //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
             syncWhatsappStatus()
             return
@@ -8154,12 +8234,12 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
         val appInfoInput = AppInfoInputModel(Pref.session_token!!, Pref.user_id!!, appInfoList,totalVisitRevisitCount.toString(),totalVisitRevisitCountSynced.toString(),totalVisitRevisitCountUnSynced.toString())
 
-        Timber.d("============App Info Input(Logout Sync)===========")
-        Timber.d("session_token==========> " + appInfoInput.session_token)
-        Timber.d("user_id==========> " + appInfoInput.user_id)
-        Timber.d("app_info_list.size==========> " + appInfoInput.app_info_list?.size)
-        Timber.d("powerSaverStatus==========> " + Pref.PowerSaverStatus)
-        Timber.d("==================================================")
+        //Timber.d("============App Info Input(Logout Sync)===========")
+        //Timber.d("session_token==========> " + appInfoInput.session_token)
+        //Timber.d("user_id==========> " + appInfoInput.user_id)
+        //Timber.d("app_info_list.size==========> " + appInfoInput.app_info_list?.size)
+        //Timber.d("powerSaverStatus==========> " + Pref.PowerSaverStatus)
+        //Timber.d("==================================================")
 
         progress_wheel.spin()
         val repository = LocationRepoProvider.provideLocationRepository()
@@ -8171,7 +8251,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             val response = result as BaseResponse
 
-                            Timber.d("App Info : RESPONSE : " + response.status + ":" + response.message)
+                            //Timber.d("App Info : RESPONSE : " + response.status + ":" + response.message)
                             AppUtils.isAppInfoUpdating = false
 
                             if (response.status == NetworkConstant.SUCCESS) {
@@ -8195,7 +8275,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             AppUtils.isAppInfoUpdating = false
-                            Timber.d("App Info : ERROR : " + error.localizedMessage)
+                            //Timber.d("App Info : ERROR : " + error.localizedMessage)
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             //calllogoutApi(Pref.user_id!!, Pref.session_token!!)
@@ -8257,7 +8337,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe({ result ->
-                                    Timber.d("Return : RESPONSE " + result.status)
+                                    //Timber.d("Return : RESPONSE " + result.status)
                                     if (result.status == NetworkConstant.SUCCESS){
                                         AppDatabase.getDBInstance()?.returnDetailsDao()?.updateIsUploaded(true,returnList.return_id!!)
                                         callReturnApi()
@@ -8267,9 +8347,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 }
                                 },{error ->
                                     if (error == null) {
-                                        Timber.d("Return : ERROR " + "UNEXPECTED ERROR IN Add Return API")
+                                        //Timber.d("Return : ERROR " + "UNEXPECTED ERROR IN Add Return API")
                                     } else {
-                                        Timber.d("Return : ERROR " + error.localizedMessage)
+                                        //Timber.d("Return : ERROR " + error.localizedMessage)
                                         error.printStackTrace()
                                     }
 //                                    checkToCallActivity()
@@ -8322,7 +8402,7 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("Logshare : RESPONSE " + result.status)
+                                //Timber.d("Logshare : RESPONSE " + result.status)
                                 if (result.status == NetworkConstant.SUCCESS){
                                     //Timber.d("Return : RESPONSE URL " + result.file_url +  " " +Pref.user_name)
                                 }
@@ -8330,9 +8410,9 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
                                 syncExtraContact()
                             },{error ->
                                 if (error == null) {
-                                    Timber.d("Logshare : ERROR " + "UNEXPECTED ERROR IN Log share API")
+                                    //Timber.d("Logshare : ERROR " + "UNEXPECTED ERROR IN Log share API")
                                 } else {
-                                    Timber.d("Logshare : ERROR " + error.localizedMessage)
+                                    //Timber.d("Logshare : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                                 //checkToCallActivity()
@@ -8342,12 +8422,12 @@ class LogoutSyncFragment : BaseFragment(), View.OnClickListener {
 
                 } catch (ex:Exception){
                     ex.printStackTrace()
-                    Timber.d("Logshare : Exception " + "UNEXPECTED ERROR IN Log share API")
+                    //Timber.d("Logshare : Exception " + "UNEXPECTED ERROR IN Log share API")
                     //checkToCallActivity()
                     syncExtraContact()
                 }
             }catch (ex:Exception){
-                Timber.d("Logshare : log.zip error " + ex.message)
+                //Timber.d("Logshare : log.zip error " + ex.message)
                 //checkToCallActivity()
                 syncExtraContact()
             }

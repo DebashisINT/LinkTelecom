@@ -466,11 +466,11 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
             if (AppUtils.mLocation!!.accuracy <= 100) {
                 getAddressFromLatLng(AppUtils.mLocation!!)
             } else {
-                Timber.d("======Saved current location is inaccurate (Add Shop)========")
+                //Timber.d("======Saved current location is inaccurate (Add Shop)========")
                 normalGetLocFlow()
             }
         } else {
-            Timber.d("=====Saved current location is null (Add Shop)======")
+            //Timber.d("=====Saved current location is null (Add Shop)======")
             normalGetLocFlow()
         }*/
 
@@ -550,17 +550,17 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     //if (AppUtils.mLocation!!.accuracy <= 1) {
                     getAddressFromLatLng(AppUtils.mLocation!!)
                 } else {
-                    Timber.d("======Saved current location is inaccurate (Add Shop)========")
+                    //Timber.d("======Saved current location is inaccurate (Add Shop)========")
                     getShopLatLong()
                 }
             } else {
-                Timber.d("=====Saved current location is null (Add Shop)======")
+                //Timber.d("=====Saved current location is null (Add Shop)======")
                 getShopLatLong()
             }
 
 
         } else {
-            Timber.d("=====Get location from map (Add Shop)======")
+            //Timber.d("=====Get location from map (Add Shop)======")
            /* println("addshopfullAdd"+fullAdd)
             actualAddress = fullAdd
             shopAddress.setText(fullAdd)
@@ -641,8 +641,8 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
         //22.6068776, 88.4898951
         mLocation = location
         var address = LocationWizard.getAdressFromLatlng(mContext, location.latitude, location.longitude)
-//        Timber.e("Shop address (Add Shop)======> $address")
-        Timber.e("Shop address (Add Shop)======> $address")
+//        //Timber.e("Shop address (Add Shop)======> $address")
+        //Timber.e("Shop address (Add Shop)======> $address")
 
         if (address.contains("http"))
             address = "Unknown"
@@ -1843,10 +1843,10 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
         try {
             if (mLongitude != "" && mLatitude != "") {
                 //Toaster.msgShort(mContext, "Lat: $mLatitude, Lng: $mLongitude")
-                Timber.e("AddShop : Lat=> $mLatitude, Long==> $mLongitude")
+                //Timber.e("AddShop : Lat=> $mLatitude, Long==> $mLongitude")
             } else {
                 //Toaster.msgShort(mContext, "Lat: ${mLocation?.latitude}, Lng: ${mLocation?.longitude}")
-                Timber.e("AddShop : Lat=> " + mLocation?.latitude + ", Long==> " + mLocation?.longitude)
+                //Timber.e("AddShop : Lat=> " + mLocation?.latitude + ", Long==> " + mLocation?.longitude)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -2019,73 +2019,73 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 //        }
         AppUtils.isShopAdded = true
 
-        Timber.d("================AddShop Input Params==================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("================AddShop Input Params==================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
-        Timber.d("shopDuplicate=======> " + addShop.isShopDuplicate)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("shopDuplicate=======> " + addShop.isShopDuplicate)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
         if (doc_degree != null)
-            Timber.d("doctor degree image path=======> $doc_degree")
-        Timber.d("====================================================")
+            //Timber.d("doctor degree image path=======> $doc_degree")
+        //Timber.d("====================================================")
 
         progress_wheel.spin()
 
@@ -2098,7 +2098,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                         if (addShopResult.status == NetworkConstant.SUCCESS) {
                             AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                             if(AppUtils.isOnline(mContext)){
@@ -2139,7 +2139,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                         }
                         else if (addShopResult.status == NetworkConstant.SESSION_MISMATCH) {
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).clearData()
                             startActivity(Intent(mContext as DashboardActivity, LoginActivity::class.java))
@@ -2147,7 +2147,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             (mContext as DashboardActivity).finish()
                         }
                         else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                            Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                            //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
                             if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
@@ -2159,7 +2159,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         }
                         else {
                             progress_wheel.stopSpinning()
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
                             voiceAttendanceMsg(getString(R.string.shop_added_successfully))
 //                                (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
@@ -2252,7 +2252,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         //(mContext as DashboardActivity).loadFragment(FragType.NearByShopsListFragment, false, "")
 //                                (mContext as DashboardActivity).loadFragment(FragType.ShopDetailFragment, true, addShop.shop_id!!)
                         if (error != null) {
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", ERROR: " + error.localizedMessage)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", ERROR: " + error.localizedMessage)
                         }
                     })
             )
@@ -2265,7 +2265,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     .subscribeOn(Schedulers.io())
                     .subscribe({ result ->
                         val addShopResult = result as AddShopResponse
-                        Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                        //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                         if (addShopResult.status == NetworkConstant.SUCCESS) {
                             AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                             if(AppUtils.isOnline(mContext)){
@@ -2301,14 +2301,14 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             //showShopVerificationDialog(addShop.shop_id!!)
 
                         } else if (addShopResult.status == NetworkConstant.SESSION_MISMATCH) {
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).clearData()
                             startActivity(Intent(mContext as DashboardActivity, LoginActivity::class.java))
                             (mContext as DashboardActivity).overridePendingTransition(0, 0)
                             (mContext as DashboardActivity).finish()
                         } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                            Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                            //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
                             if (AppDatabase.getDBInstance()!!.addShopEntryDao().getDuplicateShopData(addShop.owner_contact_no).size > 0) {
@@ -2319,7 +2319,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             (mContext as DashboardActivity).loadFragment(FragType.ShopDetailFragment, true, addShop.shop_id!!)
                         } else {
                             progress_wheel.stopSpinning()
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
                             voiceAttendanceMsg(getString(R.string.shop_added_successfully))
 //                                (mContext as DashboardActivity).showSnackMessage(getString(R.string.shop_added_successfully))
@@ -2413,7 +2413,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         }
 //                                (mContext as DashboardActivity).loadFragment(FragType.ShopDetailFragment, true, addShop.shop_id!!)
                         if (error != null) {
-                            Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", ERROR: " + error.localizedMessage)
+                            //Timber.d("AddShop : " + ", SHOP: " + addShop.shop_name + ", ERROR: " + error.localizedMessage)
                         }
                     })
             )
@@ -2438,13 +2438,13 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     val response = result as BaseResponse
                     if (response.status == NetworkConstant.SUCCESS) {
                         AppDatabase.getDBInstance()!!.shopVisitCompetetorImageDao().updateisUploaded(true, shopId)
-                        Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", Success: ")
+                        //Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", Success: ")
                     } else {
-                        Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", Failed: ")
+                        //Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", Failed: ")
                     }
                 }, { error ->
                     if (error != null) {
-                        Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : CompetetorImg" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )
@@ -2473,14 +2473,14 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             syncQuesSubmit(shopId)
 
                         }
-                        Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Success: ")
+                        //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Success: ")
                     } else {
-                        Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Failed: ")
+                        //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", Failed: ")
                     }
                 }, { error ->
                     println("sec-image addShopSeconaryUploadImg error")
                     if (error != null) {
-                        Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Img1" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )
@@ -2506,14 +2506,14 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         AppDatabase.getDBInstance()!!.addShopSecondaryImgDao().updateisUploaded2(true, shopId)
                         syncQuesSubmit(shopId)
 //                                getAssignedPPListApi(true, shopId)
-                        Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Success: ")
+                        //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Success: ")
                     } else {
-                        Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Failed: ")
+                        //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", Failed: ")
                     }
                 }, { error ->
                     println("sec-image addShopSeconaryUploadImg2 error")
                     if (error != null) {
-                        Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
+                        //Timber.d("AddShop : Img2" + ", SHOP: " + shopId + ", ERROR: " + error.localizedMessage)
                     }
                 })
         )
@@ -2740,7 +2740,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val addShopResult = result as AddShopResponse
-                    Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
+                    //Timber.d("Edit Shop : " + ", SHOP: " + addShopReqData.shop_name + ", RESPONSE:" + result.message)
                     if (addShopResult.status == NetworkConstant.SUCCESS) {
                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsEditUploaded(1, addShopReqData.shop_id)
                         progress_wheel.stopSpinning()
@@ -2961,15 +2961,15 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
-                    Timber.d("ShopActivityFromAddShop : " + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
+                    //Timber.d("ShopActivityFromAddShop : " + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
                     if (result.status == NetworkConstant.SUCCESS) {
 
                     }
 
                 }, { error ->
                     error.printStackTrace()
-                    if (error != null)
-                        Timber.d("ShopActivityFromAddShop : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                    if (error != null){}
+                        //Timber.d("ShopActivityFromAddShop : " + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
                 })
         )
 
@@ -3079,34 +3079,34 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
         shopActivityEntity.next_visit_date = nextVisitDate
 
         var distance = 0.0
-        Timber.e("======New Distance (At add shop time)=========")
+        //Timber.e("======New Distance (At add shop time)=========")
 
         val shop = AppDatabase.getDBInstance()!!.addShopEntryDao().getShopDetail(addShop.shop_id)
 
         if (Pref.isOnLeave.equals("false", ignoreCase = true)) {
 
-            Timber.e("=====User is at work (At add shop time)=======")
+            //Timber.e("=====User is at work (At add shop time)=======")
 
             /*if (!TextUtils.isEmpty(addShop.shop_lat) && !TextUtils.isEmpty(addShop.shop_long)) {
                 if (!TextUtils.isEmpty(Pref.source_latitude) && !TextUtils.isEmpty(Pref.source_longitude)) {
                     distance = LocationWizard.getDistance(Pref.source_latitude.toDouble(), Pref.source_longitude.toDouble(),
                             addShop.shop_lat?.toDouble()!!, addShop.shop_long?.toDouble()!!)
 
-                    Timber.e("=====Both location available=======")
+                    //Timber.e("=====Both location available=======")
                 } else {
                     distance = 0.0 //LocationWizard.getDistance(0.0, 0.0, addShop.shop_lat?.toDouble()!!, addShop.shop_long?.toDouble()!!)
-                    Timber.e("=====Only new location available=======")
+                    //Timber.e("=====Only new location available=======")
                 }
                 Pref.source_latitude = addShop.shop_lat!!
                 Pref.source_longitude = addShop.shop_long!!
             } else {
                 if (!TextUtils.isEmpty(Pref.source_latitude) && !TextUtils.isEmpty(Pref.source_longitude)) {
                     distance = 0.0 //LocationWizard.getDistance(0.0, 0.0, Pref.source_latitude.toDouble(), Pref.source_longitude.toDouble())
-                    Timber.e("=====Only old location available=======")
+                    //Timber.e("=====Only old location available=======")
                 } else {
                     distance = 0.0
 
-                    Timber.e("=====No location available=======")
+                    //Timber.e("=====No location available=======")
                 }
             }*/
 
@@ -3122,11 +3122,11 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 userlocation.latitude.toDouble(), userlocation.longitude.toDouble())
             val finalDistance = (Pref.tempDistance.toDouble() + loc_distance).toString()
 
-            Timber.e("===Distance (At new shop visit time)===")
-            Timber.e("Temp Distance====> " + Pref.tempDistance)
-            Timber.e("Normal Distance====> $loc_distance")
-            Timber.e("Total Distance====> $finalDistance")
-            Timber.e("=======================================")
+            //Timber.e("===Distance (At new shop visit time)===")
+            //Timber.e("Temp Distance====> " + Pref.tempDistance)
+            //Timber.e("Normal Distance====> $loc_distance")
+            //Timber.e("Total Distance====> $finalDistance")
+            //Timber.e("=======================================")
 
             userlocation.distance = finalDistance
             userlocation.locationName = LocationWizard.getNewLocationName(mContext, userlocation.latitude.toDouble(), userlocation.longitude.toDouble())
@@ -3160,7 +3160,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
             AppDatabase.getDBInstance()!!.userLocationDataDao().insertAll(userlocation)
 
-            Timber.e("=====New shop visit data added=======")
+            //Timber.e("=====New shop visit data added=======")
 
             Pref.totalS2SDistance = (Pref.totalS2SDistance.toDouble() + userlocation.distance.toDouble()).toString()
 
@@ -3168,11 +3168,11 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
             Pref.totalS2SDistance = "0.0"
             Pref.tempDistance = "0.0"
         } else {
-            Timber.e("=====User is on leave =======")
+            //Timber.e("=====User is on leave =======")
             distance = 0.0
         }
 
-        Timber.e("shop to shop distance (At new shop visit time)====> $distance")
+        //Timber.e("shop to shop distance (At new shop visit time)====> $distance")
 
         shopActivityEntity.distance_travelled = distance.toString()
 
@@ -3238,10 +3238,10 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
             }
             //End of 6.0 AddShopFragment AppV 4.1.3 Suman 18-05-2023  mantis 26162
 
-            Timber.d("dist_cal ${shopActivityEntity.distFromProfileAddrKms}   loc1 ${profileAddr.latitude} ${profileAddr.longitude}  loc2  ${shopAddr.latitude} ${shopAddr.longitude}")
+            //Timber.d("dist_cal ${shopActivityEntity.distFromProfileAddrKms}   loc1 ${profileAddr.latitude} ${profileAddr.longitude}  loc2  ${shopAddr.latitude} ${shopAddr.longitude}")
         }catch (ex:Exception){
             ex.printStackTrace()
-            Timber.d("dist_cal ex ${ex.message}")
+            //Timber.d("dist_cal ex ${ex.message}")
         }
         //End of Rev 17 DashboardActivity AppV 4.0.8 Suman    24/04/2023 distanct+station calculation 25806
 
@@ -4551,7 +4551,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     error.printStackTrace()
                     BaseActivity.isApiInitiated = false
                     progress_wheel.stopSpinning()
-                    Timber.d("Error DuplicateShopOfPhoneNumberNotAllow Api> ${error.printStackTrace()}")
+                    //Timber.d("Error DuplicateShopOfPhoneNumberNotAllow Api> ${error.printStackTrace()}")
                     Toaster.msgShort(mContext, "Something went wrong. Please try again later")
 //                            (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4605,7 +4605,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribe({ result ->
                     //val response = result as ModelListResponseModel
                     val response = result as ModelListResponse
-                    Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.model_list != null && response.model_list!!.isNotEmpty()) {
@@ -4640,7 +4640,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4671,7 +4671,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as PrimaryAppListResponseModel
-                    Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET PRIMARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.primary_application_list != null && response.primary_application_list!!.isNotEmpty()) {
@@ -4704,7 +4704,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET PRIMARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4735,7 +4735,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as SecondaryAppListResponseModel
-                    Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET SECONDARY APP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.secondary_application_list != null && response.secondary_application_list!!.isNotEmpty()) {
@@ -4768,7 +4768,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET SECONDARY APP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4810,7 +4810,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as LeadListResponseModel
-                    Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET LEAD TYPE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.lead_type_list != null && response.lead_type_list!!.isNotEmpty()) {
@@ -4843,7 +4843,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET LEAD TYPE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4873,7 +4873,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as StageListResponseModel
-                    Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.stage_list != null && response.stage_list!!.isNotEmpty()) {
@@ -4906,7 +4906,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -4937,7 +4937,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as FunnelStageListResponseModel
-                    Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                    //Timber.d("GET FUNNEL STAGE DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
 
                         if (response.funnel_stage_list != null && response.funnel_stage_list!!.isNotEmpty()) {
@@ -4970,7 +4970,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
                 }, { error ->
                     progress_wheel.stopSpinning()
-                    Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET FUNNEL STAGE DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
@@ -5036,7 +5036,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             if (!isFromRefresh)
                             // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                             {
-                                Timber.d("Error getShopTypeListApi Api> ${response.message!!}")
+                                //Timber.d("Error getShopTypeListApi Api> ${response.message!!}")
                                 // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                                 // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5056,7 +5056,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         if (!isFromRefresh)
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         {
-                            Timber.d("Error getShopTypeListApi Api >> ${response.message!!}")
+                            //Timber.d("Error getShopTypeListApi Api >> ${response.message!!}")
                             // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5075,7 +5075,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         if (!isFromRefresh)
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         {
-                            Timber.d("Error getShopTypeListApi Api >>> ${response.message!!}")
+                            //Timber.d("Error getShopTypeListApi Api >>> ${response.message!!}")
                             // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
 
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
@@ -5101,7 +5101,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     if (!isFromRefresh)
                     // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                     {
-                        Timber.d("Error getShopTypeListApi Api ---->>> ${error.printStackTrace()}")
+                        //Timber.d("Error getShopTypeListApi Api ---->>> ${error.printStackTrace()}")
                         // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5163,7 +5163,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 }, { error ->
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
-                    Timber.d("Error AreaList Api> ${error.printStackTrace()}")
+                    //Timber.d("Error AreaList Api> ${error.printStackTrace()}")
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                 })
         )
@@ -5224,7 +5224,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             if (!isFromRefresh)
                             // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                             {
-                                Timber.d("Error getTypeListApi  Api >>> ${response.message!!}")
+                                //Timber.d("Error getTypeListApi  Api >>> ${response.message!!}")
                                 // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                                 // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5238,7 +5238,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         if (!isFromRefresh)
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         {
-                            Timber.d("Error getTypeListApi  Api >> ${response.message!!}")
+                            //Timber.d("Error getTypeListApi  Api >> ${response.message!!}")
                             // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5252,7 +5252,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh){
                             // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
-                            Timber.d("Error getTypeListApi  Api > ${response.message!!}")
+                            //Timber.d("Error getTypeListApi  Api > ${response.message!!}")
                             // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
@@ -5266,7 +5266,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     error.printStackTrace()
                     if (!isFromRefresh) {
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
-                        Timber.d("Error getTypeListApi  Api -------- ${error.printStackTrace()}")
+                        //Timber.d("Error getTypeListApi  Api -------- ${error.printStackTrace()}")
                         // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
@@ -5328,7 +5328,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         } else {
                             progress_wheel.stopSpinning()
                             if (!isFromRefresh) {
-                                Timber.d("Error getEntityTypeListApi  Api >>>-------- ${response.message!!}")
+                                //Timber.d("Error getEntityTypeListApi  Api >>>-------- ${response.message!!}")
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             }
                             else {
@@ -5338,7 +5338,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else if (response.status == NetworkConstant.NO_DATA) {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getEntityTypeListApi  Api >>-------- ${response.message!!}")
+                            //Timber.d("Error getEntityTypeListApi  Api >>-------- ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5347,7 +5347,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getEntityTypeListApi  Api >-------- ${response.message!!}")
+                            //Timber.d("Error getEntityTypeListApi  Api >-------- ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5360,7 +5360,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     error.printStackTrace()
                     if (!isFromRefresh) {
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
-                        Timber.d("Error getEntityTypeListApi  Api -------- ${error.printStackTrace()}")
+                        //Timber.d("Error getEntityTypeListApi  Api -------- ${error.printStackTrace()}")
                         // end 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
@@ -5429,7 +5429,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             progress_wheel.stopSpinning()
                             if (!isFromRefresh) {
                                 // start 7.0.AddShopFragment AppV 4.1.5 Saheli 06-06-2023  mantis 26297
-                                Timber.d("Error getPartyStatusListApi  Api >>-------- ${response.message!!}")
+                                //Timber.d("Error getPartyStatusListApi  Api >>-------- ${response.message!!}")
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             }
                             else {
@@ -5439,7 +5439,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else if (response.status == NetworkConstant.NO_DATA) {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getPartyStatusListApi  Api >>>-------- ${response.message!!}")
+                            //Timber.d("Error getPartyStatusListApi  Api >>>-------- ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5448,7 +5448,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getPartyStatusListApi  Api >>>>-------- ${response.message!!}")
+                            //Timber.d("Error getPartyStatusListApi  Api >>>>-------- ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5460,7 +5460,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
                     if (!isFromRefresh) {
-                        Timber.d("Error getPartyStatusListApi  Api -------- ${ error.printStackTrace()}")
+                        //Timber.d("Error getPartyStatusListApi  Api -------- ${ error.printStackTrace()}")
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
                     else {
@@ -5540,7 +5540,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         } else {
                             progress_wheel.stopSpinning()
                             if (!isFromRefresh){
-                                Timber.d("Error getRetailerListApi Api> ${response.message!!}")
+                                //Timber.d("Error getRetailerListApi Api> ${response.message!!}")
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             }
                             else {
@@ -5550,7 +5550,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else if (response.status == NetworkConstant.NO_DATA) {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getRetailerListApi Api>> ${response.message!!}")
+                            //Timber.d("Error getRetailerListApi Api>> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5559,7 +5559,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getRetailerListApi Api>>> ${response.message!!}")
+                            //Timber.d("Error getRetailerListApi Api>>> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5571,7 +5571,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
                     if (!isFromRefresh) {
-                        Timber.d("Error getRetailerListApi Api>>------------- ${ error.printStackTrace()}")
+                        //Timber.d("Error getRetailerListApi Api>>------------- ${ error.printStackTrace()}")
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
                     else {
@@ -5640,7 +5640,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         } else {
                             progress_wheel.stopSpinning()
                             if (!isFromRefresh) {
-                                Timber.d("Error getDealerListApi Api>>>>${response.message!!}")
+                                //Timber.d("Error getDealerListApi Api>>>>${response.message!!}")
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             }
                             else {
@@ -5650,7 +5650,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else if (response.status == NetworkConstant.NO_DATA) {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getDealerListApi Api>>> ${response.message!!}")
+                            //Timber.d("Error getDealerListApi Api>>> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5659,7 +5659,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getDealerListApi Api>>${response.message!!}")
+                            //Timber.d("Error getDealerListApi Api>>${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -5671,7 +5671,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
                     if (!isFromRefresh) {
-                        Timber.d("Error getDealerListApi Api>>------------- ${ error.printStackTrace()}")
+                        //Timber.d("Error getDealerListApi Api>>------------- ${ error.printStackTrace()}")
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
                     else {
@@ -5733,20 +5733,20 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         } else {
                             progress_wheel.stopSpinning()
                             if (!isFromRefresh) {
-                                Timber.d("Error getBeatListApi Api>> ${response.message!!}")
+                                //Timber.d("Error getBeatListApi Api>> ${response.message!!}")
                                 (mContext as DashboardActivity).showSnackMessage(response.message!!)
                             }
                         }
                     } else if (response.status == NetworkConstant.NO_DATA) {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getBeatListApi Api>>> ${response.message!!}")
+                            //Timber.d("Error getBeatListApi Api>>> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                     } else {
                         progress_wheel.stopSpinning()
                         if (!isFromRefresh) {
-                            Timber.d("Error getBeatListApi Api>>> ${response.message!!}")
+                            //Timber.d("Error getBeatListApi Api>>> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else{
@@ -5758,7 +5758,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
                     if (!isFromRefresh) {
-                        Timber.d("Error getBeatListApi Api>>--------------- ${error.printStackTrace()}")
+                        //Timber.d("Error getBeatListApi Api>>--------------- ${error.printStackTrace()}")
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
                     else {
@@ -5989,7 +5989,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     } else {
                         progress_wheel.stopSpinning()
                         if (!shopAdded) {
-                            Timber.d("Error getAssignedToShopApi Api> ${response.message!!}")
+                            //Timber.d("Error getAssignedToShopApi Api> ${response.message!!}")
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
                         }
                         else {
@@ -6001,7 +6001,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     progress_wheel.stopSpinning()
                     error.printStackTrace()
                     if (!shopAdded) {
-                        Timber.d("Error getAssignedToShopApi Api> ${error.printStackTrace()}")
+                        //Timber.d("Error getAssignedToShopApi Api> ${error.printStackTrace()}")
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     }
                     else {
@@ -6728,7 +6728,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
             if (actualAddress.isEmpty()) {
                 var address = LocationWizard.getAdressFromLatlng(mContext, shopLatitude, shopLongitude)
-                Timber.e("Actual Shop address (Add Shop)======> $address")
+                //Timber.e("Actual Shop address (Add Shop)======> $address")
 
                 if (address.contains("http"))
                     address = "Unknown"
@@ -6985,6 +6985,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
     fun addShop() {
         if (fingerprintDialog != null && fingerprintDialog?.isVisible!!) {
             fingerprintDialog?.dismiss()
+
 
             AppDatabase.getDBInstance()!!.addShopEntryDao().insertAll(shopDataModel)
 
@@ -8391,7 +8392,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as ProsListResponseModel
-                            Timber.d("GET PROS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET PROS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 if (response.Prospect_list != null && response.Prospect_list!!.isNotEmpty()) {
                                     doAsync {
@@ -8452,7 +8453,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val questionSubmitResponse= result as BaseResponse
-                            Timber.d("QuestionSubmit : RESPONSE " + result.status)
+                            //Timber.d("QuestionSubmit : RESPONSE " + result.status)
                             if (result.status == NetworkConstant.SUCCESS){
 
                                 doAsync {
@@ -8464,9 +8465,9 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             }
                         },{error ->
                             if (error == null) {
-                                Timber.d("QuestionSubmit : ERROR " )
+                                //Timber.d("QuestionSubmit : ERROR " )
                             } else {
-                                Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
+                                //Timber.d("QuestionSubmit : ERROR " + error.localizedMessage)
                                 error.printStackTrace()
                             }
                         })
@@ -8475,7 +8476,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
 
             }
         }catch (ex:Exception){
-            Timber.d("QuestionSubmit : ERROR " + ex.toString())
+            //Timber.d("QuestionSubmit : ERROR " + ex.toString())
             ex.printStackTrace()
         }
     }

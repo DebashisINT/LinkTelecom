@@ -490,7 +490,7 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
                     val response = result as VersionCheckingReponseModel
                     // 1.0 SplashActivity AppV 4.0.7 Timber Log Implementation
 //                            XLog.d("VERSION CHECKING RESPONSE: " + "STATUS: " + response.status + ", MESSAGE:" + result.message)
-                    Timber.d("VERSION CHECKING RESPONSE: " + "STATUS: " + response.status + ", MESSAGE:" + result.message)
+                    //Timber.d("VERSION CHECKING RESPONSE: " + "STATUS: " + response.status + ", MESSAGE:" + result.message)
 
                     if (response.status == NetworkConstant.SUCCESS) {
 
@@ -501,13 +501,13 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
                            XLog.d("optional msg=====> " + response.optional_msg)
                            XLog.d("apk url======> " + response.apk_url)
                            XLog.d("=======================================================")*/
-                        Timber.d("===========VERSION CHECKING SUCCESS RESPONSE===========")
-                        Timber.d("min version=====> " + response.min_req_version)
-                        Timber.d("store version=====> " + response.play_store_version)
-                        Timber.d("mandatory msg======> " + response.mandatory_msg)
-                        Timber.d("optional msg=====> " + response.optional_msg)
-                        Timber.d("apk url======> " + response.apk_url)
-                        Timber.d("=======================================================")
+                        //Timber.d("===========VERSION CHECKING SUCCESS RESPONSE===========")
+                        //Timber.d("min version=====> " + response.min_req_version)
+                        //Timber.d("store version=====> " + response.play_store_version)
+                        //Timber.d("mandatory msg======> " + response.mandatory_msg)
+                        //Timber.d("optional msg=====> " + response.optional_msg)
+                        //Timber.d("apk url======> " + response.apk_url)
+                        //Timber.d("=======================================================")
 
                         versionChecking(response)
                         //goToNextScreen()
@@ -519,7 +519,7 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
                 }, { error ->
                     isApiInitiated = false
 //                            XLog.d("VERSION CHECKING ERROR: " + "MESSAGE:" + error.message)
-                    Timber.d("VERSION CHECKING ERROR: " + "MESSAGE:" + error.message) // 1.0 SplashActivity AppV 4.0.7 Timber Log Implementation
+                    //Timber.d("VERSION CHECKING ERROR: " + "MESSAGE:" + error.message) // 1.0 SplashActivity AppV 4.0.7 Timber Log Implementation
                     error.printStackTrace()
                     progress_wheel.stopSpinning()
                     goToNextScreen()
@@ -750,7 +750,7 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
                         })
                 } catch (ex: Exception) {
                     ex.printStackTrace()
-                    Timber.d("Splash onNewLocationAvailable ex ${ex.message}")
+                    //Timber.d("Splash onNewLocationAvailable ex ${ex.message}")
                     progress_wheel.stopSpinning()
                 }
 

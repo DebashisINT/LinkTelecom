@@ -83,13 +83,13 @@ class BeatCurrentStatusFrag: BaseFragment(), View.OnClickListener {
                         }
                     }, { error ->
                         error.printStackTrace()
-                        Timber.d("BeatCurrentStatusFrag getCurrentTabData() ${AppUtils.getCurrentDateTime()} error " + error.localizedMessage)
+                        //Timber.d("BeatCurrentStatusFrag getCurrentTabData() ${AppUtils.getCurrentDateTime()} error " + error.localizedMessage)
                     })
             )
         }
         catch (ex:Exception){
             ex.printStackTrace()
-            Timber.d("BeatCurrentStatusFrag getCurrentTabData() ex ${AppUtils.getCurrentDateTime()} error " + ex.localizedMessage)
+            //Timber.d("BeatCurrentStatusFrag getCurrentTabData() ex ${AppUtils.getCurrentDateTime()} error " + ex.localizedMessage)
         }
     }
 

@@ -752,7 +752,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
         if (!TextUtils.isEmpty(Pref.profile_state))
             state_id = Pref.profile_state
 
-        Timber.d("ReimbursementConfigApi Request: \n State id====> " + state_id + ", user id====> " + Pref.user_id!!)
+        //Timber.d("ReimbursementConfigApi Request: \n State id====> " + state_id + ", user id====> " + Pref.user_id!!)
 
         val repository = ReimbursementConfigRepoProvider.provideReimbursementConfigRepository()
         progress_wheel.spin()
@@ -763,7 +763,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                         .subscribe({ result ->
 
                             val configResponse = result as ReimbursementConfigResponseModel
-                            Timber.d("ReimbursementConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
+                            //Timber.d("ReimbursementConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -819,7 +819,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                             BaseActivity.isApiInitiated = false
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
                         })
         )
     }
@@ -963,7 +963,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
             return
         }
 
-        Timber.d("ReimbursementShopApi Request: \n  date====> $date")
+        //Timber.d("ReimbursementShopApi Request: \n  date====> $date")
 
         val repository = ReimbursementShopRepoProvider.provideReimbursementConfigRepository()
         progress_wheel.spin()
@@ -974,7 +974,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                         .subscribe({ result ->
 
                             val result = result as ReimbursementShopResponseModel
-                            Timber.d("ReimbursementShopApiResponse : " + "\n" + "Status=====> " + result.status + ", Message====> " + result.message)
+                            //Timber.d("ReimbursementShopApiResponse : " + "\n" + "Status=====> " + result.status + ", Message====> " + result.message)
 
                             progress_wheel.stopSpinning()
                             if (result.status == NetworkConstant.SUCCESS) {
@@ -1008,7 +1008,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                                 setData()
 
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("ReimbursementShopApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("ReimbursementShopApiResponse ERROR: " + error.localizedMessage)
                         })
         )
     }
@@ -1378,7 +1378,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
 
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     reimbursementEditPic(newFile!!.length(), newFile?.absolutePath!!)
                 } else {
                     // Image compression
@@ -1902,14 +1902,14 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
         inputModel.travel_id = travelId
         inputModel.visittype_id = visitTypeId
 
-        Timber.d("=====Fetch ReimbursementConfigApi Request=====")
-        Timber.d("user_id===> " + inputModel.user_id)
-        Timber.d("state_id===> " + inputModel.state_id)
-        Timber.d("expense_id===> " + inputModel.expense_id)
-        Timber.d("fuel_id===> " + inputModel.fuel_id)
-        Timber.d("travel_id===> " + inputModel.travel_id)
-        Timber.d("visittype_id===> " + inputModel.visittype_id)
-        Timber.d("===============================================")
+        //Timber.d("=====Fetch ReimbursementConfigApi Request=====")
+        //Timber.d("user_id===> " + inputModel.user_id)
+        //Timber.d("state_id===> " + inputModel.state_id)
+        //Timber.d("expense_id===> " + inputModel.expense_id)
+        //Timber.d("fuel_id===> " + inputModel.fuel_id)
+        //Timber.d("travel_id===> " + inputModel.travel_id)
+        //Timber.d("visittype_id===> " + inputModel.visittype_id)
+        //Timber.d("===============================================")
 
         val repository = ReimbursementConfigFetchRepoProvider.provideFetchReimbursementConfigRepository()
         progress_wheel.spin()
@@ -1920,7 +1920,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                         .subscribe({ result ->
 
                             val configResponse = result as ReimbursementConfigFetchResponseModel
-                            Timber.d("Fetch ReimbursementConfigApiResponse : " + "\n" + "Status===> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Fetch ReimbursementConfigApiResponse : " + "\n" + "Status===> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -1956,7 +1956,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                             BaseActivity.isApiInitiated = false
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("Fetch ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("Fetch ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
                             rate = ""
                         })
         )
@@ -2128,7 +2128,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                         .subscribe({ result ->
 
                             val configResponse = result as BaseResponse
-                            Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -2152,7 +2152,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                             apiIsRunning = false
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )
@@ -2162,17 +2162,17 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
 
         if (!TextUtils.isEmpty(imagePath_1) && !imagePath_1.contains("http")) {
             imagePathArray.add(imagePath_1)
-            Timber.e("Reimbursement Fragment: Image link 1===> $imagePath_1")
+            //Timber.e("Reimbursement Fragment: Image link 1===> $imagePath_1")
         }
 
         if (!TextUtils.isEmpty(imagePath_2) && !imagePath_2.contains("http")) {
             imagePathArray.add(imagePath_2)
-            Timber.e("Reimbursement Fragment: Image link 2===> $imagePath_2")
+            //Timber.e("Reimbursement Fragment: Image link 2===> $imagePath_2")
         }
 
         if (!TextUtils.isEmpty(imagePath_3) && !imagePath_3.contains("http")) {
             imagePathArray.add(imagePath_3)
-            Timber.e("Reimbursement Fragment: Image link 3===> $imagePath_3")
+            //Timber.e("Reimbursement Fragment: Image link 3===> $imagePath_3")
         }
 
         if (imagePathArray.size == 0) {
@@ -2192,7 +2192,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val configResponse = result as BaseResponse
-                                Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                                //Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(configResponse.message!!)
@@ -2211,7 +2211,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                                 apiIsRunning = false
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
-                                Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
+                                //Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                             })
             )
@@ -2338,7 +2338,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val configResponse = result as BaseResponse
-                            Timber.d("Delete Reimbursement Image Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Delete Reimbursement Image Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -2366,7 +2366,7 @@ class EditReimbursementFragment : BaseFragment(), ReimbursementDateAdapter.onPet
                             apiIsRunning = false
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("Delete Reimbursement Image Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Delete Reimbursement Image Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

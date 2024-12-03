@@ -267,12 +267,12 @@ class KnowYourStateFragment : BaseFragment(), View.OnClickListener {
             return
         }
 
-        Timber.e("=======INPUT FOR KNOW STATE LIST========")
-        Timber.e("MONTH=====> $monthVal")
-        Timber.e("YEAR======> " + tv_year.text.toString().trim())
-        Timber.e("SESSION TOKEN======> " + Pref.session_token!!)
-        Timber.e("USER ID======> " + Pref.user_id!!)
-        Timber.e("=========================================")
+        //Timber.e("=======INPUT FOR KNOW STATE LIST========")
+        //Timber.e("MONTH=====> $monthVal")
+        //Timber.e("YEAR======> " + tv_year.text.toString().trim())
+        //Timber.e("SESSION TOKEN======> " + Pref.session_token!!)
+        //Timber.e("USER ID======> " + Pref.user_id!!)
+        //Timber.e("=========================================")
 
         progress_wheel.spin()
         val repository = KnowStateListRepoProvider.knowStateListRepoProvider()
@@ -286,7 +286,7 @@ class KnowYourStateFragment : BaseFragment(), View.OnClickListener {
 
                             val response = result as KnowYourStateListResponseModel
 
-                            Timber.e("RESPONSE CODE FOR KNOW STATE LIST=======> " + response.status)
+                            //Timber.e("RESPONSE CODE FOR KNOW STATE LIST=======> " + response.status)
 
                             if (response.status == "200") {
 
@@ -311,7 +311,7 @@ class KnowYourStateFragment : BaseFragment(), View.OnClickListener {
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
 
-                            Timber.e("RESPONSE ERROR FOR KNOW STATE LIST=======> " + error.localizedMessage)
+                            //Timber.e("RESPONSE ERROR FOR KNOW STATE LIST=======> " + error.localizedMessage)
 
                             rv_know_state_list.visibility = View.GONE
                             scroll.visibility = View.VISIBLE

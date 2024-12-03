@@ -493,7 +493,7 @@ class ViewNewOrdHistoryFrag: BaseFragment(), View.OnClickListener, DatePickerLis
             var ordProductDtls = AppDatabase.getDBInstance()!!.newOrderProductDataDao().getProductsOrder(unsyncOrdL.get(0).order_id)
             var syncOrd = SyncOrd()
             var syncOrdProductL:ArrayList<SyncOrdProductL> = ArrayList()
-            Timber.d("Order sync for order id ${unsyncOrdL.get(0).order_id}")
+            //Timber.d("Order sync for order id ${unsyncOrdL.get(0).order_id}")
             doAsync {
                 syncOrd.user_id = Pref.user_id!!
                 syncOrd.order_id = unsyncOrdL.get(0).order_id
@@ -532,7 +532,7 @@ class ViewNewOrdHistoryFrag: BaseFragment(), View.OnClickListener, DatePickerLis
                             .subscribe({ result ->
                                 val response = result as BaseResponse
                                 progress_wheel.stopSpinning()
-                                Timber.d("Order sync status ${response.status}")
+                                //Timber.d("Order sync status ${response.status}")
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     doAsync {
                                         AppDatabase.getDBInstance()!!.newOrderDataDao().updateIsUploaded(syncOrd.order_id,true)
@@ -542,11 +542,11 @@ class ViewNewOrdHistoryFrag: BaseFragment(), View.OnClickListener, DatePickerLis
                                         }
                                     }
                                 } else {
-                                    Timber.d("Order sync else status ${response.status}")
+                                    //Timber.d("Order sync else status ${response.status}")
                                     progress_wheel.stopSpinning()
                                 }
                             }, { error ->
-                                Timber.d("Order sync else err ${error.message}")
+                                //Timber.d("Order sync else err ${error.message}")
                                 progress_wheel.stopSpinning()
                             })
                     )

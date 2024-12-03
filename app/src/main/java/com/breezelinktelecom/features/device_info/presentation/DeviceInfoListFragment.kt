@@ -166,7 +166,7 @@ class DeviceInfoListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as AppInfoResponseModel
-                            Timber.e("Get App Info : RESPONSE : " + response.status + ":" + response.message)
+                            //Timber.e("Get App Info : RESPONSE : " + response.status + ":" + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 doAsync {
 
@@ -199,7 +199,7 @@ class DeviceInfoListFragment : BaseFragment() {
 
                         }, { error ->
                             error.printStackTrace()
-                            Timber.e("Get App Info : ERROR : " + error.localizedMessage)
+                            //Timber.e("Get App Info : ERROR : " + error.localizedMessage)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -228,11 +228,11 @@ class DeviceInfoListFragment : BaseFragment() {
 
         val appInfoInput = AppInfoInputModel(Pref.session_token!!, Pref.user_id!!, appInfoList)
 
-        Timber.d("============App Info Input(Device Info List)===========")
-        Timber.d("session_token==========> " + appInfoInput.session_token)
-        Timber.d("user_id==========> " + appInfoInput.user_id)
-        Timber.d("app_info_list.size==========> " + appInfoInput.app_info_list?.size)
-        Timber.d("==============================================================")
+        //Timber.d("============App Info Input(Device Info List)===========")
+        //Timber.d("session_token==========> " + appInfoInput.session_token)
+        //Timber.d("user_id==========> " + appInfoInput.user_id)
+        //Timber.d("app_info_list.size==========> " + appInfoInput.app_info_list?.size)
+        //Timber.d("==============================================================")
 
         progress_wheel.spin()
         val repository = LocationRepoProvider.provideLocationRepository()
@@ -242,7 +242,7 @@ class DeviceInfoListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.e("App Info : RESPONSE : " + response.status + ":" + response.message)
+                            //Timber.e("App Info : RESPONSE : " + response.status + ":" + response.message)
                             AppUtils.isAppInfoUpdating = false
 
                             if (response.status == NetworkConstant.SUCCESS) {
@@ -256,7 +256,7 @@ class DeviceInfoListFragment : BaseFragment() {
                         }, { error ->
                             AppUtils.isAppInfoUpdating = false
                             error.printStackTrace()
-                            Timber.e("App Info : ERROR : " + error.localizedMessage)
+                            //Timber.e("App Info : ERROR : " + error.localizedMessage)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })

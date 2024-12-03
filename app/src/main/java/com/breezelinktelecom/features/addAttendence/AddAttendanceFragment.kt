@@ -277,9 +277,9 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         locationList()
         //getWorkTypeListApi()
 
-        Handler().postDelayed(Runnable {
-            Timber.d("addAttend_check ${AppUtils.getCurrentDateTime()} ${Pref.current_latitude} ${Pref.current_latitude}")
-        }, 1500)
+       /* Handler().postDelayed(Runnable {
+            //Timber.d("addAttend_check ${AppUtils.getCurrentDateTime()} ${Pref.current_latitude} ${Pref.current_latitude}")
+        }, 1500)*/
 
         if(AppUtils.getSharedPreferencesIsFaceDetection(mContext)){
             initPermissionCheckStart()
@@ -324,7 +324,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                 }
 
                 override fun onNewLocationAvailable(location: Location) {
-                    Timber.d("AddAttend onNewLocationAvailable")
+                   // //Timber.d("AddAttend onNewLocationAvailable")
                     println("AddAttend_tag onNewLocationAvailable")
                     Pref.current_latitude = location.latitude.toString()
                     Pref.current_longitude = location.longitude.toString()
@@ -1346,14 +1346,14 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
 
     fun getLocforStart() {
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------enter to getLocforStart -----")
+       // //Timber.d("------enter to getLocforStart -----")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
             if (AppUtils.isOnline(mContext)) {
                 if (AppUtils.mLocation != null) {
                     if (AppUtils.mLocation!!.accuracy <= Pref.gpsAccuracy.toInt()) {
                         if (AppUtils.mLocation!!.accuracy <= Pref.shopLocAccuracy.toFloat()) {
                             //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                            Timber.d("------enter to near by shoplist DD------")
+                           // //Timber.d("------enter to near by shoplist DD------")
                             //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                             getNearyShopListDD(AppUtils.mLocation!!)
                         } else {
@@ -1361,13 +1361,13 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                             singleLocationDD()
                         }
                     } else {
-//                        Timber.d("=====Inaccurate current location (Local Shop List)=====")
-                        Timber.d("=====Inaccurate current location (Local Shop List)=====")
+//                        //Timber.d("=====Inaccurate current location (Local Shop List)=====")
+                        //Timber.d("=====Inaccurate current location (Local Shop List)=====")
                         singleLocationDD()
                     }
                 } else {
-//                    Timber.d("=====null location (Local Shop List)======")
-                    Timber.d("=====null location (Local Shop List)======")
+//                    //Timber.d("=====null location (Local Shop List)======")
+                    //Timber.d("=====null location (Local Shop List)======")
                     singleLocationDD()
                 }
             } else
@@ -1456,7 +1456,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     //val isShopNearby = FTStorageUtils.checkShopPositionWithinRadious(location, shopLocation, LocationWizard.NEARBY_RADIUS)
                     val isShopNearby = FTStorageUtils.checkShopPositionWithinRadious(location, shopLocation, Pref.DistributorGPSAccuracy.toInt())
                     //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                    Timber.d("------isShopNearby avalibale------{$isShopNearby}")
+                   // //Timber.d("------isShopNearby avalibale------{$isShopNearby}")
                     //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                     var dist=location.distanceTo(shopLocation).toInt()  //21-10-2021
                     if (isShopNearby) {
@@ -1497,7 +1497,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     var dist=location.distanceTo(ddLocation).toInt()  //21-10-2021
                     if (isShopNearby) {
                         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                        Timber.d("------isShopNearby avalibale allDD------{$isShopNearby}")
+                       // //Timber.d("------isShopNearby avalibale allDD------{$isShopNearby}")
                         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                         if ((location.distanceTo(ddLocation)) < nearBy) {
                             nearBy = location.distanceTo(ddLocation).toDouble()
@@ -1640,7 +1640,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         when (view?.id) {
             R.id.tv_attendance_submit -> {
                 //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                Timber.d("------enter attendance to onClick------")
+               // //Timber.d("------enter attendance to onClick------")
                 //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                 AppUtils.hideSoftKeyboard(mContext as DashboardActivity)
                 if(Pref.IsShowDayStart){
@@ -1916,8 +1916,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val response = result as TeamListResponseModel
-//                    Timber.d("GET TEAM DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
-                    Timber.d("GET TEAM DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+//                    //Timber.d("GET TEAM DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                   // //Timber.d("GET TEAM DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                     if (response.status == NetworkConstant.SUCCESS) {
                         progress_wheel.stopSpinning()
                         if (response.member_list != null && response.member_list!!.size > 0) {
@@ -1931,8 +1931,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                         (mContext as DashboardActivity).showSnackMessage(response.message!!)
                     }
                 }, { error ->
-//                    Timber.d("GET TEAM DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                    Timber.d("GET TEAM DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+//                    //Timber.d("GET TEAM DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                    //Timber.d("GET TEAM DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                     error.printStackTrace()
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2044,7 +2044,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     val distance = LocationWizard.getDistance(Pref.home_latitude.toDouble(), Pref.home_longitude.toDouble(), Pref.current_latitude.toDouble(),
                             Pref.current_longitude.toDouble())
 
-                    Timber.e("Distance from home====> $distance")
+                    //Timber.e("Distance from home====> $distance")
 
                     if (Pref.isHomeRestrictAttendance == "0") {
                         if (distance * 1000 > Pref.homeLocDistance.toDouble()) {
@@ -2063,16 +2063,16 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     } else
                         return true
                 } else {
-                    Timber.e("========Home location is not available========")
+                    //Timber.e("========Home location is not available========")
                     return true
                 }
 
             } else {
-                Timber.e("========isHomeLocAvailable is false========")
+                //Timber.e("========isHomeLocAvailable is false========")
                 return true
             }
         } else {
-            Timber.e("========Current location is not available========")
+            //Timber.e("========Current location is not available========")
             return true
         }
     }
@@ -2118,14 +2118,14 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
 
     private fun visibilityCheck() {
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------enter to visibilityCheck ------")
+       // //Timber.d("------enter to visibilityCheck ------")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
         // 4.0 AddAttendanceFragment AppV 4.0.8 Suman    07/04/2023 Attendance beat selection validation updation mantis 0025782
         var isBeatPresent = false
         if(Pref.IsBeatRouteAvailableinAttendance){
             val bList = AppDatabase.getDBInstance()?.beatDao()?.getAll() as ArrayList<BeatEntity>
             //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-            Timber.d("------IsBeatRouteAvailableinAttendance ${Pref.IsBeatRouteAvailableinAttendance}------")
+           // //Timber.d("------IsBeatRouteAvailableinAttendance ${Pref.IsBeatRouteAvailableinAttendance}------")
             //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
             if (bList != null && bList.isNotEmpty()){
                 isBeatPresent = true
@@ -2277,7 +2277,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         (mContext as DashboardActivity).showSnackMessage("Attendance added successfully")
         (mContext as DashboardActivity).onBackPressed()*/
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------checkNetworkConnectivity------")
+       // //Timber.d("------checkNetworkConnectivity------")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
         if (AppUtils.isOnline(mContext)) {
             if (BaseActivity.isApiInitiated)
@@ -2343,7 +2343,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
 
     private fun showSelfieDialog() {
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------showSelfieDialog ------")
+        //Timber.d("------showSelfieDialog ------")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
 
         selfieDialog = SelfieDialog.getInstance({
@@ -2440,7 +2440,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
     }
 
     private fun showFingerPrintDialog() {
-        Timber.d("------showFingerPrintDialog ------")
+        //Timber.d("------showFingerPrintDialog ------")
         (mContext as DashboardActivity).checkForFingerPrint()
 
         fingerprintDialog = FingerprintDialog()
@@ -2479,16 +2479,16 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
             return
         }
 
-        Timber.d("=========Leave Approval Input Params==========")
-        Timber.d("session_token======> " + leaveApproval.session_token)
-        Timber.d("user_id========> " + leaveApproval.user_id)
-        Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
-        Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
-        Timber.d("leave_type========> " + leaveApproval.leave_type)
-        Timber.d("leave_lat========> " + leaveApproval.leave_lat)
-        Timber.d("leave_long========> " + leaveApproval.leave_long)
-        Timber.d("leave_add========> " + leaveApproval.leave_add)
-        Timber.d("===============================================")
+        //Timber.d("=========Leave Approval Input Params==========")
+        //Timber.d("session_token======> " + leaveApproval.session_token)
+        //Timber.d("user_id========> " + leaveApproval.user_id)
+        //Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
+        //Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
+        //Timber.d("leave_type========> " + leaveApproval.leave_type)
+        //Timber.d("leave_lat========> " + leaveApproval.leave_lat)
+        //Timber.d("leave_long========> " + leaveApproval.leave_long)
+        //Timber.d("leave_add========> " + leaveApproval.leave_add)
+        //Timber.d("===============================================")
 
         val repository = AddAttendenceRepoProvider.leaveApprovalRepo()
         progress_wheel.spin()
@@ -2499,8 +2499,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                            Timber.d("Leave Approval Response Code========> " + response.status)
-                            Timber.d("Leave Approval Response Msg=========> " + response.message)
+                            //Timber.d("Leave Approval Response Code========> " + response.status)
+                            //Timber.d("Leave Approval Response Msg=========> " + response.message)
                             BaseActivity.isApiInitiated = false
 
                             if (response.status == NetworkConstant.SUCCESS) {
@@ -2520,7 +2520,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                             }
 
                         }, { error ->
-                            Timber.d("Leave Approval Response ERROR=========> " + error.message)
+                            //Timber.d("Leave Approval Response ERROR=========> " + error.message)
                             BaseActivity.isApiInitiated = false
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2622,8 +2622,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     Log.e("ApprovalPend work attendance", "api work type")
 
                 }, { error ->
-//                    Timber.d("AddAttendance Response Msg=========> " + error.message)
-                    Timber.d("AddAttendance Response Msg=========> " + error.message)
+//                    //Timber.d("AddAttendance Response Msg=========> " + error.message)
+                    //Timber.d("AddAttendance Response Msg=========> " + error.message)
                     BaseActivity.isApiInitiated = false
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2670,29 +2670,29 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         if (!TextUtils.isEmpty(et_leave_reason_text.text.toString().trim()))
             leaveApproval.leave_reason = et_leave_reason_text.text.toString().trim()
 
-      /*  Timber.d("=========Apply Leave Input Params==========")
-        Timber.d("session_token======> " + leaveApproval.session_token)
-        Timber.d("user_id========> " + leaveApproval.user_id)
-        Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
-        Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
-        Timber.d("leave_type========> " + leaveApproval.leave_type)
-        Timber.d("leave_lat========> " + leaveApproval.leave_lat)
-        Timber.d("leave_long========> " + leaveApproval.leave_long)
-        Timber.d("leave_add========> " + leaveApproval.leave_add)
-        Timber.d("leave_reason========> " + leaveApproval.leave_reason)
-        Timber.d("===============================================")*/
+      /*  //Timber.d("=========Apply Leave Input Params==========")
+        //Timber.d("session_token======> " + leaveApproval.session_token)
+        //Timber.d("user_id========> " + leaveApproval.user_id)
+        //Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
+        //Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
+        //Timber.d("leave_type========> " + leaveApproval.leave_type)
+        //Timber.d("leave_lat========> " + leaveApproval.leave_lat)
+        //Timber.d("leave_long========> " + leaveApproval.leave_long)
+        //Timber.d("leave_add========> " + leaveApproval.leave_add)
+        //Timber.d("leave_reason========> " + leaveApproval.leave_reason)
+        //Timber.d("===============================================")*/
 
-        Timber.d("=========Apply Leave Input Params==========")
-        Timber.d("session_token======> " + leaveApproval.session_token)
-        Timber.d("user_id========> " + leaveApproval.user_id)
-        Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
-        Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
-        Timber.d("leave_type========> " + leaveApproval.leave_type)
-        Timber.d("leave_lat========> " + leaveApproval.leave_lat)
-        Timber.d("leave_long========> " + leaveApproval.leave_long)
-        Timber.d("leave_add========> " + leaveApproval.leave_add)
-        Timber.d("leave_reason========> " + leaveApproval.leave_reason)
-        Timber.d("===============================================")
+        //Timber.d("=========Apply Leave Input Params==========")
+        //Timber.d("session_token======> " + leaveApproval.session_token)
+        //Timber.d("user_id========> " + leaveApproval.user_id)
+        //Timber.d("leave_from_date=======> " + leaveApproval.leave_from_date)
+        //Timber.d("leave_to_date=======> " + leaveApproval.leave_to_date)
+        //Timber.d("leave_type========> " + leaveApproval.leave_type)
+        //Timber.d("leave_lat========> " + leaveApproval.leave_lat)
+        //Timber.d("leave_long========> " + leaveApproval.leave_long)
+        //Timber.d("leave_add========> " + leaveApproval.leave_add)
+        //Timber.d("leave_reason========> " + leaveApproval.leave_reason)
+        //Timber.d("===============================================")
 
         val repository = AddAttendenceRepoProvider.leaveApprovalRepo()
         progress_wheel.spin()
@@ -2703,10 +2703,10 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                 .subscribe({ result ->
                     progress_wheel.stopSpinning()
                     val response = result as BaseResponse
-                  /*  Timber.d("Apply Leave Response Code========> " + response.status)
-                    Timber.d("Apply Leave Response Msg=========> " + response.message)*/
-                    Timber.d("Apply Leave Response Code========> " + response.status)
-                    Timber.d("Apply Leave Response Msg=========> " + response.message)
+                  /*  //Timber.d("Apply Leave Response Code========> " + response.status)
+                    //Timber.d("Apply Leave Response Msg=========> " + response.message)*/
+                    //Timber.d("Apply Leave Response Code========> " + response.status)
+                    //Timber.d("Apply Leave Response Msg=========> " + response.message)
                     BaseActivity.isApiInitiated = false
 
                     if (response.status == NetworkConstant.SUCCESS) {
@@ -2730,8 +2730,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     }
 
                 }, { error ->
-//                    Timber.d("Apply Leave Response ERROR=========> " + error.message)
-                    Timber.d("Apply Leave Response ERROR=========> " + error.message)
+//                    //Timber.d("Apply Leave Response ERROR=========> " + error.message)
+                    //Timber.d("Apply Leave Response ERROR=========> " + error.message)
                     BaseActivity.isApiInitiated = false
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2781,8 +2781,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                                 }
 
                             }, { error ->
-//                                Timber.d("Apply Leave Response ERROR=========> " + error.message)
-                                Timber.d("Apply Leave Response ERROR=========> " + error.message)
+//                                //Timber.d("Apply Leave Response ERROR=========> " + error.message)
+                                //Timber.d("Apply Leave Response ERROR=========> " + error.message)
                                 BaseActivity.isApiInitiated = false
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2807,8 +2807,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                                 }
 
                             }, { error ->
-//                                Timber.d("Apply Leave Response ERROR=========> " + error.message)
-                                Timber.d("Apply Leave Response ERROR=========> " + error.message)
+//                                //Timber.d("Apply Leave Response ERROR=========> " + error.message)
+                                //Timber.d("Apply Leave Response ERROR=========> " + error.message)
                                 BaseActivity.isApiInitiated = false
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -2897,7 +2897,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         //Toast.makeText(mContext,"prepareAddAttendanceInputParams",Toast.LENGTH_SHORT).show()
         try {
             //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-            Timber.d("------prepareAddAttendanceInputParams------")
+            //Timber.d("------prepareAddAttendanceInputParams------")
             //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
             addAttendenceModel.session_token = Pref.session_token!!
             addAttendenceModel.user_id = Pref.user_id!!
@@ -3017,7 +3017,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         } catch (e: Exception) {
             e.printStackTrace()
             //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-            Timber.d("------prepareAddAttendanceInputParams error{$e}------")
+            //Timber.d("------prepareAddAttendanceInputParams error{$e}------")
             //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
         }
     }
@@ -3025,7 +3025,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
     // 1.0 AddAttendanceFragment AppV 4.0.6 25615 mantis
     private fun checkDDwiseNearbyShopAvaliable() {
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------checkDDwiseNearbyShopAvaliable ------")
+        //Timber.d("------checkDDwiseNearbyShopAvaliable ------")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
         val currentLocation = Location("")
         currentLocation.latitude = Pref.current_latitude.toDouble()
@@ -3046,7 +3046,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     //val isShopNearby = FTStorageUtils.checkShopPositionWithinRadious(location, shopLocation, LocationWizard.NEARBY_RADIUS)
                     val isDDNearby = FTStorageUtils.checkShopPositionWithinRadious(currentLocation, ddLocation,Pref.DistributorGPSAccuracy.toInt())
                     //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                    Timber.d("------isDDNearby {$isDDNearby}------")
+                    //Timber.d("------isDDNearby {$isDDNearby}------")
                     //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                     if (isDDNearby) {
                         isDiswiseNearBYshopVisit = "Yes"
@@ -3063,17 +3063,17 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
 
     private fun doAttendanceViaApiOrPlanScreen() {
         //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-        Timber.d("------doAttendanceViaApiOrPlanScreen ------")
+        //Timber.d("------doAttendanceViaApiOrPlanScreen ------")
         //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
         if (!willShowUpdateDayPlan) {
 
             if (!isOnLeave) {
                 //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                Timber.d("------isOnLeave {$isOnLeave}------")
+                //Timber.d("------isOnLeave {$isOnLeave}------")
                 //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                 if (Pref.isFingerPrintMandatoryForAttendance) {
                     //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                    Timber.d("------isFingerPrintMandatoryForAttendance {${Pref.isFingerPrintMandatoryForAttendance}------")
+                    //Timber.d("------isFingerPrintMandatoryForAttendance {${Pref.isFingerPrintMandatoryForAttendance}------")
                     //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                     if ((mContext as DashboardActivity).isFingerPrintSupported)
                         showFingerPrintDialog()
@@ -3093,7 +3093,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
         } else {
             if (!isOnLeave) {
                 //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                Timber.d("------isOnLeave {$isOnLeave}------")
+                //Timber.d("------isOnLeave {$isOnLeave}------")
                 //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                 AppUtils.isFromAttendance = true
                 (mContext as DashboardActivity).isDailyPlanFromAlarm = false
@@ -3101,7 +3101,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                 (mContext as DashboardActivity).loadFragment(FragType.DailyPlanListFragment, true, addAttendenceModel)
             } else {
                 //start Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
-                Timber.d("------callAddAttendanceApi before------")
+                //Timber.d("------callAddAttendanceApi before------")
                 //end Rev 11.0	AddAttendanceFragment AppV 4.1.3 Saheli    10/07/2023  0026539: log update in attendance module
                 callAddAttendanceApi(addAttendenceModel)
             }
@@ -3110,34 +3110,34 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
 
     @SuppressLint("NewApi")
     private fun callAddAttendanceApi(addAttendenceModel: AddAttendenceInpuModel) {
-        Timber.e("==========AddAttendance=============")
-        Timber.d("=====AddAttendance Input Params========")
-        Timber.d("session_token-----> " + addAttendenceModel.session_token)
-        Timber.d("user_id----------> " + addAttendenceModel.user_id)
-        Timber.d("is_on_leave----------> " + addAttendenceModel.is_on_leave)
-        Timber.d("work_lat----------> " + addAttendenceModel.work_lat)
-        Timber.d("work_long----------> " + addAttendenceModel.work_long)
-        Timber.d("work_address----------> " + addAttendenceModel.work_address)
-        Timber.d("work_type----------> " + addAttendenceModel.work_type)
-        Timber.d("route----------> " + addAttendenceModel.route)
-        Timber.d("leave_from_date----------> " + addAttendenceModel.leave_from_date)
-        Timber.d("leave_to_date----------> " + addAttendenceModel.leave_to_date)
-        Timber.d("leave_type----------> " + addAttendenceModel.leave_type)
-        Timber.d("leave_reason----------> " + addAttendenceModel.leave_reason)
-        Timber.d("work_date_time----------> " + addAttendenceModel.work_date_time)
-        Timber.d("add_attendence_time----------> " + addAttendenceModel.add_attendence_time)
-        Timber.d("order taken----------> " + addAttendenceModel.order_taken)
-        Timber.d("collection taken----------> " + addAttendenceModel.collection_taken)
-        Timber.d("visit new shop----------> " + addAttendenceModel.new_shop_visit)
-        Timber.d("revisit shop----------> " + addAttendenceModel.revisit_shop)
-        Timber.d("state id----------> " + addAttendenceModel.state_id)
-        Timber.d("shop_list size----------> " + addAttendenceModel.shop_list.size)
-        Timber.d("primary_value_list size----------> " + addAttendenceModel.primary_value_list.size)
-        Timber.d("update_plan_list size----------> " + addAttendenceModel.update_plan_list.size)
-        Timber.d("from_id----------> " + addAttendenceModel.from_id)
-        Timber.d("to_id----------> " + addAttendenceModel.to_id)
-        Timber.d("distance----------> " + addAttendenceModel.distance)
-        Timber.d("======End AddAttendance Input Params======")
+        //Timber.e("==========AddAttendance=============")
+        //Timber.d("=====AddAttendance Input Params========")
+        //Timber.d("session_token-----> " + addAttendenceModel.session_token)
+        //Timber.d("user_id----------> " + addAttendenceModel.user_id)
+        //Timber.d("is_on_leave----------> " + addAttendenceModel.is_on_leave)
+        //Timber.d("work_lat----------> " + addAttendenceModel.work_lat)
+        //Timber.d("work_long----------> " + addAttendenceModel.work_long)
+        //Timber.d("work_address----------> " + addAttendenceModel.work_address)
+        //Timber.d("work_type----------> " + addAttendenceModel.work_type)
+        //Timber.d("route----------> " + addAttendenceModel.route)
+        //Timber.d("leave_from_date----------> " + addAttendenceModel.leave_from_date)
+        //Timber.d("leave_to_date----------> " + addAttendenceModel.leave_to_date)
+        //Timber.d("leave_type----------> " + addAttendenceModel.leave_type)
+        //Timber.d("leave_reason----------> " + addAttendenceModel.leave_reason)
+        //Timber.d("work_date_time----------> " + addAttendenceModel.work_date_time)
+        //Timber.d("add_attendence_time----------> " + addAttendenceModel.add_attendence_time)
+        //Timber.d("order taken----------> " + addAttendenceModel.order_taken)
+        //Timber.d("collection taken----------> " + addAttendenceModel.collection_taken)
+        //Timber.d("visit new shop----------> " + addAttendenceModel.new_shop_visit)
+        //Timber.d("revisit shop----------> " + addAttendenceModel.revisit_shop)
+        //Timber.d("state id----------> " + addAttendenceModel.state_id)
+        //Timber.d("shop_list size----------> " + addAttendenceModel.shop_list.size)
+        //Timber.d("primary_value_list size----------> " + addAttendenceModel.primary_value_list.size)
+        //Timber.d("update_plan_list size----------> " + addAttendenceModel.update_plan_list.size)
+        //Timber.d("from_id----------> " + addAttendenceModel.from_id)
+        //Timber.d("to_id----------> " + addAttendenceModel.to_id)
+        //Timber.d("distance----------> " + addAttendenceModel.distance)
+        //Timber.d("======End AddAttendance Input Params======")
 
         //Begin Rev 7.0 AddAttendanceFragment AppV 4.1.3 Suman    17/05/2023 beat flow updation 26118
         addAttendenceModel.visit_location_id = selectedVisitStationID
@@ -3161,10 +3161,10 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
                             val response = result as BaseResponse
-                           /* Timber.d("AddAttendance Response Code========> " + response.status)
-                            Timber.d("AddAttendance Response Msg=========> " + response.message)*/
-                            Timber.d("AddAttendance Response Code========> " + response.status)
-                            Timber.d("AddAttendance Response Msg=========> " + response.message)
+                           /* //Timber.d("AddAttendance Response Code========> " + response.status)
+                            //Timber.d("AddAttendance Response Msg=========> " + response.message)*/
+                            //Timber.d("AddAttendance Response Code========> " + response.status)
+                            //Timber.d("AddAttendance Response Msg=========> " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 /*if (AppDatabase.getDBInstance()?.selectedWorkTypeDao()?.getAll() != null)
@@ -3182,7 +3182,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                                         Pref.IsLeavePressed=true
 
                                         if (isLocationServiceRunning(LocationFuzedService::class.java)) {
-                                            Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
+                                            //Timber.d("TAG_CHECK_LOC_SERVICE_STATUS")
 
                                             mContext.stopService(Intent(mContext, LocationFuzedService::class.java))
                                         }
@@ -3409,8 +3409,8 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                             Log.e("add attendance", "api work type")
 
                         }, { error ->
-//                            Timber.d("AddAttendance Response Msg=========> " + error.message)
-                            Timber.d("AddAttendance Response Msg=========> " + error.message)
+//                            //Timber.d("AddAttendance Response Msg=========> " + error.message)
+                            //Timber.d("AddAttendance Response Msg=========> " + error.message)
                             BaseActivity.isApiInitiated = false
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
@@ -3596,21 +3596,21 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                                 //registerFace(bitmap);
                                 GetImageFromUrl().execute(CustomStatic.FaceUrl)
 
-//                                Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
-                                Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
+//                                //Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
+                                //Timber.d(" AddAttendanceFragment : FaceRegistration/FaceMatch" +response.status.toString() +", : "  + ", Success: ")
                             }else{
                                 BaseActivity.isApiInitiated = false
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_reg_face))
                                 progress_wheel.stopSpinning()
-//                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
-                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
+//                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
+                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + response.status.toString() +", : "  + ", Failed: ")
                             }
 
                         },{
                             error ->
                             if (error != null) {
-//                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
-                                Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
+//                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("AddAttendanceFragment : FaceRegistration/FaceMatch : " + " : "  + ", ERROR: " + error.localizedMessage)
                             }
                             BaseActivity.isApiInitiated = false
                         })
@@ -3869,7 +3869,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
             // updateResults(currTimestamp, mappedRecognitions);
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.d("onfacedetected error ${e.printStackTrace()}")
+            //Timber.d("onfacedetected error ${e.printStackTrace()}")
         }
     }
 
@@ -4225,7 +4225,7 @@ class AddAttendanceFragment : Fragment(), View.OnClickListener, DatePickerDialog
                     }
                 },
                     { error ->
-                        Timber.d("AddAttendance Response Msg=========> " + error.message)
+                        //Timber.d("AddAttendance Response Msg=========> " + error.message)
 
                     })
         )

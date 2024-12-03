@@ -403,11 +403,11 @@ class OfflineAllShopListFragment : BaseFragment() {
                     if (AppUtils.mLocation!!.accuracy <= Pref.shopLocAccuracy.toFloat()) {
                         openAddressUpdateDialog(teamShop, AppUtils.mLocation!!)
                     } else {
-                        Timber.d("======Saved current location is inaccurate (Offline Member Shop List)========")
+                        //Timber.d("======Saved current location is inaccurate (Offline Member Shop List)========")
                         getShopLatLong(teamShop)
                     }
                 } else {
-                    Timber.d("=====Saved current location is null (Offline Member Shop List)======")
+                    //Timber.d("=====Saved current location is null (Offline Member Shop List)======")
                     getShopLatLong(teamShop)
                 }
 
@@ -520,15 +520,15 @@ class OfflineAllShopListFragment : BaseFragment() {
             pincode = team.shop_pincode
         }
 
-        Timber.d("==============Sync Team Shop Input Params (Offline Shop)====================")
-        Timber.d("shop id=======> " + addressUpdateReq.shop_id)
-        Timber.d("user_id=======> " + addressUpdateReq.user_id)
-        Timber.d("shop_lat=======> " + addressUpdateReq.shop_lat)
-        Timber.d("shop_long=======> " + addressUpdateReq.shop_long)
-        Timber.d("shop_address=======> " + addressUpdateReq.shop_address)
-        Timber.d("shop_pincode=======> " + addressUpdateReq.pincode)
-        Timber.d("isAddressUpdated=======> " + addressUpdateReq.isAddressUpdated)
-        Timber.d("=============================================================================")
+        //Timber.d("==============Sync Team Shop Input Params (Offline Shop)====================")
+        //Timber.d("shop id=======> " + addressUpdateReq.shop_id)
+        //Timber.d("user_id=======> " + addressUpdateReq.user_id)
+        //Timber.d("shop_lat=======> " + addressUpdateReq.shop_lat)
+        //Timber.d("shop_long=======> " + addressUpdateReq.shop_long)
+        //Timber.d("shop_address=======> " + addressUpdateReq.shop_address)
+        //Timber.d("shop_pincode=======> " + addressUpdateReq.pincode)
+        //Timber.d("isAddressUpdated=======> " + addressUpdateReq.isAddressUpdated)
+        //Timber.d("=============================================================================")
 
 
         BaseActivity.compositeDisposable.add(

@@ -205,7 +205,7 @@ class ChatUserListFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as ChatUserResponseModel
-                            Timber.d("Get Chat User List STATUS: " + response.status)
+                            //Timber.d("Get Chat User List STATUS: " + response.status)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 progress_wheel.stopSpinning()
                                 tv_no_data.visibility = View.GONE
@@ -221,7 +221,7 @@ class ChatUserListFragment : BaseFragment(), View.OnClickListener {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             if (error != null)
-                                Timber.d("Get Chat User List ERROR: " + error.localizedMessage)
+                                //Timber.d("Get Chat User List ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

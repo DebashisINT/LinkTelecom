@@ -193,14 +193,22 @@ public interface AppConstant {
     String CRM_Opportunity_Add = "CRM_Opportunity_Add";
     String CRM_Opportunity_Product = "CRM_Opportunity_Product";
 
-    String LMS_USER_INFO = "LMS_USER_INFO";
-
     //Suman 29-07-2024 mantis id 27647
     String SHOP_AUDIO = "shop_audio";
-    String LMS_NOTIFICATION = "lms_notification";
     String STOCK_ALL = "stock_all";
     String STOCK_TRANS = "stock_trans";
-    String Temp_Retry = "stock_trans";
+    String CRASH_REPORTS = "crash_reports";
+
+    String SHOP_EXTRA_DTLS = "shop_extra_dtls";
+
+    String LOAN_RISK = "loan_risk";
+
+    String Loan_Disposition = "loan_disposition";
+
+
+    String Loan_Final_Status = "loan_final_status";
+
+    String Loan_Detail_Fetch = "loan_detail_fetch";
 
 
 }

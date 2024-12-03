@@ -585,6 +585,18 @@ class AppUtils {
             return formattedDate
         }
 
+        fun getFormatedDM(inputDate:String):String{
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            // Define the output format
+            val outputFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+
+            // Parse the input date and format it to the desired output
+            val date: Date = inputFormat.parse(inputDate) ?: Date()
+            val formattedDate = outputFormat.format(date)
+            return formattedDate
+        }
+
 
         /*Current date for DB Add Shop*/
 
@@ -742,11 +754,11 @@ class AppUtils {
                 sHours = "5"
             }
 
-            Timber.e("====CALCULATE DURATION (AppUtils)=====")
-            Timber.e("Hours Spent====> $sHours")
+            //Timber.e("====CALCULATE DURATION (AppUtils)=====")
+            //Timber.e("Hours Spent====> $sHours")
 
             val duration = "$sHours:$sMinute:$sSecond"
-            Timber.e("Duration Spent====> $duration")
+            //Timber.e("Duration Spent====> $duration")
 
             return duration*/
 
@@ -811,11 +823,11 @@ class AppUtils {
                 sHours = "5"
             }
 
-            Timber.e("====CALCULATE DURATION (AppUtils)=====")
-            Timber.e("Hours Spent====> $sHours")
+            //Timber.e("====CALCULATE DURATION (AppUtils)=====")
+            //Timber.e("Hours Spent====> $sHours")
 
             /*try {
-                Timber.e("Minutes Spent====> $sMinute")
+                //Timber.e("Minutes Spent====> $sMinute")
                 sMinute.toInt()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -823,7 +835,7 @@ class AppUtils {
             }*/
 
             val duration = "$sHours:$sMinute:$sSecond"
-            Timber.e("Duration Spent====> $duration")
+            //Timber.e("Duration Spent====> $duration")
 
             return duration
         }
@@ -2254,7 +2266,7 @@ class AppUtils {
 
             //Timber.e("Dashboard", "image file size before compression=======> " + file.length())
 
-            Timber.e("Dashboard: image file size before compression=======> " + file.length())
+            //Timber.e("Dashboard: image file size before compression=======> " + file.length())
 
             try {
                 val bitmapImage = BitmapFactory.decodeFile(filePath)
@@ -2274,20 +2286,20 @@ class AppUtils {
                 fos.flush()
                 fos.close()
 
-                Timber.e("Dashboard: image file path======> $filePath")
-                Timber.e("Dashboard: image file size after compression=======> " + file.length())
+                //Timber.e("Dashboard: image file path======> $filePath")
+                //Timber.e("Dashboard: image file size after compression=======> " + file.length())
                 return file.length()
             } catch (e: FileNotFoundException) {
                 // TODO Auto-generated catch block
                 e.printStackTrace()
-                Timber.e("Dashboard: " + e.localizedMessage)
+                //Timber.e("Dashboard: " + e.localizedMessage)
             } catch (e: IOException) {
                 // TODO Auto-generated catch block
                 e.printStackTrace()
-                Timber.e("Dashboard: " + e.localizedMessage)
+                //Timber.e("Dashboard: " + e.localizedMessage)
             } catch (e: Exception) {
                 e.printStackTrace()
-                Timber.e("Dashboard: " + e.localizedMessage)
+                //Timber.e("Dashboard: " + e.localizedMessage)
             }
             return 0
         }
@@ -3276,7 +3288,7 @@ class AppUtils {
                         obj.callDateTime = callDateTime
                         obj.callDuration = callDuration
                         phoneCallRecord.add(obj)
-                        Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
+                       // //Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
                     }catch (ex:Exception){
                         ex.printStackTrace()
                     }
@@ -3346,7 +3358,7 @@ class AppUtils {
                         obj.callDateTime = callDateTime
                         obj.callDuration = callDuration
                         phoneCallRecord.add(obj)
-                        Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
+                       // //Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
                     }catch (ex:Exception){
                         ex.printStackTrace()
                     }
@@ -3406,7 +3418,7 @@ class AppUtils {
                         obj.callDateTime = callDateTime
                         obj.callDuration = callDuration
                         phoneCallRecord.add(obj)
-                        Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
+                       // //Timber.d("Call record fetched ${obj.number} ${obj.callDateTime}")
                     }catch (ex:Exception){
                         ex.printStackTrace()
                         println("tag_time_dt err1 ${ex.message}")
@@ -3442,7 +3454,7 @@ class AppUtils {
                     while (it.moveToNext()) {
                         val groupName = it.getString(it.getColumnIndex(ContactsContract.Groups.TITLE))
                         val groupId = it.getString(it.getColumnIndex(ContactsContract.Groups._ID))
-                        Timber.d("tag_contact_gr $groupName $groupId")
+                       // //Timber.d("tag_contact_gr $groupName $groupId")
                         if(!groups.map { it.gr_name }.contains(groupName)){
                             groups.add(ContactGr(groupId,groupName))
                             //println("tag_contact_gr $groupId $groupName")

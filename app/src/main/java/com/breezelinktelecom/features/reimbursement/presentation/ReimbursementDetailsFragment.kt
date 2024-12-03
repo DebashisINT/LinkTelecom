@@ -596,7 +596,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
             state_id = Pref.profile_state
 
 //        XLog.d("ReimbursementConfigApi Request: \n State id====> " + state_id + ", user id====> " + Pref.user_id!!)
-        Timber.d("ReimbursementConfigApi Request: \n State id====> " + state_id + ", user id====> " + Pref.user_id!!)
+        //Timber.d("ReimbursementConfigApi Request: \n State id====> " + state_id + ", user id====> " + Pref.user_id!!)
 
         val repository = ReimbursementConfigRepoProvider.provideReimbursementConfigRepository()
         progress_wheel.spin()
@@ -608,7 +608,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
 
                             val configResponse = result as ReimbursementConfigResponseModel
 //                            XLog.d("ReimbursementConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
-                            Timber.d("ReimbursementConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
+                            //Timber.d("ReimbursementConfigApiResponse : " + "\n" + "Status=====> " + configResponse.status + ", Message====> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -635,7 +635,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
-                            Timber.d("ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
                         })
         )
     }
@@ -1179,14 +1179,14 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
         XLog.d("visittype_id===> " + inputModel.visittype_id)
         XLog.d("===============================================")*/
 
-        Timber.d("=====Fetch ReimbursementConfigApi Request=====")
-        Timber.d("user_id===> " + inputModel.user_id)
-        Timber.d("state_id===> " + inputModel.state_id)
-        Timber.d("expense_id===> " + inputModel.expense_id)
-        Timber.d("fuel_id===> " + inputModel.fuel_id)
-        Timber.d("travel_id===> " + inputModel.travel_id)
-        Timber.d("visittype_id===> " + inputModel.visittype_id)
-        Timber.d("===============================================")
+        //Timber.d("=====Fetch ReimbursementConfigApi Request=====")
+        //Timber.d("user_id===> " + inputModel.user_id)
+        //Timber.d("state_id===> " + inputModel.state_id)
+        //Timber.d("expense_id===> " + inputModel.expense_id)
+        //Timber.d("fuel_id===> " + inputModel.fuel_id)
+        //Timber.d("travel_id===> " + inputModel.travel_id)
+        //Timber.d("visittype_id===> " + inputModel.visittype_id)
+        //Timber.d("===============================================")
 
         val repository = ReimbursementConfigFetchRepoProvider.provideFetchReimbursementConfigRepository()
         progress_wheel.spin()
@@ -1199,7 +1199,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             val configResponse = result as ReimbursementConfigFetchResponseModel
 //                            XLog.d("Fetch ReimbursementConfigApiResponse : " + "\n" + "Status===> " + configResponse.status + ", Message===> " + configResponse.message)
 
-                            Timber.d("Fetch ReimbursementConfigApiResponse : " + "\n" + "Status===> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Fetch ReimbursementConfigApiResponse : " + "\n" + "Status===> " + configResponse.status + ", Message===> " + configResponse.message)
 
 
                             progress_wheel.stopSpinning()
@@ -1233,7 +1233,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("Fetch ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
-                            Timber.d("Fetch ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
+                            //Timber.d("Fetch ReimbursementConfigApiResponse ERROR: " + error.localizedMessage)
                         })
         )
     }
@@ -1360,7 +1360,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
 
                             val configResponse = result as BaseResponse
 //                            XLog.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
-                            Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -1381,7 +1381,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
-                            Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )
@@ -1396,7 +1396,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                         .subscribe({ result ->
                             val configResponse = result as BaseResponse
 //                            XLog.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
-                            Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Apply Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -1413,7 +1413,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
-                            Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Apply Reimbursement Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )
@@ -1440,7 +1440,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             val configResponse = result as BaseResponse
 //                            XLog.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
-                            Timber.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
+                            //Timber.d("Delete Reimbursement Api Response : " + "\n" + "Status====> " + configResponse.status + ", Message===> " + configResponse.message)
 
                             progress_wheel.stopSpinning()
                             if (configResponse.status == NetworkConstant.SUCCESS) {
@@ -1473,7 +1473,7 @@ class ReimbursementDetailsFragment : BaseFragment(), /*DateAdapter*/Reimbursemen
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
 //                            XLog.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
-                            Timber.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
+                            //Timber.d("Delete Reimbursement Api ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

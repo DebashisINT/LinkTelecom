@@ -142,7 +142,7 @@ class PlanDetailsFragment : BaseFragment() {
                             progress_wheel.stopSpinning()
                             tv_no_data.visibility = View.VISIBLE
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                            Timber.d("DailyPlanDetails ERROR: " + error.localizedMessage)
+                            //Timber.d("DailyPlanDetails ERROR: " + error.localizedMessage)
                         })
         )
     }

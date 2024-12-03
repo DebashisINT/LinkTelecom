@@ -1129,7 +1129,7 @@ class NearByShopsListAdapterNW(context: Context, list: List<AddShopDBModelEntity
             println("sett_check ${Pref.ShowPartyWithGeoFence} ${Pref.ShowUserwisePartyWithGeoFence} ${Pref.ShowPartyWithCreateOrder} ${Pref.ShowUserwisePartyWithCreateOrder}")
 
             itemView.ll_order_range.setOnClickListener {
-                Timber.d("tag_range_click")
+                //Timber.d("tag_range_click")
             }
 
             if (Pref.ShowPartyWithGeoFence && Pref.ShowUserwisePartyWithGeoFence) {

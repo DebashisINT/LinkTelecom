@@ -173,7 +173,7 @@ class ShowPeopleFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as GroupUserResponseModel
-                            Timber.d("Get User List STATUS: " + response.status)
+                            //Timber.d("Get User List STATUS: " + response.status)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 progress_wheel.stopSpinning()
                                 tv_no_data.visibility = View.GONE
@@ -190,7 +190,7 @@ class ShowPeopleFragment : BaseFragment() {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             if (error != null)
-                                Timber.d("Get User List ERROR: " + error.localizedMessage)
+                                //Timber.d("Get User List ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )
@@ -205,7 +205,7 @@ class ShowPeopleFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as GroupUserResponseModel
-                            Timber.d("Get Group Not Selected User List STATUS: " + response.status)
+                            //Timber.d("Get Group Not Selected User List STATUS: " + response.status)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 progress_wheel.stopSpinning()
                                 tv_no_data.visibility = View.GONE
@@ -232,7 +232,7 @@ class ShowPeopleFragment : BaseFragment() {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             if (error != null)
-                                Timber.d("Get Group Not Selected User List ERROR: " + error.localizedMessage)
+                                //Timber.d("Get Group Not Selected User List ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

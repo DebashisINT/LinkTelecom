@@ -217,7 +217,7 @@ class ShopDamageProductSubmitFrag: BaseFragment(), View.OnClickListener {
                         error ->
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                     if (error != null) {
-                        Timber.d(error.localizedMessage)
+                        //Timber.d(error.localizedMessage)
                     }
                     progress_wheel.stopSpinning()
                 })

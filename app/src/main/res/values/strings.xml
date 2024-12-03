@@ -1644,8 +1644,12 @@
     <string name="voter_registration" translatable="false">Voter Registration</string>
     <string name="pan_registration" translatable="false">Pan Registration</string>
     <string name="reg_net_disconnected" translatable="false">Internet is disconnected, you cannot Register, please switch on the internet</string>
-<!--
+    <!--
     <string name="retry_now" translatable="false"><u>Retry</u></string>
 -->
-    <string name="retry_now" translatable="false">Retry</string>
+    <!--    <string name="acra_toast_text" translatable="false">Opps!Crash</string>
+    <string name="acra_dialog_title" translatable="false">Crash Popup</string>
+    <string name="acra_dialog_message" translatable="false">Opps!Crash</string>
+    <string name="acra_dialog_positive_button" translatable="false">Ok</string>
+    <string name="acra_dialog_negative_button" translatable="false">Cancel</string>-->
 </resources>

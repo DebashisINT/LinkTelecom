@@ -37,3 +37,23 @@ data class CompanyName(var company_name:String="")
 data class AutoMailDtls(var automail_sending_email:String="",var automail_sending_pass:String="",var recipient_email_ids:String=""):BaseResponse()
 
 data class ProductDtls(var product_id:String="",var product_name:String="",var isTick:Boolean = false)
+
+data class TargetTypeResponse(var target_type_list:ArrayList<TargetTypeDtls> = ArrayList()):BaseResponse()
+data class TargetLevelResponse(var target_level_list:ArrayList<TargetTypeDtls> = ArrayList()):BaseResponse()
+data class DateRangeResponse(var target_time_list:ArrayList<TargetTypeDtls> = ArrayList()):BaseResponse()
+
+data class TargetTypeDtls(var id:Int=0,var name:String="")
+
+data class LoanDtlsResponse(var user_id:String="",var shop_id:String="",var risk_id:String="",var risk_name:String="",
+    var workable:String="",var disposition_code_id:String="",var disposition_code_name:String="",var ptp_Date:String="",
+    var ptp_amt:String="",var collection_date:String="",var collection_amount:String="",var final_status_id:String="",
+    var final_status_name:String="")
+
+data class TargetAcvhResponse(var value_for:String="",var target:String="",var achv:String="",
+                              var achv_list:ArrayList<TargetAcvhDtls> = ArrayList()):BaseResponse()
+data class TargetAcvhDtls(var name:String="",var value:String="",var date_time:String="")
+
+data class TargetAcvhParam(var user_id:String="",var target_type_id:String="",var target_level_id:String="",
+                           var time_frame:String="",var start_date:String="",var end_date:String="")
+
+

@@ -24,8 +24,8 @@ class AlarmServiceRestart: BroadcastReceiver() {
         if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, context)) {
             //Timber.d("AlarmServiceRestart loc service check service running : Time :" + AppUtils.getCurrentDateTime())
         }else{
-            Timber.d("AlarmServiceRestart loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
-            Timber.d("restarting loc service")
+            //Timber.d("AlarmServiceRestart loc service check service not running : Time :" + AppUtils.getCurrentDateTime())
+            //Timber.d("restarting loc service")
             restartLocationService(context!!)
         }
     }
@@ -53,13 +53,13 @@ class AlarmServiceRestart: BroadcastReceiver() {
                     if (resultCode == JobScheduler.RESULT_SUCCESS) {
                         //Timber.d("===============================From AlarmServiceRestart LocationFuzedService   Job scheduled " + AppUtils.getCurrentDateTime() + "============================")
                     } else {
-                        Timber.d("=====================From AlarmServiceRestart LocationFuzedService Job not scheduled " + AppUtils.getCurrentDateTime() + "====================================")
+                        //Timber.d("=====================From AlarmServiceRestart LocationFuzedService Job not scheduled " + AppUtils.getCurrentDateTime() + "====================================")
                     }
                 }
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Timber.d("error AlarmServiceRestart ${e.printStackTrace()}")
+            //Timber.d("error AlarmServiceRestart ${e.printStackTrace()}")
         }
     }
 

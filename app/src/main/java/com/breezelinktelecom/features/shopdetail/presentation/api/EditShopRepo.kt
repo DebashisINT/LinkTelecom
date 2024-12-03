@@ -19,9 +19,14 @@ import com.breezelinktelecom.features.contacts.AutoMailDtls
 import com.breezelinktelecom.features.contacts.CallHisDtls
 import com.breezelinktelecom.features.contacts.CompanyReqData
 import com.breezelinktelecom.features.contacts.ContactMasterRes
+import com.breezelinktelecom.features.contacts.DateRangeResponse
 import com.breezelinktelecom.features.contacts.SourceMasterRes
 import com.breezelinktelecom.features.contacts.StageMasterRes
 import com.breezelinktelecom.features.contacts.StatusMasterRes
+import com.breezelinktelecom.features.contacts.TargetAcvhParam
+import com.breezelinktelecom.features.contacts.TargetAcvhResponse
+import com.breezelinktelecom.features.contacts.TargetLevelResponse
+import com.breezelinktelecom.features.contacts.TargetTypeResponse
 import com.breezelinktelecom.features.contacts.TypeMasterRes
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.document.model.AddEditDocumentInputParams
@@ -242,6 +247,16 @@ class EditShopRepo(val apiService: EditShopApi) {
     }
 
 
-
-
+    fun targetType(user_id: String): Observable<TargetTypeResponse> {
+        return apiService.targetTypeAPI(user_id)
+    }
+    fun targetLevel(user_id: String): Observable<TargetLevelResponse> {
+        return apiService.targetLevelAPI(user_id)
+    }
+    fun dateRange(user_id: String): Observable<DateRangeResponse> {
+        return apiService.dateRangeAPI(user_id)
+    }
+    fun targetAchvDtls(obj: TargetAcvhParam): Observable<TargetAcvhResponse> {
+        return apiService.targetAchvDtlsAPI(obj)
+    }
 }

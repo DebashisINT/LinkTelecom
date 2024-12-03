@@ -252,7 +252,7 @@ class MicroLearningListFragment : BaseFragment() {
                         .subscribe({ result ->
                             val response = result as MicroLearningResponseModel
 //                            XLog.d("MICRO LEARNING LIST: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
-                            Timber.d("MICRO LEARNING LIST: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("MICRO LEARNING LIST: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                             if (response.status == NetworkConstant.SUCCESS) {
                                 /*Log.e("Learning", "==================Fetch Video duration for api call========================")
@@ -281,7 +281,7 @@ class MicroLearningListFragment : BaseFragment() {
                         }, { error ->
                             progress_wheel.stopSpinning()
 //                            XLog.d("MICRO LEARNING LIST: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("MICRO LEARNING LIST: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("MICRO LEARNING LIST: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -444,7 +444,7 @@ class MicroLearningListFragment : BaseFragment() {
                         .subscribe({ result ->
                             val response = result as BaseResponse
 //                            XLog.d("UPDATE DOWNLOAD STATUS: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
-                            Timber.d("UPDATE DOWNLOAD STATUS: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPDATE DOWNLOAD STATUS: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
 
                             if (response.status == NetworkConstant.SUCCESS) {
@@ -457,7 +457,7 @@ class MicroLearningListFragment : BaseFragment() {
                         }, { error ->
                             progress_wheel.stopSpinning()
 //                            XLog.d("UPDATE DOWNLOAD STATUS: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("UPDATE DOWNLOAD STATUS: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPDATE DOWNLOAD STATUS: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -578,7 +578,7 @@ class MicroLearningListFragment : BaseFragment() {
                         .subscribe({ result ->
                             val response = result as BaseResponse
 //                            XLog.d("UPDATE NOTE: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
-                            Timber.d("UPDATE NOTE: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("UPDATE NOTE: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
 
                             if (response.status == NetworkConstant.SUCCESS) {
@@ -593,7 +593,7 @@ class MicroLearningListFragment : BaseFragment() {
                         }, { error ->
                             progress_wheel.stopSpinning()
 //                            XLog.d("UPDATE NOTE: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
-                            Timber.d("UPDATE NOTE: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("UPDATE NOTE: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             it.note = note
                             showUpdateNoteDialog(it)

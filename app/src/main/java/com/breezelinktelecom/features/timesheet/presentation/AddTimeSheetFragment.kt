@@ -464,7 +464,7 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
 
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     timesheetPic(newFile!!.length(), newFile?.absolutePath!!)
                 } else {
                     // Image compression
@@ -577,19 +577,19 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
             return
         }
 
-        Timber.d("==============Add Timesheet Input Params (Add Timesheet)====================")
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("date=======> " + timeSheetEntity.date)
-        Timber.d("client_id=======> " + timeSheetEntity.client_id)
-        Timber.d("project_id=======> " + timeSheetEntity.project_id)
-        Timber.d("activity_id=======> " + timeSheetEntity.activity_id)
-        Timber.d("product_id=======> " + timeSheetEntity.product_id)
-        Timber.d("time=======> " + timeSheetEntity.time)
-        Timber.d("comments=======> " + timeSheetEntity.comments)
-        Timber.d("timesheet_id=======> " + timeSheetEntity.timesheet_id)
-        Timber.d("image=======> " + timeSheetEntity.image)
-        Timber.d("===========================================================================")
+        //Timber.d("==============Add Timesheet Input Params (Add Timesheet)====================")
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("date=======> " + timeSheetEntity.date)
+        //Timber.d("client_id=======> " + timeSheetEntity.client_id)
+        //Timber.d("project_id=======> " + timeSheetEntity.project_id)
+        //Timber.d("activity_id=======> " + timeSheetEntity.activity_id)
+        //Timber.d("product_id=======> " + timeSheetEntity.product_id)
+        //Timber.d("time=======> " + timeSheetEntity.time)
+        //Timber.d("comments=======> " + timeSheetEntity.comments)
+        //Timber.d("timesheet_id=======> " + timeSheetEntity.timesheet_id)
+        //Timber.d("image=======> " + timeSheetEntity.image)
+        //Timber.d("===========================================================================")
 
         var comment = ""
 
@@ -609,7 +609,7 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                                 progress_wheel.stopSpinning()
 
@@ -629,7 +629,7 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 (mContext as DashboardActivity).showSnackMessage("Timesheet added successfully")
                                 (mContext as DashboardActivity).onBackPressed()
@@ -644,7 +644,7 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as BaseResponse
-                                Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                                //Timber.d("ADD TIMESHEET: " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
 
                                 progress_wheel.stopSpinning()
 
@@ -664,7 +664,7 @@ class AddTimeSheetFragment : BaseFragment(), DateAdapter.onPetSelectedListener, 
 
                             }, { error ->
                                 progress_wheel.stopSpinning()
-                                Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                                //Timber.d("ADD TIMESHEET: " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                                 error.printStackTrace()
                                 (mContext as DashboardActivity).showSnackMessage("Timesheet added successfully")
                                 (mContext as DashboardActivity).onBackPressed()

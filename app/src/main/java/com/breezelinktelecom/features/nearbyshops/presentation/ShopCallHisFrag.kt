@@ -198,7 +198,7 @@ class ShopCallHisFrag : BaseFragment(), View.OnClickListener {
                             }
                             var isPresent = (AppDatabase.getDBInstance()!!.callhisDao().getFilterData(obj.call_number,obj.call_date,obj.call_time,obj.call_type,obj.call_duration_sec) as ArrayList<CallHisEntity>).size
                             if(isPresent==0){
-                                Timber.d("tag_log_insert ${obj.call_number} ${obj.call_duration}")
+                                //Timber.d("tag_log_insert ${obj.call_number} ${obj.call_duration}")
                                 AppDatabase.getDBInstance()!!.callhisDao().insert(obj)
                             }
                         }

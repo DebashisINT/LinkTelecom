@@ -20,3 +20,7 @@ data class ShopExtraContactReq (var shop_id:String = "",
                                      var contact_serial4:String = "4",var contact_name4:String = "", var contact_number4:String = "",var contact_email4:String="",var contact_doa4:String="",var contact_dob4:String="",
                                      var contact_serial5:String = "5",var contact_name5:String = "", var contact_number5:String = "",var contact_email5:String="",var contact_doa5:String="",var contact_dob5:String="",
                                      var contact_serial6:String = "6",var contact_name6:String = "", var contact_number6:String = "",var contact_email6:String="",var contact_doa6:String="",var contact_dob6:String="",)
+
+data class Crash_Report_Save(var user_id:String = "",var crash_report_save_list:ArrayList<Crash_Report_Save_Data> = ArrayList())
+
+data class Crash_Report_Save_Data(var errorMessage:String="",var stackTrace:String="",var date_time:String="",var device:String="",var os_version:String="",var app_version:String="",var user_remarks:String="")

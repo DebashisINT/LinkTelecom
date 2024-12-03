@@ -302,7 +302,7 @@ class RegisTerFaceFragment: BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             val response = result as FaceRegResponse
                             if(response.status== NetworkConstant.SUCCESS){
-                                Timber.d("Face Reg Url : "+response.face_image_link)
+                                //Timber.d("Face Reg Url : "+response.face_image_link)
                                 //(mContext as DashboardActivity).showSnackMessage(getString(R.string.face_reg_success))
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     progress_wheel.stopSpinning()
@@ -322,12 +322,12 @@ class RegisTerFaceFragment: BaseFragment(), View.OnClickListener {
                                     //(mContext as DashboardActivity).loadFragment(FragType.PhotoRegAadhaarFragment,true,valueData)
                                 }, 500)
 
-                                Timber.d(" RegisTerFaceFragment : FaceImageDetection/FaceImage" +response.status.toString() +", : "  + ", Success: "+AppUtils.getCurrentDateTime().toString())
+                                //Timber.d(" RegisTerFaceFragment : FaceImageDetection/FaceImage" +response.status.toString() +", : "  + ", Success: "+AppUtils.getCurrentDateTime().toString())
                             }else{
                                 progress_wheel.stopSpinning()
                                 CustomStatic.FacePicRegUrl=""
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_reg_face))
-                                Timber.d("RegisTerFaceFragment : FaceImageDetection/FaceImage : " + response.status.toString() +", : "  + ", Failed: "+AppUtils.getCurrentDateTime().toString())
+                                //Timber.d("RegisTerFaceFragment : FaceImageDetection/FaceImage : " + response.status.toString() +", : "  + ", Failed: "+AppUtils.getCurrentDateTime().toString())
                             }
                         },{
                             error ->
@@ -335,7 +335,7 @@ class RegisTerFaceFragment: BaseFragment(), View.OnClickListener {
                             CustomStatic.FacePicRegUrl=""
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_reg_face))
                             if (error != null) {
-                                Timber.d("RegisTerFaceFragment : FaceImageDetection/FaceImage : " + " : "  + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("RegisTerFaceFragment : FaceImageDetection/FaceImage : " + " : "  + ", ERROR: " + error.localizedMessage)
                             }
                         })
         )

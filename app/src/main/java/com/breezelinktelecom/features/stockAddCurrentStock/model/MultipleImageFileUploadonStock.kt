@@ -404,7 +404,7 @@ class MultipleImageFileUploadonStock: BaseFragment(),
                     .build()
                     .setOnProgressListener {
                         progress_wheel.spin()
-                        Timber.d("Listing ", "Attachment Download Progress======> $it")
+                        //Timber.d("Listing ", "Attachment Download Progress======> $it")
                     }
                     .start(object : OnDownloadListener {
                         override fun onDownloadComplete() {
@@ -461,7 +461,7 @@ class MultipleImageFileUploadonStock: BaseFragment(),
                         }, { error ->
                             progress_wheel.stopSpinning()
                             if (error != null) {
-                                Timber.d("AddStock : Image Upload 1" + ", SHOP: " + stockID + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("AddStock : Image Upload 1" + ", SHOP: " + stockID + ", ERROR: " + error.localizedMessage)
                             }
                         })
                 )
@@ -491,7 +491,7 @@ class MultipleImageFileUploadonStock: BaseFragment(),
                             if (error != null) {
                                 progress_wheel.stopSpinning()
                                 openDialogPopup("Hi ${Pref.user_name} !","upload 2 attcmentment not successfully.")
-                                Timber.d("AddStock : Image Upload 1" + ", SHOP: " + stockID + ", ERROR: " + error.localizedMessage)
+                                //Timber.d("AddStock : Image Upload 1" + ", SHOP: " + stockID + ", ERROR: " + error.localizedMessage)
                             }
                         })
                 )

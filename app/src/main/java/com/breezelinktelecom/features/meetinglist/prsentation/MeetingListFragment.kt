@@ -88,7 +88,7 @@ class MeetingListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as MeetingListResponseModel
-                            Timber.d("GET MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.meeting_list != null && response.meeting_list!!.size > 0) {
@@ -132,7 +132,7 @@ class MeetingListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                             tv_no_data.visibility = View.VISIBLE
@@ -159,7 +159,7 @@ class MeetingListFragment : BaseFragment() {
             return
         }
 
-        Timber.e("IS MEETING UPDATING (MEETING LIST FRAGMENT)===========> ${BaseActivity.isMeetingUpdating}")
+        //Timber.e("IS MEETING UPDATING (MEETING LIST FRAGMENT)===========> ${BaseActivity.isMeetingUpdating}")
 
         if (BaseActivity.isMeetingUpdating)
             return
@@ -188,11 +188,11 @@ class MeetingListFragment : BaseFragment() {
 
         meeting.meeting_list = meetingDataList
 
-        Timber.d("========UPLOAD MEETING DATA INPUT PARAMS (MEETING LIST)======")
-        Timber.d("USER ID======> " + meeting.user_id)
-        Timber.d("SESSION ID======> " + meeting.session_token)
-        Timber.d("MEETING LIST SIZE=========> " + meeting.meeting_list.size)
-        Timber.d("==============================================================")
+        //Timber.d("========UPLOAD MEETING DATA INPUT PARAMS (MEETING LIST)======")
+        //Timber.d("USER ID======> " + meeting.user_id)
+        //Timber.d("SESSION ID======> " + meeting.session_token)
+        //Timber.d("MEETING LIST SIZE=========> " + meeting.meeting_list.size)
+        //Timber.d("==============================================================")
 
         progress_wheel.spin()
         val repository = ShopDurationRepositoryProvider.provideShopDurationRepository()
@@ -202,7 +202,7 @@ class MeetingListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("SYNC MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("SYNC MEETING DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.addMeetingDao().updateIsUploaded(true, meetingEntity.id)
                             }
@@ -215,7 +215,7 @@ class MeetingListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("SYNC MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("SYNC MEETING DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             BaseActivity.isMeetingUpdating = false
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync_meeting))

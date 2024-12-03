@@ -308,7 +308,7 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
 
         if (list != null && list.size > 0) {
 
-            Timber.d("Local Shop List:== selected list size=====> " + list.size)
+            //Timber.d("Local Shop List:== selected list size=====> " + list.size)
 
             // Revision 11.0 Suman 11-04-2024 mantis id 27362 v4.2.6 shop type 99 consideration begin
             var isType99InTypeMaster = false
@@ -342,7 +342,7 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
                     newList.add(list[i])
             }
 
-            Timber.d("Local Shop List:== new selected list size=====> " + newList.size)
+            //Timber.d("Local Shop List:== new selected list size=====> " + newList.size)
 
             noShopAvailable.visibility = View.GONE
             nearByShopsList.visibility = View.VISIBLE
@@ -451,7 +451,7 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
             }
         } else {
 
-            Timber.d("=====empty selected list (Local Shop List)=======")
+            //Timber.d("=====empty selected list (Local Shop List)=======")
 
             noShopAvailable.visibility = View.VISIBLE
             nearByShopsList.visibility = View.GONE
@@ -507,7 +507,7 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
             getNearyShopList(location)
         }
         else {
-            Timber.d("====================null location (Local Shop List)===================")
+            //Timber.d("====================null location (Local Shop List)===================")
 
             progress_wheel.spin()
             SingleShotLocationProvider.requestSingleUpdate(mContext,
@@ -545,11 +545,11 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
             if (AppUtils.mLocation!!.accuracy <= Pref.gpsAccuracy.toInt())
                 getNearyShopList(AppUtils.mLocation!!)
             else {
-                Timber.d("=====Inaccurate current location (Local Shop List)=====")
+                //Timber.d("=====Inaccurate current location (Local Shop List)=====")
                 singleLocation()
             }
         } else {
-            Timber.d("=====null location (Local Shop List)======")
+            //Timber.d("=====null location (Local Shop List)======")
             singleLocation()
         }
     }
@@ -619,8 +619,8 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
 
 
         if (newList != null && newList.size > 0) {
-            Timber.d("Local Shop List: all shop list size======> " + newList.size)
-            Timber.d("======Local Shop List======")
+            //Timber.d("Local Shop List: all shop list size======> " + newList.size)
+            //Timber.d("======Local Shop List======")
             for (i in 0 until newList.size) {
                 println("\nnearby_count $i ${AppUtils.getCurrentDateTime()}" );
                 val shopLat: Double = newList[i].shopLat
@@ -632,12 +632,12 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
                     shopLocation.longitude = shopLong
 
                     /*Timber.d("shop_id====> " + allShopList[i].shop_id)
-                    Timber.d("shopName====> " + allShopList[i].shopName)
-                    Timber.d("shopLat====> $shopLat")
-                    Timber.d("shopLong====> $shopLong")
-                    Timber.d("lat=====> " + location.latitude)
-                    Timber.d("long=====> " + location.longitude)
-                    Timber.d("NEARBY_RADIUS====> $NEARBY_RADIUS")*/
+                    //Timber.d("shopName====> " + allShopList[i].shopName)
+                    //Timber.d("shopLat====> $shopLat")
+                    //Timber.d("shopLong====> $shopLong")
+                    //Timber.d("lat=====> " + location.latitude)
+                    //Timber.d("long=====> " + location.longitude)
+                    //Timber.d("NEARBY_RADIUS====> $NEARBY_RADIUS")*/
 
                     var mRadious:Int = NEARBY_RADIUS
                     if(Pref.IsRestrictNearbyGeofence){
@@ -656,27 +656,27 @@ class LocalShopListFragment : BaseFragment(), View.OnClickListener {
                         newList[i].visited = !shoulIBotherToUpdate(newList[i].shop_id)
                         list.add(newList[i])
                     } else {
-                        // Timber.d("=============" + allShopList[i].shopName + " is NOT nearby===============")
+                        // //Timber.d("=============" + allShopList[i].shopName + " is NOT nearby===============")
                     }
 
                 } else {
-                    Timber.d("shop_id====> " + newList[i].shop_id+ " shopName===> " + newList[i].shopName)
+                    //Timber.d("shop_id====> " + newList[i].shop_id+ " shopName===> " + newList[i].shopName)
 
                     if (shopLat != null)
-                        Timber.d("shopLat===> $shopLat")
+                        //Timber.d("shopLat===> $shopLat")
                     else
-                        Timber.d("shopLat===> null")
+                        //Timber.d("shopLat===> null")
 
                     if (shopLong != null)
-                        Timber.d("shopLong====> $shopLong")
-                    else
-                        Timber.d("shopLong====> null")
+                        //Timber.d("shopLong====> $shopLong")
+                    else{}
+                        //Timber.d("shopLong====> null")
                 }
             }
             //Timber.d("=============================================")
 
         } else {
-            Timber.d("====empty shop list (Local Shop List)======")
+            //Timber.d("====empty shop list (Local Shop List)======")
         }
 
         initAdapter()

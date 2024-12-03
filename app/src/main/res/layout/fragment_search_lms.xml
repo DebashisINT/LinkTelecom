@@ -10,7 +10,7 @@
     android:focusable="true"
     android:clickable="true"
     xmlns:wheel="http://schemas.android.com/tools"
-    tools:context=".features.mylearning.SearchLmsFrag">
+    >
 
     <!--<ScrollView
         android:layout_width="match_parent"

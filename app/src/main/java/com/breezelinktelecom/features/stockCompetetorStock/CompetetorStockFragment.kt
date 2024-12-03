@@ -148,7 +148,7 @@ class CompetetorStockFragment: BaseFragment(), View.OnClickListener {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("CompetitorStock/CompetitorStockList : RESPONSE " + result.status)
+                                //Timber.d("CompetitorStock/CompetitorStockList : RESPONSE " + result.status)
                                 val response = result as CompetetorStockGetData
                                 if (response.status == NetworkConstant.SUCCESS){
 
@@ -193,16 +193,16 @@ class CompetetorStockFragment: BaseFragment(), View.OnClickListener {
                                 }
                             },{error ->
                                 if (error == null) {
-                                    Timber.d("CompetitorStock/CompetitorStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+                                    //Timber.d("CompetitorStock/CompetitorStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
                                 } else {
-                                    Timber.d("CompetitorStock/CompetitorStockList : ERROR " + error.localizedMessage)
+                                    //Timber.d("CompetitorStock/CompetitorStockList : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
             )
         }
         catch (ex:Exception){
-            Timber.d("CompetitorStock/CompetitorStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
+            //Timber.d("CompetitorStock/CompetitorStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
         }
     }
 

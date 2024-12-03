@@ -51,7 +51,7 @@ class AdapterMenuAdv(var mContext: Context, var list:ArrayList<DashboardActivity
             itemView.tv_menu_item_name.text = mList!!.get(adapterPosition).name
             itemView.iv_menu_item_image.setImageResource(mList!!.get(adapterPosition).icon)
 
-            if(mList!!.get(adapterPosition).name.equals("Reports") || mList!!.get(adapterPosition).name.equals("Collection") || mList!!.get(adapterPosition).name.equals("LMS")){
+            if(mList!!.get(adapterPosition).name.equals("Reports") || mList!!.get(adapterPosition).name.equals("Collection")){
                 itemView.iv_menu_adv_arrow.visibility = View.VISIBLE
             }else{
                 itemView.iv_menu_adv_arrow.visibility = View.GONE
@@ -88,27 +88,6 @@ class AdapterMenuAdv(var mContext: Context, var list:ArrayList<DashboardActivity
                             itemView.rv_row_menu_adv.visibility = View.VISIBLE
                             itemView.iv_menu_adv_arrow.animate().rotation(270f).start()
                             var subL = subList.filter { it.parentMenuName.equals("Collection") }.first().subList
-                            adapterSUbL = AdapterSubMenuAdv(mContext,subL,object :AdapterSubMenuAdv.OnSubClick{
-                                override fun onClick(obj: DashboardActivity.MenuItems) {
-                                    listner.onClick(obj)
-                                }
-
-                            })
-                            itemView.rv_row_menu_adv.adapter = adapterSUbL
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                else if(mList!!.get(adapterPosition).name.equals("LMS")){
-                    try {
-                        if(itemView.rv_row_menu_adv.visibility == View.VISIBLE){
-                            itemView.rv_row_menu_adv.visibility = View.GONE
-                            itemView.iv_menu_adv_arrow.animate().rotation(180f).start()
-                        }else{
-                            itemView.rv_row_menu_adv.visibility = View.VISIBLE
-                            itemView.iv_menu_adv_arrow.animate().rotation(270f).start()
-                            var subL = subList.filter { it.parentMenuName.equals("LMS") }.first().subList
                             adapterSUbL = AdapterSubMenuAdv(mContext,subL,object :AdapterSubMenuAdv.OnSubClick{
                                 override fun onClick(obj: DashboardActivity.MenuItems) {
                                     listner.onClick(obj)

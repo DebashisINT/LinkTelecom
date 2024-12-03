@@ -47,7 +47,6 @@ public class MonitorCollPending extends BroadcastReceiver {
             }
             }catch (Exception ex){
                 ex.printStackTrace();
-                Timber.d("MonitorCollPending onReceive error "+ex.getLocalizedMessage());
             }
 
             Intent mainIntent = new Intent(context, DashboardActivity.class);

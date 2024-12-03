@@ -1288,6 +1288,47 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_row_cont_loan_dtls_root"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:background="@drawable/shape_cursor_two"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:paddingLeft="@dimen/_3sdp"
+                    android:paddingRight="@dimen/_3sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_registered_shop_add_order_deselect1"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:backgroundTint="@color/black_custom_light"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:minWidth="@dimen/_55sdp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="Loan Details"
+                        android:textColor="@color/black_custom_light"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+                <LinearLayout
                     android:id="@+id/ll_row_contact_list_auto_activity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

@@ -354,7 +354,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
         progress_wheel.stopSpinning()
 
         if((AppDatabase.getDBInstance()?.teamListDao()?.getAll() as ArrayList<TeamListEntity>).size==0){
-            Timber.d("tag_team getTeamList(true) call")
+            //Timber.d("tag_team getTeamList(true) call")
             getTeamList(true)
         }
 
@@ -393,33 +393,33 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
 
         if(AppUtils.isOnline(mContext)){
             if((AppDatabase.getDBInstance()?.companyMasterDao()?.getAll() as ArrayList<CompanyMasterEntity>).size == 0){
-                Timber.d("tag_contact_extra callCRMCompanyMasterApiRefresh")
+                //Timber.d("tag_contact_extra callCRMCompanyMasterApiRefresh")
                 callCRMCompanyMasterApiRefresh()
             }
             Handler().postDelayed(Runnable {
                 if((AppDatabase.getDBInstance()?.typeMasterDao()?.getAll() as ArrayList<TypeMasterEntity>).size == 0){
-                    Timber.d("tag_contact_extra callCRMTypeMasterAPIRefresh")
+                    //Timber.d("tag_contact_extra callCRMTypeMasterAPIRefresh")
                     callCRMTypeMasterAPIRefresh()
                 }
             },200)
 
             Handler().postDelayed(Runnable {
                 if((AppDatabase.getDBInstance()?.statusMasterDao()?.getAll() as ArrayList<StatusMasterEntity>).size == 0){
-                    Timber.d("tag_contact_extra callCRMStatusMasterAPIRefresh")
+                    //Timber.d("tag_contact_extra callCRMStatusMasterAPIRefresh")
                     callCRMStatusMasterAPIRefresh()
                 }
             },300)
 
             Handler().postDelayed(Runnable {
                 if((AppDatabase.getDBInstance()?.sourceMasterDao()?.getAll() as ArrayList<SourceMasterEntity>).size == 0){
-                    Timber.d("tag_contact_extra callCRMSourceMasterAPIRefresh")
+                    //Timber.d("tag_contact_extra callCRMSourceMasterAPIRefresh")
                     callCRMSourceMasterAPIRefresh()
                 }
             },400)
 
             Handler().postDelayed(Runnable {
                 if((AppDatabase.getDBInstance()?.stageMasterDao()?.getAll() as ArrayList<StageMasterEntity>).size == 0){
-                    Timber.d("tag_contact_extra callCRMStageMasterAPIRefresh")
+                    //Timber.d("tag_contact_extra callCRMStageMasterAPIRefresh")
                     callCRMStageMasterAPIRefresh()
                 }
             },500)
@@ -1359,7 +1359,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val addShopResult = result as AddShopResponse
-                    Timber.d("EditShop : " + ", SHOP: " + addShopRequestData.shop_name + ", RESPONSE:" + result.message)
+                    //Timber.d("EditShop : " + ", SHOP: " + addShopRequestData.shop_name + ", RESPONSE:" + result.message)
                     progress_wheel.stopSpinning()
                     if (addShopResult.status == NetworkConstant.SUCCESS) {
 
@@ -1382,7 +1382,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                 }, { error ->
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                    Timber.d("AddShop err : ${error.message}")
+                    //Timber.d("AddShop err : ${error.message}")
                 })
         )
     }
@@ -2065,7 +2065,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ result ->
                     val addShopResult = result as AddShopResponse
-                    Timber.d("AddShop : " + ", SHOP: " + addShopRequestData.shop_name + ", RESPONSE:" + result.message)
+                    //Timber.d("AddShop : " + ", SHOP: " + addShopRequestData.shop_name + ", RESPONSE:" + result.message)
                     progress_wheel.stopSpinning()
                     if (addShopResult.status == NetworkConstant.SUCCESS) {
                         AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShopRequestData.shop_id)
@@ -2080,7 +2080,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                 }, { error ->
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                    Timber.d("AddShop err : ${error.message}")
+                    //Timber.d("AddShop err : ${error.message}")
                 })
         )
     }
@@ -2330,7 +2330,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                     error.printStackTrace()
                     progress_wheel.stopSpinning()
                     (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                    Timber.d("AddShop err : ${error.message}")
+                    //Timber.d("AddShop err : ${error.message}")
                 })
         )
     }
@@ -2356,7 +2356,7 @@ class ContactsAddFrag : BaseFragment(), View.OnClickListener {
                         error.printStackTrace()
                         progress_wheel.stopSpinning()
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
-                        Timber.d("AddShop err : ${error.message}")
+                        //Timber.d("AddShop err : ${error.message}")
                     })
             )
 

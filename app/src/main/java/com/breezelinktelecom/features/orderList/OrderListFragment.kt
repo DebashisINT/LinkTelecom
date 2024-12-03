@@ -269,7 +269,7 @@ class OrderListFragment : BaseFragment(), DatePickerListener, View.OnClickListen
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shopId, selectedDate)
                                 OrderListAdapter.updateList(AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(selectedDate))
@@ -281,7 +281,7 @@ class OrderListFragment : BaseFragment(), DatePickerListener, View.OnClickListen
                         }, { error ->
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
-                            Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                            //Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
 
                         })
@@ -626,7 +626,7 @@ class OrderListFragment : BaseFragment(), DatePickerListener, View.OnClickListen
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
                                 AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shopId, selectedDate)
                                 //
@@ -647,7 +647,7 @@ class OrderListFragment : BaseFragment(), DatePickerListener, View.OnClickListen
                             progress_wheel.stopSpinning()
                             error.printStackTrace()
                             if (error != null) {
-                                Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
+                                //Timber.d("ShopActivityFromAverageShop : " + "User Id" + Pref.user_id + ", Session Token" + Pref.session_token + ", SHOP_ID: " + mList[0].shopid + ", SHOP: " + mList[0].shop_name + ", ERROR:" + error.localizedMessage)
                                 (mContext as DashboardActivity).showSnackMessage(mContext.getString(R.string.unable_to_sync))
                             }
                         })

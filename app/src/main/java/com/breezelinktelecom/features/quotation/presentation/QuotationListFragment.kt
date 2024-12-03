@@ -143,7 +143,7 @@ class QuotationListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as QuotationListResponseModel
-                            Timber.d("GET QUOT DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET QUOT DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.quot_list != null && response.quot_list!!.isNotEmpty()) {
@@ -278,7 +278,7 @@ class QuotationListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET QUOT DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET QUOT DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             tv_no_data_available.visibility = View.VISIBLE
                         })
@@ -338,13 +338,13 @@ class QuotationListFragment : BaseFragment() {
 
     private fun sendMailSms(quot: QuotationEntity, isSms: Boolean) {
 
-        Timber.d("==============Send Mail Sms Input Params(Quot.List)====================")
-        Timber.d("shop id=======> " + quot.shop_id)
-        Timber.d("quot. id=======> " + quot.quo_id)
-        Timber.d("isSms=======> " + isSms)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("======================================================================")
+        //Timber.d("==============Send Mail Sms Input Params(Quot.List)====================")
+        //Timber.d("shop id=======> " + quot.shop_id)
+        //Timber.d("quot. id=======> " + quot.quo_id)
+        //Timber.d("isSms=======> " + isSms)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("======================================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -355,7 +355,7 @@ class QuotationListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("Send Mail Sms DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("Send Mail Sms DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
 
@@ -365,7 +365,7 @@ class QuotationListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("Send Mail Sms DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("Send Mail Sms DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -374,35 +374,35 @@ class QuotationListFragment : BaseFragment() {
 
     private fun addQuotApi(quotEntity: QuotationEntity) {
 
-        Timber.d("==============Sync Add Quot. Input Params(Quot.List)====================")
-        Timber.d("shop id=======> " + quotEntity.shop_id)
-        Timber.d("quot. date=======> " + quotEntity.date)
-        Timber.d("quot. id=======> " + quotEntity.quo_id)
-        Timber.d("quot. no=======> " + quotEntity.quo_no)
-        Timber.d("hypothecation=======> " + quotEntity.hypothecation)
-        Timber.d("account_no=======> " + quotEntity.account_no)
-        Timber.d("model_id=======> " + quotEntity.model_id)
-        Timber.d("bs_id=======> " + quotEntity.bs_id)
-        Timber.d("gearbox=======> " + quotEntity.gearbox)
-        Timber.d("number1=======> " + quotEntity.number1)
-        Timber.d("value1=======> " + quotEntity.value1)
-        Timber.d("value2=======> " + quotEntity.value2)
-        Timber.d("tyres1=======> " + quotEntity.tyres1)
-        Timber.d("number2=======> " + quotEntity.number2)
-        Timber.d("value3=======> " + quotEntity.value3)
-        Timber.d("value4=======> " + quotEntity.value4)
-        Timber.d("tyres2=======> " + quotEntity.tyres2)
-        Timber.d("amount=======> " + quotEntity.amount)
-        Timber.d("discount=======> " + quotEntity.discount)
-        Timber.d("cgst=======> " + quotEntity.cgst)
-        Timber.d("sgst=======> " + quotEntity.sgst)
-        Timber.d("tcs=======> " + quotEntity.tcs)
-        Timber.d("insurance=======> " + quotEntity.insurance)
-        Timber.d("net_amount=======> " + quotEntity.net_amount)
-        Timber.d("remarks=======> " + quotEntity.remarks)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("======================================================================")
+        //Timber.d("==============Sync Add Quot. Input Params(Quot.List)====================")
+        //Timber.d("shop id=======> " + quotEntity.shop_id)
+        //Timber.d("quot. date=======> " + quotEntity.date)
+        //Timber.d("quot. id=======> " + quotEntity.quo_id)
+        //Timber.d("quot. no=======> " + quotEntity.quo_no)
+        //Timber.d("hypothecation=======> " + quotEntity.hypothecation)
+        //Timber.d("account_no=======> " + quotEntity.account_no)
+        //Timber.d("model_id=======> " + quotEntity.model_id)
+        //Timber.d("bs_id=======> " + quotEntity.bs_id)
+        //Timber.d("gearbox=======> " + quotEntity.gearbox)
+        //Timber.d("number1=======> " + quotEntity.number1)
+        //Timber.d("value1=======> " + quotEntity.value1)
+        //Timber.d("value2=======> " + quotEntity.value2)
+        //Timber.d("tyres1=======> " + quotEntity.tyres1)
+        //Timber.d("number2=======> " + quotEntity.number2)
+        //Timber.d("value3=======> " + quotEntity.value3)
+        //Timber.d("value4=======> " + quotEntity.value4)
+        //Timber.d("tyres2=======> " + quotEntity.tyres2)
+        //Timber.d("amount=======> " + quotEntity.amount)
+        //Timber.d("discount=======> " + quotEntity.discount)
+        //Timber.d("cgst=======> " + quotEntity.cgst)
+        //Timber.d("sgst=======> " + quotEntity.sgst)
+        //Timber.d("tcs=======> " + quotEntity.tcs)
+        //Timber.d("insurance=======> " + quotEntity.insurance)
+        //Timber.d("net_amount=======> " + quotEntity.net_amount)
+        //Timber.d("remarks=======> " + quotEntity.remarks)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("======================================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -420,7 +420,7 @@ class QuotationListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("ADD QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("ADD QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 doAsync {
@@ -442,7 +442,7 @@ class QuotationListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("ADD QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("ADD QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync_quot))
                             initAdapter()
@@ -451,35 +451,35 @@ class QuotationListFragment : BaseFragment() {
     }
 
     private fun editQuotApi(quotEntity: QuotationEntity) {
-        Timber.d("==============Sync Edit Quot. Input Params(Quot.List)====================")
-        Timber.d("shop id=======> " + quotEntity.shop_id)
-        Timber.d("quot. date=======> " + quotEntity.date)
-        Timber.d("quot. id=======> " + quotEntity.quo_id)
-        Timber.d("quot. no=======> " + quotEntity.quo_no)
-        Timber.d("hypothecation=======> " + quotEntity.hypothecation)
-        Timber.d("account_no=======> " + quotEntity.account_no)
-        Timber.d("model_id=======> " + quotEntity.model_id)
-        Timber.d("bs_id=======> " + quotEntity.bs_id)
-        Timber.d("gearbox=======> " + quotEntity.gearbox)
-        Timber.d("number1=======> " + quotEntity.number1)
-        Timber.d("value1=======> " + quotEntity.value1)
-        Timber.d("value2=======> " + quotEntity.value2)
-        Timber.d("tyres1=======> " + quotEntity.tyres1)
-        Timber.d("number2=======> " + quotEntity.number2)
-        Timber.d("value3=======> " + quotEntity.value3)
-        Timber.d("value4=======> " + quotEntity.value4)
-        Timber.d("tyres2=======> " + quotEntity.tyres2)
-        Timber.d("amount=======> " + quotEntity.amount)
-        Timber.d("discount=======> " + quotEntity.discount)
-        Timber.d("cgst=======> " + quotEntity.cgst)
-        Timber.d("sgst=======> " + quotEntity.sgst)
-        Timber.d("tcs=======> " + quotEntity.tcs)
-        Timber.d("insurance=======> " + quotEntity.insurance)
-        Timber.d("net_amount=======> " + quotEntity.net_amount)
-        Timber.d("remarks=======> " + quotEntity.remarks)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("======================================================================")
+        //Timber.d("==============Sync Edit Quot. Input Params(Quot.List)====================")
+        //Timber.d("shop id=======> " + quotEntity.shop_id)
+        //Timber.d("quot. date=======> " + quotEntity.date)
+        //Timber.d("quot. id=======> " + quotEntity.quo_id)
+        //Timber.d("quot. no=======> " + quotEntity.quo_no)
+        //Timber.d("hypothecation=======> " + quotEntity.hypothecation)
+        //Timber.d("account_no=======> " + quotEntity.account_no)
+        //Timber.d("model_id=======> " + quotEntity.model_id)
+        //Timber.d("bs_id=======> " + quotEntity.bs_id)
+        //Timber.d("gearbox=======> " + quotEntity.gearbox)
+        //Timber.d("number1=======> " + quotEntity.number1)
+        //Timber.d("value1=======> " + quotEntity.value1)
+        //Timber.d("value2=======> " + quotEntity.value2)
+        //Timber.d("tyres1=======> " + quotEntity.tyres1)
+        //Timber.d("number2=======> " + quotEntity.number2)
+        //Timber.d("value3=======> " + quotEntity.value3)
+        //Timber.d("value4=======> " + quotEntity.value4)
+        //Timber.d("tyres2=======> " + quotEntity.tyres2)
+        //Timber.d("amount=======> " + quotEntity.amount)
+        //Timber.d("discount=======> " + quotEntity.discount)
+        //Timber.d("cgst=======> " + quotEntity.cgst)
+        //Timber.d("sgst=======> " + quotEntity.sgst)
+        //Timber.d("tcs=======> " + quotEntity.tcs)
+        //Timber.d("insurance=======> " + quotEntity.insurance)
+        //Timber.d("net_amount=======> " + quotEntity.net_amount)
+        //Timber.d("remarks=======> " + quotEntity.remarks)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("======================================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -497,7 +497,7 @@ class QuotationListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 doAsync {
@@ -519,7 +519,7 @@ class QuotationListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync_quot))
                             initAdapter()
@@ -652,78 +652,78 @@ class QuotationListFragment : BaseFragment() {
         progress_wheel.spin()
 
 
-        Timber.d("==============SyncShop Input Params (Quot. List)====================")
-        Timber.d("shop id=======> " + addShop.shop_id)
+        //Timber.d("==============SyncShop Input Params (Quot. List)====================")
+        //Timber.d("shop id=======> " + addShop.shop_id)
         val index = addShop.shop_id!!.indexOf("_")
-        Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
-        Timber.d("shop added date=======> " + addShop.added_date)
-        Timber.d("shop address=======> " + addShop.address)
-        Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
-        Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
-        Timber.d("date aniversery=======> " + addShop.date_aniversary)
-        Timber.d("dob=======> " + addShop.dob)
-        Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
-        Timber.d("shop owner email=======> " + addShop.owner_email)
-        Timber.d("shop owner name=======> " + addShop.owner_name)
-        Timber.d("shop pincode=======> " + addShop.pin_code)
-        Timber.d("session token=======> " + addShop.session_token)
-        Timber.d("shop lat=======> " + addShop.shop_lat)
-        Timber.d("shop long=======> " + addShop.shop_long)
-        Timber.d("shop name=======> " + addShop.shop_name)
-        Timber.d("shop type=======> " + addShop.type)
-        Timber.d("user id=======> " + addShop.user_id)
-        Timber.d("amount=======> " + addShop.amount)
-        Timber.d("area id=======> " + addShop.area_id)
-        Timber.d("model id=======> " + addShop.model_id)
-        Timber.d("primary app id=======> " + addShop.primary_app_id)
-        Timber.d("secondary app id=======> " + addShop.secondary_app_id)
-        Timber.d("lead id=======> " + addShop.lead_id)
-        Timber.d("stage id=======> " + addShop.stage_id)
-        Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
-        Timber.d("booking amount=======> " + addShop.booking_amount)
-        Timber.d("type id=======> " + addShop.type_id)
+        //Timber.d("decoded shop id=======> " + addShop.user_id + "_" + AppUtils.getDate(addShop.shop_id!!.substring(index + 1, addShop.shop_id!!.length).toLong()))
+        //Timber.d("shop added date=======> " + addShop.added_date)
+        //Timber.d("shop address=======> " + addShop.address)
+        //Timber.d("assigned to dd id=======> " + addShop.assigned_to_dd_id)
+        //Timber.d("assigned to pp id=======> " + addShop.assigned_to_pp_id)
+        //Timber.d("date aniversery=======> " + addShop.date_aniversary)
+        //Timber.d("dob=======> " + addShop.dob)
+        //Timber.d("shop owner phn no=======> " + addShop.owner_contact_no)
+        //Timber.d("shop owner email=======> " + addShop.owner_email)
+        //Timber.d("shop owner name=======> " + addShop.owner_name)
+        //Timber.d("shop pincode=======> " + addShop.pin_code)
+        //Timber.d("session token=======> " + addShop.session_token)
+        //Timber.d("shop lat=======> " + addShop.shop_lat)
+        //Timber.d("shop long=======> " + addShop.shop_long)
+        //Timber.d("shop name=======> " + addShop.shop_name)
+        //Timber.d("shop type=======> " + addShop.type)
+        //Timber.d("user id=======> " + addShop.user_id)
+        //Timber.d("amount=======> " + addShop.amount)
+        //Timber.d("area id=======> " + addShop.area_id)
+        //Timber.d("model id=======> " + addShop.model_id)
+        //Timber.d("primary app id=======> " + addShop.primary_app_id)
+        //Timber.d("secondary app id=======> " + addShop.secondary_app_id)
+        //Timber.d("lead id=======> " + addShop.lead_id)
+        //Timber.d("stage id=======> " + addShop.stage_id)
+        //Timber.d("funnel stage id=======> " + addShop.funnel_stage_id)
+        //Timber.d("booking amount=======> " + addShop.booking_amount)
+        //Timber.d("type id=======> " + addShop.type_id)
 
         if (shop_imgPath != null)
-            Timber.d("shop image path=======> $shop_imgPath")
+            //Timber.d("shop image path=======> $shop_imgPath")
 
-        Timber.d("director name=======> " + addShop.director_name)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("family member dob=======> " + addShop.family_member_dob)
-        Timber.d("key person's name=======> " + addShop.key_person_name)
-        Timber.d("phone no=======> " + addShop.phone_no)
-        Timber.d("additional dob=======> " + addShop.addtional_dob)
-        Timber.d("additional doa=======> " + addShop.addtional_doa)
-        Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
-        Timber.d("specialization=======> " + addShop.specialization)
-        Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
-        Timber.d("category=======> " + addShop.category)
-        Timber.d("doctor address=======> " + addShop.doc_address)
-        Timber.d("doctor pincode=======> " + addShop.doc_pincode)
-        Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
-        Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
-        Timber.d("chemist name=======> " + addShop.chemist_name)
-        Timber.d("chemist name=======> " + addShop.chemist_address)
-        Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
-        Timber.d("assistant name=======> " + addShop.assistant_name)
-        Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
-        Timber.d("assistant dob=======> " + addShop.assistant_dob)
-        Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
-        Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
-        Timber.d("entity id=======> " + addShop.entity_id)
-        Timber.d("party status id=======> " + addShop.party_status_id)
-        Timber.d("retailer id=======> " + addShop.retailer_id)
-        Timber.d("dealer id=======> " + addShop.dealer_id)
-        Timber.d("beat id=======> " + addShop.beat_id)
-        Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
-        Timber.d("actual address=======> " + addShop.actual_address)
+        //Timber.d("director name=======> " + addShop.director_name)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("family member dob=======> " + addShop.family_member_dob)
+        //Timber.d("key person's name=======> " + addShop.key_person_name)
+        //Timber.d("phone no=======> " + addShop.phone_no)
+        //Timber.d("additional dob=======> " + addShop.addtional_dob)
+        //Timber.d("additional doa=======> " + addShop.addtional_doa)
+        //Timber.d("doctor family member dob=======> " + addShop.doc_family_member_dob)
+        //Timber.d("specialization=======> " + addShop.specialization)
+        //Timber.d("average patient count per day=======> " + addShop.average_patient_per_day)
+        //Timber.d("category=======> " + addShop.category)
+        //Timber.d("doctor address=======> " + addShop.doc_address)
+        //Timber.d("doctor pincode=======> " + addShop.doc_pincode)
+        //Timber.d("chambers or hospital under same headquarter=======> " + addShop.is_chamber_same_headquarter)
+        //Timber.d("chamber related remarks=======> " + addShop.is_chamber_same_headquarter_remarks)
+        //Timber.d("chemist name=======> " + addShop.chemist_name)
+        //Timber.d("chemist name=======> " + addShop.chemist_address)
+        //Timber.d("chemist pincode=======> " + addShop.chemist_pincode)
+        //Timber.d("assistant name=======> " + addShop.assistant_name)
+        //Timber.d("assistant contact no=======> " + addShop.assistant_contact_no)
+        //Timber.d("assistant dob=======> " + addShop.assistant_dob)
+        //Timber.d("assistant date of anniversary=======> " + addShop.assistant_doa)
+        //Timber.d("assistant family dob=======> " + addShop.assistant_family_dob)
+        //Timber.d("entity id=======> " + addShop.entity_id)
+        //Timber.d("party status id=======> " + addShop.party_status_id)
+        //Timber.d("retailer id=======> " + addShop.retailer_id)
+        //Timber.d("dealer id=======> " + addShop.dealer_id)
+        //Timber.d("beat id=======> " + addShop.beat_id)
+        //Timber.d("assigned to shop id=======> " + addShop.assigned_to_shop_id)
+        //Timber.d("actual address=======> " + addShop.actual_address)
 
         if (doc_degree != null)
-            Timber.d("doctor degree image path=======> $doc_degree")
-        Timber.d("======================================================================")
+            //Timber.d("doctor degree image path=======> $doc_degree")
+        //Timber.d("======================================================================")
 
 
         if (TextUtils.isEmpty(shop_imgPath) && TextUtils.isEmpty(doc_degree)) {
@@ -734,7 +734,7 @@ class QuotationListFragment : BaseFragment() {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
@@ -751,7 +751,7 @@ class QuotationListFragment : BaseFragment() {
                                     getAssignedPPListApi(addShop.shop_id, quot)
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     progress_wheel.stopSpinning()
                                     //(mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -779,8 +779,8 @@ class QuotationListFragment : BaseFragment() {
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -792,7 +792,7 @@ class QuotationListFragment : BaseFragment() {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val addShopResult = result as AddShopResponse
-                                Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
+                                //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + ", RESPONSE:" + result.message)
                                 if (addShopResult.status == NetworkConstant.SUCCESS) {
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
 
@@ -809,7 +809,7 @@ class QuotationListFragment : BaseFragment() {
                                     getAssignedPPListApi(addShop.shop_id, quot)
 
                                 } else if (addShopResult.status == NetworkConstant.DUPLICATE_SHOP_ID) {
-                                    Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
+                                    //Timber.d("DuplicateShop : " + ", SHOP: " + addShop.shop_name)
                                     AppDatabase.getDBInstance()!!.addShopEntryDao().updateIsUploaded(true, addShop.shop_id)
                                     progress_wheel.stopSpinning()
                                     //(mContext as DashboardActivity).showSnackMessage(addShopResult.message!!)
@@ -837,8 +837,8 @@ class QuotationListFragment : BaseFragment() {
                                 error.printStackTrace()
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.unable_to_sync))
-                                if (error != null)
-                                    Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
+                                if (error != null){}
+                                    //Timber.d("syncShopFromShopList : " + ", SHOP: " + addShop.shop_name + error.localizedMessage)
                             })
             )
         }
@@ -1054,15 +1054,15 @@ class QuotationListFragment : BaseFragment() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
-                            Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
+                            //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + ", RESPONSE:" + result.message)
                             if (result.status == NetworkConstant.SUCCESS) {
 
                             }
 
                         }, { error ->
                             error.printStackTrace()
-                            if (error != null)
-                                Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
+                            if (error != null){}
+                                //Timber.d("syncShopActivityFromShopList : " + ", SHOP: " + list[0].shop_name + error.localizedMessage)
 //                                (mContext as DashboardActivity).showSnackMessage("ERROR")
                         })
         )
@@ -1076,14 +1076,14 @@ class QuotationListFragment : BaseFragment() {
         if (!Pref.isMultipleVisitEnable) {
             if (shopActivityList[0].isVisited && shopActivityList[0].isDurationCalculated) {
                 AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shop_id, AppUtils.getCurrentDateForShopActi())
-                Timber.d("================sync locally shop visited (quot.list)===============")
+                //Timber.d("================sync locally shop visited (quot.list)===============")
             }
         }
         else {
             shopActivityList.forEach {
                 if (it.isVisited && it.isDurationCalculated) {
                     AppDatabase.getDBInstance()!!.shopActivityDao().updateisUploaded(true, shop_id, AppUtils.getCurrentDateForShopActi(), it.startTimeStamp)
-                    Timber.d("================sync locally shop visited (quot.list)===============")
+                    //Timber.d("================sync locally shop visited (quot.list)===============")
                 }
             }
         }

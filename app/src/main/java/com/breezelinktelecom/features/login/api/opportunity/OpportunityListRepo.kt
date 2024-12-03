@@ -4,7 +4,12 @@ import com.breezelinktelecom.app.Pref
 import com.breezelinktelecom.app.utils.AppUtils
 import com.breezelinktelecom.base.BaseResponse
 import com.breezelinktelecom.features.addshop.model.AudioFetchDataCLass
+import com.breezelinktelecom.features.addshop.model.LoanDetailFetchListsResponse
+import com.breezelinktelecom.features.addshop.model.LoanDispositionListsResponse
+import com.breezelinktelecom.features.addshop.model.LoanFinalStatusListsResponse
+import com.breezelinktelecom.features.addshop.model.LoanRiskTypeListsResponse
 import com.breezelinktelecom.features.addshop.model.StockAllResponse
+import com.breezelinktelecom.features.contacts.LoanDtlsResponse
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.login.model.opportunitymodel.OpportunityStatusListResponseModel
 import com.breezelinktelecom.features.login.model.productlistmodel.ProductListResponseModel
@@ -42,11 +47,27 @@ class OpportunityListRepo(val apiService: OpportunityListApi) {
     }
 
 
-    fun saveLMSModuleInfo(obj: DashboardActivity.LMSModule): Observable<BaseResponse> {
-        return apiService.saveLMSModuleInfoApi(obj)
-    }
-
     fun getAllStock(user_id: String): Observable<StockAllResponse> {
         return apiService.getAllStockApi(user_id)
+    }
+
+    fun getLoanRiskTypeLists(user_id: String): Observable<LoanRiskTypeListsResponse> {
+        return apiService.getLoanRiskTypeLists(user_id)
+    }
+
+    fun getLoanDispositionLists(user_id: String): Observable<LoanDispositionListsResponse> {
+        return apiService.getLoanDispositionLists(user_id)
+    }
+
+    fun getLoanFinalStatusLists(user_id: String): Observable<LoanFinalStatusListsResponse> {
+        return apiService.getLoanFinalStatusLists(user_id)
+    }
+
+    fun getLoanDetailFetch(user_id: String): Observable<LoanDetailFetchListsResponse> {
+        return apiService.getLoanDetailFetch(user_id)
+    }
+
+    fun syncLoanDtls(obj: LoanDtlsResponse): Observable<BaseResponse> {
+        return apiService.syncLoanDtlsApi(obj)
     }
 }

@@ -192,7 +192,7 @@ class AddPeopleFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as GroupUserResponseModel
-                            Timber.d("Get Group User List STATUS: " + response.status)
+                           // //Timber.d("Get Group User List STATUS: " + response.status)
                             if (response.status == NetworkConstant.SUCCESS) {
                                 progress_wheel.stopSpinning()
                                 tv_no_data.visibility = View.GONE
@@ -208,7 +208,7 @@ class AddPeopleFragment : BaseFragment() {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             if (error != null)
-                                Timber.d("Get Group User List ERROR: " + error.localizedMessage)
+                                //Timber.d("Get Group User List ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )
@@ -238,7 +238,7 @@ class AddPeopleFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("Add Member STATUS: " + response.status)
+                            //Timber.d("Add Member STATUS: " + response.status)
                             progress_wheel.stopSpinning()
                             (mContext as DashboardActivity).showSnackMessage(response.message!!)
 
@@ -250,7 +250,7 @@ class AddPeopleFragment : BaseFragment() {
                             error.printStackTrace()
                             progress_wheel.stopSpinning()
                             if (error != null)
-                                Timber.d("Add Member ERROR: " + error.localizedMessage)
+                                //Timber.d("Add Member ERROR: " + error.localizedMessage)
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
         )

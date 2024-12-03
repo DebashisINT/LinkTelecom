@@ -314,7 +314,7 @@ class SchedulerAddFormFrag : BaseFragment(), View.OnClickListener {
                         }catch (ex:Exception){
                             ex.printStackTrace()
                             println("tag_main Mail sent exception ${ex.message}")
-                            Timber.e("Mail sent exception: "+ ex.message)
+                            //Timber.e("Mail sent exception: "+ ex.message)
 
                         }
                         uiThread {
@@ -366,7 +366,7 @@ class SchedulerAddFormFrag : BaseFragment(), View.OnClickListener {
                         }catch (ex:Exception){
                             ex.printStackTrace()
                             println("tag_main Mail sent exception ${ex.message}")
-                            Timber.e("Mail sent exception: "+ ex.message)
+                            //Timber.e("Mail sent exception: "+ ex.message)
                         }
                         uiThread {
 
@@ -1505,7 +1505,7 @@ class SchedulerAddFormFrag : BaseFragment(), View.OnClickListener {
             newFile = processImage.ProcessImage()
             uiThread {
                 if (newFile != null) {
-                    Timber.e("=========Image from new technique==========")
+                    //Timber.e("=========Image from new technique==========")
                     documentPic(newFile!!.length(), newFile?.absolutePath!!)
                 } else {
                     // Image compression

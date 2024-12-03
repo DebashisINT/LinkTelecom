@@ -21,7 +21,7 @@ class CollectionOrderAlertJobService: JobService() {
 
     override fun onStartJob(p0: JobParameters?): Boolean {
 
-        Timber.d("============Start Job (CollectionOrderAlertService)==============")
+        //Timber.d("============Start Job (CollectionOrderAlertService)==============")
 
         startService(Intent(this, CollectionOrderAlertService::class.java))
 
@@ -30,7 +30,7 @@ class CollectionOrderAlertJobService: JobService() {
 
     override fun onStopJob(p0: JobParameters?): Boolean {
 
-        Timber.d("===========Stop Job (CollectionOrderAlertService)================")
+        //Timber.d("===========Stop Job (CollectionOrderAlertService)================")
 
         try {
             if (Pref.user_id != null && Pref.user_id!!.isNotEmpty()) {
@@ -46,9 +46,9 @@ class CollectionOrderAlertJobService: JobService() {
                 val resultCode = jobScheduler.schedule(jobInfo)
 
                 if (resultCode == JobScheduler.RESULT_SUCCESS) {
-                    Timber.d("===========Job rescheduled (CollectionOrderAlertService)================")
+                    //Timber.d("===========Job rescheduled (CollectionOrderAlertService)================")
                 } else {
-                    Timber.d("==========Job not rescheduled (CollectionOrderAlertService)==============")
+                    //Timber.d("==========Job not rescheduled (CollectionOrderAlertService)==============")
                 }
             }
         }

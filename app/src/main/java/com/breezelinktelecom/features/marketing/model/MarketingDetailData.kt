@@ -24,7 +24,7 @@ class MarketingDetailData() :Parcelable{
             dest.writeValue(this.shop_id)
             dest.writeByte((if (isChecked) 1 else 0).toByte())
         }catch (ex:Exception){
-            Timber.d("parcel err")
+            //Timber.d("parcel err")
             ex.printStackTrace()
         }
     }
@@ -41,7 +41,7 @@ class MarketingDetailData() :Parcelable{
             typeid=parcel.readString()
             isChecked = parcel.readInt() != 0
         }catch (ex:Exception){
-            Timber.d("parcel errr")
+            //Timber.d("parcel errr")
         }
     }
 

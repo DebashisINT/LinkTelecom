@@ -813,35 +813,35 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
 
     private fun addQuotApi(quotEntity: QuotationEntity) {
 
-        Timber.d("==============Edit Quot. Input Params====================")
-        Timber.d("shop id=======> " + quotEntity.shop_id)
-        Timber.d("quot. date=======> " + quotEntity.date)
-        Timber.d("quot. id=======> " + quotEntity.quo_id)
-        Timber.d("quot. no=======> " + quotEntity.quo_no)
-        Timber.d("hypothecation=======> " + quotEntity.hypothecation)
-        Timber.d("account_no=======> " + quotEntity.account_no)
-        Timber.d("model_id=======> " + quotEntity.model_id)
-        Timber.d("bs_id=======> " + quotEntity.bs_id)
-        Timber.d("gearbox=======> " + quotEntity.gearbox)
-        Timber.d("number1=======> " + quotEntity.number1)
-        Timber.d("value1=======> " + quotEntity.value1)
-        Timber.d("value2=======> " + quotEntity.value2)
-        Timber.d("tyres1=======> " + quotEntity.tyres1)
-        Timber.d("number2=======> " + quotEntity.number2)
-        Timber.d("value3=======> " + quotEntity.value3)
-        Timber.d("value4=======> " + quotEntity.value4)
-        Timber.d("tyres2=======> " + quotEntity.tyres2)
-        Timber.d("amount=======> " + quotEntity.amount)
-        Timber.d("discount=======> " + quotEntity.discount)
-        Timber.d("cgst=======> " + quotEntity.cgst)
-        Timber.d("sgst=======> " + quotEntity.sgst)
-        Timber.d("tcs=======> " + quotEntity.tcs)
-        Timber.d("insurance=======> " + quotEntity.insurance)
-        Timber.d("net_amount=======> " + quotEntity.net_amount)
-        Timber.d("remarks=======> " + quotEntity.remarks)
-        Timber.d("session_token=======> " + Pref.session_token)
-        Timber.d("user_id=======> " + Pref.user_id)
-        Timber.d("============================================================")
+        //Timber.d("==============Edit Quot. Input Params====================")
+        //Timber.d("shop id=======> " + quotEntity.shop_id)
+        //Timber.d("quot. date=======> " + quotEntity.date)
+        //Timber.d("quot. id=======> " + quotEntity.quo_id)
+        //Timber.d("quot. no=======> " + quotEntity.quo_no)
+        //Timber.d("hypothecation=======> " + quotEntity.hypothecation)
+        //Timber.d("account_no=======> " + quotEntity.account_no)
+        //Timber.d("model_id=======> " + quotEntity.model_id)
+        //Timber.d("bs_id=======> " + quotEntity.bs_id)
+        //Timber.d("gearbox=======> " + quotEntity.gearbox)
+        //Timber.d("number1=======> " + quotEntity.number1)
+        //Timber.d("value1=======> " + quotEntity.value1)
+        //Timber.d("value2=======> " + quotEntity.value2)
+        //Timber.d("tyres1=======> " + quotEntity.tyres1)
+        //Timber.d("number2=======> " + quotEntity.number2)
+        //Timber.d("value3=======> " + quotEntity.value3)
+        //Timber.d("value4=======> " + quotEntity.value4)
+        //Timber.d("tyres2=======> " + quotEntity.tyres2)
+        //Timber.d("amount=======> " + quotEntity.amount)
+        //Timber.d("discount=======> " + quotEntity.discount)
+        //Timber.d("cgst=======> " + quotEntity.cgst)
+        //Timber.d("sgst=======> " + quotEntity.sgst)
+        //Timber.d("tcs=======> " + quotEntity.tcs)
+        //Timber.d("insurance=======> " + quotEntity.insurance)
+        //Timber.d("net_amount=======> " + quotEntity.net_amount)
+        //Timber.d("remarks=======> " + quotEntity.remarks)
+        //Timber.d("session_token=======> " + Pref.session_token)
+        //Timber.d("user_id=======> " + Pref.user_id)
+        //Timber.d("============================================================")
 
         progress_wheel.spin()
         val repository = QuotationRepoProvider.provideBSListRepository()
@@ -859,7 +859,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BaseResponse
-                            Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("EDIT QUOT. DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 doAsync {
@@ -883,7 +883,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("EDIT QUOT. DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage("Quotation edited successfully")
                             (mContext as DashboardActivity).onBackPressed()
@@ -908,7 +908,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as BSListResponseModel
-                            Timber.d("GET BS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET BS DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.bs_list != null && response.bs_list!!.isNotEmpty()) {
@@ -941,7 +941,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET BS DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET BS DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })
@@ -972,7 +972,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
                         .subscribe({ result ->
                             //val response = result as ModelListResponseModel
                             val response = result as ModelListResponse
-                            Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET MODEL DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             if (response.status == NetworkConstant.SUCCESS) {
 
                                 if (response.model_list != null && response.model_list!!.isNotEmpty()) {
@@ -1007,7 +1007,7 @@ class EditQuotationFragment : BaseFragment(), View.OnClickListener {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET MODEL DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                         })

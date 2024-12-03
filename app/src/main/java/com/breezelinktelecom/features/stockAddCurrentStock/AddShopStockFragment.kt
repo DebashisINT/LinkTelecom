@@ -486,7 +486,7 @@ class AddShopStockFragment: BaseFragment(), View.OnClickListener {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
-                                Timber.d("Stock/AddCurrentStock : RESPONSE " + result.status)
+                                //Timber.d("Stock/AddCurrentStock : RESPONSE " + result.status)
                                 progress_wheel.stopSpinning()
                                 if (result.status == NetworkConstant.SUCCESS){
                                     AppDatabase.getDBInstance()?.shopCurrentStockEntryDao()!!.syncShopStocktable(currentStock.stock_id.toString())
@@ -500,16 +500,16 @@ class AddShopStockFragment: BaseFragment(), View.OnClickListener {
                                     ,{error ->
                                 if (error == null) {
                                     progress_wheel.stopSpinning()
-                                    Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR.")
+                                    //Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR.")
                                 } else {
-                                    Timber.d("Stock/AddCurrentStock : ERROR " + error.localizedMessage)
+                                    //Timber.d("Stock/AddCurrentStock : ERROR " + error.localizedMessage)
                                     error.printStackTrace()
                                 }
                             })
             )
         }catch (ex:Exception){
             progress_wheel.stopSpinning()
-            Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR..")
+            //Timber.d("Stock/AddCurrentStock : ERROR " + "UNEXPECTED ERROR..")
         }
 
     }

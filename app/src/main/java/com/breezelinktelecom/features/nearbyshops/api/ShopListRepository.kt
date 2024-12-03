@@ -79,7 +79,7 @@ class ShopListRepository(val apiService: ShopListApi) {
     }
 
     fun deleteImei(): Observable<BaseResponse> {
-        Timber.d("deleteImei Repo" + AppUtils.getCurrentDateTime())
+        //Timber.d("deleteImei Repo" + AppUtils.getCurrentDateTime())
         return apiService.deleteImeiAPI(Pref.session_token!!, Pref.user_id!!)
     }
 

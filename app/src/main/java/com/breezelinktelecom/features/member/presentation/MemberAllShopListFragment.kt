@@ -280,7 +280,7 @@ class MemberAllShopListFragment : BaseFragment() {
                         .subscribeOn(Schedulers.io())
                         .subscribe({ result ->
                             val response = result as TeamShopListResponseModel
-                            Timber.d("GET TEAM SHOP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
+                            //Timber.d("GET TEAM SHOP DATA : " + "RESPONSE : " + response.status + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + response.message)
                             progress_wheel.stopSpinning()
                             if (response.status == NetworkConstant.SUCCESS) {
 
@@ -315,7 +315,7 @@ class MemberAllShopListFragment : BaseFragment() {
 
                         }, { error ->
                             progress_wheel.stopSpinning()
-                            Timber.d("GET TEAM SHOP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
+                            //Timber.d("GET TEAM SHOP DATA : " + "ERROR : " + "\n" + "Time : " + AppUtils.getCurrentDateTime() + ", USER :" + Pref.user_name + ",MESSAGE : " + error.localizedMessage)
                             error.printStackTrace()
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))
                             if (TextUtils.isEmpty(shopId))
@@ -401,7 +401,7 @@ class MemberAllShopListFragment : BaseFragment() {
                 }
             }
         } ?: let {
-            Timber.d("====empty shop list (Local Shop List)======")
+            //Timber.d("====empty shop list (Local Shop List)======")
         }
 
         initAdapter(newShopList,true)
@@ -465,11 +465,11 @@ class MemberAllShopListFragment : BaseFragment() {
                 if (AppUtils.mLocation!!.accuracy <= Pref.shopLocAccuracy.toFloat()) {
                     openAddressUpdateDialog(teamShop, AppUtils.mLocation!!)
                 } else {
-                    Timber.d("======Saved current location is inaccurate (Member Shop List)========")
+                    //Timber.d("======Saved current location is inaccurate (Member Shop List)========")
                     getShopLatLong(teamShop)
                 }
             } else {
-                Timber.d("=====Saved current location is null (Member Shop List)======")
+                //Timber.d("=====Saved current location is null (Member Shop List)======")
                 getShopLatLong(teamShop)
             }
 
@@ -667,7 +667,7 @@ class MemberAllShopListFragment : BaseFragment() {
                         }
 
                     }, { error ->
-                        Timber.d("Apply Leave Response ERROR=========> " + error.message)
+                        //Timber.d("Apply Leave Response ERROR=========> " + error.message)
                         BaseActivity.isApiInitiated = false
                         progress_wheel.stopSpinning()
                         (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))

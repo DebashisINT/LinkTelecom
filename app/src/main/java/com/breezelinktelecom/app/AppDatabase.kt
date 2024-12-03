@@ -13,6 +13,8 @@ import com.breezedsm.app.domain.NewProductListDao
 import com.breezedsm.app.domain.NewProductListEntity
 import com.breezedsm.app.domain.NewRateListDao
 import com.breezedsm.app.domain.NewRateListEntity
+import com.breezelinktelecom.LoanDispositionDao
+import com.breezelinktelecom.LoanDispositionEntity
 
 import com.breezelinktelecom.app.AppConstant.DBNAME
 import com.breezelinktelecom.app.domain.*
@@ -75,9 +77,9 @@ import com.breezelinktelecom.features.taskManagement.model.TaskManagmentEntity
     VisitRevisitWhatsappStatus::class,CallHisEntity::class,CompanyMasterEntity::class,TypeMasterEntity::class,StatusMasterEntity::class,SourceMasterEntity::class,StageMasterEntity::class,TeamListEntity::class,
     ContactActivityEntity::class,ScheduleTemplateEntity::class,ModeTemplateEntity::class,RuleTemplateEntity::class,SchedulerMasterEntity::class,
     SchedulerDateTimeEntity::class,SchedulerContactEntity::class,TeamAllListEntity::class,PhoneContactEntity::class,PhoneContact1Entity::class,
-    NewProductListEntity::class, NewRateListEntity::class, NewOrderDataEntity::class,NewOrderProductDataEntity::class,OpportunityStatusEntity::class,OpportunityAddEntity::class,OpportunityProductEntity::class,LmsUserInfoEntity::class,
-    ShopAudioEntity::class,LMSNotiEntity::class,StockAllEntity::class,StockTransEntity::class),
-        version = 27, exportSchema = false)
+    NewProductListEntity::class, NewRateListEntity::class, NewOrderDataEntity::class,NewOrderProductDataEntity::class,OpportunityStatusEntity::class,OpportunityAddEntity::class,OpportunityProductEntity::class,LoanRiskTypeEntity::class,LoanDispositionEntity::class,LoanFinalStatusEntity::class,LoanDetailFetchEntity::class,
+    ShopAudioEntity::class,StockAllEntity::class,StockTransEntity::class,CrashReportEntity::class,ShopExtraDtlsEntity::class),
+        version = 1, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun addShopEntryDao(): AddShopDao
@@ -244,11 +246,15 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun opportunityStatusDao(): OpportunityStatusDao
     abstract fun opportunityAddDao(): OpportunityAddDao
     abstract fun opportunityProductDao(): OpportunityProductDao
-    abstract fun lmsUserInfoDao(): LmsUserInfoDao
     abstract fun shopAudioDao(): ShopAudioDao
-    abstract fun lmsNotiDao(): LMSNotiDao
     abstract fun stockAllDao(): StockAllDao
     abstract fun stockTransDao(): StockTransDao
+    abstract fun crashReportDao(): CrashReportDao
+    abstract fun shopExtraDtlsDao(): ShopExtraDtlsDao
+    abstract fun loanRiskTypeDao(): LoanRiskTypeDao
+    abstract fun loanDispositionDao(): LoanDispositionDao
+    abstract fun loanFinalStatusDao(): LoanFinalStatusDao
+    abstract fun loanDetailFetchDao(): LoanDetailFetchDao
 
 
     companion object {
@@ -274,7 +280,6 @@ abstract class AppDatabase : RoomDatabase() {
         fun destroyInstance() {
             INSTANCE = null
         }
-
-    }
-
+        
+           }
 }

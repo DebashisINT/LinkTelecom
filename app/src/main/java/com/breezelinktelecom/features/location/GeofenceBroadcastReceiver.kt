@@ -12,7 +12,7 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        Timber.d("geofencePendingIntent : onReceive   " + " , " + " Time :" + AppUtils.getCurrentDateTime() + " , onReceive ")
+        //Timber.d("geofencePendingIntent : onReceive   " + " , " + " Time :" + AppUtils.getCurrentDateTime() + " , onReceive ")
 
         GeofenceTransitionsJobIntentService.enqueueWork(context, intent)
 

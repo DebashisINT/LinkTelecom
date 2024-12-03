@@ -245,13 +245,13 @@ class ApprovalPendFrag: BaseFragment(), View.OnClickListener {
                             .subscribeOn(Schedulers.io())
                             .subscribe({ result ->
                                 val response = result as GetReportToFCMResponse
-
+                               // progress_wheel.stopSpinning()
                                 if (response.status == NetworkConstant.SUCCESS) {
                                     sendLeaveApprRejctFCMNotiUser(response.device_token!!,leave_status)
                                 }
 
                             }, { error ->
-                                Timber.d("Apply Leave Response ERROR=========> " + error.message)
+                                //Timber.d("Apply Leave Response ERROR=========> " + error.message)
                                 BaseActivity.isApiInitiated = false
                                 progress_wheel.stopSpinning()
                                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.something_went_wrong))

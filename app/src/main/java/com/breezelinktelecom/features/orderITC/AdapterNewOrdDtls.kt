@@ -63,7 +63,7 @@ class AdapterNewOrdDtls(var mContext:Context, var ordL:ArrayList<NewOrderDataEnt
                     tv_row_ord_dtls_order_shop_addr.text = shopObj.address
                 }catch (ex:Exception){
                     ex.printStackTrace()
-                    Timber.d("tag_ex_order ${ex.printStackTrace()} for ${mList.get(adapterPosition).shop_id}")
+                    //Timber.d("tag_ex_order ${ex.printStackTrace()} for ${mList.get(adapterPosition).shop_id}")
                 }
 
 
