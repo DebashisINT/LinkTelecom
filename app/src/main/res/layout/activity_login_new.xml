@@ -280,7 +280,7 @@
                         android:textSize="@dimen/_11sdp"
                         android:visibility="gone" />
 
-                    <!--<com.breezelinktelecom.widgets.AppCustomTextView
+                    <!--<com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
@@ -289,7 +289,7 @@
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"/>
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
@@ -336,7 +336,7 @@
 <!--                        android:layout_marginStart="@dimen/_1sdp"-->
 <!--                        android:visibility="invisible">-->
 
-<!--                        <com.breezelinktelecom.widgets.AppCustomTextView-->
+<!--                        <com.breezefieldsalesdemo.widgets.AppCustomTextView-->
 <!--                            android:id="@+id/activity_login_tvappCustomAnydesk"-->
 <!--                            android:layout_width="wrap_content"-->
 <!--                            android:layout_height="wrap_content"-->
@@ -349,7 +349,7 @@
 <!--                            android:textColor="@color/white"-->
 <!--                            android:textSize="@dimen/_8sdp" />-->
 
-<!--                        <com.breezelinktelecom.widgets.AppCustomTextView-->
+<!--                        <com.breezefieldsalesdemo.widgets.AppCustomTextView-->
 <!--                            android:id="@+id/activity_login_tvappCustomLogs"-->
 <!--                            android:layout_width="wrap_content"-->
 <!--                            android:layout_height="wrap_content"-->

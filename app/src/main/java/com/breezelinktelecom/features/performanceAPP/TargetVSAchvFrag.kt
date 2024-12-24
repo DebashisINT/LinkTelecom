@@ -99,6 +99,7 @@ class TargetVSAchvFrag: BaseFragment(), View.OnClickListener  {
     }
 
     private fun initView(view: View) {
+        println("tag_ta_user_id $userID")
         halfGauge = view.findViewById<HalfGauge>(R.id.half_gauge)
 
         ll_frag_ta_dtls = view.findViewById(R.id.ll_frag_ta_dtls)

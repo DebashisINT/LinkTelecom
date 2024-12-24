@@ -78,7 +78,7 @@ import java.util.List;
 
 import static java.sql.DriverManager.println;
 
-import timber.log.Timber;
+//import timber.log.Timber;
 
 /**
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track

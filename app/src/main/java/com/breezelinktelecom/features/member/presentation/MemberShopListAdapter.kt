@@ -308,18 +308,6 @@ class MemberShopListAdapter(private val context: Context, private val teamShopLi
                     itemView.add_quot_ll.visibility = View.GONE
                 }
 
-                if(Pref.ShowTargetOnApp){
-                    itemView.shop_ta_dtls.visibility = View.VISIBLE
-                    itemView.shop_ta_dtls_view.visibility = View.VISIBLE
-                }else{
-                    itemView.shop_ta_dtls.visibility = View.GONE
-                    itemView.shop_ta_dtls_view.visibility = View.GONE
-                }
-                itemView.shop_ta_dtls.setOnClickListener {
-                    TargetVSAchvFrag.userID = CustomStatic.TeamUserSelect_user_id
-                    (context as DashboardActivity).loadFragment(FragType.TargetVSAchvFrag, true, "")
-                }
-
             }
         }
     }

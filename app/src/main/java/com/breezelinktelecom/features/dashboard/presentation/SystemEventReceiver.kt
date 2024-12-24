@@ -19,7 +19,7 @@ import com.breezelinktelecom.app.utils.AppUtils.Companion.reasontagforGPS
 import com.breezelinktelecom.features.location.LocationWizard
 import com.breezelinktelecom.mappackage.SendBrod
 
-import timber.log.Timber
+//import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 

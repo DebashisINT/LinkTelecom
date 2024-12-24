@@ -11,7 +11,6 @@ import com.breezelinktelecom.R
 import kotlinx.android.synthetic.main.row_cont_select.view.cb_row_cont_sel_name
 import kotlinx.android.synthetic.main.row_cont_select.view.tv_row_cont_sel_name
 import kotlinx.android.synthetic.main.row_dialog_tax_multiple.view.cb_row_row_dialog_tax_multiple
-import org.jetbrains.annotations.Async.Schedule
 
 class AdapterScheduleContactName(var mContext:Context, var customerList:ArrayList<ScheduleContactDtls>, var listner:onClick, private val getSize: (Int) -> Unit):
     RecyclerView.Adapter<AdapterScheduleContactName.ContactNameViewHolder>(), Filterable {

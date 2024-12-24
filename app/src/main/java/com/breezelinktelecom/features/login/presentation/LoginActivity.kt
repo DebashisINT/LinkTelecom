@@ -188,7 +188,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.json.JSONException
 import org.json.JSONObject
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.*
 import java.nio.channels.FileChannel
 import java.util.*
@@ -308,7 +308,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
         println("xyz - login oncreate started" + AppUtils.getCurrentDateTime());
 
         Pref.FirstLogiForTheDayTag = true
-
+        Pref.IsAllowGPSTrackingInBackgroundForLMS = true
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Pref.IsAllowGPSTrackingInBackgroundForLMS){
             //initPermissionCheck()
             showCallLogProminentDisclosure()
@@ -5199,9 +5199,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LocationListener {
 //                ", username : " + username + ", password : " + password + ", lat : " + Pref.latitude + ", long : " + Pref.longitude + ", location : " + location +
 //                ", device token : " + Pref.deviceToken)
 
-        Timber.d("LoginApiRequest : " + "\n, IMEI :" + Pref.imei + ", Time :" + AppUtils.getCurrentDateTime() + ", Version :" + AppUtils.getVersionName(this) +
+       /* Timber.d("LoginApiRequest : " + "\n, IMEI :" + Pref.imei + ", Time :" + AppUtils.getCurrentDateTime() + ", Version :" + AppUtils.getVersionName(this) +
                 ", username : " + username + ", password : " + password + ", lat : " + Pref.latitude + ", long : " + Pref.longitude + ", location : " + location +
-                ", device token : " + Pref.deviceToken)
+                ", device token : " + Pref.deviceToken)*/
         Pref.UserLoginContactID = username
         val repository = LoginRepositoryProvider.provideLoginRepository()
         /*progress_wheel.spin()*/

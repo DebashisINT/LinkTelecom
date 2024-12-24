@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.row_cont_select.view.cb_row_cont_sel_name
 import kotlinx.android.synthetic.main.row_cont_select.view.tv_row_cont_sel_name
 import kotlinx.android.synthetic.main.row_dialog_tax_multiple.view.cb_row_row_dialog_tax_multiple
 import kotlinx.android.synthetic.main.row_subbranch_select.view.cb_row_subBranch_sel_name
-import org.jetbrains.annotations.Async.Schedule
 
 class AdapterSubBranchName(var mContext:Context, var subBranchList:ArrayList<SubBranchData> ,var listner: OnSubBrCLick , private val getSize: (Int) -> Unit):
     RecyclerView.Adapter<AdapterSubBranchName.SubBranchnameViewHolder>(), Filterable {

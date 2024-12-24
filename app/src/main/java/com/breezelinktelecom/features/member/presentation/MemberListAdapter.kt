@@ -15,8 +15,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.Pref
+import com.breezelinktelecom.app.types.FragType
 import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.features.member.model.TeamListDataModel
+import com.breezelinktelecom.features.performanceAPP.TargetVSAchvFrag
 import com.breezelinktelecom.widgets.AppCustomTextView
 import kotlinx.android.synthetic.main.inflate_member_list_item.view.*
 
@@ -233,6 +235,20 @@ class MemberListAdapter(context: Context, val teamList: ArrayList<TeamListDataMo
                 listener.onAllPartyClick(teamList[adapterPosition])
             }
             //end 1.0  OfflineMemberAdapter AppV 4.1.5 Saheli    06/06/2023  mantis 0026301: Team Details page working
+
+            // Suman 09-12-2024 mantis id 27823 begin
+            if(Pref.ShowTargetOnApp){
+                itemView.tv_target_achv.visibility = View.VISIBLE
+                itemView.tv_target_achv.text = "Target Vs Achievement"
+            }else{
+                itemView.tv_target_achv.visibility = View.INVISIBLE
+                itemView.tv_target_achv.text = ""
+            }
+            itemView.tv_target_achv.setOnClickListener {
+                TargetVSAchvFrag.userID = teamList[adapterPosition].user_id
+                (context as DashboardActivity).loadFragment(FragType.TargetVSAchvFrag, false, "")
+            }
+            // Suman 09-12-2024 mantis id 27823 end
 
         }
     }

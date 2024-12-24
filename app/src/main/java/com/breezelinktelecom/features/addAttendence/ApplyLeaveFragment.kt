@@ -54,7 +54,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
-import timber.log.Timber
+//import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.time.Duration
 import java.time.LocalDate

@@ -16,7 +16,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
-import timber.log.Timber
+//import timber.log.Timber
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.AppDatabase
 import com.breezelinktelecom.app.NetworkConstant

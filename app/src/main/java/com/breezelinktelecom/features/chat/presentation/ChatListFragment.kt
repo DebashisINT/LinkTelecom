@@ -31,7 +31,7 @@ import com.pnikosis.materialishprogress.ProgressWheel
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.Serializable
 
 class ChatListFragment : BaseFragment(), View.OnClickListener {

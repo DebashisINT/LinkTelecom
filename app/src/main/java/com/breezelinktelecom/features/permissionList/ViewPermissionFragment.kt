@@ -28,7 +28,7 @@ import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity
 import com.breezelinktelecom.test.viewPermission.AdapterViewPermission
 
 import kotlinx.android.synthetic.main.fragment_view_permission.*
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList

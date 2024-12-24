@@ -12,7 +12,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import timber.log.Timber
+//import timber.log.Timber
 import com.pnikosis.materialishprogress.ProgressWheel
 import com.breezelinktelecom.R
 import com.breezelinktelecom.app.AppDatabase

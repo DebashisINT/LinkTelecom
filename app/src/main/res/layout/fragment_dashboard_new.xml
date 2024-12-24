@@ -356,7 +356,7 @@
 
                         </FrameLayout>
 
-                        <!--  <com.breezelinktelecom.widgets.AppCustomTextView
+                        <!--  <com.breezefieldsalesdemo.widgets.AppCustomTextView
                               android:id="@+id/start_TV"
                               android:layout_width="@dimen/_70sdp"
                               android:layout_height="match_parent"
@@ -423,7 +423,7 @@
 
                         </FrameLayout>
 
-                        <!--<com.breezelinktelecom.widgets.AppCustomTextView
+                        <!--<com.breezefieldsalesdemo.widgets.AppCustomTextView
                             android:id="@+id/DDVisit_TV"
                             android:layout_width="@dimen/_70sdp"
                             android:layout_height="match_parent"
@@ -489,7 +489,7 @@
 
                         </FrameLayout>
 
-                        <!-- <com.breezelinktelecom.widgets.AppCustomTextView
+                        <!-- <com.breezefieldsalesdemo.widgets.AppCustomTextView
                              android:id="@+id/end_TV"
                              android:layout_width="@dimen/_70sdp"
                              android:layout_height="match_parent"
@@ -595,7 +595,7 @@
                         android:src="@drawable/ic_report_shop_icon"
                         android:visibility="gone" />
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/n_shops_TV"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="@dimen/_50sdp"
@@ -613,7 +613,7 @@
                         android:textStyle="bold"
                         android:visibility="visible" />
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/no_of_shop_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -634,7 +634,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:visibility="visible">
 
-                        <com.breezelinktelecom.widgets.AppCustomTextView
+                        <com.breezefieldsalesdemo.widgets.AppCustomTextView
                             android:id="@+id/start_TV"
                             android:layout_width="@dimen/_70sdp"
                             android:layout_height="@dimen/_50sdp"
@@ -657,7 +657,7 @@
 
                     </RelativeLayout>
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/start_shop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -690,7 +690,7 @@
                         android:src="@drawable/ic_report_time_icon"
                         android:visibility="gone" />
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/n_time_TV"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="@dimen/_50sdp"
@@ -705,7 +705,7 @@
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/no_of_time_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -729,7 +729,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:visibility="visible">
 
-                        <com.breezelinktelecom.widgets.AppCustomTextView
+                        <com.breezefieldsalesdemo.widgets.AppCustomTextView
                             android:id="@+id/DDVisit_TV"
                             android:layout_width="@dimen/_70sdp"
                             android:layout_height="@dimen/_50sdp"
@@ -754,7 +754,7 @@
 
                     </RelativeLayout>
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/DDVisitdate_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -798,7 +798,7 @@
                         android:gravity="center"
                         android:visibility="gone">
 
-                        <com.breezelinktelecom.widgets.AppCustomTextView
+                        <com.breezefieldsalesdemo.widgets.AppCustomTextView
                             android:id="@+id/rupee_order"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -820,7 +820,7 @@
 
                     </RelativeLayout>
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/n_order_TV"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="@dimen/_50sdp"
@@ -837,7 +837,7 @@
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/no_of_order_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -857,7 +857,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:visibility="visible">
 
-                        <com.breezelinktelecom.widgets.AppCustomTextView
+                        <com.breezefieldsalesdemo.widgets.AppCustomTextView
                             android:id="@+id/end_TV"
                             android:layout_width="@dimen/_70sdp"
                             android:layout_height="@dimen/_50sdp"
@@ -881,7 +881,7 @@
 
                     </RelativeLayout>
 
-                    <com.breezelinktelecom.widgets.AppCustomTextView
+                    <com.breezefieldsalesdemo.widgets.AppCustomTextView
                         android:id="@+id/enddate_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

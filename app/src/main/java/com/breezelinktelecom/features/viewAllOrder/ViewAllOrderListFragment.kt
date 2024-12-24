@@ -64,7 +64,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.io.File
 import java.util.*
-import timber.log.Timber
+//import timber.log.Timber
 
 
 /**

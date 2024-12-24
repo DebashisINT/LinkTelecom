@@ -328,7 +328,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.*
 import java.sql.Date
 import java.util.*
@@ -352,6 +352,7 @@ import com.breezelinktelecom.features.login.api.opportunity.OpportunityRepoProvi
 import com.breezelinktelecom.features.login.model.NewSettingsResponseModel
 import com.breezelinktelecom.features.performanceAPP.TargetVSAchvFrag
 import com.breezelinktelecom.features.performanceAPP.TargetVSAchvDtlsFrag
+import com.example.modernretail.others.LocationUtils
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.internal.LifecycleCallback.getFragment
 import com.google.android.gms.security.ProviderInstaller
@@ -359,10 +360,12 @@ import com.google.auth.oauth2.GoogleCredentials
 import kotlinx.android.synthetic.main.activity_login_new.login_TV
 import kotlinx.android.synthetic.main.toolbar_layout.tv_saved_count
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.withContext
 import org.json.JSONException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.StandardCharsets
+import java.util.concurrent.CountDownLatch
 import javax.activation.DataHandler
 import javax.activation.FileDataSource
 import javax.mail.Authenticator
@@ -534,12 +537,60 @@ class DashboardActivity : BaseActivity(), View.OnClickListener, BaseNavigation,
         Pref.IsShowMenuAnyDesk = false
         showToolbar()
 
-        val distance = LocationWizard.getDistance(22.5580817 ,   88.4126317
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                try {
+                    var fetchLocation = Location("")
+                    val latch = CountDownLatch(1)
+                    LocationUtils.getCurrentLocation(mContext) { location ->
+                        fetchLocation = location!!
+                        latch.countDown()
+                    }
+                    latch.await()
 
-            , 22.5510335 ,   88.4037008
-        )
+                    var location = LocationUtils.getLocationName(mContext, fetchLocation.latitude, fetchLocation.longitude) as String
+                    var pinCode = LocationUtils.getLocationPincode(mContext, fetchLocation.latitude, fetchLocation.longitude) as String
+                    val locationList = AppDatabase.getDBInstance()!!.userLocationDataDao().getLocationUpdateForADay(AppUtils.getCurrentDateForShopActi()) as ArrayList<UserLocationDataEntity>
+                    if(locationList.size>0){
+                        var lastLoc = locationList.get(locationList.size-1)
+                        val loc_distance = LocationWizard.getDistance(lastLoc.latitude.toDouble(), lastLoc.longitude.toDouble(),
+                            fetchLocation.latitude.toDouble(), fetchLocation.longitude.toDouble())
 
-        println("load_frag " + mFragType.toString() + " " + Pref.user_id.toString() + " "+distance.toString() )
+                        val userlocation = UserLocationDataEntity()
+                        userlocation.apply {
+                            latitude = fetchLocation.latitude.toString()
+                            longitude = fetchLocation.longitude.toString()
+                            distance = loc_distance.toString()
+                            locationName = LocationUtils.getLocationName(mContext, fetchLocation.latitude.toDouble(), fetchLocation.longitude.toDouble()).toString()+".."
+                            timestamp = LocationWizard.getTimeStamp()
+                            time = LocationWizard.getFormattedTime24Hours(true)
+                            meridiem = LocationWizard.getMeridiem()
+                            hour = LocationWizard.getHour()
+                            minutes = LocationWizard.getMinute()
+                            isUploaded = false
+                            shops = AppDatabase.getDBInstance()!!.shopActivityDao().getTotalShopVisitedForADay(AppUtils.getCurrentDateForShopActi()).size.toString()
+                            updateDate = AppUtils.getCurrentDateForShopActi()
+                            updateDateTime = AppUtils.getCurrentDateTime()
+                            meeting = AppDatabase.getDBInstance()!!.addMeetingDao().getMeetingDateWise(AppUtils.getCurrentDateForShopActi()).size.toString()
+                            network_status = if (AppUtils.isOnline(mContext)) "Online" else "Offline"
+                            battery_percentage = AppUtils.getBatteryPercentage(mContext).toString()
+                        }
+                        AppDatabase.getDBInstance()!!.userLocationDataDao().insertAll(userlocation)
+                        println("ex_chk coroutine ${userlocation.locationName}")
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                withContext(Dispatchers.Main) {
+                    println("ex_chk coroutine main")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        println("ex_chk load_fr")
+        //Pref.IsUsbDebuggingRestricted = false
+        println("load_frag " + mFragType.toString() + " " + Pref.user_id.toString()+" "+Pref.isShowBeatGroup+" "+Pref.IsDistributorSelectionRequiredinAttendance)
 
 
         //  val notification = NotificationUtils(getString(R.string.app_name), "", "", "")
@@ -2022,6 +2073,17 @@ class DashboardActivity : BaseActivity(), View.OnClickListener, BaseNavigation,
                         try {
                             fl_net_status.background = getDrawable(R.drawable.green_round)
                             netStatus = "Online"
+
+                         /*   try {
+                                if (FTStorageUtils.isMyServiceRunning(LocationFuzedService::class.java, this@DashboardActivity)) {
+                                    Timber.d("tag_m_chk service running")
+                                }else{
+                                    Timber.d("tag_m_chk service not running")
+                                    serviceStatusActionable()
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }*/
                         } catch (e: java.lang.Exception) {
                             e.printStackTrace()
                         }
@@ -8180,7 +8242,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener, BaseNavigation,
                     mFragment = TargetVSAchvFrag()
                 }
                 setTopBarTitle("Target Vs Achievement")
-                setTopBarVisibility(TopBarConfig.BACK)
+                setTopBarVisibility(TopBarConfig.GENERAL_HOME_MENU)
             }
             FragType.TargetVSAchvDtlsFrag -> {
                 if (enableFragGeneration) {

@@ -74,7 +74,7 @@ import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.joda.time.DateTime
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 

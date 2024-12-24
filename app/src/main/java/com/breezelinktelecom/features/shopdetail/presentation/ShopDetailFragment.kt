@@ -74,7 +74,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_add_shop.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.*
 
 /**

@@ -35,7 +35,7 @@ import com.pnikosis.materialishprogress.ProgressWheel
 import com.themechangeapp.pickimage.PermissionHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList

@@ -252,6 +252,7 @@
                                     android:layout_marginRight="@dimen/_2sdp"
                                     android:background="@color/light_gray" />
                             </RelativeLayout>
+
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -4487,7 +4488,7 @@
                            android:layout_marginRight="@dimen/_7sdp"/>
 
 
-                       <com.breezelinktelecom.widgets.AppCustomTextView
+                       <com.breezefieldsalesdemo.widgets.AppCustomTextView
                            android:layout_width="match_parent"
                            android:layout_height="match_parent"
                            android:layout_weight="1"
@@ -4528,7 +4529,7 @@
                            android:layout_marginRight="@dimen/_7sdp"/>
 
 
-                       <com.breezelinktelecom.widgets.AppCustomTextView
+                       <com.breezefieldsalesdemo.widgets.AppCustomTextView
                            android:layout_width="match_parent"
                            android:layout_height="match_parent"
                            android:layout_weight="1"

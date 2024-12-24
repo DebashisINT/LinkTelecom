@@ -8,7 +8,7 @@ import com.breezelinktelecom.features.login.model.GetSecImageUploadResponseModel
 import com.breezelinktelecom.features.login.model.productlistmodel.ModelListResponse
 import com.breezelinktelecom.features.nearbyshops.model.*
 import io.reactivex.Observable
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Pratishruti on 28-11-2017.

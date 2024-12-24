@@ -45,7 +45,7 @@ import com.bumptech.glide.Glide
 import com.pnikosis.materialishprogress.ProgressWheel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 
 
 class ViewCrmOpptFrag : BaseFragment(), View.OnClickListener {

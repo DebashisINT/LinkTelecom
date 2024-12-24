@@ -58,7 +58,7 @@ import org.jetbrains.anko.uiThread
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 17-12-2018.

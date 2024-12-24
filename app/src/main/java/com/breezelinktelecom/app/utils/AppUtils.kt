@@ -60,7 +60,7 @@ import com.google.zxing.qrcode.QRCodeWriter
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import org.apache.commons.lang3.StringEscapeUtils
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.*
 import java.math.BigDecimal
 import java.security.SecureRandom

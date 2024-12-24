@@ -82,7 +82,7 @@ import kotlinx.android.synthetic.main.fragment_add_shop.FSSAILic_EDT
 import net.alexandroid.gps.GpsStatusDetector
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 

@@ -133,7 +133,7 @@ import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_bank_
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_party_status_TV
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_stage_TV
 import kotlinx.android.synthetic.main.row_contact_list.view.ll_row_cont_loan_dtls_root
-import timber.log.Timber
+//import timber.log.Timber
 
 
 /**

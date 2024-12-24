@@ -29,7 +29,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import timber.log.Timber
+//import timber.log.Timber
 
 //Revision History
 // 1.0 BeatCurrentStatusFrag  AppV 4.0.6  Saheli    16/01/2023 beatApi for currentTab

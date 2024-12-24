@@ -41,7 +41,7 @@ import com.pnikosis.materialishprogress.ProgressWheel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_achievement.view.*
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 

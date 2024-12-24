@@ -61,7 +61,7 @@ import kotlinx.coroutines.runBlocking
 import net.alexandroid.gps.GpsStatusDetector
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.IOException
 import java.io.InputStream
 import java.net.URL
@@ -112,8 +112,8 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
 
         /*FileLoggingTree.context = this.applicationContext*/
 
-        Timber.plant(Timber.DebugTree())
-        Timber.plant(FileLoggingTree())
+        //Timber.plant(Timber.DebugTree())
+        //Timber.plant(FileLoggingTree())
 
         /*val mediaMetadataRetriever = MediaMetadataRetriever()
         mediaMetadataRetriever.setDataSource("http://3.7.30.86:8073/Commonfolder/LMS/ContentUpload/Sell Me This Pen.mp4", HashMap<String, String>())

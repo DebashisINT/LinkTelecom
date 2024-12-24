@@ -26,7 +26,7 @@ import com.breezelinktelecom.features.location.LocationJobService
 import com.breezelinktelecom.mappackage.SendBrod
 
 import kotlinx.android.synthetic.main.activity_splash.*
-import timber.log.Timber
+//import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 //Revision History
@@ -71,7 +71,7 @@ class MonitorService:Service() {
 
             }
         }
-        timer!!.schedule(task, 0, 10000)
+        timer!!.schedule(task, 0, 20000)
         //timer!!.schedule(task, 0, 50000)
 
         // 15 mins is 60000 * 15
@@ -97,8 +97,8 @@ class MonitorService:Service() {
             e.printStackTrace()
             //Timber.d("tag_error ${e.printStackTrace()}")
         }
-        return
 
+/*
         Log.e("abc", "startabc")
         monitorBroadcast = MonitorBroadcast()
 
@@ -264,7 +264,7 @@ class MonitorService:Service() {
                 }
                 isFirst=false
             }
-        }
+        }*/
 
     }
     // 1.0 MonitorService  AppV 4.0.6 GPS_SERVICE_STATUS & NETWORK_STATUS

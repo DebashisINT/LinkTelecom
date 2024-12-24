@@ -93,7 +93,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 29-11-2018.
@@ -1664,6 +1664,7 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
             para.add(ph1)
             document.add(para)
 
+            //Code start by Puja date:26.11.2024 mantis-0027816
             if (!obj.remarks.isNullOrEmpty() ) {
 
                 val paraRmrk = Paragraph()
@@ -1676,6 +1677,7 @@ class NewDateWiseOrderListFragment : BaseFragment(), DatePickerListener, View.On
                 paraRmrk.add(phRmrk)
                 document.add(paraRmrk)
             }
+            //Code start by Puja date:26.11.2024 mantis-0027816
 
 //            val TotalAmountword = Paragraph("" + "\u20B9" + convertIntoWords(obj.amount!!.toDouble(),"en","US"), font)
 //            TotalAmountword.alignment = Element.ALIGN_LEFT

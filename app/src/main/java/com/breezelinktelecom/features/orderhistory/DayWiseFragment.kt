@@ -53,7 +53,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.*
 import java.util.*
 import kotlin.collections.ArrayList

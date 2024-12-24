@@ -45,7 +45,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_add_shop_stock.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.lang.Exception
 import java.math.RoundingMode
 import java.text.DecimalFormat

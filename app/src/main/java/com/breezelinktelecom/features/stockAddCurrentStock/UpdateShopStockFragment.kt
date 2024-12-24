@@ -27,12 +27,13 @@ import com.breezelinktelecom.features.stockAddCurrentStock.api.ShopAddStockProvi
 import com.breezelinktelecom.features.stockAddCurrentStock.model.CurrentStockGetData
 import com.breezelinktelecom.features.stockCompetetorStock.model.CompetetorStockGetData
 import com.breezelinktelecom.widgets.AppCustomTextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 
 //1.0 Rev UpdateShopStockFragment AppV 4.0.8 saheli    12/05/2023 mantis 26101
 class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
@@ -41,7 +42,8 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
     private lateinit var myshop_name_TV: AppCustomTextView
     private lateinit var myshop_addr_TV: AppCustomTextView
     private lateinit var myshop_contact_TV: AppCustomTextView
-    private lateinit var addShopStockLL : LinearLayout
+   // private lateinit var addShopStockLL : LinearLayout
+   private lateinit var fabAdd: FloatingActionButton
     private lateinit var rvStockDetails : RecyclerView
     private lateinit var  tvattachment:AppCustomTextView
 
@@ -93,7 +95,8 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
         myshop_name_TV = view.findViewById(R.id.myshop_name_TV)
         myshop_addr_TV = view.findViewById(R.id.myshop_address_TV)
         myshop_contact_TV = view.findViewById(R.id.tv_contact_number)
-        addShopStockLL = view.findViewById(R.id.ll_frag_update_shop_stock_add)
+       // addShopStockLL = view.findViewById(R.id.ll_frag_update_shop_stock_add)
+        fabAdd = view.findViewById(R.id.add_stock_tv)
         rvStockDetails = view.findViewById(R.id.rv_current_stock_list)
         rvStockDetails.layoutManager=LinearLayoutManager(mContext)
 
@@ -120,7 +123,9 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
 
         tvattachment.setOnClickListener(this)
         //1.0 end Rev UpdateShopStockFragment AppV 4.0.8 saheli    12/05/2023 mantis 26101
-        addShopStockLL.setOnClickListener(this)
+        //addShopStockLL.setOnClickListener(this)
+        fabAdd.setOnClickListener(this)
+
     }
 
     private fun getStockList(){
@@ -146,7 +151,8 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
     override fun onClick(p0: View?) {
         if(p0!=null){
             when(p0.id){
-                R.id.ll_frag_update_shop_stock_add ->{
+                //R.id.ll_frag_update_shop_stock_add ->{
+                R.id.add_stock_tv ->{
                     if (Pref.isAddAttendence){
                         (mContext as DashboardActivity).loadFragment(FragType.AddShopStockFragment, true, mAddShopDataObj!!)
                     }
@@ -222,5 +228,4 @@ class UpdateShopStockFragment : BaseFragment(), View.OnClickListener{
             //Timber.d("Stock/CurrentStockList : ERROR " + "UNEXPECTED ERROR IN Add Stock ACTIVITY API")
         }
     }
-
 }

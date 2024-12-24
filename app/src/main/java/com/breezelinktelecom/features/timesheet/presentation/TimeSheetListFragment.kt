@@ -41,7 +41,7 @@ import org.jetbrains.anko.uiThread
 import org.joda.time.DateTime
 import java.util.*
 import kotlin.collections.ArrayList
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 29-Apr-20.

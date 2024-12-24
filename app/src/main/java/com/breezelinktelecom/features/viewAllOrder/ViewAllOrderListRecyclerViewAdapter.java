@@ -72,7 +72,7 @@ public class ViewAllOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Vi
                         }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Invoiced")){
                             text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
                                     context.getColor(R.color.report_blue) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
-                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Ready to Dispatch")){
+                        }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Ready To Dispatch")){
                             text = "<font color=" + context.getColor(R.color.dark_gray) + ">Status : </font> <font color="+
                                     context.getColor(R.color.schdlrblue) + ">" + mViewAllOrderListEntityArray.get(position).getOrderStatus() + "</font>";
                         }else if(mViewAllOrderListEntityArray.get(position).getOrderStatus().equals("Dispatched")){

@@ -23,7 +23,7 @@ import com.breezelinktelecom.features.dashboard.presentation.DashboardActivity;
 import com.breezelinktelecom.features.newcollectionreport.CollectionNotiViewPagerFrag1;
 import com.breezelinktelecom.features.splash.presentation.SplashActivity;
 
-import timber.log.Timber;
+//import timber.log.Timber;
 
 // 1.0 MonitorCollPending  v 4.1.6 Saheli mantis 0026430 Play console report fixing 23-06-2023
 public class MonitorCollPending extends BroadcastReceiver {

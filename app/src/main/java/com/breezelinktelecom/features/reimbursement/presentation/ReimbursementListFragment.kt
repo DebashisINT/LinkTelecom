@@ -43,7 +43,7 @@ import com.rackspira.kristiawan.rackmonthpicker.RackMonthPicker
 import com.rackspira.kristiawan.rackmonthpicker.listener.DateMonthDialogListener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 import java.text.DateFormatSymbols
 import java.util.*
 

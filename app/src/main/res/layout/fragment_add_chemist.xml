@@ -360,7 +360,7 @@
                 android:textColorHint="@color/light_gray"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.breezelinktelecom.widgets.AppCustomEditText
+                <com.breezefieldsalesdemo.widgets.AppCustomEditText
                     android:id="@+id/et_volume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -429,7 +429,7 @@
                 android:textColorHint="@color/light_gray"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.breezelinktelecom.widgets.AppCustomEditText
+                <com.breezefieldsalesdemo.widgets.AppCustomEditText
                     android:id="@+id/et_remarks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

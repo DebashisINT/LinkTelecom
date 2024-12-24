@@ -12,7 +12,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.breezelinktelecom.BuildConfig;
 import com.breezelinktelecom.app.Pref;
 
 import java.io.File;
@@ -22,10 +21,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import timber.log.Timber;
+//import timber.log.Timber;
 /*Created by Saheli 02-03-2023*/
 // modifed work for 03-03-2023 by saheli
-public class FileLoggingTree extends Timber.DebugTree {
+public class FileLoggingTree {/*extends Timber.DebugTree {
 
         private static final String LOG_TAG = FileLoggingTree.class.getSimpleName();
         public static Context context;
@@ -76,8 +75,8 @@ public class FileLoggingTree extends Timber.DebugTree {
         }
 
         /*  Helper method to create file*/
-        @Nullable
-        private static File generateFile(@NonNull String path, @NonNull String fileName) {
+
+        /*private static File generateFile(@NonNull String path, @NonNull String fileName) {
                 // modifed work for 03-03-2023 by saheli
                 File file = null;
                 if (isExternalStorageAvailable()) {
@@ -92,23 +91,23 @@ public class FileLoggingTree extends Timber.DebugTree {
                         if (dirExists) {
                                 file = new File(root, fileName);
                         }
-                      /*  try{
+                      *//*  try{
                                 if(Pref.INSTANCE.getUser_id()==null && Pref.INSTANCE.getUser_id()==""){
                                         fileDelete(file);
                                 }
                         }catch (Exception ex){
                                 ex.printStackTrace();
-                        }*/
+                        }*//*
 
                 }
-              /*  if(isFileLessThan10MB(file)){
+              *//*  if(isFileLessThan10MB(file)){
                         file.delete();
-                }*/
+                }*//*
                 return file;
-        }
+        }*/
 
-        @Nullable
-        private  File generateFile2(@NonNull String path, @NonNull String fileName,Context context) {
+
+       /* private  File generateFile2(@NonNull String path, @NonNull String fileName,Context context) {
                 // modifed work for 03-03-2023 by saheli
 //                File file = null;
 //                File file = new File(context.getFilesDir(), fileName);
@@ -143,25 +142,25 @@ public class FileLoggingTree extends Timber.DebugTree {
 
                 }
                 return file;
-        }
+        }*/
 
 
 
         /* Helper method to determine if external storage is available*/
-        private static boolean isExternalStorageAvailable() {
+        /*private static boolean isExternalStorageAvailable() {
                 return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-        }
+        }*/
 
-        private static boolean isFileLessThan30MB(File file) {
+        /*private static boolean isFileLessThan30MB(File file) {
                 int maxFileSize = 10 * 1024 * 1024;
                 Long l = file.length();
                 String fileSize = l.toString();
                 int finalFileSize = Integer.parseInt(fileSize);
                 return finalFileSize >= maxFileSize;
-        }
+        }*/
 
-        public static boolean fileDelete(File file) {
+       /* public static boolean fileDelete(File file) {
                 return file.delete();
-        }
+        }*/
 
 }

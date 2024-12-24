@@ -7,7 +7,7 @@ import com.breezelinktelecom.app.domain.AddShopDBModelEntity
 import com.breezelinktelecom.app.domain.ShopActivityEntity
 import com.breezelinktelecom.app.utils.AppUtils
 
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by riddhi on 19/12/17.

@@ -2,7 +2,7 @@ package com.breezelinktelecom.features.marketing.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Pratishruti on 23-02-2018.

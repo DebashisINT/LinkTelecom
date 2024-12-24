@@ -21,7 +21,7 @@ import io.fabric.sdk.android.Fabric
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
+//import timber.log.Timber
 
 class FTSApp : MultiDexApplication() {
 
@@ -48,7 +48,7 @@ class FTSApp : MultiDexApplication() {
         AppDatabase.initAppDatabase(this)
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
-        initTimber()
+        //initTimber()
 
         // Initialize PreferenceHolder with the application context
         PreferenceHolder.setContext(applicationContext)
@@ -58,7 +58,7 @@ class FTSApp : MultiDexApplication() {
     }
 
     private fun initTimber() {
-        Timber.plant(Timber.DebugTree())
-        Timber.plant(FileLoggingTree())
+        //Timber.plant(Timber.DebugTree())
+        //Timber.plant(FileLoggingTree())
     }
 }

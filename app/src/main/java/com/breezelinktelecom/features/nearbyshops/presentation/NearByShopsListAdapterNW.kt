@@ -129,7 +129,7 @@ import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_addre
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_bank_details_TV
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_party_status_TV
 import kotlinx.android.synthetic.main.inflate_registered_shops.view.update_stage_TV
-import timber.log.Timber
+//import timber.log.Timber
 
 class NearByShopsListAdapterNW(context: Context, list: List<AddShopDBModelEntity>, val listener: NearByShopsListClickListener) : RecyclerView.Adapter<NearByShopsListAdapterNW.MyViewHolder>() {
 

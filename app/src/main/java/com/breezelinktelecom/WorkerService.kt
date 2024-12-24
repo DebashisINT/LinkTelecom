@@ -19,7 +19,7 @@ import com.breezelinktelecom.app.utils.AppUtils
 import com.breezelinktelecom.app.utils.FTStorageUtils
 import com.breezelinktelecom.features.location.LocationFuzedService
 import com.breezelinktelecom.features.location.LocationJobService
-import timber.log.Timber
+//import timber.log.Timber
 
 
 class WorkerService(context: Context,workParm:WorkerParameters):Worker(context,workParm) {

@@ -27,7 +27,7 @@ import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

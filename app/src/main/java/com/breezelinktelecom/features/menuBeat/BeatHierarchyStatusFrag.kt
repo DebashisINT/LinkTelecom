@@ -14,7 +14,7 @@ import com.breezelinktelecom.base.presentation.BaseFragment
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 
 // 1.0 BeatHierarchyStatusFrag AppV 4.0.6 Suman 18-01-2023  thread updation mantis 0025587
 // 2.0 BeatHierarchyStatusFrag AppV 4.0.6 Suman 20-01-2023  design updation mantis

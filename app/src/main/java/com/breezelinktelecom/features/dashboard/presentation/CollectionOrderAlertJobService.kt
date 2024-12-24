@@ -11,7 +11,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 import com.breezelinktelecom.app.Pref
-import timber.log.Timber
+//import timber.log.Timber
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 /**

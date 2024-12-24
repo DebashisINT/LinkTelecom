@@ -181,7 +181,7 @@
                 android:textColorHint="@color/light_gray"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.breezelinktelecom.widgets.AppCustomEditText
+                <com.breezefieldsalesdemo.widgets.AppCustomEditText
                     android:id="@+id/et_doc_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -417,7 +417,7 @@
                 android:textColorHint="@color/light_gray"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.breezelinktelecom.widgets.AppCustomEditText
+                <com.breezefieldsalesdemo.widgets.AppCustomEditText
                     android:id="@+id/et_qty_vol_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -945,7 +945,7 @@
                     android:textColorHint="@color/light_gray"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.breezelinktelecom.widgets.AppCustomEditText
+                    <com.breezefieldsalesdemo.widgets.AppCustomEditText
                         android:id="@+id/et_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1014,7 +1014,7 @@
                     android:visibility="gone"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.breezelinktelecom.widgets.AppCustomEditText
+                    <com.breezefieldsalesdemo.widgets.AppCustomEditText
                         android:id="@+id/et_what"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1185,7 +1185,7 @@
                     android:textColorHint="@color/light_gray"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.breezelinktelecom.widgets.AppCustomEditText
+                    <com.breezefieldsalesdemo.widgets.AppCustomEditText
                         android:id="@+id/et_volume_crm_cme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1340,7 +1340,7 @@
                 android:visibility="gone"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.breezelinktelecom.widgets.AppCustomEditText
+                <com.breezefieldsalesdemo.widgets.AppCustomEditText
                     android:id="@+id/et_which_kind"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Build
 
 import com.google.android.exoplayer2.offline.DownloadService.startForeground
-import timber.log.Timber
+//import timber.log.Timber
 
 class RestartBroadcast : BroadcastReceiver() {
 

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.breezelinktelecom.app.utils.AppUtils
 
-import timber.log.Timber
+//import timber.log.Timber
 
 
 class GeofenceBroadcastReceiver : BroadcastReceiver() {

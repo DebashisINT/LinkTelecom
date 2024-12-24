@@ -68,7 +68,7 @@ import java.lang.Runnable
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.system.measureTimeMillis
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 08-11-2018.

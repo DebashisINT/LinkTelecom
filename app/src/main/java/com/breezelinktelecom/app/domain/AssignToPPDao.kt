@@ -17,6 +17,9 @@ interface AssignToPPDao {
     @Query("SELECT * FROM " + AppConstant.ASSIGNED_TO_PP_TABLE + " where pp_id=:pp_id")
     fun getSingleValue(pp_id: String): AssignToPPEntity
 
+    @Query("SELECT * FROM " + AppConstant.ASSIGNED_TO_PP_TABLE + " where pp_id=:pp_id")
+    fun getAssignPP(pp_id: String): List<AssignToPPEntity>
+
     /*@Query("delete " + AppConstant.ASSIGNED_TO_PP_TABLE + " where pp_id=:pp_id")
     fun deletePPId(pp_id: String)*/
 

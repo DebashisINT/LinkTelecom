@@ -101,9 +101,10 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_add_shop.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.File
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -932,7 +933,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
         }
 
         if(Pref.isShowBeatGroup) {
-            if (Pref.IsDistributorSelectionRequiredinAttendance)
+            //if (Pref.IsDistributorSelectionRequiredinAttendance)
                 tv_beat_asterisk_mark.visibility = View.VISIBLE
         }
         else {
@@ -1100,14 +1101,32 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                         rl_select_dealer.visibility = View.GONE
 
                         if (assignDDList != null && assignDDList.isNotEmpty()) {
-                            assignedToDDId = assignDDList[0].dd_id!!
-                            tv_assign_to_dd.text = assignDDList[0].dd_name
+                            //Suman 09-12-2024 mantis id 27834 begin
+                            var ddL = AppDatabase.getDBInstance()?.ddListDao()?.getAll() as ArrayList<AssignToDDEntity>
+                            if(ddL.size>1){
+                                assignedToDDId = ""
+                            }else{
+                                assignedToDDId = assignDDList[0].dd_id!!
+                                tv_assign_to_dd.text = assignDDList[0].dd_name
+                            }
+                            //Suman 09-12-2024 mantis id 27834 end
+                            //assignedToDDId = assignDDList[0].dd_id!!
+                            //tv_assign_to_dd.text = assignDDList[0].dd_name
                         }
                     }
 
                     if (assignPPList != null && assignPPList.isNotEmpty()) {
-                        assignedToPPId = assignPPList[0].pp_id!!
-                        assign_to_tv.text = assignPPList[0].pp_name
+                        //Suman 09-12-2024 mantis id 27834 begin
+                        var ppL = AppDatabase.getDBInstance()?.ppListDao()?.getAll() as ArrayList<AssignToPPEntity>
+                        if(ppL.size>1){
+                            assignedToPPId = ""
+                        }else{
+                            assignedToPPId = assignPPList[0].pp_id!!
+                            assign_to_tv.text = assignPPList[0].pp_name
+                        }
+                        //Suman 09-12-2024 mantis id 27834 begin
+                        //assignedToPPId = assignPPList[0].pp_id!!
+                        //assign_to_tv.text = assignPPList[0].pp_name
                     }
                     (mContext as DashboardActivity). setTopBarTitle("Add " + Pref.shopText)
 
@@ -3484,7 +3503,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                  }*/
 
 
-                val assignPPList = AppDatabase.getDBInstance()?.ppListDao()?.getAll()
+                /*val assignPPList = AppDatabase.getDBInstance()?.ppListDao()?.getAll()
                 if (assignPPList == null || assignPPList.isEmpty()) {
                     if (!TextUtils.isEmpty(Pref.profile_state)) {
                         if (AppUtils.isOnline(mContext))
@@ -3496,7 +3515,36 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     }
                 } else {
                     showAssignedToPPDialog(assignPPList, addShopData.type)
-                }
+                }*/
+
+                //Suman 09-12-2024 mantis id 27834
+
+                    try {
+                        var assignPPList:ArrayList<AssignToPPEntity> = ArrayList()
+                        if(!assignedToDDId.equals("")){
+                            val ddObj = AppDatabase.getDBInstance()?.ddListDao()?.getSingleValue(assignedToDDId)
+                            assignPPList = AppDatabase.getDBInstance()?.ppListDao()?.getAssignPP(ddObj!!.pp_id!!.toString()) as ArrayList<AssignToPPEntity>
+                        }else{
+                            assignPPList = AppDatabase.getDBInstance()?.ppListDao()?.getAll() as ArrayList<AssignToPPEntity>
+                        }
+                        if (assignPPList == null || assignPPList.isEmpty()) {
+                            if (!TextUtils.isEmpty(Pref.profile_state)) {
+                                if (AppUtils.isOnline(mContext))
+                                    getAssignedPPListApi(false, "")
+                                else
+                                    (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_internet))
+                            } else {
+                                showProfileAlert()
+                            }
+                        } else {
+                            showAssignedToPPDialog(assignPPList, addShopData.type)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+
+
 
                 //callThemePopUp(assign_to_rl, mAssignedList)
                 //showAssignedToPPDialog(mAssignedList)
@@ -3618,7 +3666,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                     }
                 }*/
 
-                val assignDDList = AppDatabase.getDBInstance()?.ddListDao()?.getAll()
+                var assignDDList = AppDatabase.getDBInstance()?.ddListDao()?.getAll()
                 if (assignDDList == null || assignDDList.isEmpty()) {
                     if (!TextUtils.isEmpty(Pref.profile_state)) {
                         if (AppUtils.isOnline(mContext))
@@ -3642,8 +3690,22 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             showAssignedToDDDialog(list)
                         else
                             (mContext as DashboardActivity).showSnackMessage(getString(R.string.no_data_found))
-                    } else
-                        showAssignedToDDDialog(assignDDList)
+                    } else{
+                        //showAssignedToDDDialog(assignDDList)
+                        //Suman 09-12-2024 mantis id 27834 begin
+                        if(assignedToPPId.equals("")){
+                            assignDDList = AppDatabase.getDBInstance()?.ddListDao()?.getAll()
+                        }else{
+                            assignDDList = AppDatabase.getDBInstance()?.ddListDao()?.getAllDDFilterPP(assignedToPPId)
+                        }
+                        if(assignDDList == null || assignDDList.isEmpty()){
+                            Toaster.msgShort(mContext,"No ${Pref.ddText} found.")
+                        }else{
+                            showAssignedToDDDialog(assignDDList)
+                        }
+                        //Suman 09-12-2024 mantis id 27834 end
+
+                    }
                 }
                 //callThemePopUp(assign_to_rl, mAssignedList)
 
@@ -6017,6 +6079,47 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
             override fun onItemSelect(dd: AssignToDDEntity?) {
                 tv_assign_to_dd.text = dd?.dd_name + " (" + dd?.dd_phn_no + ")"
                 assignedToDDId = dd?.dd_id.toString()
+
+                //Suman 11-12-2024 mantis id 27834
+                try {
+                    var ddFromShop : AddShopDBModelEntity? = null
+                    var ddFromAssignDD : AssignToDDEntity? = null
+                    var ppFromShop : AddShopDBModelEntity? = null
+                    var ppFromAssignPP : AssignToPPEntity? = null
+
+                    var pp_id=""
+                    var pp_name = ""
+
+                    ddFromShop =   AppDatabase.getDBInstance()?.addShopEntryDao()?.getShopByIdN(dd!!.dd_id)
+                    if(ddFromShop == null){
+                        ddFromAssignDD = AppDatabase.getDBInstance()?.ddListDao()?.getSingleValue(dd!!.dd_id.toString())
+                        pp_id = ddFromAssignDD!!.pp_id.toString()
+                    }else{
+                        pp_id = ddFromShop.assigned_to_pp_id
+                    }
+                    ppFromShop = AppDatabase.getDBInstance()?.addShopEntryDao()?.getShopByIdN(pp_id)
+                    if(ppFromShop == null){
+                        ppFromAssignPP = AppDatabase.getDBInstance()?.ppListDao()?.getSingleValue(pp_id)
+                        pp_name = ppFromAssignPP!!.pp_name.toString()
+                    }else{
+                        pp_name = ppFromShop.shopName
+                    }
+                    assign_to_tv.text = pp_name
+                    assignedToPPId = pp_id
+
+                  /*  if(ddFromShop == null){
+                        ddFromAssignDD = AppDatabase.getDBInstance()?.ddListDao()?.getSingleValue(dd!!.dd_id.toString())
+                        ppFromAssignPP = AppDatabase.getDBInstance()?.ppListDao()?.getSingleValue(ddFromAssignDD!!.pp_id.toString())
+                        assign_to_tv.text = ppFromAssignPP!!.pp_name
+                        assignedToPPId = ppFromAssignPP!!.pp_id!!
+                    }else{
+                        ppFromShop = AppDatabase.getDBInstance()?.addShopEntryDao()?.getShopByIdN(ddFromShop!!.assigned_to_pp_id)
+                        assign_to_tv.text = ppFromShop!!.shopName
+                        assignedToPPId = ppFromShop!!.shop_id!!
+                    }*/
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }).show(fragmentManager!!, "")
     }
@@ -6191,7 +6294,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                 (mContext as DashboardActivity).showSnackMessage("Please select any GPTPL/Distributor")
                 BaseActivity.isApiInitiated = false
                 return
-            } else if (TextUtils.isEmpty(assignedToDDId) && Pref.AutoDDSelect==true) {
+            } else if (TextUtils.isEmpty(assignedToDDId) ){//&& Pref.AutoDDSelect==true) { Suman 09-12-2024 mantis id 27834
                 (mContext as DashboardActivity).showSnackMessage("Please select assigned to " + Pref.ddText)
                 BaseActivity.isApiInitiated = false
                 return
@@ -6781,7 +6884,7 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
             return
         }
 
-        if(Pref.IsDistributorSelectionRequiredinAttendance){
+        if(Pref.IsDistributorSelectionRequiredinAttendance || true){
             if(Pref.isShowBeatGroup && TextUtils.isEmpty(tv_select_beat.text.toString().trim())) {
                 (mContext as DashboardActivity).showSnackMessage(getString(R.string.error_enter_beat))
                 BaseActivity.isApiInitiated = false
@@ -7351,14 +7454,34 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             rl_select_dealer.visibility = View.GONE
 
                             if (assignDDList != null && assignDDList.isNotEmpty()) {
-                                assignedToDDId = assignDDList[0].dd_id!!
-                                tv_assign_to_dd.text = assignDDList[0].dd_name
+                                //assignedToDDId = assignDDList[0].dd_id!!
+                                //tv_assign_to_dd.text = assignDDList[0].dd_name
+
+                                //Suman 09-12-2024 mantis id 27834 begin
+                                var ddL = AppDatabase.getDBInstance()?.ddListDao()?.getAll() as ArrayList<AssignToPPEntity>
+                                if(ddL.size>1){
+                                    assignedToDDId = ""
+                                }else{
+                                    assignedToDDId = assignDDList[0].dd_id!!
+                                    tv_assign_to_dd.text = assignDDList[0].dd_name
+                                }
+                                //Suman 09-12-2024 mantis id 27834 end
                             }
                         }
 
                         if (assignPPList != null && assignPPList.isNotEmpty()) {
-                            assignedToPPId = assignPPList[0].pp_id!!
-                            assign_to_tv.text = assignPPList[0].pp_name
+                            //assignedToPPId = assignPPList[0].pp_id!!
+                            //assign_to_tv.text = assignPPList[0].pp_name
+
+                            //Suman 09-12-2024 mantis id 27834 begin
+                            var ppL = AppDatabase.getDBInstance()?.ppListDao()?.getAll() as ArrayList<AssignToPPEntity>
+                            if(ppL.size>1){
+                                assignedToPPId = ""
+                            }else{
+                                assignedToPPId = assignPPList[0].pp_id!!
+                                assign_to_tv.text = assignPPList[0].pp_name
+                            }
+                            //Suman 09-12-2024 mantis id 27834 begin
                         }
 
                         tv_select_dealer.text = ""
@@ -7523,8 +7646,18 @@ class AddShopFragment : BaseFragment(), View.OnClickListener {
                             rl_select_dealer.visibility = View.GONE
 
                         if (assignPPList != null && assignPPList.isNotEmpty()) {
-                            assignedToPPId = assignPPList[0].pp_id!!
-                            assign_to_tv.text = assignPPList[0].pp_name
+                            //assignedToPPId = assignPPList[0].pp_id!!
+                            //assign_to_tv.text = assignPPList[0].pp_name
+
+                            //Suman 09-12-2024 mantis id 27834 begin
+                            var ppL = AppDatabase.getDBInstance()?.ppListDao()?.getAll() as ArrayList<AssignToPPEntity>
+                            if(ppL.size>1){
+                                assignedToPPId = ""
+                            }else{
+                                assignedToPPId = assignPPList[0].pp_id!!
+                                assign_to_tv.text = assignPPList[0].pp_name
+                            }
+                            //Suman 09-12-2024 mantis id 27834 begin
                         }
                         assignedToDDId = ""
 

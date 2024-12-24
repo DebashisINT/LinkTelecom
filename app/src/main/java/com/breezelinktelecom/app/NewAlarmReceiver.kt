@@ -13,7 +13,7 @@ import com.breezelinktelecom.app.utils.AppUtils
 import com.breezelinktelecom.app.utils.FTStorageUtils
 import com.breezelinktelecom.features.location.LocationFuzedService
 import com.breezelinktelecom.features.location.LocationJobService
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 30-04-2019.

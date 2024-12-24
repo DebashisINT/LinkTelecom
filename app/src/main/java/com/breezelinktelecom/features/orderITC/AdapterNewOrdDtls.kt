@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.row_ord_dtls_new.view.tv_row_ord_dtls_orde
 import kotlinx.android.synthetic.main.row_ord_dtls_new.view.tv_row_ord_dtls_order_shop_addr
 import kotlinx.android.synthetic.main.row_ord_dtls_new.view.tv_row_ord_dtls_order_shop_name
 import kotlinx.android.synthetic.main.row_order_list.view.iv_row_ord_sync
-import timber.log.Timber
+//import timber.log.Timber
 
 class AdapterNewOrdDtls(var mContext:Context, var ordL:ArrayList<NewOrderDataEntity>, var listner: AdapterNewOrdDtls.OnCLick):
     RecyclerView.Adapter<AdapterNewOrdDtls.NewOrdDtlsViewHolder>() {

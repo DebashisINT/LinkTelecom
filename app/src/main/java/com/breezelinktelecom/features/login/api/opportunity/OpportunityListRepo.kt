@@ -18,7 +18,7 @@ import com.breezelinktelecom.features.orderITC.SyncEditOppt
 import com.breezelinktelecom.features.orderITC.SyncOppt
 import com.breezelinktelecom.features.orderList.model.OpportunityListResponseModel
 import io.reactivex.Observable
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Saikat on 20-11-2018.

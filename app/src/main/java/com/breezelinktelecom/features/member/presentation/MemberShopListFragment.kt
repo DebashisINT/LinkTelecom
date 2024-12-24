@@ -35,7 +35,7 @@ import com.breezelinktelecom.features.member.model.TeamShopListResponseModel
 import com.breezelinktelecom.widgets.AppCustomTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule

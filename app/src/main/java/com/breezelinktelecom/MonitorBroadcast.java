@@ -22,7 +22,7 @@ import com.breezelinktelecom.app.utils.AppUtils;
 import com.breezelinktelecom.features.splash.presentation.SplashActivity;
 
 
-import timber.log.Timber;
+//import timber.log.Timber;
 
 public class MonitorBroadcast extends BroadcastReceiver {
 

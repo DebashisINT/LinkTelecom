@@ -48,7 +48,7 @@ import com.themechangeapp.pickimage.PermissionHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.dialog_add_ta.*
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.File
 import java.io.FileInputStream
 import java.util.*

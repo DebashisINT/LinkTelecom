@@ -17,7 +17,7 @@ import com.breezelinktelecom.features.location.LocationWizard
 import com.breezelinktelecom.widgets.AppCustomEditText
 import com.breezelinktelecom.widgets.AppCustomTextView
 
-import timber.log.Timber
+//import timber.log.Timber
 
 /**
  * Created by Pratishruti on 02-02-2018.

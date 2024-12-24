@@ -66,7 +66,7 @@ import kotlinx.android.synthetic.main.activity_login_new.iv_loader_spin
 import kotlinx.android.synthetic.main.customnotification.view.text
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.util.Calendar
 import java.util.Locale
 import java.util.Random
@@ -741,7 +741,10 @@ class OrderProductCartFrag : BaseFragment(), View.OnClickListener {
 
     // end 2.0 OrderProductCartFrag v 4.1.6 stock optmization mantis 0026391 20-06-2023 saheli
 
-    private fun syncOrder(orderObj: OrderDetailsListEntity, orderProductList: ArrayList<OrderProductListEntity>) {
+    private fun syncOrder(
+        orderObj: OrderDetailsListEntity,
+        orderProductList: ArrayList<OrderProductListEntity>
+    ) {
         progrwss_wheel.spin()
         val addOrderApiObj = AddOrderInputParamsModel()
         addOrderApiObj.product_list = ArrayList()

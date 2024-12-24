@@ -86,7 +86,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.*
 import java.lang.Math.abs
 import java.text.SimpleDateFormat
@@ -202,7 +202,8 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
         mLocationRequest!!.fastestInterval = 1000 * 30 // 30 secs*/
         mLocationRequest!!.interval = (1000 * Pref.locationTrackInterval.toInt()).toLong()
         mLocationRequest!!.fastestInterval = (1000 * Pref.locationTrackInterval.toInt()).toLong()
-        mLocationRequest!!.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        //mLocationRequest!!.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest!!.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
         //mLocationRequest!!.smallestDisplacement = 20F
         //mLocationRequest!!.smallestDisplacement = 1.0f
 
@@ -393,8 +394,8 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
                     startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
                 }else{
                     println("tag_start_foreground not 28")
-                    startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
-                    //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn,ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
+                    //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
+                    startForeground(AppConstant.FOREGROUND_SERVICE, notificationn,ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
                 }
                 //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn,ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
                 //startForeground(AppConstant.FOREGROUND_SERVICE, notificationn)
@@ -2151,7 +2152,7 @@ class LocationFuzedService : Service(), GoogleApiClient.ConnectionCallbacks, Goo
 
         //cancelShopDuration()
 
-        if (mLastLocation == null) {
+        if (mLastLocation == null || true) {
             val locList = AppDatabase.getDBInstance()!!.userLocationDataDao().getLocationUpdateForADay(AppUtils.getCurrentDateForShopActi())
 
             if (locList != null && locList.isNotEmpty()) {

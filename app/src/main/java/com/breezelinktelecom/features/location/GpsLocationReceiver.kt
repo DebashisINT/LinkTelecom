@@ -18,7 +18,7 @@ import com.breezelinktelecom.app.utils.AppUtils.Companion.gpsOnTime
 import com.breezelinktelecom.app.utils.AppUtils.Companion.isGpsOffCalled
 import com.breezelinktelecom.app.utils.AppUtils.Companion.isGpsReceiverCalled
 import com.breezelinktelecom.app.utils.AppUtils.Companion.isOnReceived
-import timber.log.Timber
+//import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 

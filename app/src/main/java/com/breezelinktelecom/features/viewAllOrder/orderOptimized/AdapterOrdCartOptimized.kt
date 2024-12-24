@@ -152,11 +152,25 @@ class AdapterOrdCartOptimized(val mContext:Context,val cartL:ArrayList<FinalOrde
                     }
                 }
 
+                try {
+                    if((OrderProductCartFrag.stockTransL.map { it.stock_productid} as ArrayList<String>).contains(cartL.get(adapterPosition).product_id)){
+                        for(k in 0..OrderProductCartFrag.stockTransL.size-1){
+                            if(OrderProductCartFrag.stockTransL.get(k).stock_productid == cartL.get(adapterPosition).product_id){
+                                OrderProductCartFrag.stockTransL.get(k).stock_productOrderqty = itemView.et_row_ord_opti_cart_qty.text.toString()
+                                break
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
                 if(isQtyChanging){
                     cartL.get(adapterPosition).qty = changQtyStr
                     listner.onQtyChangeClick(cartL.get(adapterPosition).product_id, changQtyStr)
                     notifyDataSetChanged()
-                }else if(Pref.IsViewMRPInOrder && Pref.IsDiscountInOrder){
+                }
+                else if(Pref.IsViewMRPInOrder && Pref.IsDiscountInOrder){
                     try{
                         if(isRateChanging){
                             changDiscStr = String.format("%.2f",(100-((changRateStr.toString().toDouble()*100)/cartL.get(adapterPosition).product_mrp_show.toDouble())))
@@ -174,7 +188,8 @@ class AdapterOrdCartOptimized(val mContext:Context,val cartL:ArrayList<FinalOrde
                     cartL.get(adapterPosition).product_discount_show = changDiscStr
                     listner.onDiscountChangeClick(cartL.get(adapterPosition).product_id, changDiscStr, changRateStr)
                     notifyDataSetChanged()
-                }else{
+                }
+                else{
                     cartL.get(adapterPosition).rate = changRateStr
                     listner.onRateChangeClick(cartL.get(adapterPosition).product_id,if(changRateStr.equals("")) "0" else changRateStr)
                     notifyDataSetChanged()

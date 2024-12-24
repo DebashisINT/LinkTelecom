@@ -76,7 +76,7 @@ import kotlinx.android.synthetic.main.dialog_add_feedback_single_btn.*
 import kotlinx.android.synthetic.main.fragment_add_shop.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.File
 import java.util.*
 

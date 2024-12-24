@@ -61,7 +61,7 @@ import io.reactivex.schedulers.Schedulers
 import lecho.lib.hellocharts.model.Line
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import timber.log.Timber
+//import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

@@ -1,6 +1,5 @@
 package com.breezelinktelecom;
 
-import static com.breezelinktelecom.app.utils.FileLoggingTree.context;
 import static java.sql.DriverManager.println;
 
 import android.annotation.SuppressLint;
